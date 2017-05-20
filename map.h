@@ -995,6 +995,7 @@ public:
     	//completar
     }
 
+
     /** \overload */
     const_iterator find(const Key& key) const {
     	//completar
@@ -1425,7 +1426,7 @@ public:
          * \complexity{\O(1)}
          */
         reference operator*() const {
-        	//completar
+        	return *n;
         }
         /**
          * \brief Retorna la dirección del valor apuntado por \P{*this}
@@ -1443,7 +1444,7 @@ public:
          * eso que la postcondición es más débil de lo que debiera.  Eso no ocurre en las otras funciones del TP.
          */
         pointer operator->() const {
-			//completar
+			return n;
 		}
         /**
          * \brief Avanza el iterador a la siguiente posición
@@ -1463,6 +1464,59 @@ public:
         iterator& operator++() {
         	//completar
         }
+        /**
+         *\brief Busca el sucesor inorder del nodo al que apunta el iterador
+         *
+         *@retval res puntero apuntando a la dirección del sucesor 
+         *
+         *
+         *
+         */
+         Node* nextInorder(Node* node){
+            if(hasRightChild(node)){
+             return getLeftmost(node->child[1]);
+            } else if(isLeftChild(node)){
+                return node->parent;
+            } else {
+                Node* aux = node; 
+                while(aux != header && isRightChild(aux)){
+                    aux = aux->parent;
+                }
+                return (aux!=header) ? aux->parent : nullptr;
+            }
+         }
+
+         bool hasLeftChild(Node* node){
+             return node->child[0] != nullptr;
+         }
+         bool hasRightChild(Node* node){
+             return node->child[1] != nullptr;
+         }
+
+         bool isLeftChild(Node* node){
+             return node->parent->child[0] == node;
+         }
+
+         bool isRightChild(Node* node){
+             return node->parent->child[1] == node;
+         }
+
+         Node* getLeftmost(Node* node){
+            Node* aux = node;
+            while(aux != nullptr && hasLeftChild(aux)){
+                aux = aux->child[0];
+            }
+            return aux;
+         }
+         Node* getRightmost(Node* node){
+            Node* aux = node;
+            while(aux != nullptr && hasRightChild(aux)){
+                aux = aux->child[1];
+            }
+            return aux;
+         }
+
+
         /**
          * \brief Avanza el iterador a la siguiente posición
          *
