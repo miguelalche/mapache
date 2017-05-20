@@ -1,0 +1,40 @@
+En esta pagina, y por conveniencia, se listan todos los axiomas y proposiciones auxiliares requeridos para formalizar los invariantes de representación y las funciones de abstracción. Previamente se presentan los renombres de los tipos usados.
+
+\begin{DoxyParagraph}{Renombres de tipos}
+
+\end{DoxyParagraph}
+
+\begin{DoxyItemize}
+\item Node es tupla(child\+: arreglo\mbox{[}2\mbox{]} de puntero(\+Node), parent\+: puntero(\+Node), color\+: Color, value\+: Value)
+\item Value es Maybe(value\+\_\+type)
+\item value\+\_\+type es tupla(clave\+: Key, significado\+: Meaning)
+\end{DoxyItemize}
+
+El T\+AD Maybe( $\alpha$) representa un tipo $\alpha$ extendido con un valor nulo. En otras palabras, el T\+AD Maybe se puede usar para representar los valores de los nodos, donde el nodo cabecera no tiene valor y los nodos internos sí tienen valor. (Esto independientemente de si se implementa con herencia o con un puntero o de otra forma.) Tiene dos observadores\+:
+\begin{DoxyItemize}
+\item nothing?(x)\+: que indica si x tiene un valor nulo, y
+\item data(x)\+: que devuelve el valor de x, suponiendo que no es inválido.
+\end{DoxyItemize}
+
+La especificación de este T\+AD queda como ejercicio (no obligatorio).\hypertarget{axiomas_sec-Axiomas}{}\subsection{Axiomas y proposiciones auxiliares}\label{axiomas_sec-Axiomas}
+En esta sección se deben incluir todos los axiomas y proposiciones auxiliares que se usen para describir los invariantes de representación, las funciones de abstracción, las precondiciones y las postcondiciones.
+
+\begin{DoxyRemark}{Comentarios}
+Recordar incluir un alias en el archivo doxyfile a fin de poder referenciar automaticamente a cada axioma desde las otras páginas.
+\end{DoxyRemark}
+Se muestran algunos ejemplos a continuación.
+
+\begin{DoxyParagraph}{es\+Diccionario?}
+Retorna true si la secuencia representa un diccionario
+
+es\+Diccionario?\+: secu(tupla( $\alpha$, $\beta$)) $\to$ bool~\newline
+es\+Diccionario?(s) $\equiv$ sin\+Repetidos?(\href{axiomas.html#primeros}{\tt primeros}(s)) 
+\end{DoxyParagraph}
+
+
+\begin{DoxyParagraph}{primeros}
+Proyecta las primeras componentes de una secuencia de pares
+
+primeros\+: secu(tupla( $\alpha$, $\beta$)) $\to$ secu( $\alpha$)~\newline
+primeros(s) $\equiv$ {\bfseries if} vacia?(s) {\bfseries then} $<$$>$ {\bfseries else} $\pi_1$(prim(s)) $\bullet$ \href{axiomas.html#primeros}{\tt primeros}(fin(s)) {\bfseries fi} 
+\end{DoxyParagraph}
