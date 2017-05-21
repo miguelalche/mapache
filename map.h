@@ -1923,17 +1923,20 @@ private:
     Node header;
     //@}
     Node* nextInorder(Node* node){
-        if(hasRightChild(node)){
-            return getLeftmost(node->child[1]);
-        } else if(isLeftChild(node)){
-            return node->parent;
-        } else {
-            Node* aux = node;
-            while((aux->color != color::header) && isRightChild(aux)){
-                aux = aux->parent;
+        if (!node->is_header) {
+            if (hasRightChild(node)) {
+                return getLeftmost(node->child[1]);
+            } else if (isLeftChild(node)) {
+                return node->parent;
+            } else {
+                Node *aux = node;
+                while (aux->is_header() && isRightChild(aux)) {
+                    aux = aux->parent;
+                }
+                return aux->is_header() ? aux->parent : nullptr;
             }
-            return (aux->color!=color::header) ? aux->parent : nullptr;
         }
+        return node->parent;
     }
 
     bool hasLeftChild(Node* node){
