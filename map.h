@@ -783,7 +783,7 @@ public:
      *
      */
     map(const map& other) {
-    	this = other;
+    	*this = other;
     }
 
     /**
@@ -909,7 +909,7 @@ public:
     const Meaning& at(const Key& key) const {
         const InnerNode* actual = root();
         while(actual->_value.first != key ){
-            if(key lt actual->_value.first){
+            if(lt(key, actual->_value.first)){
                 actual = static_cast<InnerNode*>(actual->child[0]);
             } else {
                 actual = static_cast<InnerNode*>(actual->child[1]);
@@ -992,13 +992,13 @@ public:
      *
      */
     iterator find(const Key& key) {
-    	//completar
+    	return iterator(at(key));
     }
 
 
     /** \overload */
     const_iterator find(const Key& key) const {
-    	//completar
+    	return iterator(at(key));
     }
 
     /**
@@ -1191,6 +1191,7 @@ public:
     void clear() {
         //completar
     }
+
 
     /**
      * @brief Intercambia el contenido de \P{*this} y \P{other}
@@ -1463,7 +1464,8 @@ public:
          */
         iterator& operator++()
         {
-        	return *(new iterator(nextInorder(*this))); //q onda esta mierda?? me tira error de q no devuelvo un lvalue sino
+            this->n = nextInorder(this->n);
+            return *this;
         }
         /**
          *\brief Busca el sucesor inorder del nodo al que apunta el iterador
@@ -1473,50 +1475,6 @@ public:
          *
          *
          */
-         Node* nextInorder(Node* node){
-            if(hasRightChild(node)){
-             return getLeftmost(node->child[1]);
-            } else if(isLeftChild(node)){
-                return node->parent;
-            } else {
-                Node* aux = node; 
-                while((*aux != header) && isRightChild(aux)){
-                    aux = aux->parent;
-                }
-                return (*aux!=header) ? aux->parent : nullptr;
-            }
-         }
-
-         bool hasLeftChild(Node* node){
-             return node->child[0] != nullptr;
-         }
-         bool hasRightChild(Node* node){
-             return node->child[1] != nullptr;
-         }
-
-         bool isLeftChild(Node* node){
-             return node->parent->child[0] == node;
-         }
-
-         bool isRightChild(Node* node){
-             return node->parent->child[1] == node;
-         }
-
-         Node* getLeftmost(Node* node){
-            Node* aux = node;
-            while(aux != nullptr && hasLeftChild(aux)){
-                aux = aux->child[0];
-            }
-            return aux;
-         }
-         Node* getRightmost(Node* node){
-            Node* aux = node;
-            while(aux != nullptr && hasRightChild(aux)){
-                aux = aux->child[1];
-            }
-            return aux;
-         }
-
 
         /**
          * \brief Avanza el iterador a la siguiente posición
@@ -1964,6 +1922,49 @@ private:
     /** \brief Cabeceera del arbol; ver \ref Implementacion */
     Node header;
     //@}
+    Node* nextInorder(Node* node){
+        if(hasRightChild(node)){
+            return getLeftmost(node->child[1]);
+        } else if(isLeftChild(node)){
+            return node->parent;
+        } else {
+            Node* aux = node;
+            while((aux->color != color::header) && isRightChild(aux)){
+                aux = aux->parent;
+            }
+            return (aux->color!=color::header) ? aux->parent : nullptr;
+        }
+    }
+
+    bool hasLeftChild(Node* node){
+        return node->child[0] != nullptr;
+    }
+    bool hasRightChild(Node* node){
+        return node->child[1] != nullptr;
+    }
+
+    bool isLeftChild(Node* node){
+        return node->parent->child[0] == node;
+    }
+
+    bool isRightChild(Node* node){
+        return node->parent->child[1] == node;
+    }
+
+    Node* getLeftmost(Node* node){
+        Node* aux = node;
+        while(aux != nullptr && hasLeftChild(aux)){
+            aux = aux->child[0];
+        }
+        return aux;
+    }
+    Node* getRightmost(Node* node){
+        Node* aux = node;
+        while(aux != nullptr && hasRightChild(aux)){
+            aux = aux->child[1];
+        }
+        return aux;
+    }
 
     ////////////////////////////////////////
     /** \name Acceso y consulta del árbol */
