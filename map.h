@@ -910,9 +910,9 @@ public:
         const InnerNode* actual = root();
         while(actual->_value.first != key ){
             if(key lt actual->_value.first){
-                actual = actual->child[0];
+                actual = static_cast<InnerNode*>(actual->child[0]);
             } else {
-                actual = actual->child[1];
+                actual = static_cast<InnerNode*>(actual->child[1]);
             }
         }
         return actual->_value.second;
@@ -922,10 +922,10 @@ public:
     Meaning& at(const Key& key) {
     	InnerNode* actual = root();
         while(actual->_value.first != key ){
-            if(key lt actual->_value.first){
-                actual = actual->child[0];
+            if(lt(key, actual->_value.first)){
+                actual = static_cast<InnerNode*>(actual->child[0]);
             } else {
-                actual = actual->child[1];
+                actual = static_cast<InnerNode*>(actual->child[1]);
             }
         }
         return actual->_value.second;
@@ -1426,7 +1426,7 @@ public:
          * \complexity{\O(1)}
          */
         reference operator*() const {
-        	return *n;
+        	return n->value();
         }
         /**
          * \brief Retorna la dirección del valor apuntado por \P{*this}
@@ -1444,7 +1444,7 @@ public:
          * eso que la postcondición es más débil de lo que debiera.  Eso no ocurre en las otras funciones del TP.
          */
         pointer operator->() const {
-			return n;
+			return n->value();
 		}
         /**
          * \brief Avanza el iterador a la siguiente posición
@@ -1461,8 +1461,9 @@ public:
          * - Peor caso amortizado: \O(1)
          * }
          */
-        iterator& operator++() {
-        	//completar
+        iterator& operator++()
+        {
+        	return *(new iterator(nextInorder(*this))); //q onda esta mierda?? me tira error de q no devuelvo un lvalue sino
         }
         /**
          *\brief Busca el sucesor inorder del nodo al que apunta el iterador
@@ -1479,10 +1480,10 @@ public:
                 return node->parent;
             } else {
                 Node* aux = node; 
-                while(aux != header && isRightChild(aux)){
+                while((*aux != header) && isRightChild(aux)){
                     aux = aux->parent;
                 }
-                return (aux!=header) ? aux->parent : nullptr;
+                return (*aux!=header) ? aux->parent : nullptr;
             }
          }
 
