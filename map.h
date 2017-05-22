@@ -1409,11 +1409,152 @@ class map {
    * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
    * aed2::map::insert_or_assign.
    */
-  iterator insert(const_iterator hint, const value_type& value) {
-    // completar
+  void addElem(Node* now, const value_type& value, int side, bool &inserted)
+  {
+      if (now->child[1] != nullptr) now = now->child[1];
+      else {
+          now->child[1] = new InnerNode(value, now); //falta el constructor
+          count++;
+          inserted = true;
+      }
   }
+    void insertionFix(Node* newBorn, value_type &value) {
+        Node* aux;
+        if (static_cast<InnerNode*>(this->root())->value() == value) {
+            static_cast<InnerNode*>(this->root())->color = Color::Black;
+            return;
+        }
+        while (!(newBorn->parent->is_header())  && (newBorn->parent->color == Color::Red)) {
+            Node* grandPa = newBorn->parent->parent;
+            if (grandPa->child[0] == newBorn->parent) {
+                if (grandPa->child[1] != nullptr) {
+                    aux = grandPa->child[1];
+                    if (aux->color == Color::Red) {
+                        newBorn->parent->color = Color::Black;
+                        aux->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        newBorn = grandPa;
+                    }
+                } else {
+                    if (newBorn->parent->child[1] == newBorn) {
+                        newBorn = newBorn->parent;
+                        leftrotate(newBorn);
+                    }
+                    newBorn->parent->color = Color::Black;
+                    grandPa->color = Color::Red;
+                    rightrotate(grandPa);
+                }
+            } else {
+                if (grandPa->child[0] != nullptr) {
+                    aux = grandPa->child[0];
+                    if (aux->color == Color::Red) {
+                        newBorn->parent->color = Color::Black;
+                        aux->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        newBorn = grandPa;
+                    }
+                } else {
+                    if (newBorn->parent->child[0] == newBorn) {
+                        newBorn = newBorn->parent;
+                        rightrotate(newBorn);
+                    }
+                    newBorn->parent->color = Color::Black;
+                    grandPa->color = Color::Red;
+                    leftrotate(grandPa);
+                }
+            }
+            root()->color = Color::Black;
+        }
+    }
+    void leftrotate(Node* p)
+    {
+        if(p->child[1]==nullptr)
+            return ;
+        else
+        {
+            Node* y = p->child[1];
+            if(y->child[0]!=nullptr)
+            {
+                p->child[1]=y->child[0];
+                y->child[0]->parent=p;
+            }
+            else
+                p->child[1]=nullptr;
+            if(p->parent!=nullptr)
+                y->parent=p->parent;
+            if(p->parent->is_header()) {
+                root() = y;
+                header.parent = y;
+                y->parent = &header;
+            }
+            else
+            {
+                if(p==p->parent->child[0])
+                    p->parent->child[0]=y;
+                else
+                    p->parent->child[1]=y;
+            }
+            y->child[0]=p;
+            p->parent=y;
+        }
 
-  /** \overload*/
+    } void rightrotate(Node* p)
+    {
+        if(p->child[0]==nullptr)
+            return ;
+        else
+        {
+            Node* y = p->child[0];
+            if(y->child[1]!=nullptr)
+            {
+                p->child[0]=y->child[1];
+                y->child[1]->parent=p;
+            }
+            else
+                p->child[0]=nullptr;
+            if(p->parent!=nullptr)
+                y->parent=p->parent;
+            if(p->parent->is_header()) {
+                root() = y;
+                header.parent = y;
+                y->parent = &header;
+            }
+            else
+            {
+                if(p==p->parent->child[0])
+                    p->parent->child[0]=y;
+                else
+                    p->parent->child[1]=y;
+            }
+            y->child[1]=p;
+            p->parent=y;
+        }
+
+    }
+    iterator insert(const_iterator hint, const value_type& value) {
+        // la forma de chequear si el hint esta bien en O(1) es
+        //ver si es mayor al elem nuevo, y si el padre es menor
+        Node* now = this->root();
+        bool inserted = false;
+        while(now != nullptr && !inserted)
+        {
+            if (lt(now->key(), value.first))
+            {
+                addElem(now, value, 1, inserted);
+            }
+            else {
+                addElem(now, value, 0, inserted);
+            }
+        }
+        if (root() == nullptr)
+        {
+            header.parent = new InnerNode(value);
+        }
+        insertionFix(now, value);
+    }
+
+
+    /** \overload*/
   iterator insert(const value_type& value) {
     // completar
   }
