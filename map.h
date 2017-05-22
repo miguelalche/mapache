@@ -1923,7 +1923,7 @@ private:
     Node header;
     //@}
     Node* nextInorder(Node* node){
-        if (!node->is_header) {
+        if (!node->is_header()) {
             if (hasRightChild(node)) {
                 return getLeftmost(node->child[1]);
             } else if (isLeftChild(node)) {
