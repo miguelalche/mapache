@@ -1425,8 +1425,8 @@ class map {
 
     void insertionFix(Node* newBorn, const value_type &value) {
         Node* aux;
-        if (static_cast<InnerNode*>(this->root())->value() == value) {
-            static_cast<InnerNode*>(this->root())->color = Color::Black;
+        if (this->root()->value().first == value.first) {
+            static_cast<InnerNode*>(this->header.parent)->color = Color::Black;
             return;
         }
         while (!(newBorn->parent->is_header())  && (newBorn->parent->color == Color::Red)) {
@@ -1540,8 +1540,8 @@ class map {
         // la forma de chequear si el hint esta bien en O(1) es
         //ver si es mayor al elem nuevo, y si el padre es menor
       //  iterator it = new iterator(hint.n);
-        hint.n = nullptr;
-        if (lt(value.first, hint.operator*().first) && lt(prevInorder(hint.n).first, value.first) ){}
+
+        if (lt(value.first, hint.operator*().first) && lt(prevInorder(static_cast<InnerNode*>(hint.n))->value().first, value.first) ){}
         Node* now = this->root();
         bool inserted = false;
         while(now != nullptr && !inserted)
@@ -1562,7 +1562,10 @@ class map {
         }
     }
 
-
+/* error nro 1: se agrega raro el header, por como esta, tiene muchos hijos que apuntan a no se donde
+ * error nro 2: no tiene valor
+ * error nro 3: hay que generalizar el insertion fix a derecha e izquierda
+ * error nro 4: hay que updatear leftmost rightmost como hijos de l header*/
     /** \overload*/
   iterator insert(const value_type& value) {
         Node* now = this->root();
@@ -1973,7 +1976,7 @@ class map {
      * eso que la postcondición es más débil de lo que debiera.  Eso no ocurre
      * en las otras funciones del TP.
      */
-    pointer operator->() const { return n->value(); }
+    pointer operator->() const { return &(n->value()); }
     /**
      * \brief Avanza el iterador a la siguiente posición
      *
@@ -1991,7 +1994,7 @@ class map {
      * }
      */
     iterator& operator++() {
-      this->n = nextInorder(this->n);
+      //this->n = nextInorder(this->n); aca estan usando una funcion de map, sin instanciar ningun map, desde afuera de la clase. PRoblema!!
       return *this;
     }
     /**
@@ -2310,7 +2313,9 @@ class map {
      *
      * \complexity{\O(1)}
      */
-    Node() : color(Color::Header) { child[0] = child[1] = this; }
+    Node() : color(Color::Header) {
+        child[0] = this;
+        child[1] = this; }
 
     /**
      * @brief Constructor para nodos del arbol red-black, sin enlaces.
@@ -2516,8 +2521,8 @@ class map {
   Node header;
   //@}
   bool hasChild(Node* node, int dir) { return node->child[dir] != nullptr; }
-    bool hasChild(const Node* node, int dir) { return node->child[dir] != nullptr; }
-    Node* nextInorder(Node* node, int dir = 1) {
+   // bool hasChild(const Node* node, int dir) { return node->child[dir] != nullptr; }
+    Node* nextInorder(Node* node, int dir = 1)  {
         if (hasChild(node, dir)) return getDMost(node->child[dir], 1 - dir);
         if (isChild(node, 1 - dir)) return node->parent;
         while (isChild(node, dir)) node = node->parent;
