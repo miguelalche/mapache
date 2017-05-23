@@ -1409,16 +1409,21 @@ class map {
    * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
    * aed2::map::insert_or_assign.
    */
+// esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
   void addElem(Node* now, const value_type& value, int side, bool &inserted)
   {
-      if (now->child[1] != nullptr) now = now->child[1];
+      if (now->child[side] != nullptr) now = now->child[side]; //si no es null, sigo bajando
       else {
-          now->child[1] = new InnerNode(value, now); //falta el constructor
+          now->child[side] = new Node(now);
+         // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
           count++;
           inserted = true;
+          insertionFix(now->child[side], value);
+          count++;//siempre va a ser necesario
       }
   }
-    void insertionFix(Node* newBorn, value_type &value) {
+
+    void insertionFix(Node* newBorn, const value_type &value) {
         Node* aux;
         if (static_cast<InnerNode*>(this->root())->value() == value) {
             static_cast<InnerNode*>(this->root())->color = Color::Black;
@@ -1483,8 +1488,8 @@ class map {
             if(p->parent!=nullptr)
                 y->parent=p->parent;
             if(p->parent->is_header()) {
-                root() = y;
-                header.parent = y;
+                this->header.parent = y;
+               // header.parent = y;
                 y->parent = &header;
             }
             else
@@ -1515,8 +1520,8 @@ class map {
             if(p->parent!=nullptr)
                 y->parent=p->parent;
             if(p->parent->is_header()) {
-                root() = y;
-                header.parent = y;
+                this->header.parent = y;
+              //  header.parent = y;
                 y->parent = &header;
             }
             else
@@ -1534,6 +1539,9 @@ class map {
     iterator insert(const_iterator hint, const value_type& value) {
         // la forma de chequear si el hint esta bien en O(1) es
         //ver si es mayor al elem nuevo, y si el padre es menor
+      //  iterator it = new iterator(hint.n);
+        hint.n = nullptr;
+        if (lt(value.first, hint.operator*().first) && lt(prevInorder(hint.n).first, value.first) ){}
         Node* now = this->root();
         bool inserted = false;
         while(now != nullptr && !inserted)
@@ -1548,15 +1556,32 @@ class map {
         }
         if (root() == nullptr)
         {
-            header.parent = new InnerNode(value);
+            header.parent = new InnerNode(&header, value);
+           // static_cast<InnerNode*>(header.parent)->_value = value;
+            insertionFix(root(), value);
         }
-        insertionFix(now, value);
     }
 
 
     /** \overload*/
   iterator insert(const value_type& value) {
-    // completar
+        Node* now = this->root();
+        bool inserted = false;
+        while(now != nullptr && !inserted)
+        {
+            if (lt(now->key(), value.first))
+            {
+                addElem(now, value, 1, inserted);
+            }
+            else {
+                addElem(now, value, 0, inserted);
+            }
+        }
+        if (root() == nullptr)
+        {
+            header.parent = new InnerNode(&header, value);
+            insertionFix(root(), value);
+        }
   }
 
   /**
@@ -2446,6 +2471,10 @@ class map {
   struct InnerNode : public Node {
     /** Valor del nodo */
     value_type _value;
+      InnerNode(Node* myparent, const value_type &value) : Node(myparent), _value(value)
+      {
+            //parent = myparent;
+      }
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2486,21 +2515,20 @@ class map {
   /** \brief Cabeceera del arbol; ver \ref Implementacion */
   Node header;
   //@}
-
-  Node* nextInorder(Node* node, int dir = 1) {
-    if (hasChild(node, dir)) return getDMost(node->child[dir], 1 - dir);
-    if (isChild(node, 1 - dir)) return node->parent;
-    while (isChild(node, dir)) node = node->parent;
-    return node;
-  }
-
-  Node* prevInorder(Node* node) { return nextInorder(node, 0); }
-  
   bool hasChild(Node* node, int dir) { return node->child[dir] != nullptr; }
+    bool hasChild(const Node* node, int dir) { return node->child[dir] != nullptr; }
+    Node* nextInorder(Node* node, int dir = 1) {
+        if (hasChild(node, dir)) return getDMost(node->child[dir], 1 - dir);
+        if (isChild(node, 1 - dir)) return node->parent;
+        while (isChild(node, dir)) node = node->parent;
+        return node;
+    }
 
-  Node* getDMost(Node* node, int dir) {
+    Node* prevInorder(Node* node) { return nextInorder(node, 0); }
+
+    Node* getDMost(Node* node, int dir) {
     Node* aux = node;
-    while (aux != nullptr && node.hasChild(dir)) {
+    while (aux != nullptr && hasChild(node, dir)) {
       aux = aux->child[dir];
     }
     return aux;
