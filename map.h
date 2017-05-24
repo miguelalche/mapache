@@ -1049,7 +1049,7 @@ class map {
    * \LT = \P{c}.operator()
    */
   explicit map(Compare c = Compare()) {
-    header = Node();
+    //header = Node();
     lt = c;
   }
 
@@ -1312,14 +1312,14 @@ class map {
   	if (root() == nullptr) {
   		return iterator(nullptr);
   	} else {
-  		Nodo* actual = root();
-  		while(actual != nullptr) {
-  			if (actual->_value.first == key) {
-  				return iterator(actual);
-  			} else if (lt(key, actual->_value.first)) {
-  				actual = static_cast<InnerNode*>(actual->child[0]);
+  		Node* now = root();
+  		while(now != nullptr) {
+  			if (now->_value.first == key) {
+  				return iterator(now);
+  			} else if (lt(key, now->_value.first)) {
+  				now = static_cast<InnerNode*>(now->child[0]);
   			} else {
-  				actual = static_cast<InnerNode*>(actual->child[1]);
+  				now = static_cast<InnerNode*>(now->child[1]);
   			}
   		}
   		return iterator(nullptr);
@@ -1331,14 +1331,14 @@ class map {
   	if (root() == nullptr) {
   		return const_iterator(nullptr);
   	} else {
-  		Nodo* actual = root();
-  		while(actual != nullptr) {
-  			if (actual->_value.first == key) {
-  				return const_iterator(actual);
-  			} else if (lt(key, actual->_value.first)) {
-  				actual = static_cast<InnerNode*>(actual->child[0]);
+  		Node* now = root();
+  		while(now != nullptr) {
+  			if (now->_value.first == key) {
+  				return const_iterator(now);
+  			} else if (lt(key, now->_value.first)) {
+  				now = static_cast<InnerNode*>(now->child[0]);
   			} else {
-  				actual = static_cast<InnerNode*>(actual->child[1]);
+  				now = static_cast<InnerNode*>(now->child[1]);
   			}
   		}
   		return const_iterator(nullptr);
@@ -1445,16 +1445,21 @@ class map {
    * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
    * aed2::map::insert_or_assign.
    */
-  void addElem(Node* now, const value_type& value, int side, bool &inserted)
-  {
-      if (now->child[1] != nullptr) now = now->child[1];
+// esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
+  bool addElem(Node* &now, const value_type& value, int dir) {
+      if (now->child[dir] != nullptr) {
+          now = now->child[dir]; //si no es null, sigo bajando
+          return false;
+      }
       else {
-          now->child[1] = new InnerNode(value, now); //falta el constructor
-          count++;
-          inserted = true;
+          now->child[dir] = new InnerNode(now, value);
+         // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
+          insertionFix(now->child[dir], value);
+          return true;
       }
   }
-    void insertionFix(Node* newNode, value_type &value) {
+
+    void insertionFix(Node* newNode, const value_type &value) {
         Node* aux;
         if (static_cast<InnerNode*>(this->root())->value() == value) {
             static_cast<InnerNode*>(this->root())->color = Color::Black;
@@ -1503,29 +1508,24 @@ class map {
         }
     }
 
-    void leftrotate(Node* p)
-    {
+    void leftrotate(Node* p) {
         if(p->child[1]==nullptr)
             return ;
-        else
-        {
+        else {
             Node* y = p->child[1];
-            if(y->child[0]!=nullptr)
-            {
+
+            if(y->child[0]!=nullptr) {
                 p->child[1]=y->child[0];
                 y->child[0]->parent=p;
-            }
-            else
-                p->child[1]=nullptr;
+            } else { p->child[1]=nullptr; }
+
             if(p->parent!=nullptr)
                 y->parent=p->parent;
             if(p->parent->is_header()) {
-                root() = y;
-                header.parent = y;
+                this->header.parent = y;
+               // header.parent = y;
                 y->parent = &header;
-            }
-            else
-            {
+            } else {
                 if(p==p->parent->child[0])
                     p->parent->child[0]=y;
                 else
@@ -1537,29 +1537,24 @@ class map {
 
     }
 
-    void rightrotate(Node* p)
-    {
+    void rightrotate(Node* p) {
         if(p->child[0]==nullptr)
             return ;
-        else
-        {
+        else {
             Node* y = p->child[0];
-            if(y->child[1]!=nullptr)
-            {
+
+            if(y->child[1]!=nullptr) {
                 p->child[0]=y->child[1];
                 y->child[1]->parent=p;
-            }
-            else
-                p->child[0]=nullptr;
+            } else { p->child[0]=nullptr; }
+
             if(p->parent!=nullptr)
                 y->parent=p->parent;
             if(p->parent->is_header()) {
-                root() = y;
-                header.parent = y;
+                this->header.parent = y;
+              //  header.parent = y;
                 y->parent = &header;
-            }
-            else
-            {
+            } else {
                 if(p==p->parent->child[0])
                     p->parent->child[0]=y;
                 else
@@ -1570,33 +1565,90 @@ class map {
         }
 
     }
-
+    bool invalidHint(const_iterator hint, const value_type& value) {
+        return (hint == nullptr || lt((*hint).first, value.first) || lt(value.first, prevInorder(static_cast<InnerNode*>(hint.n))->value().first));
+    }
     iterator insert(const_iterator hint, const value_type& value) {
-        // la forma de chequear si el hint esta bien en O(1) es
-        //ver si es mayor al elem nuevo, y si el padre es menor
-        Node* now = this->root();
-        bool inserted = false;
-        while(now != nullptr && !inserted)
-        {
-            if (lt(now->key(), value.first))
-            {
-                addElem(now, value, 1, inserted);
+         /*Tengo que insertar un elemento, para esto, distingo tres casos:
+         * 1. el elemento a insertar es la raiz. Este es el caso mas facil, solo tengo que
+         * ponerlo en relacion incestuosa con el header y ponerle el valor correspondiente.
+         * Ademas, tengo que setear los hijos de header como raiz. La raiz siempre es negra, y en este caso
+         * no tengo que llamar a insertionFix.
+         * 2. El elemento a insertar es menor que el hijo izquierdo de header, o es mayor
+         * al hijo derecho de header. Este caso tambien es muy simple, ya que lo voy a insertar a la izquierda
+         * del hijo izquierdo de header o a la derecha del hijo derecho segun corresponda, y actualizar header.
+         * Notar que esto tambien me beneficia porque al insertar cualquier nodo no me voy a tener que fijar
+         * si hay que actualizar el maximo o no. Sí va a ser necesario cuando se haga un delete.
+         * 3. El elemento a insertar no cae en ninguno de los casos anteriores. En este caso, es donde tengo que considerar
+         * el hint pasado por parametro. El hint es correcto sii es mayor al elemento, y prevInorder de hint es menor
+         * al elemento.
+         * Si el hint es correcto, se puede probar que o el hint o su prevInorder van a ser nils del lado que me sirve
+         * i.e. el hint no tiene hijo izq o el prevInorder no tiene hijo derecho.
+         * Si ninguno de los dos fuera nil en esos lados, existiria un elemento mayor al prevInorder. Si este elemento
+         * no fuera el hint, entonces afirmo este elemento sería menor al hint. Si fuera mayor, y el hint no estuviera
+         * en un subarbol de dicho elemento, tendria un absurdo por el invariante de abb. Si el hint esta en el
+         * subarbol del hijo derecho a prevInorder, para que su prevInorder siga siendo ese, deberia ser el leftmost de
+         * ese subarbol con lo cual su hijo izquierdo seria nil.
+         * A la vez, que sea nil me asegura que lo puedo insertar de ese lado (habria que convencerse)
+         * Por lo que maravillosamente solo tengo que hacer dos comparaciones boludas y asignarlo donde corresponda.
+         * A continuacion obvio hay que llamar al insertionFIx.
+         * En caso de que el hint no sea correcto, hayq ue llamar a insertar casi tla cual de los algoritmos del Cormen.
+         * */
+        if ((header.parent == nullptr) || isMaxOrMin(value) || invalidHint(hint, value)) {
+           insert(value);
+        } else {
+            if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
+                hint.n->child[0] = new InnerNode(static_cast<InnerNode*>(hint.n), value);
+                insertionFix(hint.n->child[0], value);
+            } else {
+                Node* previo =  prevInorder(static_cast<InnerNode*>(hint.n));
+                previo->child[1] = new InnerNode( previo, value);
+                insertionFix(previo->child[1], value);
             }
-            else {
-                addElem(now, value, 0, inserted);
-            }
+            count++;
         }
-        if (root() == nullptr)
-        {
-            header.parent = new InnerNode(value);
-        }
-        insertionFix(now, value);
+
+    }
+bool isMaxOrMin(const value_type& value) {
+    return lt(header.child[1]->value().first, value.first) || lt(value.first, header.child[0]->value().first);
+}
+
+void assignMaxOrMin(const value_type& value) {
+    if (lt(header.child[1]->value().first, value.first)) {
+        header.child[1]->child[1] = new InnerNode(header.child[1], value);
+        header.child[1] = header.child[1]->child[1];
+        insertionFix(header.child[1], value);
+
+    } else {
+        header.child[0]->child[0] = new InnerNode(header.child[0], value);
+        header.child[0] = header.child[0]->child[0];
+        insertionFix(header.child[0], value);
     }
 
-
+}
     /** \overload*/
   iterator insert(const value_type& value) {
-    // completar
+        Node* now = this->header.parent;
+        bool inserted = false;
+
+        if (root() == nullptr) {
+            header.parent = new InnerNode(&header, value);
+            insertionFix(root(), value);
+            header.child[0] = header.child[1] = header.parent;
+            inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
+        } else if (isMaxOrMin(value)) {
+            assignMaxOrMin(value);
+            inserted = true;
+        } else {
+            while(now != nullptr && !inserted) {
+                if (lt(now->key(), value.first)) {
+                    inserted = addElem(now, value, 1);
+                } else {
+                    inserted = addElem(now, value, 0);
+                }
+            }
+        }
+        if (inserted) count++;
   }
 
   /**
@@ -1988,7 +2040,7 @@ class map {
      * eso que la postcondición es más débil de lo que debiera.  Eso no ocurre
      * en las otras funciones del TP.
      */
-    pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
+    pointer operator->() const { return &(n->value()); }
     /**
      * \brief Avanza el iterador a la siguiente posición
      *
@@ -2483,6 +2535,10 @@ class map {
   struct InnerNode : public Node {
     /** Valor del nodo */
     value_type _value;
+      InnerNode(Node* myparent, const value_type &value) : Node(myparent), _value(value)
+      {
+            //parent = myparent;
+      }
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2523,21 +2579,20 @@ class map {
   /** \brief Cabeceera del arbol; ver \ref Implementacion */
   Node header;
   //@}
-
-  Node* nextInorder(Node* node, int dir = 1) {
-    if (hasChild(node, dir)) return getDMost(node->child[dir], 1 - dir);
-    if (isChild(node, 1 - dir)) return node->parent;
-    while (isChild(node, dir)) node = node->parent;
-    return node;
-  }
-
-  Node* prevInorder(Node* node) { return nextInorder(node, 0); }
-  
   bool hasChild(Node* node, int dir) { return node->child[dir] != nullptr; }
+    bool hasChild(const Node* node, int dir) { return node->child[dir] != nullptr; }
+    Node* nextInorder(Node* node, int dir = 1) {
+        if (hasChild(node, dir)) return getDMost(node->child[dir], 1 - dir);
+        if (isChild(node, 1 - dir)) return node->parent;
+        while (isChild(node, dir)) node = node->parent;
+        return node;
+    }
 
-  Node* getDMost(Node* node, int dir) {
+    Node* prevInorder(Node* node) { return nextInorder(node, 0); }
+
+    Node* getDMost(Node* node, int dir) {
     Node* aux = node;
-    while (aux != nullptr && node.hasChild(dir)) {
+    while (aux != nullptr && hasChild(node, dir)) {
       aux = aux->child[dir];
     }
     return aux;

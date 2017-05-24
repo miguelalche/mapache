@@ -1,1 +1,3 @@
 Corregir operador corchetes
+Poner asserts donde haga falta
+Hacer operator++(int) y operator--(int)

@@ -21,8 +21,10 @@
     <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="false">
-    <generated />
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="mapache" targetName="mapache" />
+    </generated>
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -30,7 +32,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b4c1d2-63a7-4e7a-84a3-b916a5c34008" name="Default" comment="" />
+    <list default="true" id="f3b4c1d2-63a7-4e7a-84a3-b916a5c34008" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/main.cpp.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/main.cpp.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/objects.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/mapache.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/mapache.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/flags.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/flags.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/link.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/map.h" afterPath="$PROJECT_DIR$/map.h" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,8 +53,106 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="mapache" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/map.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-14">
+              <caret line="1596" column="21" lean-forward="false" selection-start-line="1596" selection-start-column="21" selection-end-line="1596" selection-end-column="21" />
+              <folding>
+                <element signature="e#341#1485#0" expanded="false" />
+                <element signature="e#1486#5987#0" expanded="false" />
+                <element signature="e#5988#12857#0" expanded="false" />
+                <element signature="e#12858#20305#0" expanded="false" />
+                <element signature="e#20306#34166#0" expanded="false" />
+                <element signature="e#34167#35404#0" expanded="false" />
+                <element signature="e#35405#37557#0" expanded="false" />
+                <element signature="e#37590#37610#0" expanded="true" />
+                <element signature="e#37835#38113#0" expanded="false" />
+                <element signature="e#38132#41468#0" expanded="false" />
+                <element signature="e#41756#41863#0" expanded="false" />
+                <element signature="e#41890#42003#0" expanded="false" />
+                <element signature="e#42037#42156#0" expanded="false" />
+                <element signature="e#42211#42319#0" expanded="false" />
+                <element signature="e#42353#42485#0" expanded="false" />
+                <element signature="e#42521#42663#0" expanded="false" />
+                <element signature="e#42711#42845#0" expanded="false" />
+                <element signature="e#42879#43024#0" expanded="false" />
+                <element signature="e#43070#43191#0" expanded="false" />
+                <element signature="e#43227#43368#0" expanded="false" />
+                <element signature="e#43414#44022#0" expanded="false" />
+                <element signature="e#44085#44702#0" expanded="false" />
+                <element signature="e#44946#45323#0" expanded="false" />
+                <element signature="e#45406#45814#0" expanded="false" />
+                <element signature="e#45861#47876#0" expanded="false" />
+                <element signature="e#48078#48467#0" expanded="false" />
+                <element signature="e#48540#49440#0" expanded="false" />
+                <element signature="e#49633#50188#0" expanded="false" />
+                <element signature="e#49633#50542#0" expanded="false" />
+                <element signature="e#50546#50898#0" expanded="false" />
+                <element signature="e#50902#52095#0" expanded="false" />
+                <element signature="e#52157#53075#0" expanded="false" />
+                <element signature="e#53235#53947#0" expanded="false" />
+                <element signature="e#54237#54461#0" expanded="false" />
+                <element signature="e#54509#54720#0" expanded="false" />
+                <element signature="e#54925#56177#0" expanded="false" />
+                <element signature="e#60800#63143#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="move.h" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/move.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1292">
+              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>innernode</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/map.h" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -50,10 +161,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-11" />
-    <option name="width" value="1303" />
-    <option name="height" value="780" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -70,11 +181,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="mapache" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="mapache" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -90,18 +211,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="#com.sylvanaar.idea.Lua.run.LuaConfigurationType" factoryName="Lua Script">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="ALTERNATE_INTERPRETER" value="false" />
+  <component name="RunManager" selected="Application.mapache">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.grunt" factoryName="Grunt.js">
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
     </configuration>
     <configuration default="true" type="CLion_Remote" factoryName="GDB Remote Debug" remoteCommand="" symbolFile="" sysroot="">
       <method />
@@ -225,10 +349,16 @@
       <JdkChoice value="FROM_MODULE" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.grunt" factoryName="Grunt.js">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+    <configuration default="true" type="#com.sylvanaar.idea.Lua.run.LuaConfigurationType" factoryName="Lua Script">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="ALTERNATE_INTERPRETER" value="false" />
+      <envs />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -304,6 +434,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
+    <configuration name="mapache" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="mapache" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="mapache">
+      <envs />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.mapache" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -316,45 +453,500 @@
       <option name="presentableId" value="Default" />
       <updated>1495403075979</updated>
       <workItem from="1495403078934" duration="151000" />
+      <workItem from="1495477327256" duration="3950000" />
+      <workItem from="1495499943383" duration="9053000" />
+      <workItem from="1495513514857" duration="604000" />
+      <workItem from="1495592900894" duration="6511000" />
+      <workItem from="1495634713186" duration="1898000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151000" />
+    <option name="totallyTimeSpent" value="22167000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.249375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884902" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327654" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TeamCity" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43905637" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TeamCity" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>21</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="23" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="miMap-&gt;header.parent-&gt;child[0]-&gt;aed2::map&lt;int, int, std::less&lt;int&gt; &gt;::Node" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/move.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27115">
+          <caret line="1595" column="9" lean-forward="true" selection-start-line="1595" selection-start-column="9" selection-end-line="1595" selection-end-column="9" />
+          <folding>
+            <element signature="e#341#1485#0" expanded="false" />
+            <element signature="e#1486#5987#0" expanded="false" />
+            <element signature="e#5988#12857#0" expanded="false" />
+            <element signature="e#12858#20305#0" expanded="false" />
+            <element signature="e#20306#34166#0" expanded="false" />
+            <element signature="e#34167#35404#0" expanded="false" />
+            <element signature="e#35405#37557#0" expanded="false" />
+            <element signature="e#37590#37610#0" expanded="true" />
+            <element signature="e#37835#38113#0" expanded="false" />
+            <element signature="e#38132#41468#0" expanded="false" />
+            <element signature="e#41756#41863#0" expanded="false" />
+            <element signature="e#41890#42003#0" expanded="false" />
+            <element signature="e#42037#42156#0" expanded="false" />
+            <element signature="e#42211#42319#0" expanded="false" />
+            <element signature="e#42353#42485#0" expanded="false" />
+            <element signature="e#42521#42663#0" expanded="false" />
+            <element signature="e#42711#42845#0" expanded="false" />
+            <element signature="e#42879#43024#0" expanded="false" />
+            <element signature="e#43070#43191#0" expanded="false" />
+            <element signature="e#43227#43368#0" expanded="false" />
+            <element signature="e#43414#44022#0" expanded="false" />
+            <element signature="e#44085#44702#0" expanded="false" />
+            <element signature="e#44946#45323#0" expanded="false" />
+            <element signature="e#45406#45814#0" expanded="false" />
+            <element signature="e#45861#47876#0" expanded="false" />
+            <element signature="e#48078#48467#0" expanded="false" />
+            <element signature="e#48540#49440#0" expanded="false" />
+            <element signature="e#49633#50188#0" expanded="false" />
+            <element signature="e#49633#50542#0" expanded="false" />
+            <element signature="e#50546#50898#0" expanded="false" />
+            <element signature="e#50902#52095#0" expanded="false" />
+            <element signature="e#52157#53075#0" expanded="false" />
+            <element signature="e#53235#53947#0" expanded="false" />
+            <element signature="e#54237#54461#0" expanded="false" />
+            <element signature="e#54509#54720#0" expanded="false" />
+            <element signature="e#54925#56177#0" expanded="false" />
+            <element signature="e#60800#63143#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/utility">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/stl_pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5236">
+          <caret line="308" column="10" lean-forward="false" selection-start-line="308" selection-start-column="10" selection-end-line="308" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/algorithm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/move.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38947">
+          <caret line="2291" column="9" lean-forward="false" selection-start-line="2291" selection-start-column="9" selection-end-line="2291" selection-end-column="9" />
+          <folding>
+            <element signature="e#341#1485#0" expanded="false" />
+            <element signature="e#1486#5987#0" expanded="false" />
+            <element signature="e#5988#12857#0" expanded="false" />
+            <element signature="e#12858#20305#0" expanded="false" />
+            <element signature="e#20306#34166#0" expanded="false" />
+            <element signature="e#34167#35404#0" expanded="false" />
+            <element signature="e#35405#37557#0" expanded="false" />
+            <element signature="e#37590#37610#0" expanded="true" />
+            <element signature="e#37835#38113#0" expanded="false" />
+            <element signature="e#38132#41468#0" expanded="false" />
+            <element signature="e#41756#41863#0" expanded="false" />
+            <element signature="e#41890#42003#0" expanded="false" />
+            <element signature="e#42037#42156#0" expanded="false" />
+            <element signature="e#42211#42319#0" expanded="false" />
+            <element signature="e#42353#42485#0" expanded="false" />
+            <element signature="e#42521#42663#0" expanded="false" />
+            <element signature="e#42711#42845#0" expanded="false" />
+            <element signature="e#42879#43024#0" expanded="false" />
+            <element signature="e#43070#43191#0" expanded="false" />
+            <element signature="e#43227#43368#0" expanded="false" />
+            <element signature="e#43414#44022#0" expanded="false" />
+            <element signature="e#44085#44702#0" expanded="false" />
+            <element signature="e#44946#45323#0" expanded="false" />
+            <element signature="e#45406#45814#0" expanded="false" />
+            <element signature="e#45861#47876#0" expanded="false" />
+            <element signature="e#48078#48467#0" expanded="false" />
+            <element signature="e#48540#49440#0" expanded="false" />
+            <element signature="e#49633#50188#0" expanded="false" />
+            <element signature="e#49633#50542#0" expanded="false" />
+            <element signature="e#50546#50898#0" expanded="false" />
+            <element signature="e#50902#52095#0" expanded="false" />
+            <element signature="e#52157#53075#0" expanded="false" />
+            <element signature="e#53235#53947#0" expanded="false" />
+            <element signature="e#54237#54461#0" expanded="false" />
+            <element signature="e#54509#54720#0" expanded="false" />
+            <element signature="e#54925#56177#0" expanded="false" />
+            <element signature="e#60800#63143#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/utility">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/stl_pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5236">
+          <caret line="308" column="10" lean-forward="false" selection-start-line="308" selection-start-column="10" selection-end-line="308" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/algorithm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/move.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42075">
+          <caret line="2475" column="14" lean-forward="false" selection-start-line="2475" selection-start-column="14" selection-end-line="2475" selection-end-column="14" />
+          <folding>
+            <element signature="e#341#1485#0" expanded="false" />
+            <element signature="e#1486#5987#0" expanded="false" />
+            <element signature="e#5988#12857#0" expanded="false" />
+            <element signature="e#12858#20305#0" expanded="false" />
+            <element signature="e#20306#34166#0" expanded="false" />
+            <element signature="e#34167#35404#0" expanded="false" />
+            <element signature="e#35405#37557#0" expanded="false" />
+            <element signature="e#37590#37610#0" expanded="true" />
+            <element signature="e#37835#38113#0" expanded="false" />
+            <element signature="e#38132#41468#0" expanded="false" />
+            <element signature="e#41756#41863#0" expanded="false" />
+            <element signature="e#41890#42003#0" expanded="false" />
+            <element signature="e#42037#42156#0" expanded="false" />
+            <element signature="e#42211#42319#0" expanded="false" />
+            <element signature="e#42353#42485#0" expanded="false" />
+            <element signature="e#42521#42663#0" expanded="false" />
+            <element signature="e#42711#42845#0" expanded="false" />
+            <element signature="e#42879#43024#0" expanded="false" />
+            <element signature="e#43070#43191#0" expanded="false" />
+            <element signature="e#43227#43368#0" expanded="false" />
+            <element signature="e#43414#44022#0" expanded="false" />
+            <element signature="e#44085#44702#0" expanded="false" />
+            <element signature="e#44946#45323#0" expanded="false" />
+            <element signature="e#45406#45814#0" expanded="false" />
+            <element signature="e#45861#47876#0" expanded="false" />
+            <element signature="e#48078#48467#0" expanded="false" />
+            <element signature="e#48540#49440#0" expanded="false" />
+            <element signature="e#49633#50188#0" expanded="false" />
+            <element signature="e#49633#50542#0" expanded="false" />
+            <element signature="e#50546#50898#0" expanded="false" />
+            <element signature="e#50902#52095#0" expanded="false" />
+            <element signature="e#52157#53075#0" expanded="false" />
+            <element signature="e#53235#53947#0" expanded="false" />
+            <element signature="e#54237#54461#0" expanded="false" />
+            <element signature="e#54509#54720#0" expanded="false" />
+            <element signature="e#54925#56177#0" expanded="false" />
+            <element signature="e#60800#63143#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26843">
+          <caret line="1579" column="59" lean-forward="false" selection-start-line="1579" selection-start-column="59" selection-end-line="1579" selection-end-column="59" />
+          <folding>
+            <element signature="e#341#1485#0" expanded="false" />
+            <element signature="e#1486#5987#0" expanded="false" />
+            <element signature="e#5988#12857#0" expanded="false" />
+            <element signature="e#12858#20305#0" expanded="false" />
+            <element signature="e#20306#34166#0" expanded="false" />
+            <element signature="e#34167#35404#0" expanded="false" />
+            <element signature="e#35405#37557#0" expanded="false" />
+            <element signature="e#37590#37610#0" expanded="true" />
+            <element signature="e#37835#38113#0" expanded="false" />
+            <element signature="e#38132#41468#0" expanded="false" />
+            <element signature="e#41756#41863#0" expanded="false" />
+            <element signature="e#41890#42003#0" expanded="false" />
+            <element signature="e#42037#42156#0" expanded="false" />
+            <element signature="e#42211#42319#0" expanded="false" />
+            <element signature="e#42353#42485#0" expanded="false" />
+            <element signature="e#42521#42663#0" expanded="false" />
+            <element signature="e#42711#42845#0" expanded="false" />
+            <element signature="e#42879#43024#0" expanded="false" />
+            <element signature="e#43070#43191#0" expanded="false" />
+            <element signature="e#43227#43368#0" expanded="false" />
+            <element signature="e#43414#44022#0" expanded="false" />
+            <element signature="e#44085#44702#0" expanded="false" />
+            <element signature="e#44946#45323#0" expanded="false" />
+            <element signature="e#45406#45814#0" expanded="false" />
+            <element signature="e#45861#47876#0" expanded="false" />
+            <element signature="e#48078#48467#0" expanded="false" />
+            <element signature="e#48540#49440#0" expanded="false" />
+            <element signature="e#49633#50188#0" expanded="false" />
+            <element signature="e#49633#50542#0" expanded="false" />
+            <element signature="e#50546#50898#0" expanded="false" />
+            <element signature="e#50902#52095#0" expanded="false" />
+            <element signature="e#52157#53075#0" expanded="false" />
+            <element signature="e#53235#53947#0" expanded="false" />
+            <element signature="e#54237#54461#0" expanded="false" />
+            <element signature="e#54509#54720#0" expanded="false" />
+            <element signature="e#54925#56177#0" expanded="false" />
+            <element signature="e#60800#63143#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/stl_pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5236">
+          <caret line="308" column="10" lean-forward="false" selection-start-line="308" selection-start-column="10" selection-end-line="308" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/move.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/algorithm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/stl_pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5236">
+          <caret line="308" column="10" lean-forward="false" selection-start-line="308" selection-start-column="10" selection-end-line="308" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/utility">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/mingw-w64/x86_64-6.2.0-posix-seh-rt_v5-rev1/mingw64/lib/gcc/x86_64-w64-mingw32/6.2.0/include/c++/bits/move.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="1596" column="21" lean-forward="false" selection-start-line="1596" selection-start-column="21" selection-end-line="1596" selection-end-column="21" />
+          <folding>
+            <element signature="e#341#1485#0" expanded="false" />
+            <element signature="e#1486#5987#0" expanded="false" />
+            <element signature="e#5988#12857#0" expanded="false" />
+            <element signature="e#12858#20305#0" expanded="false" />
+            <element signature="e#20306#34166#0" expanded="false" />
+            <element signature="e#34167#35404#0" expanded="false" />
+            <element signature="e#35405#37557#0" expanded="false" />
+            <element signature="e#37590#37610#0" expanded="true" />
+            <element signature="e#37835#38113#0" expanded="false" />
+            <element signature="e#38132#41468#0" expanded="false" />
+            <element signature="e#41756#41863#0" expanded="false" />
+            <element signature="e#41890#42003#0" expanded="false" />
+            <element signature="e#42037#42156#0" expanded="false" />
+            <element signature="e#42211#42319#0" expanded="false" />
+            <element signature="e#42353#42485#0" expanded="false" />
+            <element signature="e#42521#42663#0" expanded="false" />
+            <element signature="e#42711#42845#0" expanded="false" />
+            <element signature="e#42879#43024#0" expanded="false" />
+            <element signature="e#43070#43191#0" expanded="false" />
+            <element signature="e#43227#43368#0" expanded="false" />
+            <element signature="e#43414#44022#0" expanded="false" />
+            <element signature="e#44085#44702#0" expanded="false" />
+            <element signature="e#44946#45323#0" expanded="false" />
+            <element signature="e#45406#45814#0" expanded="false" />
+            <element signature="e#45861#47876#0" expanded="false" />
+            <element signature="e#48078#48467#0" expanded="false" />
+            <element signature="e#48540#49440#0" expanded="false" />
+            <element signature="e#49633#50188#0" expanded="false" />
+            <element signature="e#49633#50542#0" expanded="false" />
+            <element signature="e#50546#50898#0" expanded="false" />
+            <element signature="e#50902#52095#0" expanded="false" />
+            <element signature="e#52157#53075#0" expanded="false" />
+            <element signature="e#53235#53947#0" expanded="false" />
+            <element signature="e#54237#54461#0" expanded="false" />
+            <element signature="e#54509#54720#0" expanded="false" />
+            <element signature="e#54925#56177#0" expanded="false" />
+            <element signature="e#60800#63143#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

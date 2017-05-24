@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/satiago/Desktop/mapache/main.cpp
+map.h
+C:/Users/satiago/Desktop/mapache/map.h
+
+C:/Users/satiago/Desktop/mapache/map.h
+algorithm
+-
+cassert
+-
+functional
+-
+iterator
+-
+utility
+-
+
