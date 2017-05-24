@@ -1214,8 +1214,8 @@ class map {
    * recurrir a la función find.
    */
   const Meaning& at(const Key& key) const {
-  	const iterator it = find(key);
-  	if (it.n != nullptr) { return it.n->_value.first; }
+  	const_iterator it = find(key);
+  	if (it.n != nullptr) { return static_cast<InnerNode*>(it.n)->_value.first; }
     // const InnerNode* actual = root();
     // while (actual->_value.first != key) {
     //   if (lt(key, actual->_value.first)) {
@@ -1230,7 +1230,7 @@ class map {
   /** \overload */
   Meaning& at(const Key& key) {
   	iterator it = find(key);
-  	if (it.n != nullptr) { return it.n->_value.first; }
+  	if (it.n != nullptr) { return static_cast<InnerNode*>(it.n)->_value.first; }
     // InnerNode* actual = root();
     // while (actual->_value.first != key) {
     //   if (lt(key, actual->_value.first)) {
@@ -1312,7 +1312,7 @@ class map {
   	if (root() == nullptr) {
   		return iterator(nullptr);
   	} else {
-  		Node* now = root();
+  		InnerNode* now = root();
   		while(now != nullptr) {
   			if (now->_value.first == key) {
   				return iterator(now);
@@ -1331,7 +1331,7 @@ class map {
   	if (root() == nullptr) {
   		return const_iterator(nullptr);
   	} else {
-  		Node* now = root();
+  		InnerNode* now = root();
   		while(now != nullptr) {
   			if (now->_value.first == key) {
   				return const_iterator(now);
@@ -1733,7 +1733,7 @@ void assignMaxOrMin(const value_type& value) {
    *
    */
   iterator erase(const_iterator pos) {
-    // completar
+    // completar :(
   }
 
   /**
@@ -1766,7 +1766,12 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(\DEL(\P{*this}))}
    */
   void clear() {
-    // completar
+    while ((header.parent->child) != {nullptr, nullptr})
+    {
+        if (header.parent->child[0] != nullptr)  erase(header.parent->child[0]);
+        if (header.parent->child[1] != nullptr) erase(header.parent->child[1]);
+    }
+      erase(header.parent);
   }
 
   /**
@@ -1835,17 +1840,19 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   iterator begin() {
-    // completar
+    return iterator(header.child[0]);
   }
 
   /** \overload */
   const_iterator begin() const {
-    // completar
+
+      return const_iterator(header.child[0]);
   }
 
   /** \overload */
   const_iterator cbegin() {
-    // completar
+
+      return const_iterator(header.child[0]);
   }
 
   /**
@@ -1872,7 +1879,7 @@ void assignMaxOrMin(const value_type& value) {
 
   /** \overload */
   const_iterator cend() {
-    // completar
+    return const_iterator();
   }
 
   /**
@@ -1889,17 +1896,18 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   reverse_iterator rbegin() {
-    return header.child[1];
+    return reverse_iterator(header.child[1]);
   }
 
   /** \overload */
   const_reverse_iterator rbegin() const {
-    // completar
+
+      return const_reverse_iterator(header.child[1]);
   }
 
   /** \overload */
   const_reverse_iterator crbegin() {
-    // completar
+    return const_reverse_iterator(header.child[1]);
   }
 
   /**
@@ -1917,17 +1925,17 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   reverse_iterator rend() {
-    // completar
+    return reverse_iterator();
   }
 
   /** \overload */
   const_reverse_iterator rend() const {
-    // completar
+    return const_reverse_iterator();
   }
 
   /** \overload */
   const_reverse_iterator crend() {
-    // completar
+    return const_reverse_iterator();
   }
   //@}
 
@@ -2102,7 +2110,9 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator++(int) {
-      // completar
+      iterator it = *this;
+        (*this)++;
+        return it;
     }
     /**
      * \brief Retrocede el iterador a la posición anterior
@@ -2141,7 +2151,9 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator--(int) {
-      // completar
+        iterator it = *this;
+        (*this)--;
+        return it;
     }
     /**
      * \brief Operador de igualdad
@@ -2162,7 +2174,7 @@ void assignMaxOrMin(const value_type& value) {
      * \complexity{\O(1)}
      */
     bool operator==(iterator other) const {
-    	return (this.n == other.n);
+    	return ((*this).n == other.n);
     }
     /** \brief idem !|operator== */
     bool operator!=(iterator other) const {
@@ -2284,7 +2296,7 @@ void assignMaxOrMin(const value_type& value) {
      * \complexity{\O(1)}
      */
     const_iterator(iterator it) {
-      // completar
+      this->n = it.n;
     }
     /** \brief Ver aed2::map::iterator::operator*() */
     reference operator*() const { return n->value(); }
@@ -2292,7 +2304,8 @@ void assignMaxOrMin(const value_type& value) {
     pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
     /** \brief Ver aed2::map::iterator::operator++() */
     const_iterator& operator++() {
-      // completar
+        this->n = nextInorder(this->n);
+      return *this;
     }
     /** \brief Ver aed2::map::iterator::operator++(int) */
     const_iterator operator++(int) {
