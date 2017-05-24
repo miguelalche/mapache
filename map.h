@@ -5,10 +5,10 @@
  * terminología de la biblioteca estándar.
  *
  * Autores:
- * - Nombre y Apellido (mail)
- * - Nombre y Apellido (mail)
- * - Nombre y Apellido (mail)
- * - Nombre y Apellido (mail)
+ * - Oliver Gibson (gibson31@gmail.com)
+ * - Catalina Juarros (catalinajuarros@gmail.com)
+ * - Miguel Nehmad Alché (mikealche@gmail.com)
+ * - Jessica Singer (singer.jeess@gmail.com)
  *
  * Algoritmos y Estructuras de Datos II -- FCEN -- UBA.
  */
@@ -17,8 +17,8 @@
  *
  * \tableofcontents
  *
- * - \b Autores: Nombre y Apellido (mail), Nombre y Apellido (mail),
- * Nombre y Apellido (mail), Nombre y Apellido (mail)
+ * - \b Autores: Oliver Gibson (gibson31@gmail.com), Catalina Juarros (catalinajuarros@gmail.com),
+ * Miguel Nehmad Alché (mikealche@gmail.com), Jessica Singer (singer.jeess@gmail.com)
  * - \b Materia: Algoritmos y Estructuras de Datos II
  *
  * El presente documento describe la implementación de un módulo diccionario
@@ -1039,8 +1039,8 @@ class map {
    * @param c comparador (functor de orden) a utilizar
    * @retval res diccionario recién construido
    *
-   * \pre \aedpre{completar}
-   * \post \aedpost{completar}
+   * \pre \aedpre{true}
+   * \post \aedpost{res \igobs vac\'io}
    *
    * \complexity{\O(1)}
    *
@@ -1059,8 +1059,8 @@ class map {
    * @param other diccionario a copiar
    * @retval res diccionario recien construido
    *
-   * \pre \aedpre{completar}
-   * \post \aedpost{completar}
+   * \pre \aedpre{true}
+   * \post \aedpost{res \igobs other}
    *
    * \complexity{\O(\COPY(\P{other}))}
    *
@@ -1201,9 +1201,9 @@ class map {
    *
    * \aliasing{completar}
    *
-   * \pre \aedpre{completar}
+   * \pre \aedpre{definido?(\P{key},this)}
    *
-   * \post \aedpost{completar}
+   * \post \aedpost{res \igobs obtener(\P{key},this)}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this}) \CDOT \CMP(\P{*this}))}
    *
@@ -1214,28 +1214,32 @@ class map {
    * recurrir a la función find.
    */
   const Meaning& at(const Key& key) const {
-    const InnerNode* actual = root();
-    while (actual->_value.first != key) {
-      if (lt(key, actual->_value.first)) {
-        actual = static_cast<InnerNode*>(actual->child[0]);
-      } else {
-        actual = static_cast<InnerNode*>(actual->child[1]);
-      }
-    }
-    return actual->_value.second;
+  	const iterator it = find(key);
+  	if (it.n != nullptr) { return it.n->_value.first; }
+    // const InnerNode* actual = root();
+    // while (actual->_value.first != key) {
+    //   if (lt(key, actual->_value.first)) {
+    //     actual = static_cast<InnerNode*>(actual->child[0]);
+    //   } else {
+    //     actual = static_cast<InnerNode*>(actual->child[1]);
+    //   }
+    // }
+    // return actual->_value.second;
   }
 
   /** \overload */
   Meaning& at(const Key& key) {
-    InnerNode* actual = root();
-    while (actual->_value.first != key) {
-      if (lt(key, actual->_value.first)) {
-        actual = static_cast<InnerNode*>(actual->child[0]);
-      } else {
-        actual = static_cast<InnerNode*>(actual->child[1]);
-      }
-    }
-    return actual->_value.second;
+  	iterator it = find(key);
+  	if (it.n != nullptr) { return it.n->_value.first; }
+    // InnerNode* actual = root();
+    // while (actual->_value.first != key) {
+    //   if (lt(key, actual->_value.first)) {
+    //     actual = static_cast<InnerNode*>(actual->child[0]);
+    //   } else {
+    //     actual = static_cast<InnerNode*>(actual->child[1]);
+    //   }
+    // }
+    // return actual->_value.second;
   }
 
   /**
@@ -1292,7 +1296,7 @@ class map {
    *
    * \aliasing{completar}
    *
-   * \pre \aedpre{completar}
+   * \pre \aedpre{true}
    * \post \aedpost{completar}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
@@ -1304,16 +1308,48 @@ class map {
    * inserción.
    *
    */
-  iterator find(const Key& key) { return iterator(at(key)); }
+  iterator find(const Key& key) { 
+  	if (root() == nullptr) {
+  		return iterator(nullptr);
+  	} else {
+  		Nodo* actual = root();
+  		while(actual != nullptr) {
+  			if (actual->_value.first == key) {
+  				return iterator(actual);
+  			} else if (lt(key, actual->_value.first)) {
+  				actual = static_cast<InnerNode*>(actual->child[0]);
+  			} else {
+  				actual = static_cast<InnerNode*>(actual->child[1]);
+  			}
+  		}
+  		return iterator(nullptr);
+  	}
+  }
 
   /** \overload */
-  const_iterator find(const Key& key) const { return iterator(at(key)); }
+  const_iterator find(const Key& key) const {
+  	if (root() == nullptr) {
+  		return const_iterator(nullptr);
+  	} else {
+  		Nodo* actual = root();
+  		while(actual != nullptr) {
+  			if (actual->_value.first == key) {
+  				return const_iterator(actual);
+  			} else if (lt(key, actual->_value.first)) {
+  				actual = static_cast<InnerNode*>(actual->child[0]);
+  			} else {
+  				actual = static_cast<InnerNode*>(actual->child[1]);
+  			}
+  		}
+  		return const_iterator(nullptr);
+  	}
+  }
 
   /**
    * @brief Devuelve un iterador al primer valor con clave mayor o igual a
    * \P{key}
    *
-   * Retorna un iterador apuntando a la primer posición cuyo valor tenga clave
+   * Retorna un iterador apuntando a la primera posición cuyo valor tenga clave
    * al menos \P{key}.
    * Si dicho valor no existe, porque \P{key} es mayor a todas las claves de
    * \P{*this}, entonces
@@ -1418,29 +1454,29 @@ class map {
           inserted = true;
       }
   }
-    void insertionFix(Node* newBorn, value_type &value) {
+    void insertionFix(Node* newNode, value_type &value) {
         Node* aux;
         if (static_cast<InnerNode*>(this->root())->value() == value) {
             static_cast<InnerNode*>(this->root())->color = Color::Black;
             return;
         }
-        while (!(newBorn->parent->is_header())  && (newBorn->parent->color == Color::Red)) {
-            Node* grandPa = newBorn->parent->parent;
-            if (grandPa->child[0] == newBorn->parent) {
+        while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
+            Node* grandPa = newNode->parent->parent;
+            if (grandPa->child[0] == newNode->parent) {
                 if (grandPa->child[1] != nullptr) {
                     aux = grandPa->child[1];
                     if (aux->color == Color::Red) {
-                        newBorn->parent->color = Color::Black;
+                        newNode->parent->color = Color::Black;
                         aux->color = Color::Black;
                         grandPa->color = Color::Red;
-                        newBorn = grandPa;
+                        newNode = grandPa;
                     }
                 } else {
-                    if (newBorn->parent->child[1] == newBorn) {
-                        newBorn = newBorn->parent;
-                        leftrotate(newBorn);
+                    if (newNode->parent->child[1] == newNode) {
+                        newNode = newNode->parent;
+                        leftrotate(newNode);
                     }
-                    newBorn->parent->color = Color::Black;
+                    newNode->parent->color = Color::Black;
                     grandPa->color = Color::Red;
                     rightrotate(grandPa);
                 }
@@ -1448,17 +1484,17 @@ class map {
                 if (grandPa->child[0] != nullptr) {
                     aux = grandPa->child[0];
                     if (aux->color == Color::Red) {
-                        newBorn->parent->color = Color::Black;
+                        newNode->parent->color = Color::Black;
                         aux->color = Color::Black;
                         grandPa->color = Color::Red;
-                        newBorn = grandPa;
+                        newNode = grandPa;
                     }
                 } else {
-                    if (newBorn->parent->child[0] == newBorn) {
-                        newBorn = newBorn->parent;
-                        rightrotate(newBorn);
+                    if (newNode->parent->child[0] == newNode) {
+                        newNode = newNode->parent;
+                        rightrotate(newNode);
                     }
-                    newBorn->parent->color = Color::Black;
+                    newNode->parent->color = Color::Black;
                     grandPa->color = Color::Red;
                     leftrotate(grandPa);
                 }
@@ -1466,6 +1502,7 @@ class map {
             root()->color = Color::Black;
         }
     }
+
     void leftrotate(Node* p)
     {
         if(p->child[1]==nullptr)
@@ -1498,7 +1535,9 @@ class map {
             p->parent=y;
         }
 
-    } void rightrotate(Node* p)
+    }
+
+    void rightrotate(Node* p)
     {
         if(p->child[0]==nullptr)
             return ;
@@ -1531,6 +1570,7 @@ class map {
         }
 
     }
+
     iterator insert(const_iterator hint, const value_type& value) {
         // la forma de chequear si el hint esta bien en O(1) es
         //ver si es mayor al elem nuevo, y si el padre es menor
@@ -1948,7 +1988,7 @@ class map {
      * eso que la postcondición es más débil de lo que debiera.  Eso no ocurre
      * en las otras funciones del TP.
      */
-    pointer operator->() const { return n->value(); }
+    pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
     /**
      * \brief Avanza el iterador a la siguiente posición
      *
@@ -2004,7 +2044,7 @@ class map {
      *
      * \aliasing{completar}
      *
-     * \pre \aedpre{completar}
+     * \pre \aedpre{HayAnterior?(this)}
      * \post \aedpost{completar}
      *
      * \complexity{
@@ -2014,7 +2054,8 @@ class map {
      * }
      */
     iterator& operator--() {
-      // completar
+      this->n = prevInorder(this->n);
+      return *this;
     }
     /**
      * \brief Retrocede el iterador a la posición anterior
@@ -2054,11 +2095,11 @@ class map {
      * \complexity{\O(1)}
      */
     bool operator==(iterator other) const {
-      // completar
+    	return (this.n == other.n);
     }
     /** \brief idem !|operator== */
     bool operator!=(iterator other) const {
-      // completar
+    	return !(this==other);
     }
 
    private:
@@ -2179,13 +2220,9 @@ class map {
       // completar
     }
     /** \brief Ver aed2::map::iterator::operator*() */
-    reference operator*() const {
-      // completar
-    }
+    reference operator*() const { return n->value(); }
     /** \brief Ver aed2::map::iterator::operator->() */
-    pointer operator->() const {
-      // completar
-    }
+    pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
     /** \brief Ver aed2::map::iterator::operator++() */
     const_iterator& operator++() {
       // completar
@@ -2561,7 +2598,7 @@ class map {
  * @param m2 diccionario a comparar
  * @retval res true si los diccionarios son iguales
  *
- * \pre \aedpre{completar}
+ * \pre \aedpre{true}
  * \post \aedpost{completar}
  *
  * \complexity{ \O((\SIZE(m1) + \SIZE(m2)) \CDOT (\CMP(m1) + \CMP(m2)))}
