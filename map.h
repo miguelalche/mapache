@@ -1410,17 +1410,17 @@ class map {
    * aed2::map::insert_or_assign.
    */
 // esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
-  void addElem(Node* &now, const value_type& value, int side, bool &inserted)
+  bool addElem(Node* &now, const value_type& value, int side)
   {
-      if (now->child[side] != nullptr)
-      {now = now->child[side]; }//si no es null, sigo bajando
+      if (now->child[side] != nullptr) {
+          now = now->child[side]; //si no es null, sigo bajando
+          return false;
+      }
       else {
           now->child[side] = new InnerNode(now, value);
          // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
-          count++;
-          inserted = true;
           insertionFix(now->child[side], value);
-          count++;//siempre va a ser necesario
+          return true;
       }
   }
 
@@ -1567,16 +1567,7 @@ class map {
          * A continuacion obvio hay que llamar al insertionFIx.
          * En caso de que el hint no sea correcto, hayq ue llamar a insertar casi tla cual de los algoritmos del Cormen.
          * */
-        if (header.parent == nullptr)
-        {
-            header.parent = new InnerNode(&header, value);
-            header.child[0] = header.child[1] = header.parent;
-        }
-        else if (esMaximoOMinimo(value))
-        {
-            asignarMaximoOMinimo(value);
-        }
-        else if (hintInvalido(hint, value))
+        if ((header.parent == nullptr) || esMaximoOMinimo(value) || hintInvalido(hint, value))
         {
            insert(value);
         }
@@ -1596,34 +1587,55 @@ class map {
         }
 
     }
-
-void asignarMaximoOMinimo(value_type& value)
+bool esMaximoOMinimo(const value_type& value) {
+    return lt(header.child[1]->value().first, value.first) || lt(value.first, header.child[0]->value().first);
+}
+void asignarMaximoOMinimo(const value_type& value)
 {
     if (lt(header.child[1]->value().first, value.first))
     {
-        header.child[1]->child[1] = new InnerNode(header.child[1], value) //TENGO QEU SEGUIR DESDE ACA
+        header.child[1]->child[1] = new InnerNode(header.child[1], value);
+        header.child[1] = header.child[1]->child[1];
+        insertionFix(header.child[1], value);
+
     }
+    else
+    {
+        header.child[0]->child[0] = new InnerNode(header.child[0], value);
+        header.child[0] = header.child[0]->child[0];
+        insertionFix(header.child[0], value);
+    }
+
 }
     /** \overload*/
   iterator insert(const value_type& value) {
         Node* now = this->header.parent;
         bool inserted = false;
-        while(now != nullptr && !inserted)
-        {
-            if (lt(now->key(), value.first))
-            {
-                addElem(now, value, 1, inserted);
-            }
-            else {
-                addElem(now, value, 0, inserted);
-            }
-        }
+
         if (root() == nullptr)
         {
             header.parent = new InnerNode(&header, value);
             insertionFix(root(), value);
-            count++;
+            header.child[0] = header.child[1] = header.parent;
+            inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
         }
+        else if (esMaximoOMinimo(value))
+        {
+            asignarMaximoOMinimo(value);
+            inserted = true;
+        } else{
+            while(now != nullptr && !inserted)
+            {
+                if (lt(now->key(), value.first))
+                {
+                    inserted = addElem(now, value, 1);
+                }
+                else {
+                    inserted = addElem(now, value, 0);
+                }
+            }
+        }
+        if (inserted) count++;
   }
 
   /**
