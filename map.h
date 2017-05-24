@@ -1609,6 +1609,10 @@ void asignarMaximoOMinimo(const value_type& value)
 }
     /** \overload*/
   iterator insert(const value_type& value) {
+      insert_or_upsert(value, 0);
+  }
+
+    iterator insert_or_upsert(const value_type& value, bool upsert) {
         Node* now = this->header.parent;
         bool inserted = false;
 
@@ -1631,13 +1635,17 @@ void asignarMaximoOMinimo(const value_type& value)
                     inserted = addElem(now, value, 1);
                 }
                 else {
-                    inserted = addElem(now, value, 0);
+                    if ((now->key() == value.first) && upsert) {
+                        static_cast<InnerNode *>(now)->_value.second = value.second;
+                        inserted = true;
+                        count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
+                    }
+                    else inserted = addElem(now, value, 0);
                 }
             }
         }
         if (inserted) count++;
-  }
-
+    }
   /**
    * @brief Inserta o redefine \P{value} en el diccionario
    *
@@ -1678,12 +1686,17 @@ void asignarMaximoOMinimo(const value_type& value)
    * notación no es tan bonita.
    */
   iterator insert_or_assign(const_iterator hint, const value_type& value) {
-    // completar
+    if (*hint == value)
+    {
+        static_cast<InnerNode*>(hint.n)->_value.second = value.second;
+    }
+    else
+        insert(hint, value);
   }
 
   /** \overload */
   iterator insert_or_assign(const value_type& value) {
-    // completar
+    insert_or_upsert(value, 1);
   }
 
   /**
@@ -1834,12 +1847,12 @@ void asignarMaximoOMinimo(const value_type& value)
    * \complexity{\O(1)}
    */
   iterator end() {
-    // completar
+    return iterator();
   }
 
   /** \overload */
   const_iterator end() const {
-    // completar
+    return const_iterator();
   }
 
   /** \overload */
@@ -1861,7 +1874,7 @@ void asignarMaximoOMinimo(const value_type& value)
    * \complexity{\O(1)}
    */
   reverse_iterator rbegin() {
-    // completar
+    return header.child[1];
   }
 
   /** \overload */
