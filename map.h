@@ -2077,7 +2077,7 @@ void assignMaxOrMin(const value_type& value) {
      *
      * \aliasing{completar}
      *
-     * \pre \aedpre{completar}
+     * \pre \aedpre{HaySiguiente?(\P{this})}
      * \post \aedpost{completar}
      *
      * \complexity{
@@ -2087,7 +2087,9 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator++(int) {
-      // completar
+      iterator res = iterator(this->n);
+      this->n = nextInorder(this->n);
+      return res;
     }
     /**
      * \brief Retrocede el iterador a la posición anterior
@@ -2116,7 +2118,7 @@ void assignMaxOrMin(const value_type& value) {
      *
      * \aliasing{completar}
      *
-     * \pre \aedpre{completar}
+     * \pre \aedpre{HayAnterior?(\P{this})}
      * \post \aedpost{completar}
      *
      * \complexity{
@@ -2126,7 +2128,9 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator--(int) {
-      // completar
+    	iterator res = iterator(this->n);
+    	this->n = prevInorder(this->n);
+    	return res;
     }
     /**
      * \brief Operador de igualdad
@@ -2269,35 +2273,41 @@ void assignMaxOrMin(const value_type& value) {
      * \complexity{\O(1)}
      */
     const_iterator(iterator it) {
-      // completar
+      n = it.n;
     }
     /** \brief Ver aed2::map::iterator::operator*() */
     reference operator*() const { return n->value(); }
     /** \brief Ver aed2::map::iterator::operator->() */
-    pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
+    pointer operator->() const { return &(n->value()); }
     /** \brief Ver aed2::map::iterator::operator++() */
     const_iterator& operator++() {
-      // completar
+      this->n = nextInorder(this->n);
+      return *this;
     }
     /** \brief Ver aed2::map::iterator::operator++(int) */
     const_iterator operator++(int) {
-      // completar
+      	const_iterator res = iterator(this->n);
+    	this->n = nextInorder(this->n);
+    	return res;
     }
     /** \brief Ver aed2::map::iterator::operator--() */
     const_iterator& operator--() {
-      // completar
+      this->n = prevInorder(this->n);
+      return *this;
     }
     /** \brief Ver aed2::map::iterator::operator--(int) */
     const_iterator operator--(int) {
-      // completar
+      	const_iterator res = iterator(this->n);
+    	this->n = prevInorder(this->n);
+    	return res;
     }
     /** \brief Ver aed2::map::iterator::operator==() */
     bool operator==(const_iterator other) const {
-      // completar
+      return (this.n == other.n);
     }
     /** \brief Ver aed2::map::iterator::operator!=() */
     bool operator!=(const_iterator other) const {
-      // completar
+      return !(this == other);
     }
 
    private:
