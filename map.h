@@ -5,10 +5,10 @@
  * terminología de la biblioteca estándar.
  *
  * Autores:
- * - Nombre y Apellido (mail)
- * - Nombre y Apellido (mail)
- * - Nombre y Apellido (mail)
- * - Nombre y Apellido (mail)
+ * - Oliver Gibson (gibson31@gmail.com)
+ * - Catalina Juarros (catalinajuarros@gmail.com)
+ * - Miguel Nehmad Alché (mikealche@gmail.com)
+ * - Jessica Singer (singer.jeess@gmail.com)
  *
  * Algoritmos y Estructuras de Datos II -- FCEN -- UBA.
  */
@@ -17,8 +17,8 @@
  *
  * \tableofcontents
  *
- * - \b Autores: Nombre y Apellido (mail), Nombre y Apellido (mail),
- * Nombre y Apellido (mail), Nombre y Apellido (mail)
+ * - \b Autores: Oliver Gibson (gibson31@gmail.com), Catalina Juarros (catalinajuarros@gmail.com),
+ * Miguel Nehmad Alché (mikealche@gmail.com), Jessica Singer (singer.jeess@gmail.com)
  * - \b Materia: Algoritmos y Estructuras de Datos II
  *
  * El presente documento describe la implementación de un módulo diccionario
@@ -1039,8 +1039,8 @@ class map {
    * @param c comparador (functor de orden) a utilizar
    * @retval res diccionario recién construido
    *
-   * \pre \aedpre{completar}
-   * \post \aedpost{completar}
+   * \pre \aedpre{true}
+   * \post \aedpost{res \igobs vac\'io}
    *
    * \complexity{\O(1)}
    *
@@ -1059,8 +1059,8 @@ class map {
    * @param other diccionario a copiar
    * @retval res diccionario recien construido
    *
-   * \pre \aedpre{completar}
-   * \post \aedpost{completar}
+   * \pre \aedpre{true}
+   * \post \aedpost{res \igobs other}
    *
    * \complexity{\O(\COPY(\P{other}))}
    *
@@ -1201,9 +1201,9 @@ class map {
    *
    * \aliasing{completar}
    *
-   * \pre \aedpre{completar}
+   * \pre \aedpre{definido?(\P{key},this)}
    *
-   * \post \aedpost{completar}
+   * \post \aedpost{res \igobs obtener(\P{key},this)}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this}) \CDOT \CMP(\P{*this}))}
    *
@@ -1214,28 +1214,32 @@ class map {
    * recurrir a la función find.
    */
   const Meaning& at(const Key& key) const {
-    const InnerNode* actual = root();
-    while (actual->_value.first != key) {
-      if (lt(key, actual->_value.first)) {
-        actual = static_cast<InnerNode*>(actual->child[0]);
-      } else {
-        actual = static_cast<InnerNode*>(actual->child[1]);
-      }
-    }
-    return actual->_value.second;
+  	const iterator it = find(key);
+  	if (it.n != nullptr) { return it.n->_value.first; }
+    // const InnerNode* actual = root();
+    // while (actual->_value.first != key) {
+    //   if (lt(key, actual->_value.first)) {
+    //     actual = static_cast<InnerNode*>(actual->child[0]);
+    //   } else {
+    //     actual = static_cast<InnerNode*>(actual->child[1]);
+    //   }
+    // }
+    // return actual->_value.second;
   }
 
   /** \overload */
   Meaning& at(const Key& key) {
-    InnerNode* actual = root();
-    while (actual->_value.first != key) {
-      if (lt(key, actual->_value.first)) {
-        actual = static_cast<InnerNode*>(actual->child[0]);
-      } else {
-        actual = static_cast<InnerNode*>(actual->child[1]);
-      }
-    }
-    return actual->_value.second;
+  	iterator it = find(key);
+  	if (it.n != nullptr) { return it.n->_value.first; }
+    // InnerNode* actual = root();
+    // while (actual->_value.first != key) {
+    //   if (lt(key, actual->_value.first)) {
+    //     actual = static_cast<InnerNode*>(actual->child[0]);
+    //   } else {
+    //     actual = static_cast<InnerNode*>(actual->child[1]);
+    //   }
+    // }
+    // return actual->_value.second;
   }
 
   /**
@@ -1292,7 +1296,7 @@ class map {
    *
    * \aliasing{completar}
    *
-   * \pre \aedpre{completar}
+   * \pre \aedpre{true}
    * \post \aedpost{completar}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
@@ -1304,16 +1308,48 @@ class map {
    * inserción.
    *
    */
-  iterator find(const Key& key) { return iterator(at(key)); }
+  iterator find(const Key& key) { 
+  	if (root() == nullptr) {
+  		return iterator(nullptr);
+  	} else {
+  		Node* now = root();
+  		while(now != nullptr) {
+  			if (now->_value.first == key) {
+  				return iterator(now);
+  			} else if (lt(key, now->_value.first)) {
+  				now = static_cast<InnerNode*>(now->child[0]);
+  			} else {
+  				now = static_cast<InnerNode*>(now->child[1]);
+  			}
+  		}
+  		return iterator(nullptr);
+  	}
+  }
 
   /** \overload */
-  const_iterator find(const Key& key) const { return iterator(at(key)); }
+  const_iterator find(const Key& key) const {
+  	if (root() == nullptr) {
+  		return const_iterator(nullptr);
+  	} else {
+  		Node* now = root();
+  		while(now != nullptr) {
+  			if (now->_value.first == key) {
+  				return const_iterator(now);
+  			} else if (lt(key, now->_value.first)) {
+  				now = static_cast<InnerNode*>(now->child[0]);
+  			} else {
+  				now = static_cast<InnerNode*>(now->child[1]);
+  			}
+  		}
+  		return const_iterator(nullptr);
+  	}
+  }
 
   /**
    * @brief Devuelve un iterador al primer valor con clave mayor o igual a
    * \P{key}
    *
-   * Retorna un iterador apuntando a la primer posición cuyo valor tenga clave
+   * Retorna un iterador apuntando a la primera posición cuyo valor tenga clave
    * al menos \P{key}.
    * Si dicho valor no existe, porque \P{key} es mayor a todas las claves de
    * \P{*this}, entonces
@@ -1410,43 +1446,42 @@ class map {
    * aed2::map::insert_or_assign.
    */
 // esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
-  bool addElem(Node* &now, const value_type& value, int side)
-  {
-      if (now->child[side] != nullptr) {
-          now = now->child[side]; //si no es null, sigo bajando
+  bool addElem(Node* &now, const value_type& value, int dir) {
+      if (now->child[dir] != nullptr) {
+          now = now->child[dir]; //si no es null, sigo bajando
           return false;
       }
       else {
-          now->child[side] = new InnerNode(now, value);
+          now->child[dir] = new InnerNode(now, value);
          // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
-          insertionFix(now->child[side], value);
+          insertionFix(now->child[dir], value);
           return true;
       }
   }
 
-    void insertionFix(Node* newBorn, const value_type &value) {
+    void insertionFix(Node* newNode, const value_type &value) {
         Node* aux;
         if (static_cast<InnerNode*>(this->root())->value() == value) {
             static_cast<InnerNode*>(this->root())->color = Color::Black;
             return;
         }
-        while (!(newBorn->parent->is_header())  && (newBorn->parent->color == Color::Red)) {
-            Node* grandPa = newBorn->parent->parent;
-            if (grandPa->child[0] == newBorn->parent) {
+        while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
+            Node* grandPa = newNode->parent->parent;
+            if (grandPa->child[0] == newNode->parent) {
                 if (grandPa->child[1] != nullptr) {
                     aux = grandPa->child[1];
                     if (aux->color == Color::Red) {
-                        newBorn->parent->color = Color::Black;
+                        newNode->parent->color = Color::Black;
                         aux->color = Color::Black;
                         grandPa->color = Color::Red;
-                        newBorn = grandPa;
+                        newNode = grandPa;
                     }
                 } else {
-                    if (newBorn->parent->child[1] == newBorn) {
-                        newBorn = newBorn->parent;
-                        leftrotate(newBorn);
+                    if (newNode->parent->child[1] == newNode) {
+                        newNode = newNode->parent;
+                        leftrotate(newNode);
                     }
-                    newBorn->parent->color = Color::Black;
+                    newNode->parent->color = Color::Black;
                     grandPa->color = Color::Red;
                     rightrotate(grandPa);
                 }
@@ -1454,17 +1489,17 @@ class map {
                 if (grandPa->child[0] != nullptr) {
                     aux = grandPa->child[0];
                     if (aux->color == Color::Red) {
-                        newBorn->parent->color = Color::Black;
+                        newNode->parent->color = Color::Black;
                         aux->color = Color::Black;
                         grandPa->color = Color::Red;
-                        newBorn = grandPa;
+                        newNode = grandPa;
                     }
                 } else {
-                    if (newBorn->parent->child[0] == newBorn) {
-                        newBorn = newBorn->parent;
-                        rightrotate(newBorn);
+                    if (newNode->parent->child[0] == newNode) {
+                        newNode = newNode->parent;
+                        rightrotate(newNode);
                     }
-                    newBorn->parent->color = Color::Black;
+                    newNode->parent->color = Color::Black;
                     grandPa->color = Color::Red;
                     leftrotate(grandPa);
                 }
@@ -1472,29 +1507,25 @@ class map {
             root()->color = Color::Black;
         }
     }
-    void leftrotate(Node* p)
-    {
+
+    void leftrotate(Node* p) {
         if(p->child[1]==nullptr)
             return ;
-        else
-        {
+        else {
             Node* y = p->child[1];
-            if(y->child[0]!=nullptr)
-            {
+
+            if(y->child[0]!=nullptr) {
                 p->child[1]=y->child[0];
                 y->child[0]->parent=p;
-            }
-            else
-                p->child[1]=nullptr;
+            } else { p->child[1]=nullptr; }
+
             if(p->parent!=nullptr)
                 y->parent=p->parent;
             if(p->parent->is_header()) {
                 this->header.parent = y;
                // header.parent = y;
                 y->parent = &header;
-            }
-            else
-            {
+            } else {
                 if(p==p->parent->child[0])
                     p->parent->child[0]=y;
                 else
@@ -1504,29 +1535,26 @@ class map {
             p->parent=y;
         }
 
-    } void rightrotate(Node* p)
-    {
+    }
+
+    void rightrotate(Node* p) {
         if(p->child[0]==nullptr)
             return ;
-        else
-        {
+        else {
             Node* y = p->child[0];
-            if(y->child[1]!=nullptr)
-            {
+
+            if(y->child[1]!=nullptr) {
                 p->child[0]=y->child[1];
                 y->child[1]->parent=p;
-            }
-            else
-                p->child[0]=nullptr;
+            } else { p->child[0]=nullptr; }
+
             if(p->parent!=nullptr)
                 y->parent=p->parent;
             if(p->parent->is_header()) {
                 this->header.parent = y;
               //  header.parent = y;
                 y->parent = &header;
-            }
-            else
-            {
+            } else {
                 if(p==p->parent->child[0])
                     p->parent->child[0]=y;
                 else
@@ -1537,8 +1565,7 @@ class map {
         }
 
     }
-    bool hintInvalido(const_iterator hint, const value_type& value)
-    {
+    bool invalidHint(const_iterator hint, const value_type& value) {
         return (hint == nullptr || lt((*hint).first, value.first) || lt(value.first, prevInorder(static_cast<InnerNode*>(hint.n))->value().first));
     }
     iterator insert(const_iterator hint, const value_type& value) {
@@ -1567,18 +1594,13 @@ class map {
          * A continuacion obvio hay que llamar al insertionFIx.
          * En caso de que el hint no sea correcto, hayq ue llamar a insertar casi tla cual de los algoritmos del Cormen.
          * */
-        if ((header.parent == nullptr) || esMaximoOMinimo(value) || hintInvalido(hint, value))
-        {
+        if ((header.parent == nullptr) || isMaxOrMin(value) || invalidHint(hint, value)) {
            insert(value);
-        }
-        else
-        {
-            if (hint.n->child[0] == nullptr) //lo asigno a la izquierda del hint
-            {
+        } else {
+            if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
                 hint.n->child[0] = new InnerNode(static_cast<InnerNode*>(hint.n), value);
                 insertionFix(hint.n->child[0], value);
-            } else
-            {
+            } else {
                 Node* previo =  prevInorder(static_cast<InnerNode*>(hint.n));
                 previo->child[1] = new InnerNode( previo, value);
                 insertionFix(previo->child[1], value);
@@ -1587,20 +1609,17 @@ class map {
         }
 
     }
-bool esMaximoOMinimo(const value_type& value) {
+bool isMaxOrMin(const value_type& value) {
     return lt(header.child[1]->value().first, value.first) || lt(value.first, header.child[0]->value().first);
 }
-void asignarMaximoOMinimo(const value_type& value)
-{
-    if (lt(header.child[1]->value().first, value.first))
-    {
+
+void assignMaxOrMin(const value_type& value) {
+    if (lt(header.child[1]->value().first, value.first)) {
         header.child[1]->child[1] = new InnerNode(header.child[1], value);
         header.child[1] = header.child[1]->child[1];
         insertionFix(header.child[1], value);
 
-    }
-    else
-    {
+    } else {
         header.child[0]->child[0] = new InnerNode(header.child[0], value);
         header.child[0] = header.child[0]->child[0];
         insertionFix(header.child[0], value);
@@ -1616,22 +1635,17 @@ void asignarMaximoOMinimo(const value_type& value)
         Node* now = this->header.parent;
         bool inserted = false;
 
-        if (root() == nullptr)
-        {
+        if (root() == nullptr) {
             header.parent = new InnerNode(&header, value);
             insertionFix(root(), value);
             header.child[0] = header.child[1] = header.parent;
             inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
-        }
-        else if (esMaximoOMinimo(value))
-        {
-            asignarMaximoOMinimo(value);
+        } else if (isMaxOrMin(value)) {
+            assignMaxOrMin(value);
             inserted = true;
-        } else{
-            while(now != nullptr && !inserted)
-            {
-                if (lt(now->key(), value.first))
-                {
+        } else {
+            while(now != nullptr && !inserted) {
+                if (lt(now->key(), value.first)) {
                     inserted = addElem(now, value, 1);
                 }
                 else {
@@ -1641,6 +1655,7 @@ void asignarMaximoOMinimo(const value_type& value)
                         count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
                     }
                     else inserted = addElem(now, value, 0);
+
                 }
             }
         }
@@ -2040,7 +2055,7 @@ void asignarMaximoOMinimo(const value_type& value)
      * eso que la postcondición es más débil de lo que debiera.  Eso no ocurre
      * en las otras funciones del TP.
      */
-    pointer operator->() const { return n->value(); }
+    pointer operator->() const { return &(n->value()); }
     /**
      * \brief Avanza el iterador a la siguiente posición
      *
@@ -2096,7 +2111,7 @@ void asignarMaximoOMinimo(const value_type& value)
      *
      * \aliasing{completar}
      *
-     * \pre \aedpre{completar}
+     * \pre \aedpre{HayAnterior?(this)}
      * \post \aedpost{completar}
      *
      * \complexity{
@@ -2106,7 +2121,8 @@ void asignarMaximoOMinimo(const value_type& value)
      * }
      */
     iterator& operator--() {
-      // completar
+      this->n = prevInorder(this->n);
+      return *this;
     }
     /**
      * \brief Retrocede el iterador a la posición anterior
@@ -2146,11 +2162,11 @@ void asignarMaximoOMinimo(const value_type& value)
      * \complexity{\O(1)}
      */
     bool operator==(iterator other) const {
-      // completar
+    	return (this.n == other.n);
     }
     /** \brief idem !|operator== */
     bool operator!=(iterator other) const {
-      // completar
+    	return !(this==other);
     }
 
    private:
@@ -2271,13 +2287,9 @@ void asignarMaximoOMinimo(const value_type& value)
       // completar
     }
     /** \brief Ver aed2::map::iterator::operator*() */
-    reference operator*() const {
-      // completar
-    }
+    reference operator*() const { return n->value(); }
     /** \brief Ver aed2::map::iterator::operator->() */
-    pointer operator->() const {
-      // completar
-    }
+    pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
     /** \brief Ver aed2::map::iterator::operator++() */
     const_iterator& operator++() {
       // completar
@@ -2656,7 +2668,7 @@ void asignarMaximoOMinimo(const value_type& value)
  * @param m2 diccionario a comparar
  * @retval res true si los diccionarios son iguales
  *
- * \pre \aedpre{completar}
+ * \pre \aedpre{true}
  * \post \aedpost{completar}
  *
  * \complexity{ \O((\SIZE(m1) + \SIZE(m2)) \CDOT (\CMP(m1) + \CMP(m2)))}
