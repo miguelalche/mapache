@@ -2158,7 +2158,7 @@ void assignMaxOrMin(const value_type& value) {
      *
      * \aliasing{completar}
      *
-     * \pre \aedpre{completar}
+     * \pre \aedpre{HayAnterior?(\P{this})}
      * \post \aedpost{completar}
      *
      * \complexity{
@@ -2326,23 +2326,28 @@ void assignMaxOrMin(const value_type& value) {
     }
     /** \brief Ver aed2::map::iterator::operator++(int) */
     const_iterator operator++(int) {
-      // completar
+      	const_iterator res = iterator(this->n);
+    	this->n = nextInorder(this->n);
+    	return res;
     }
     /** \brief Ver aed2::map::iterator::operator--() */
     const_iterator& operator--() {
-      // completar
+      this->n = prevInorder(this->n);
+      return *this;
     }
     /** \brief Ver aed2::map::iterator::operator--(int) */
     const_iterator operator--(int) {
-      // completar
+      	const_iterator res = iterator(this->n);
+    	this->n = prevInorder(this->n);
+    	return res;
     }
     /** \brief Ver aed2::map::iterator::operator==() */
     bool operator==(const_iterator other) const {
-      // completar
+      return (this.n == other.n);
     }
     /** \brief Ver aed2::map::iterator::operator!=() */
     bool operator!=(const_iterator other) const {
-      // completar
+      return !(this == other);
     }
 
    private:
