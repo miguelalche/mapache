@@ -1368,12 +1368,26 @@ class map {
    *
    */
   const_iterator lower_bound(const Key& key) const {
-    // completar
+      if (lt(static_cast<InnerNode*>(header.child[1])->_value.first, key)) return const_iterator();
+    InnerNode* actual = static_cast<InnerNode*>(header.parent);
+      while (actual != nullptr)
+      {
+          if (lt(actual->_value.first, key) && actual->child[1] != nullptr) actual = static_cast<InnerNode*>(actual->child[1]);
+          else return const_iterator(actual);
+      }
+      return const_iterator(actual);
   }
 
   /** \overload */
   iterator lower_bound(const Key& key) {
-    // completar
+      if (lt(static_cast<InnerNode*>(header.child[1])->_value.first, key)) return iterator();
+      InnerNode* actual = static_cast<InnerNode*>(header.parent);
+      while (actual != nullptr)
+      {
+          if (lt(actual->_value.first, key) && actual->child[1] != nullptr) actual = static_cast<InnerNode*>(actual->child[1]);
+          else return iterator(actual);
+      }
+      return iterator(actual);
   }
   ///@}
 
@@ -1566,7 +1580,7 @@ class map {
 
     }
     bool invalidHint(const_iterator hint, const value_type& value) {
-        return (hint == nullptr || lt((*hint).first, value.first) || lt(value.first, prevInorder(static_cast<InnerNode*>(hint.n))->value().first));
+        return (hint.n == nullptr || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
     }
     iterator insert(const_iterator hint, const value_type& value) {
          /*Tengo que insertar un elemento, para esto, distingo tres casos:
@@ -1594,15 +1608,16 @@ class map {
          * A continuacion obvio hay que llamar al insertionFIx.
          * En caso de que el hint no sea correcto, hayq ue llamar a insertar casi tla cual de los algoritmos del Cormen.
          * */
+       ;
         if ((header.parent == nullptr) || isMaxOrMin(value) || invalidHint(hint, value)) {
            insert(value);
         } else {
             if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
-                hint.n->child[0] = new InnerNode(static_cast<InnerNode*>(hint.n), value);
+                hint.n->child[0] = new InnerNode(hint.n, value);
                 insertionFix(hint.n->child[0], value);
             } else {
-                Node* previo =  prevInorder(static_cast<InnerNode*>(hint.n));
-                previo->child[1] = new InnerNode( previo, value);
+                Node* previo =  hint.n->prevInorder();
+                previo->child[1] = new InnerNode(previo, value);
                 insertionFix(previo->child[1], value);
             }
             count++;
@@ -1701,12 +1716,13 @@ void assignMaxOrMin(const value_type& value) {
    * notación no es tan bonita.
    */
   iterator insert_or_assign(const_iterator hint, const value_type& value) {
-    if (*hint == value)
+    if ((*hint).first == value.first)
     {
         static_cast<InnerNode*>(hint.n)->_value.second = value.second;
     }
     else
-        insert(hint, value);
+        if (invalidHint(hint, value)) insert_or_assign(value);
+        else insert(hint, value);
   }
 
   /** \overload */
@@ -1869,17 +1885,17 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   iterator end() {
-    return iterator();
+    return iterator(header);
   }
 
   /** \overload */
   const_iterator end() const {
-    return const_iterator();
+    return const_iterator(header);
   }
 
   /** \overload */
   const_iterator cend() {
-    return const_iterator();
+    return const_iterator(header);
   }
 
   /**
@@ -1925,17 +1941,17 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   reverse_iterator rend() {
-    return reverse_iterator();
+    return reverse_iterator(header);
   }
 
   /** \overload */
   const_reverse_iterator rend() const {
-    return const_reverse_iterator();
+    return const_reverse_iterator(header);
   }
 
   /** \overload */
   const_reverse_iterator crend() {
-    return const_reverse_iterator();
+    return const_reverse_iterator(header);
   }
   //@}
 
@@ -2082,7 +2098,8 @@ void assignMaxOrMin(const value_type& value) {
      */
     iterator& operator++() {
       this->n = nextInorder(this->n);
-      return *this;
+     // if (n->is_header()) return &iterator();
+        return *this;
     }
     /**
      *\brief Busca el sucesor inorder del nodo al que apunta el iterador
@@ -2110,9 +2127,9 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator++(int) {
-      iterator it = *this;
+     // iterator it = *this;
         (*this)++;
-        return it;
+        return *this;
     }
     /**
      * \brief Retrocede el iterador a la posición anterior
@@ -2301,10 +2318,10 @@ void assignMaxOrMin(const value_type& value) {
     /** \brief Ver aed2::map::iterator::operator*() */
     reference operator*() const { return n->value(); }
     /** \brief Ver aed2::map::iterator::operator->() */
-    pointer operator->() const { return &( (static_cast<InnerNode*>(n))->_value ); }
+    pointer operator->() const { return &(n->value()); }
     /** \brief Ver aed2::map::iterator::operator++() */
     const_iterator& operator++() {
-        this->n = nextInorder(this->n);
+        this->n = (*(this->n)).nextInorder();
       return *this;
     }
     /** \brief Ver aed2::map::iterator::operator++(int) */
@@ -2403,7 +2420,52 @@ void assignMaxOrMin(const value_type& value) {
      * \complexity{\O(1)}
      */
     Node() : color(Color::Header) { child[0] = child[1] = this; }
+      bool hasChild(int dir) { return this->child[dir] != nullptr; }
+     // bool hasChild(int dir) { return node->child[dir] != nullptr; }
+    //  const Node* nextInorder(int dir = 1) {
+    //      if (this->hasChild(dir)) return getDMost(this->child[dir], 1 - dir);
+    //      if (this->isChild(1 - dir)) return this->parent;
+     //     while (this->isChild(dir)) this = this->parent;
+     //     return this;
+    //  }
+     Node* nextInorder(int dir = 1) {
+         Node* next = this;
+         if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
+         if (next->isChild(1 - dir)) return next->parent;
+         while (next->isChild(dir)) *next = next->parent;
+         return next;
+     }
+      Node* prevInorder() { return this->nextInorder(0); }
 
+      Node* getDMost(int dir) {
+          Node* aux = this;
+          while (aux != nullptr && aux->hasChild(dir)) {
+              aux = aux->child[dir];
+          }
+          return aux;
+      }
+
+      bool isChild(int dir) { return this->parent->child[dir] == this; }
+
+      bool hasChild(int dir) const { return this->child[dir] != nullptr; }
+      const Node* nextInorder(int dir = 1) const{
+          const Node* next = this;
+          if (next->hasChild(dir)) return next->child[dir]->getDMost(1 - dir);
+          if (next->isChild(1 - dir)) return next->parent;
+          while (next->isChild(dir)) next = next->parent;
+          return next;
+      }
+      const Node* prevInorder() const{ return this->nextInorder(0); }
+
+      const Node* getDMost(int dir) const {
+          const Node* aux = this;
+          while (aux != nullptr && aux->hasChild(dir)) {
+              aux = aux->child[dir];
+          }
+          return aux;
+      }
+
+      bool isChild(int dir) const{ return this->parent->child[dir] == this; }
     /**
      * @brief Constructor para nodos del arbol red-black, sin enlaces.
      *
@@ -2607,26 +2669,7 @@ void assignMaxOrMin(const value_type& value) {
   /** \brief Cabeceera del arbol; ver \ref Implementacion */
   Node header;
   //@}
-  bool hasChild(Node* node, int dir) { return node->child[dir] != nullptr; }
-    bool hasChild(const Node* node, int dir) { return node->child[dir] != nullptr; }
-    Node* nextInorder(Node* node, int dir = 1) {
-        if (hasChild(node, dir)) return getDMost(node->child[dir], 1 - dir);
-        if (isChild(node, 1 - dir)) return node->parent;
-        while (isChild(node, dir)) node = node->parent;
-        return node;
-    }
 
-    Node* prevInorder(Node* node) { return nextInorder(node, 0); }
-
-    Node* getDMost(Node* node, int dir) {
-    Node* aux = node;
-    while (aux != nullptr && hasChild(node, dir)) {
-      aux = aux->child[dir];
-    }
-    return aux;
-  }
-
-  bool isChild(Node* node, int dir) { return node->parent->child[dir] == node; }
 
   ////////////////////////////////////////
   /** \name Acceso y consulta del árbol */
