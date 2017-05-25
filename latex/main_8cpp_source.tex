@@ -1,0 +1,30 @@
+\hypertarget{main_8cpp_source}{}\subsection{main.\+cpp}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{//}
+00002 \textcolor{comment}{// Created by jscherman on 21/05/17.}
+00003 \textcolor{comment}{//}
+00004 \textcolor{preprocessor}{#include "\hyperlink{map_8h}{map.h}"}
+00005 
+00006 \textcolor{keywordtype}{int} main() \{
+00007     \hyperlink{classaed2_1_1map}{aed2::map<int, int>} *miMap = \textcolor{keyword}{new} \hyperlink{classaed2_1_1map}{aed2::map<int, int>}();
+00008     \textcolor{keyword}{const} std::pair<const int, int> par1 = std::make\_pair(3, 5);
+00009     \textcolor{keyword}{const} std::pair<const int, int> par2 = std::make\_pair(7, 5);
+00010     \textcolor{keyword}{const} std::pair<const int, int> par3 = std::make\_pair(5, 5);
+00011     \textcolor{keyword}{const} std::pair<const int, int> par4 = std::make\_pair(13, 5);
+00012     \textcolor{keyword}{const} std::pair<const int, int> par5 = std::make\_pair(10, 5);
+00013     \textcolor{keyword}{const} std::pair<const int, int> par6 = std::make\_pair(8, 5);
+00014     \textcolor{keyword}{const} std::pair<const int, int> par7 = std::make\_pair(1, 5);
+00015 
+00016     \textcolor{keyword}{const} std::pair<const int, int> par8 = std::make\_pair(10, 234);
+00017     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par1);
+00018     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par2);
+00019     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par3);
+00020     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par4);
+00021     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par5);
+00022     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par6);
+00023     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par7);
+00024     miMap->\hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{insert\_or\_assign}(par8);
+00025     \textcolor{keywordflow}{return} 0;
+00026 \}
+\end{DoxyCode}

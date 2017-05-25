@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value',['value',['../structaed2_1_1map_1_1Node_af4ada8e79dabb4849fc87de63d3970fb.html#af4ada8e79dabb4849fc87de63d3970fb',1,'aed2::map::Node::value()'],['../structaed2_1_1map_1_1Node_a747a33f40ad748d750372fe73aea0b32.html#a747a33f40ad748d750372fe73aea0b32',1,'aed2::map::Node::value() const ']]]
+  ['previnorder',['prevInorder',['../structaed2_1_1map_1_1Node_ace5f2727ac92ec79323155a3f0f761fb.html#ace5f2727ac92ec79323155a3f0f761fb',1,'aed2::map::Node::prevInorder()'],['../structaed2_1_1map_1_1Node_a9cdfce1b8a6d93f0e34ffcd4e0c6a1dc.html#a9cdfce1b8a6d93f0e34ffcd4e0c6a1dc',1,'aed2::map::Node::prevInorder() const ']]]
 ];
