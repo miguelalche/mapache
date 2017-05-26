@@ -828,6 +828,7 @@
 #include <functional>
 #include <iterator>
 #include <utility>
+#include <mmcobj.h>
 
 #ifdef DEBUG
 // Aca se puede incluir cualquier cosa que consideren que necesitan para debug
@@ -1615,10 +1616,12 @@ class map {
             if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
                 hint.n->child[0] = new InnerNode(hint.n, value);
                 insertionFix(hint.n->child[0], value);
+                return iterator(hint.n->child[0]);
             } else {
                 Node* previo =  hint.n->prevInorder();
                 previo->child[1] = new InnerNode(previo, value);
                 insertionFix(previo->child[1], value);
+                return iterator(hint.n->child[1]);
             }
             count++;
         }
@@ -1628,53 +1631,59 @@ bool isMaxOrMin(const value_type& value) {
     return lt(header.child[1]->value().first, value.first) || lt(value.first, header.child[0]->value().first);
 }
 
-void assignMaxOrMin(const value_type& value) {
+iterator assignMaxOrMin(const value_type& value) {
     if (lt(header.child[1]->value().first, value.first)) {
         header.child[1]->child[1] = new InnerNode(header.child[1], value);
         header.child[1] = header.child[1]->child[1];
         insertionFix(header.child[1], value);
+        return iterator(header.child[1]);
 
     } else {
         header.child[0]->child[0] = new InnerNode(header.child[0], value);
         header.child[0] = header.child[0]->child[0];
         insertionFix(header.child[0], value);
+        return iterator(header.child[0]);
     }
 
 }
     /** \overload*/
   iterator insert(const value_type& value) {
-      insert_or_upsert(value, 0);
+      return insert_or_upsert(value, 0);
   }
 
     iterator insert_or_upsert(const value_type& value, bool upsert) {
         Node* now = this->header.parent;
         bool inserted = false;
-
+        iterator it(now);
         if (root() == nullptr) {
             header.parent = new InnerNode(&header, value);
             insertionFix(root(), value);
             header.child[0] = header.child[1] = header.parent;
             inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
         } else if (isMaxOrMin(value)) {
-            assignMaxOrMin(value);
-            inserted = true;
+            it = assignMaxOrMin(value);
+            //inserted = true;
         } else {
             while(now != nullptr && !inserted) {
                 if (lt(now->key(), value.first)) {
                     inserted = addElem(now, value, 1);
+                    it = iterator(now);
                 }
                 else {
                     if ((now->key() == value.first) && upsert) {
                         static_cast<InnerNode *>(now)->_value.second = value.second;
-                        inserted = true;
-                        count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
+                       // inserted = true;
+                       // count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
+                        return iterator(now);
                     }
                     else inserted = addElem(now, value, 0);
+                    it = iterator(now);
 
                 }
             }
         }
         if (inserted) count++;
+        return it;
     }
   /**
    * @brief Inserta o redefine \P{value} en el diccionario
@@ -1727,7 +1736,7 @@ void assignMaxOrMin(const value_type& value) {
 
   /** \overload */
   iterator insert_or_assign(const value_type& value) {
-    insert_or_upsert(value, 1);
+    return insert_or_upsert(value, 1);
   }
 
   /**
@@ -1766,8 +1775,170 @@ void assignMaxOrMin(const value_type& value) {
    * \CMP(\P{*this}))}
    */
   void erase(const Key& key) {
-    // completar
-  }
+      {
+          if(header.parent == nullptr)
+          {
+              //cout<<"\nEmpty Tree." ;
+              return ;
+          }
+         // int x;
+         // cout<<"\nEnter the key of the node to be deleted: ";
+          //cin>>x;
+          Node *actual = root();
+          //p=root;
+          Node *y = nullptr;
+          Node *q = nullptr;
+          bool found = false;
+          while(actual != nullptr && !found)
+          {
+              if(actual->value().first == key)
+                  found = true;
+              else
+              {
+                  if(lt(actual->value().first, key))
+                      actual = actual->child[1];
+                  else
+                      actual = actual->child[0];
+              }
+          }
+          if(found == 0)
+          {
+             // cout<<"\nElement Not Found.";
+              return ;
+          }
+          else
+          {
+             // cout<<"\nDeleted Element: "<<p->key;
+             // cout<<"\nColour: ";
+              /*if(actual->color== Color::Black)
+                  cout<<"Black\n";
+              else
+                  cout<<"Red\n";
+
+              if(p->parent!=NULL)
+                  cout<<"\nParent: "<<p->parent->key;
+              else
+                  cout<<"\nThere is no parent of the node.  ";
+              if(p->right!=NULL)
+                  cout<<"\nRight Child: "<<p->right->key;
+              else
+                  cout<<"\nThere is no right child of the node.  ";
+              if(p->left!=NULL)
+                  cout<<"\nLeft Child: "<<p->left->key;
+              else
+                  cout<<"\nThere is no left child of the node.  ";
+              cout<<"\nNode Deleted.";*/
+              if(!actual->hasChild(0) || !actual->hasChild(1))
+                  y = actual;
+              else
+                  y = actual->nextInorder();
+              if(y->child[0] != nullptr)
+                  q = y->child[0];
+              else
+              {
+                  if(y->child[1] != nullptr)
+                      q = y->child[1];
+                  else
+                      q = nullptr;
+              }
+              if(q != nullptr)
+                  q->parent = y->parent;
+              if((y->parent)->is_header())
+                  header.parent = q;
+              else
+              {
+                  if(y->isChild(0))
+                      y->parent->child[0] = q;
+                  else
+                      y->parent->child[1] = q;
+              }
+              if(y != actual)
+              {
+                 // Node* parent = actual->parent;
+                  value_type& myValue = static_cast<InnerNode*>(actual)->_value;
+                  actual->color = y->color;
+                  static_cast<InnerNode*>(actual)->_value = static_cast<InnerNode*>(y)->_value;asdasdArreglaresto
+                  static_cast<InnerNode*>(actual)->_value.second = myValue.second;
+              }
+                 // actual->color = y->color;
+                 // p->key=y->key;
+              }
+              if(y->color==Color::Black)
+                  delfix(q);
+          }
+      }
+
+      void delfix(Node* myNode)
+      {
+          Node *s;
+          while(myNode != root() && myNode->color == Color::Black)
+          {
+              if(myNode->parent->child[0] == myNode)
+              {
+                  s = myNode->parent->child[1];
+                  if(s->color==Color::Red)
+                  {
+                      s->color=Color::Black;
+                      myNode->parent->color= Color::Red;
+                      leftrotate(myNode->parent);
+                      s=myNode->parent->child[1];
+                  }
+                  if(s->child[1]->color==Color::Black && s->child[0]->color== Color::Black)
+                  {
+                      s->color= Color::Red;
+                      myNode = myNode->parent;
+                  }
+                  else
+                  {
+                      if(s->child[1]->color== Color::Black)
+                      {
+                          s->child[0]->color = Color::Black;
+                          s->color= Color::Red;
+                          rightrotate(s);
+                          s=myNode->parent->child[1];
+                      }
+                      s->color=myNode->parent->color;
+                      myNode->parent->color = Color::Black;
+                      s->child[1]->color = Color::Black;
+                      leftrotate(myNode->parent);
+                      myNode = header.parent;
+                  }
+              }
+              else
+              {
+                  s=myNode->parent->child[0];
+                  if(s->color== Color::Red)
+                  {
+                      s->color= Color::Black;
+                      myNode->parent->color= Color::Red;
+                      rightrotate(myNode->parent);
+                      s=myNode->parent->child[0];
+                  }
+                  if(s->child[0]->color == Color::Black && s->child[1]->color== Color::Black)
+                  {
+                      s->color= Color::Red;
+                      myNode=myNode->parent;
+                  }
+                  else
+                  {
+                      if(s->child[0]->color == Color::Black)
+                      {
+                          s->child[1]->color = Color::Black;
+                          s->color = Color::Red;
+                          leftrotate(s);
+                          s=myNode->parent->child[0];
+                      }
+                      s->color=myNode->parent->color;
+                      myNode->parent->color = Color::Black;
+                      s->child[0]->color= Color::Black;
+                      rightrotate(myNode->parent);
+                      myNode= header.parent;
+                  }
+              }
+              myNode->color= Color::Black;
+              header.parent->color = Color::Black;
+          }
+      }
 
   /**
    * @brief Vacia el diccionario
@@ -1782,7 +1953,8 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(\DEL(\P{*this}))}
    */
   void clear() {
-    while ((header.parent->child) != {nullptr, nullptr})
+      Node* miArrayVacio[2] = {nullptr, nullptr};
+    while ((header.parent->child) != miArrayVacio)
     {
         if (header.parent->child[0] != nullptr)  erase(header.parent->child[0]);
         if (header.parent->child[1] != nullptr) erase(header.parent->child[1]);

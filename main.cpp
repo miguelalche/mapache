@@ -18,9 +18,10 @@ int main() {
     miMap->insert(par2);
     miMap->insert(par3);
     miMap->insert(par4);
-    miMap->insert(par5);
-    miMap->insert(par6);
-    miMap->insert(par7);
-    miMap->insert_or_assign(par8);
+    //miMap->insert(par5);
+   // miMap->insert(par6);
+   // miMap->insert(par7);
+    //miMap->insert_or_assign(par8);
+    miMap->erase(par3.first);
     return 0;
 }
