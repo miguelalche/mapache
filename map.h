@@ -1885,17 +1885,17 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   iterator end() {
-    return iterator(header);
+    return iterator(&header);
   }
 
   /** \overload */
   const_iterator end() const {
-    return const_iterator(header);
+    return const_iterator(&header);
   }
 
   /** \overload */
   const_iterator cend() {
-    return const_iterator(header);
+    return const_iterator(&header);
   }
 
   /**
@@ -1941,17 +1941,17 @@ void assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   reverse_iterator rend() {
-    return reverse_iterator(header);
+    return reverse_iterator(&header);
   }
 
   /** \overload */
   const_reverse_iterator rend() const {
-    return const_reverse_iterator(header);
+    return const_reverse_iterator(&header);
   }
 
   /** \overload */
   const_reverse_iterator crend() {
-    return const_reverse_iterator(header);
+    return const_reverse_iterator(&header);
   }
   //@}
 
@@ -2097,7 +2097,7 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator& operator++() {
-      this->n = nextInorder(this->n);
+      this->n = this->n->nextInorder();
      // if (n->is_header()) return &iterator();
         return *this;
     }
@@ -2127,9 +2127,9 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator++(int) {
-     // iterator it = *this;
+      iterator it = *this;
         (*this)++;
-        return *this;
+        return it;
     }
     /**
      * \brief Retrocede el iterador a la posición anterior
@@ -2148,7 +2148,7 @@ void assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator& operator--() {
-      this->n = prevInorder(this->n);
+      this->n = this->n->prevInorder();
       return *this;
     }
     /**
@@ -2549,12 +2549,12 @@ void assignMaxOrMin(const value_type& value) {
      */
     value_type& value() {
       assert(not is_header());
-      return static_cast<InnerNode*>(this)->_value;
+      return (this)->value();
     }
     /** \overload */
     const value_type& value() const {
       assert(not is_header());
-      return static_cast<const InnerNode*>(this)->_value;
+      return (this)->value();
     }
 
     /**
@@ -2627,8 +2627,12 @@ void assignMaxOrMin(const value_type& value) {
     value_type _value;
       InnerNode(Node* myparent, const value_type &value) : Node(myparent), _value(value)
       {
-            //parent = myparent;
+          //parent = myparent;
       }
+    //  const InnerNode(const Node* myparent, const value_type &value) const : const Node(myparent), _value(value)
+     //     {
+          //parent = myparent;
+    //  }
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2779,6 +2783,7 @@ bool operator!=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
  */
 template <class K, class V, class C>
 bool operator<(const map<K, V, C>& m1, const map<K, V, C>& m2) {
+       return m1.count == m2.count && std::lexicographical_compare(m1.begin(), m1.end(), m2.begin(), m2.end());
   // completar.  Vale usar std::lexicographical_compare
 }
 
