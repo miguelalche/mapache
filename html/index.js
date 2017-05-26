@@ -17,7 +17,7 @@ var index =
     [ "Aspectos de aliasing y uso de punteros", "Aliasing.html", [
       [ "Resumen", "Aliasing.html#sec-Resumen", null ],
       [ "Álgebra vs. computadora", "Aliasing.html#sec-puntero", [
-        [ "Variables y punteros inválidos y el problema de la memoria finita", "Aliasing.html#sec-invalido", null ]
+        [ "Variables y punteros inválidos y el problema de la", "Aliasing.html#sec-invalido", null ]
       ] ],
       [ "Los aspectos de aliasing", "Aliasing.html#sec-aliasing", null ],
       [ "Especificación de los iteradores y el alias", "Aliasing.html#sec-iteradores", null ]

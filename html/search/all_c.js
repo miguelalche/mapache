@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['n',['n',['../classaed2_1_1map_1_1iterator_adf8633ef71bb6c1fc01c0abe8728fd93.html#adf8633ef71bb6c1fc01c0abe8728fd93',1,'aed2::map::iterator::n()'],['../classaed2_1_1map_1_1const__iterator_a921e123f9c7f94610cf9fee3ab55d277.html#a921e123f9c7f94610cf9fee3ab55d277',1,'aed2::map::const_iterator::n()']]],
-  ['node',['Node',['../structaed2_1_1map_1_1Node_a9c1a600491066ce7eb669b1cb76d56c6.html#a9c1a600491066ce7eb669b1cb76d56c6',1,'aed2::map::Node::Node()'],['../structaed2_1_1map_1_1Node_a62b5a42e88e219d53af8237a9ebedb6e.html#a62b5a42e88e219d53af8237a9ebedb6e',1,'aed2::map::Node::Node(Node *p, Color c=Color::Red)']]],
-  ['node',['Node',['../structaed2_1_1map_1_1Node.html',1,'aed2::map']]]
+  ['modulo_20aed2_3a_3amap',['Modulo aed2::map',['../index.html',1,'']]],
+  ['map',['map',['../classaed2_1_1map.html',1,'aed2']]],
+  ['map',['map',['../classaed2_1_1map_a64da1d965b13eb28cdb3837bc17a18cf.html#a64da1d965b13eb28cdb3837bc17a18cf',1,'aed2::map::map(Compare c=Compare())'],['../classaed2_1_1map_a7a77950a3d8e637bfa7cf5dcd904f257.html#a7a77950a3d8e637bfa7cf5dcd904f257',1,'aed2::map::map(const map &amp;other)'],['../classaed2_1_1map_a5d336f3248572beb56be383dcc95cfeb.html#a5d336f3248572beb56be383dcc95cfeb',1,'aed2::map::map(iterator first, iterator last, Compare c=Compare())']]],
+  ['map_2eh',['map.h',['../map_8h.html',1,'']]],
+  ['mapped_5ftype',['mapped_type',['../classaed2_1_1map_aa3e34bf624f3009884a71b18f4ddae40.html#aa3e34bf624f3009884a71b18f4ddae40',1,'aed2::map']]]
 ];

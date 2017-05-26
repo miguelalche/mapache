@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('Aliasing.html','');});
 <div class="contents">
 <div class="toc"><h3>Tabla de contenidos</h3>
 <ul><li class="level1"><a href="#sec-Resumen">Resumen</a></li>
-<li class="level1"><a href="#sec-puntero">Álgebra vs. computadora</a><ul><li class="level2"><a href="#sec-invalido">Variables y punteros inválidos y el problema de la memoria finita</a></li>
+<li class="level1"><a href="#sec-puntero">Álgebra vs. computadora</a><ul><li class="level2"><a href="#sec-invalido">Variables y punteros inválidos y el problema de la</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#sec-aliasing">Los aspectos de aliasing</a></li>
@@ -166,7 +166,8 @@ Resumen</h1>
 </ol>
 <p>La existencia del operador &amp; sobre variables computacionales nos permite definir lo que seria el símil de la igualdad observacional de estos objetos, i.e., el alias. Es decir, cuándo dos variables refieren a la misma posición de memoria. En este caso, <em>v</em> y <em>w</em> tiene alias si y sólo si &amp;<em>v</em> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> &amp;<em>w</em>.</p>
 <h2><a class="anchor" id="sec-invalido"></a>
-Variables y punteros inválidos y el problema de la memoria finita</h2>
+Variables y punteros inválidos y el problema de la</h2>
+<p>memoria finita</p>
 <p>Claramente, no todas las combinaciones de bits representan información válida, cuando queremos interpretar una posición de memoria con un tipo <em>T</em>. El comportamiento de la función sombrerito sobre dichas variables está indefinido (ver restricción). Sin embargo, no podemos especificar nada de las variables <em>antes</em> de aplicar sombrerito. Por ello, simplemente asumimos que las variables de nuestro mundo computacional son <em>válidas</em>. En términos formales, suponemos que sombrerito de <em>x</em> siempre denota un valor correcto, más allá de la restricción.</p>
 <p>Análogamente, un puntero a <em>T</em>, al ser una valor computacional, puede tener un valor inválido. Esto ocurre, por ejemplo, cuando la posición de memoria a la que apunta no se puede interpretar correctamente bajo el tipo <em>T</em>. Es decir, si <em>x</em> es una variable inválida, entonces &amp;<em>x</em> es un puntero inválido.</p>
 <p>Obviamente, si suponemos que <em>x</em> siempre es válido, entonces huelga decir que &amp;<em>x</em> es siempre válido. Sin embargo, en sistemas finitos, queremos no perder memoria, razón por la cual tenemos que retornarla al sistema. Una vez más, la devolución de memoria es algo que escapa el mundo algebraico (que supone la existencia de los infinitos términos en simultáneo, i.e., memoria infinita). Si bien no vamos a especificarlo, existe una función computacional de <em>liberación de memoria</em>. Esta función (implícitamente) transforma el espacio de memoria en un valor <img class="formulaInl" alt="$\bot$" src="form_9.png"/> que es inválido para cualquier tipo <em>T</em>. De esta forma, los punteros que apuntan a dicha posición se <em>invalidan</em> aunque lo hayamos inicializado con valores válidos.</p>
@@ -187,7 +188,7 @@ Especificación de los iteradores y el alias</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado el Sábado, 20 de Mayo de 2017 16:19:47 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 25 de Mayo de 2017 18:57:54 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

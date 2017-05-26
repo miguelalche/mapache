@@ -1144,8 +1144,8 @@ class map {
    *
    * \aliasing{completar}
    *
-   * \pre \aedpre{completar}
-   * \post \aedpost{completar}
+   * \pre \aedpre{other0 = other}
+   * \post \aedpost{res = other0}
    *
    * \complexity{\O(\DEL(\P{*this}) \PLUS \COPY(\P{other}))}
    *
@@ -1273,8 +1273,8 @@ class map {
    *
    * \aliasing{completar}
    *
-   * \pre \aedpre{completar}
-   * \post \aedpost{completar}
+   * \pre \aedpre{definido?(\P{key},this)}
+   * \post \aedpost{res \igobs obtener(\P{key},this)}
        *
    * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) + \a x) donde
    * - \a x = 1 si def?(\a self, \P{key}), y
@@ -1297,7 +1297,7 @@ class map {
    * \aliasing{completar}
    *
    * \pre \aedpre{true}
-   * \post \aedpost{completar}
+   * \post \aedpost{if def?(key,this) then (*res)->value().first == key) else *res == header}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
    *
@@ -1308,41 +1308,41 @@ class map {
    * inserción.
    *
    */
-  iterator find(const Key& key) { 
-  	if (root() == nullptr) {
-  		return iterator(nullptr);
-  	} else {
-  		InnerNode* now = root();
-  		while(now != nullptr) {
-  			if (now->_value.first == key) {
-  				return iterator(now);
-  			} else if (lt(key, now->_value.first)) {
-  				now = static_cast<InnerNode*>(now->child[0]);
-  			} else {
-  				now = static_cast<InnerNode*>(now->child[1]);
-  			}
-  		}
-  		return iterator(nullptr);
-  	}
+  iterator find(const Key& key) {
+    if (root() == nullptr) {
+      return this->end();
+    } else {
+      InnerNode* now = root();
+      while (now != nullptr) {
+        if (now->_value.first == key) {
+          return iterator(now);
+        } else if (lt(key, now->_value.first)) {
+          now = static_cast<InnerNode*>(now->child[0]);
+        } else {
+          now = static_cast<InnerNode*>(now->child[1]);
+        }
+      }
+      return this->end();
+    }
   }
 
   /** \overload */
   const_iterator find(const Key& key) const {
-  	if (root() == nullptr) {
-  		return const_iterator(nullptr);
-  	} else {
-  		InnerNode* now = root();
-  		while(now != nullptr) {
-  			if (now->_value.first == key) {
-  				return const_iterator(now);
-  			} else if (lt(key, now->_value.first)) {
-  				now = static_cast<InnerNode*>(now->child[0]);
-  			} else {
-  				now = static_cast<InnerNode*>(now->child[1]);
-  			}
-  		}
-  		return const_iterator(nullptr);
-  	}
+    if (root() == nullptr) {
+      return this->end();
+    } else {
+      InnerNode* now = root();
+      while (now != nullptr) {
+        if (now->_value.first == key) {
+          return const_iterator(now);
+        } else if (lt(key, now->_value.first)) {
+          now = static_cast<InnerNode*>(now->child[0]);
+        } else {
+          now = static_cast<InnerNode*>(now->child[1]);
+        }
+      }
+      return this->end();
+    }
   }
 
   /**
@@ -2158,7 +2158,7 @@ void assignMaxOrMin(const value_type& value) {
      *
      * \aliasing{completar}
      *
-     * \pre \aedpre{completar}
+     * \pre \aedpre{HayAnterior?(\P{this})}
      * \post \aedpost{completar}
      *
      * \complexity{
@@ -2326,23 +2326,28 @@ void assignMaxOrMin(const value_type& value) {
     }
     /** \brief Ver aed2::map::iterator::operator++(int) */
     const_iterator operator++(int) {
-      // completar
+      	const_iterator res = const_iterator(this->n);
+    	this->n = this->n->nextInorder();
+    	return res;
     }
     /** \brief Ver aed2::map::iterator::operator--() */
     const_iterator& operator--() {
-      // completar
+      this->n = this->n->prevInorder();
+      return *this;
     }
     /** \brief Ver aed2::map::iterator::operator--(int) */
     const_iterator operator--(int) {
-      // completar
+      	const_iterator res = const_iterator(this->n);
+    	this->n = this->n->prevInorder();
+    	return res;
     }
     /** \brief Ver aed2::map::iterator::operator==() */
     bool operator==(const_iterator other) const {
-      // completar
+      return (this->n == other.n);
     }
     /** \brief Ver aed2::map::iterator::operator!=() */
     bool operator!=(const_iterator other) const {
-      // completar
+      return !(*this == other);
     }
 
    private:
@@ -2651,13 +2656,13 @@ void assignMaxOrMin(const value_type& value) {
    * \par Invariante de representacion
        * \parblock
        * rep: map \TO bool\n
-       * rep(m) \EQUIV completar
+       * rep(m) \EQUIV true \iff asd
        * \endparblock
        *
        * \par Función de abstracción
        * \parblock
        * abs: map m \TO Diccionario(\T{Key}, \T{Meaning})  {rep(n)}\n
-       * abs(m) \EQUIV completar
+       * abs(m) \EQUIV if m.empty() then vacio else definir (m.root()->value().first,m.root()->value().second, Abs(m.erase(m.root()->value().first)) )
        * \endparblock
    */
   //////////////////////////////////////////////////////////////////////////////////////////////////////
