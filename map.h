@@ -1186,8 +1186,24 @@ class map {
    * liberación de la memoria
    */
   ~map() {
-    // completar
+      //SOLUCIÒN RECURSIVA
+      if (count>0){
+          removeSubTree(root());
+      }
+      //delete header;
   }
+
+    //RemoveSubTree
+    //Toma una "raiz" de un subarbol, y se aplica recursivamente primero al hijo izquierdo
+    //y luego al derecho de ese subarbol, hasta llegar al elemento sin hijos, que elimina.
+    //de esta manera, cuando pasa los dos ifs se asegura de no tener hijos, por lo que se elimina.
+
+    void removeSubTree(Node* raiz){
+        if (raiz->hasChild(0)) {removeSubTree(raiz->child[0]);}
+        if (raiz->hasChild(1)) {removeSubTree(raiz->child[1]);}
+        delete raiz;
+        count--;
+    }
   ///@}
 
   ////////////////////////////////////////////
@@ -1282,7 +1298,18 @@ class map {
    * - \a x = \a c en caso contrario.}
    *
    */
-  Meaning& operator[](const Key& key) { return at(key); }
+  Meaning& operator[](const Key& key) {
+
+      iterator nodo = find(key);
+      if (nodo==end()){
+          Meaning significado = Meaning();
+          const std::pair<const Key, Meaning > par1 = std::make_pair(key,significado);
+          insert(par1);
+          return significado;
+      }else {
+          return (static_cast<InnerNode*>(nodo.n))->_value.second;
+      }
+  }
 
   /**
    * @brief Devuelve un iterador a la posicion del valor con clave \P{key}
@@ -1454,8 +1481,10 @@ class map {
       }
       else {
           now->child[dir] = new InnerNode(now, value);
+          Node* aux = now->child[dir];
          // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
           insertionFix(now->child[dir], value);
+          now = aux;
           return true;
       }
   }
@@ -1609,7 +1638,7 @@ class map {
                 insertionFix(previo->child[1], value);
                 return iterator(hint.n->child[1]);
             }
-            count++;
+           // count++; ver q onda count
         }
 
     }
@@ -1622,7 +1651,7 @@ iterator assignMaxOrMin(const value_type& value) {
         header.child[1]->child[1] = new InnerNode(header.child[1], value);
         header.child[1] = header.child[1]->child[1];
         insertionFix(header.child[1], value);
-        return iterator(header.child[1]);
+        return iterator(header.child[1]->child[1]);
 
     } else {
         header.child[0]->child[0] = new InnerNode(header.child[0], value);
@@ -1646,9 +1675,10 @@ iterator assignMaxOrMin(const value_type& value) {
             header.parent->color = Color::Black;
             header.child[0] = header.child[1] = header.parent;
             inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
+            it = iterator(header.parent);
         } else if (isMaxOrMin(value)) {
             it = assignMaxOrMin(value);
-            //inserted = true;
+            inserted = true;
         } else {
             while(now != nullptr && !inserted) {
                 if (lt(now->key(), value.first)) {
@@ -1714,10 +1744,11 @@ iterator assignMaxOrMin(const value_type& value) {
     if ((*hint).first == value.first)
     {
         const_cast<InnerNode*>(hint.n)->_value.second = value.second;
+        return iterator(const_cast<Node*>(hint.n));
     }
     else
-        if (invalidHint(hint, value)) insert_or_assign(value);
-        else insert(hint, value);
+        if (invalidHint(hint, value)) return insert_or_assign(value);
+        else return insert(hint, value);
   }
 
   /** \overload */
@@ -1743,9 +1774,59 @@ iterator assignMaxOrMin(const value_type& value) {
    * }
    *
    */
-  iterator erase(const_iterator pos) {
-    // completar :(
+  iterator erase(const_iterator pos){
+      if (header.parent == nullptr) return iterator();
+      Node* x;
+      Node* y = const_cast<Node*>(pos.n);
+      Node* z = y;
+      Color y_original_color = y->color;
+
+      if (!z->hasChild(0)){
+          x = y->child[1];
+          Transplant(y,y->child[1]);
+      }
+      else if(!z->hasChild(1)){
+          x = y->child[0];
+          Transplant(y,y->child[0]);
+      }
+      else{
+          y = y->nextInorder();
+          y_original_color = y->color;
+          x = y->child[1];
+          if (y->parent==z){
+              x->parent = y;
+          }else {
+              Transplant(y,y->child[1]);
+              y->child[1] = z->child[1];
+              y->child[1]->parent = y;
+          }
+          Transplant(z,y);
+          y->child[0]=z->child[0];
+          y->child[0]->parent = y;
+          y->color = z->color;
+
+      }
+      if(y_original_color==Color::Black) delfix(x);
+      count--;
+      delete z;
+
+
   }
+
+
+  void Transplant(Node* u, Node* v){
+
+
+        if (root()==u){
+            header.parent=v;
+        }else if(u==u->parent->child[0]){
+            u->parent->child[0]=v;
+        }else if(u==u->parent->child[1]){
+            u->parent->child[1]=v;
+        }
+        v->parent=u->parent;
+    }
+
 
 
   /**
@@ -1762,191 +1843,125 @@ iterator assignMaxOrMin(const value_type& value) {
    * \CMP(\P{*this}))}
    */
   void erase(const Key& key) {
-      Node *actual = header.parent;
-
-      //Node *node = root;
-      while (actual != nullptr) {
-          if (lt(key, actual->key())) {
-              actual = actual->child[0];
-          } else if (lt(actual->key(), key)) {
-              actual = actual->child[1];
-          } else {
-              break;
-          }
-      }
-
-      if (actual == nullptr || actual->key() != key) {
-          return;
-      }
-
-      Color original;
-      Node *sub, *old;
-      old = nullptr;
-      if (actual->child[0] == nullptr) {
-          Transplant(actual, sub = actual->child[1]);
-      } else if (actual->child[1] == nullptr) {
-          Transplant(actual, sub = actual->child[0]);
-      } else {
-          old = (actual->child[1])->getDMost(0);
-          original = old->color;
-          sub = old->child[1];
-
-          if (old->parent == actual) {
-              sub->parent = actual;
-          } else {
-              Transplant(old, old->child[1]);
-              old->child[1] = actual->child[1];
-              old->child[1]->parent = old;
-          }
-
-          Transplant(actual, old);
-          old->child[0] = actual->child[0];
-          old->child[0]->parent = old;
-          old->color = actual->color;
-      }
-
-      delete actual;
-      if (original == Color::Black) {
-          bool side;
-          Node *sibling;
-          while (old != header.parent && old->color == Color::Black) {
-              if ((side = (old == old->parent->child[0]))) {
-                  sibling = old->parent->child[1];
-              } else {
-                  sibling = old->parent->child[0];
-              }
-
-              if (sibling->color == Color::Red) {
-                  sibling->color = Color::Black;
-                  old->parent->color = Color::Red;
-                  side ? leftrotate(old->parent) : rightrotate(old->parent);
-                  sibling = side ? old->parent->child[1] : old->parent->child[0];
-              }
-
-              if (sibling->child[0]->color == Color::Black && sibling->child[1]->color == Color::Red) {
-                  sibling->color = Color::Red;
-                  old = old->parent;
-              } else {
-                  if (Color::Black == (side ? sibling->child[1]->color : sibling->child[0]->color)) {
-                      sibling->color = Color::Red;
-                      if (side) {
-                          sibling->child[0]->color = Color::Black;
-                          rightrotate(sibling);
-                          sibling = old->parent->child[1];
-                      } else {
-                          sibling->child[1]->color = Color::Black;
-                          leftrotate(sibling);
-                          sibling = old->parent->child[0];
-                      }
-                  }
-
-                  sibling->color = old->parent->color;
-                  old->parent->color = Color::Black;
-                  if (side) {
-                      sibling->child[0]->color = Color::Black;
-                      leftrotate(old->parent);
-                  } else {
-                      sibling->child[1]->color = Color::Black;
-                      rightrotate(old->parent);
-                  }
-
-                  old = header.parent;
-              }
-          }
-      }
+    erase(find(key));
   }
 
-    void Transplant(Node *dest, Node *src)
-    {
-        if (dest->parent == &header)
-        {
-            header.parent = src;
-            src->parent = &header;
-        }
-        else if (dest == dest->parent->child[0])
-        {
-            dest->parent->child[0] = src;
-        }
-        else
-        {
-            dest->parent->child[1] = src;
-        }
 
-        if (src)
-        {
-            src->parent = dest->parent;
+
+    void fixRight(Node* myNode) { fixLeft(myNode, 1);}
+    void fixLeft(Node* myNode, bool dir = 0)
+    {
+        Node* w = myNode->parent->child[1];
+        if (w != nullptr) {
+            if (w->color == Color::Red) {
+                w->color = Color::Black;
+                myNode->parent->color = Color::Red;
+                leftrotate(myNode->parent);
+                w = myNode->parent->child[1];
+            }
+            if ((!w->hasChild(0) ||(w->child[0]->color == Color::Black)) &&
+                    (!w->hasChild(1) || w->child[1]->color == Color::Black))
+            {
+                w->color = Color::Red;
+                myNode = myNode->parent;
+            }
+            else if (!w->hasChild(1) || w->child[1]->color == Color::Black)
+            {
+                if (w->hasChild(0)) w->child[0]->color = Color::Black;
+                w->color = Color::Red;
+                rightrotate(w);
+                w = myNode->parent->child[1];
+            } else{
+                w->color = myNode->parent->color;
+                myNode->parent->color = Color::Black;
+                if (w->hasChild(1)) w->child[1]->color = Color::Black;
+                leftrotate(myNode->parent);
+                myNode = header.parent;
+            }
         }
     }
-      void delfix(Node* myNode)
-      {
-          Node *s;
-          while(myNode != root() && myNode->color == Color::Black)
+    void delfix(Node* myNode)
+    {
+          while (myNode != header.parent && myNode->color == Color::Black)
           {
-              if(myNode->parent->child[0] == myNode)
+              if (myNode->isChild(0))
               {
-                  s = myNode->parent->child[1];
-                  if(s->color==Color::Red)
-                  {
-                      s->color=Color::Black;
-                      myNode->parent->color= Color::Red;
-                      leftrotate(myNode->parent);
-                      s=myNode->parent->child[1];
-                  }
-                  if(s->child[1]->color==Color::Black && s->child[0]->color== Color::Black)
-                  {
-                      s->color= Color::Red;
-                      myNode = myNode->parent;
-                  }
-                  else
-                  {
-                      if(s->child[1]->color== Color::Black)
-                      {
-                          s->child[0]->color = Color::Black;
-                          s->color= Color::Red;
-                          rightrotate(s);
-                          s=myNode->parent->child[1];
-                      }
-                      s->color=myNode->parent->color;
-                      myNode->parent->color = Color::Black;
-                      s->child[1]->color = Color::Black;
-                      leftrotate(myNode->parent);
-                      myNode = header.parent;
-                  }
-              }
-              else
+                  fixLeft(myNode);
+              } else
               {
-                  s=myNode->parent->child[0];
-                  if(s->color== Color::Red)
-                  {
-                      s->color= Color::Black;
-                      myNode->parent->color= Color::Red;
-                      rightrotate(myNode->parent);
-                      s=myNode->parent->child[0];
-                  }
-                  if(s->child[0]->color == Color::Black && s->child[1]->color== Color::Black)
-                  {
-                      s->color= Color::Red;
-                      myNode=myNode->parent;
-                  }
-                  else
-                  {
-                      if(s->child[0]->color == Color::Black)
-                      {
-                          s->child[1]->color = Color::Black;
-                          s->color = Color::Red;
-                          leftrotate(s);
-                          s=myNode->parent->child[0];
-                      }
-                      s->color=myNode->parent->color;
-                      myNode->parent->color = Color::Black;
-                      s->child[0]->color= Color::Black;
-                      rightrotate(myNode->parent);
-                      myNode= header.parent;
-                  }
+                  fixRight(myNode);
               }
-              myNode->color= Color::Black;
-              header.parent->color = Color::Black;
           }
+          myNode->color = Color::Black;
+//          Node *s;
+//          while(myNode != root() && myNode->color == Color::Black)
+//          {
+//              if(myNode->parent->child[0] == myNode)
+//              {
+//                  s = myNode->parent->child[1];
+//                  if(s->color==Color::Red)
+//                  {
+//                      s->color=Color::Black;
+//                      myNode->parent->color= Color::Red;
+//                      leftrotate(myNode->parent);
+//                      s=myNode->parent->child[1];
+//                  }
+//                  if(s->child[1]->color==Color::Black && s->child[0]->color== Color::Black)
+//                  {
+//                      s->color= Color::Red;
+//                      myNode = myNode->parent;
+//                  }
+//                  else
+//                  {
+//                      if(s->child[1]->color== Color::Black)
+//                      {
+//                          s->child[0]->color = Color::Black;
+//                          s->color= Color::Red;
+//                          rightrotate(s);
+//                          s=myNode->parent->child[1];
+//                      }
+//                      s->color=myNode->parent->color;
+//                      myNode->parent->color = Color::Black;
+//                      s->child[1]->color = Color::Black;
+//                      leftrotate(myNode->parent);
+//                      myNode = header.parent;
+//                  }
+//              }
+//              else
+//              {
+//                  s=myNode->parent->child[0];
+//                  if(s->color== Color::Red)
+//                  {
+//                      s->color= Color::Black;
+//                      myNode->parent->color= Color::Red;
+//                      rightrotate(myNode->parent);
+//                      s=myNode->parent->child[0];
+//                  }
+//                  if(s->child[0]->color == Color::Black && s->child[1]->color== Color::Black)
+//                  {
+//                      s->color= Color::Red;
+//                      myNode=myNode->parent;
+//                  }
+//                  else
+//                  {
+//                      if(s->child[0]->color == Color::Black)
+//                      {
+//                          s->child[1]->color = Color::Black;
+//                          s->color = Color::Red;
+//                          leftrotate(s);
+//                          s=myNode->parent->child[0];
+//                      }
+//                      s->color=myNode->parent->color;
+//                      myNode->parent->color = Color::Black;
+//                      s->child[0]->color= Color::Black;
+//                      rightrotate(myNode->parent);
+//                      myNode= header.parent;
+//                  }
+//              }
+//              myNode->color= Color::Black;
+//              header.parent->color = Color::Black;
+//          }
+
       }
 
   /**
@@ -1962,6 +1977,14 @@ iterator assignMaxOrMin(const value_type& value) {
    * \complexity{\O(\DEL(\P{*this}))}
    */
   void clear() {
+
+      if (count>0){
+          removeSubTree(root());
+      }
+      header.child[0]=nullptr;
+      header.child[1]=nullptr;
+      header.parent=nullptr;
+      /*
       Node* miArrayVacio[2] = {nullptr, nullptr};
     while ((header.parent->child) != miArrayVacio)
     {
@@ -1969,6 +1992,8 @@ iterator assignMaxOrMin(const value_type& value) {
         if (header.parent->child[1] != nullptr) erase(header.parent->child[1]);
     }
       erase(header.parent);
+       */
+
   }
 
   /**
@@ -2711,7 +2736,8 @@ iterator assignMaxOrMin(const value_type& value) {
      *
      * \complexity{\O(1)}
      */
-    bool is_header() const { return color == Color::Header; }
+    bool is_header() const {
+        return color == Color::Header; }
 
     /**
      * @brief Devuelve el valor asociado a un nodo no cabecera
@@ -2729,12 +2755,12 @@ iterator assignMaxOrMin(const value_type& value) {
      */
     value_type& value() {
       assert(not is_header());
-      return (this)->value();
+      return static_cast<InnerNode*>(this)->_value;
     }
     /** \overload */
     const value_type& value() const {
       assert(not is_header());
-      return (this)->value();
+      return static_cast<const InnerNode*>(this)->_value;
     }
 
     /**

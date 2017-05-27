@@ -14,14 +14,19 @@ int main() {
     const std::pair<const int, int> par7 = std::make_pair(1, 5);
 
     const std::pair<const int, int> par8 = std::make_pair(10, 234);
+
     miMap->insert(par1);
     miMap->insert(par2);
-    miMap->insert(par3);
+    aed2::map<int,int>::const_iterator it = miMap->insert(par3);
     miMap->insert(par4);
+    //miMap->operator[](3) = 10;
+    miMap->clear();
+   // miMap[6] = *miMap;
+
     //miMap->insert(par5);
    // miMap->insert(par6);
    // miMap->insert(par7);
     //miMap->insert_or_assign(par8);
-    miMap->erase(par3.first);
+    //miMap->erase(it);
     return 0;
 }
