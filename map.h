@@ -1369,26 +1369,12 @@ class map {
    *
    */
   const_iterator lower_bound(const Key& key) const {
-      if (lt(static_cast<InnerNode*>(header.child[1])->_value.first, key)) return const_iterator();
-    InnerNode* actual = static_cast<InnerNode*>(header.parent);
-      while (actual != nullptr)
-      {
-          if (lt(actual->_value.first, key) && actual->child[1] != nullptr) actual = static_cast<InnerNode*>(actual->child[1]);
-          else return const_iterator(actual);
-      }
-      return const_iterator(actual);
+     return (find(key)).n->nextInorder();
   }
 
   /** \overload */
   iterator lower_bound(const Key& key) {
-      if (lt(static_cast<InnerNode*>(header.child[1])->_value.first, key)) return iterator();
-      InnerNode* actual = static_cast<InnerNode*>(header.parent);
-      while (actual != nullptr)
-      {
-          if (lt(actual->_value.first, key) && actual->child[1] != nullptr) actual = static_cast<InnerNode*>(actual->child[1]);
-          else return iterator(actual);
-      }
-      return iterator(actual);
+      return (find(key))->nextInorder();
   }
   ///@}
 
@@ -1614,7 +1600,7 @@ class map {
            insert(value);
         } else {
             if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
-                hint.n->child[0] = new InnerNode(hint.n, value);
+                hint.n->child[0] = new InnerNode(const_cast<InnerNode*>(hint.n), value);
                 insertionFix(hint.n->child[0], value);
                 return iterator(hint.n->child[0]);
             } else {
@@ -1628,7 +1614,7 @@ class map {
 
     }
 bool isMaxOrMin(const value_type& value) {
-    return lt(header.child[1]->value().first, value.first) || lt(value.first, header.child[0]->value().first);
+    return lt((header.child[1])->value().first, value.first) || lt(value.first, (header.child[0])->value().first);
 }
 
 iterator assignMaxOrMin(const value_type& value) {
@@ -1657,7 +1643,7 @@ iterator assignMaxOrMin(const value_type& value) {
         iterator it(now);
         if (root() == nullptr) {
             header.parent = new InnerNode(&header, value);
-            insertionFix(root(), value);
+            header.parent->color = Color::Black;
             header.child[0] = header.child[1] = header.parent;
             inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
         } else if (isMaxOrMin(value)) {
@@ -1727,7 +1713,7 @@ iterator assignMaxOrMin(const value_type& value) {
   iterator insert_or_assign(const_iterator hint, const value_type& value) {
     if ((*hint).first == value.first)
     {
-        static_cast<InnerNode*>(hint.n)->_value.second = value.second;
+        const_cast<InnerNode*>(hint.n)->_value.second = value.second;
     }
     else
         if (invalidHint(hint, value)) insert_or_assign(value);
@@ -1761,6 +1747,7 @@ iterator assignMaxOrMin(const value_type& value) {
     // completar :(
   }
 
+
   /**
    * @brief Elimina el valor cuya clave es \P{key}
    *
@@ -1775,99 +1762,121 @@ iterator assignMaxOrMin(const value_type& value) {
    * \CMP(\P{*this}))}
    */
   void erase(const Key& key) {
-      {
-          if(header.parent == nullptr)
-          {
-              //cout<<"\nEmpty Tree." ;
-              return ;
-          }
-         // int x;
-         // cout<<"\nEnter the key of the node to be deleted: ";
-          //cin>>x;
-          Node *actual = root();
-          //p=root;
-          Node *y = nullptr;
-          Node *q = nullptr;
-          bool found = false;
-          while(actual != nullptr && !found)
-          {
-              if(actual->value().first == key)
-                  found = true;
-              else
-              {
-                  if(lt(actual->value().first, key))
-                      actual = actual->child[1];
-                  else
-                      actual = actual->child[0];
-              }
-          }
-          if(found == 0)
-          {
-             // cout<<"\nElement Not Found.";
-              return ;
-          }
-          else
-          {
-             // cout<<"\nDeleted Element: "<<p->key;
-             // cout<<"\nColour: ";
-              /*if(actual->color== Color::Black)
-                  cout<<"Black\n";
-              else
-                  cout<<"Red\n";
+      Node *actual = header.parent;
 
-              if(p->parent!=NULL)
-                  cout<<"\nParent: "<<p->parent->key;
-              else
-                  cout<<"\nThere is no parent of the node.  ";
-              if(p->right!=NULL)
-                  cout<<"\nRight Child: "<<p->right->key;
-              else
-                  cout<<"\nThere is no right child of the node.  ";
-              if(p->left!=NULL)
-                  cout<<"\nLeft Child: "<<p->left->key;
-              else
-                  cout<<"\nThere is no left child of the node.  ";
-              cout<<"\nNode Deleted.";*/
-              if(!actual->hasChild(0) || !actual->hasChild(1))
-                  y = actual;
-              else
-                  y = actual->nextInorder();
-              if(y->child[0] != nullptr)
-                  q = y->child[0];
-              else
-              {
-                  if(y->child[1] != nullptr)
-                      q = y->child[1];
-                  else
-                      q = nullptr;
-              }
-              if(q != nullptr)
-                  q->parent = y->parent;
-              if((y->parent)->is_header())
-                  header.parent = q;
-              else
-              {
-                  if(y->isChild(0))
-                      y->parent->child[0] = q;
-                  else
-                      y->parent->child[1] = q;
-              }
-              if(y != actual)
-              {
-                 // Node* parent = actual->parent;
-                  value_type& myValue = static_cast<InnerNode*>(actual)->_value;
-                  actual->color = y->color;
-                  static_cast<InnerNode*>(actual)->_value = static_cast<InnerNode*>(y)->_value;asdasdArreglaresto
-                  static_cast<InnerNode*>(actual)->_value.second = myValue.second;
-              }
-                 // actual->color = y->color;
-                 // p->key=y->key;
-              }
-              if(y->color==Color::Black)
-                  delfix(q);
+      //Node *node = root;
+      while (actual != nullptr) {
+          if (lt(key, actual->key())) {
+              actual = actual->child[0];
+          } else if (lt(actual->key(), key)) {
+              actual = actual->child[1];
+          } else {
+              break;
           }
       }
 
+      if (actual == nullptr || actual->key() != key) {
+          return;
+      }
+
+      Color original;
+      Node *sub, *old;
+      old = nullptr;
+      if (actual->child[0] == nullptr) {
+          Transplant(actual, sub = actual->child[1]);
+      } else if (actual->child[1] == nullptr) {
+          Transplant(actual, sub = actual->child[0]);
+      } else {
+          old = (actual->child[1])->getDMost(0);
+          original = old->color;
+          sub = old->child[1];
+
+          if (old->parent == actual) {
+              sub->parent = actual;
+          } else {
+              Transplant(old, old->child[1]);
+              old->child[1] = actual->child[1];
+              old->child[1]->parent = old;
+          }
+
+          Transplant(actual, old);
+          old->child[0] = actual->child[0];
+          old->child[0]->parent = old;
+          old->color = actual->color;
+      }
+
+      delete actual;
+      if (original == Color::Black) {
+          bool side;
+          Node *sibling;
+          while (old != header.parent && old->color == Color::Black) {
+              if ((side = (old == old->parent->child[0]))) {
+                  sibling = old->parent->child[1];
+              } else {
+                  sibling = old->parent->child[0];
+              }
+
+              if (sibling->color == Color::Red) {
+                  sibling->color = Color::Black;
+                  old->parent->color = Color::Red;
+                  side ? leftrotate(old->parent) : rightrotate(old->parent);
+                  sibling = side ? old->parent->child[1] : old->parent->child[0];
+              }
+
+              if (sibling->child[0]->color == Color::Black && sibling->child[1]->color == Color::Red) {
+                  sibling->color = Color::Red;
+                  old = old->parent;
+              } else {
+                  if (Color::Black == (side ? sibling->child[1]->color : sibling->child[0]->color)) {
+                      sibling->color = Color::Red;
+                      if (side) {
+                          sibling->child[0]->color = Color::Black;
+                          rightrotate(sibling);
+                          sibling = old->parent->child[1];
+                      } else {
+                          sibling->child[1]->color = Color::Black;
+                          leftrotate(sibling);
+                          sibling = old->parent->child[0];
+                      }
+                  }
+
+                  sibling->color = old->parent->color;
+                  old->parent->color = Color::Black;
+                  if (side) {
+                      sibling->child[0]->color = Color::Black;
+                      leftrotate(old->parent);
+                  } else {
+                      sibling->child[1]->color = Color::Black;
+                      rightrotate(old->parent);
+                  }
+
+                  old = header.parent;
+              }
+          }
+      }
+  }
+
+    void Transplant(Node *dest, Node *src)
+    {
+        if (dest->parent == &header)
+        {
+            header.parent = src;
+            src->parent = &header;
+        }
+        else if (dest == dest->parent->child[0])
+        {
+            dest->parent->child[0] = src;
+        }
+        else
+        {
+            dest->parent->child[1] = src;
+        }
+
+        if (src)
+        {
+            src->parent = dest->parent;
+        }
+    }
       void delfix(Node* myNode)
       {
           Node *s;
@@ -2084,18 +2093,18 @@ iterator assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   reverse_iterator rbegin() {
-    return reverse_iterator(header.child[1]);
+    return reverse_iterator(end());
   }
 
   /** \overload */
   const_reverse_iterator rbegin() const {
 
-      return const_reverse_iterator(header.child[1]);
+      return const_reverse_iterator(end());
   }
 
   /** \overload */
   const_reverse_iterator crbegin() {
-    return const_reverse_iterator(header.child[1]);
+    return const_reverse_iterator(end());
   }
 
   /**
@@ -2113,17 +2122,17 @@ iterator assignMaxOrMin(const value_type& value) {
    * \complexity{\O(1)}
    */
   reverse_iterator rend() {
-    return reverse_iterator(&header);
+    return reverse_iterator(begin());
   }
 
   /** \overload */
   const_reverse_iterator rend() const {
-    return const_reverse_iterator(&header);
+    return const_reverse_iterator(begin());
   }
 
   /** \overload */
   const_reverse_iterator crend() {
-    return const_reverse_iterator(&header);
+    return const_reverse_iterator(begin());
   }
   //@}
 
@@ -2598,13 +2607,7 @@ iterator assignMaxOrMin(const value_type& value) {
      */
     Node() : color(Color::Header) { child[0] = child[1] = this; }
       bool hasChild(int dir) { return this->child[dir] != nullptr; }
-     // bool hasChild(int dir) { return node->child[dir] != nullptr; }
-    //  const Node* nextInorder(int dir = 1) {
-    //      if (this->hasChild(dir)) return getDMost(this->child[dir], 1 - dir);
-    //      if (this->isChild(1 - dir)) return this->parent;
-     //     while (this->isChild(dir)) this = this->parent;
-     //     return this;
-    //  }
+
      Node* nextInorder(int dir = 1) {
          Node* next = this;
          if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
@@ -2612,7 +2615,7 @@ iterator assignMaxOrMin(const value_type& value) {
          while (next->isChild(dir)) *next = next->parent;
          return next;
      }
-      Node* prevInorder() { return this->nextInorder(0); }
+     Node* prevInorder() { return this->nextInorder(0); }
 
       Node* getDMost(int dir) {
           Node* aux = this;
