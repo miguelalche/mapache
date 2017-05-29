@@ -1,3 +1,4 @@
-C:/Users/satiago/Desktop/mapache/cmake-build-debug/CMakeFiles/mapache.dir
-C:/Users/satiago/Desktop/mapache/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/satiago/Desktop/mapache/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/mapache.dir
+/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/runTests.dir

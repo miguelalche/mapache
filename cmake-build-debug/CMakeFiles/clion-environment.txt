@@ -1,3 +1,2 @@
-ToolSet: w64 5.0@C:\Program Files\mingw-w64\x86_64-6.2.0-posix-seh-rt_v5-rev1\mingw64
 Options: 
-CMake: 3.8.1@C:\Program Files\JetBrains\CLion 172.2273.4\bin\cmake\bin\cmake.exe
+CMake: 3.7.2@/usr/local/clion-2017.1.1/bin/cmake/bin/cmake

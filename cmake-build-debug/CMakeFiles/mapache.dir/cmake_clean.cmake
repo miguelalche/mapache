@@ -1,9 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/mapache.dir/main.cpp.obj"
+  "CMakeFiles/mapache.dir/main.cpp.o"
+  "CMakeFiles/mapache.dir/test.cpp.o"
   "mapache.pdb"
-  "mapache.exe"
-  "mapache.exe.manifest"
-  "libmapache.dll.a"
+  "mapache"
 )
 
 # Per-language clean rules from dependency scanning.

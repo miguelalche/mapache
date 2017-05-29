@@ -828,8 +828,8 @@
 #include <functional>
 #include <iterator>
 #include <utility>
-#include <mmcobj.h>
-
+//#include <mmcobj.h>
+#include <iostream>
 #ifdef DEBUG
 // Aca se puede incluir cualquier cosa que consideren que necesitan para debug
 //#include <iostream>
@@ -1247,7 +1247,7 @@ class map {
   /** \overload */
   Meaning& at(const Key& key) {
   	iterator it = find(key);
-  	if (it.n != nullptr) { return static_cast<InnerNode*>(it.n)->_value.first; }
+  	if (it.n != nullptr) { return static_cast<InnerNode*>(it.n)->_value.second; }
     // InnerNode* actual = root();
     // while (actual->_value.first != key) {
     //   if (lt(key, actual->_value.first)) {
@@ -1396,12 +1396,13 @@ class map {
    *
    */
   const_iterator lower_bound(const Key& key) const {
-     return (find(key)).n->nextInorder();
+     return const_iterator((find(key)).n->nextInorder());
   }
 
   /** \overload */
   iterator lower_bound(const Key& key) {
-      return (find(key))->nextInorder();
+      Node* miNodo = find(key).n;
+      return iterator(miNodo->nextInorder());
   }
   ///@}
 
@@ -1474,14 +1475,14 @@ class map {
    * aed2::map::insert_or_assign.
    */
 // esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
-  bool addElem(Node* &now, const value_type& value, int dir) {
+  bool addElem(InnerNode* &now, const value_type& value, int dir) {
       if (now->child[dir] != nullptr) {
-          now = now->child[dir]; //si no es null, sigo bajando
+          now = static_cast<InnerNode*>(now->child[dir]); //si no es null, sigo bajando
           return false;
       }
       else {
           now->child[dir] = new InnerNode(now, value);
-          Node* aux = now->child[dir];
+          InnerNode* aux = static_cast<InnerNode*>(now->child[dir]);
          // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
           insertionFix(now->child[dir], value);
           now = aux;
@@ -1491,7 +1492,7 @@ class map {
 
     void insertionFix(Node* newNode, const value_type &value) {
         Node* aux;
-        if (static_cast<InnerNode*>(this->root())->value() == value) {
+        if (!lt(static_cast<InnerNode*>(this->root())->value().first, value.first) && !lt(value.first, this->root()->value().first)) {
             static_cast<InnerNode*>(this->root())->color = Color::Black;
             return;
         }
@@ -1537,7 +1538,7 @@ class map {
             root()->color = Color::Black;
         }
     }
-
+//cambir por DROTATE y hacerlo generico
     void leftrotate(Node* p) {
         if(p->child[1]==nullptr)
             return ;
@@ -1629,11 +1630,11 @@ class map {
            insert(value);
         } else {
             if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
-                hint.n->child[0] = new InnerNode(const_cast<InnerNode*>(hint.n), value);
+                const_cast<Node*>(hint.n)->child[0] = new InnerNode(const_cast<Node*>(hint.n), value);
                 insertionFix(hint.n->child[0], value);
                 return iterator(hint.n->child[0]);
             } else {
-                Node* previo =  hint.n->prevInorder();
+                Node* previo =  const_cast<Node*>(hint.n->prevInorder());
                 previo->child[1] = new InnerNode(previo, value);
                 insertionFix(previo->child[1], value);
                 return iterator(hint.n->child[1]);
@@ -1667,7 +1668,7 @@ iterator assignMaxOrMin(const value_type& value) {
   }
 
     iterator insert_or_upsert(const value_type& value, bool upsert) {
-        Node* now = this->header.parent;
+        InnerNode* now = static_cast<InnerNode*>(this->header.parent);
         bool inserted = false;
         iterator it(now);
         if (root() == nullptr) {
@@ -1686,8 +1687,17 @@ iterator assignMaxOrMin(const value_type& value) {
                     it = iterator(now);
                 }
                 else {
-                    if ((now->key() == value.first) && upsert) {
-                        static_cast<InnerNode *>(now)->_value.second = value.second;
+                    if (!lt(now->key(),value.first) && !lt(value.first, now->key()) && upsert) {
+                        InnerNode* nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
+                        nuevo->child[0] = now->child[0];
+                        nuevo->child[1] = now->child[1];
+                        nuevo->child[0]->parent = nuevo;
+                        nuevo->child[1]->parent = nuevo;
+                        if (now->isChild(0)) nuevo->parent->child[0] = nuevo;
+                        else nuevo->parent->child[1] = nuevo;
+                        InnerNode* aux = now;
+                        now = nuevo;
+                        delete aux;
                        // inserted = true;
                        // count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
                         return iterator(now);
@@ -1743,7 +1753,7 @@ iterator assignMaxOrMin(const value_type& value) {
   iterator insert_or_assign(const_iterator hint, const value_type& value) {
     if ((*hint).first == value.first)
     {
-        const_cast<InnerNode*>(hint.n)->_value.second = value.second;
+        const_cast<Node*>(hint.n)->value().second = value.second;
         return iterator(const_cast<Node*>(hint.n));
     }
     else
@@ -2401,7 +2411,7 @@ iterator assignMaxOrMin(const value_type& value) {
     }
     /** \brief idem !|operator== */
     bool operator!=(iterator other) const {
-    	return !(this==other);
+    	return !(*this==other);
     }
 
    private:
@@ -2989,7 +2999,7 @@ bool operator!=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
  */
 template <class K, class V, class C>
 bool operator<(const map<K, V, C>& m1, const map<K, V, C>& m2) {
-       return m1.count == m2.count && std::lexicographical_compare(m1.begin(), m1.end(), m2.begin(), m2.end());
+       return std::lexicographical_compare(m1.begin(), m1.end(), m2.begin(), m2.end());
   // completar.  Vale usar std::lexicographical_compare
 }
 
