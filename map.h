@@ -1132,7 +1132,7 @@ class map {
   map(iterator first, iterator last, Compare c = Compare()) : lt(c) {
     auto it = end();
     while (first != last) {
-      insert(*first, it);
+      insert(it, *first);
       ++first;
     }
   }
@@ -1396,13 +1396,50 @@ class map {
    *
    */
   const_iterator lower_bound(const Key& key) const {
-     return const_iterator((find(key)).n->nextInorder());
+      InnerNode* actual = root();
+      InnerNode* papi = root();
+      if (actual != nullptr)
+      {
+          while(actual && lt(actual->key(), key)  ||lt(key, actual->key()))
+          {
+              papi = actual;
+              if (lt(key, actual->key()))
+              {
+                  actual = static_cast<InnerNode*>(actual->child[0]);
+              }
+              else
+              {
+                  actual = static_cast<InnerNode*>(actual->child[1]);
+              }
+          }
+      }
+      if (actual) return const_iterator(actual);
+      else if (root()) return const_iterator(papi);
+      else return const_iterator(&header);
   }
 
   /** \overload */
   iterator lower_bound(const Key& key) {
-      Node* miNodo = find(key).n;
-      return iterator(miNodo->nextInorder());
+      InnerNode* actual = root();
+      InnerNode* papi = root();
+      if (actual != nullptr)
+      {
+          while(actual && lt(actual->key(), key)  ||lt(key, actual->key()))
+          {
+              papi = actual;
+              if (lt(key, actual->key()))
+              {
+                  actual = static_cast<InnerNode*>(actual->child[0]);
+              }
+              else
+              {
+                  actual = static_cast<InnerNode*>(actual->child[1]);
+              }
+          }
+      }
+      if (actual) return iterator(actual);
+      else if (root()) return iterator(papi);
+      else return iterator(&header);
   }
   ///@}
 
@@ -2644,10 +2681,13 @@ iterator assignMaxOrMin(const value_type& value) {
       bool hasChild(int dir) { return this->child[dir] != nullptr; }
 
      Node* nextInorder(int dir = 1) {
+
          Node* next = this;
-         if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
-         if (next->isChild(1 - dir)) return next->parent;
-         while (next->isChild(dir)) *next = next->parent;
+         if (!this->is_header()) {
+             if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
+             if (next->isChild(1 - dir)) return next->parent;
+             while (next->isChild(dir)) *next = next->parent;
+         }
          return next;
      }
      Node* prevInorder() { return this->nextInorder(0); }
