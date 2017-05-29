@@ -1209,7 +1209,7 @@ class map {
    *
    * \pre \aedpre{definido?(\P{key},this)}
    *
-   * \post \aedpost{res \igobs obtener(\P{key},this)}
+   * \post \aedpost{res \IGOBS obtener(\P{key},this)}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this}) \CDOT \CMP(\P{*this}))}
    *
@@ -1314,7 +1314,7 @@ class map {
    * \aliasing{completar}
    *
    * \pre \aedpre{true}
-   * \post \aedpost{if def?(key,this) then (*res)->value().first == key) else *res == header}
+   * \post \aedpost{if def?(key,\P{this}) then (*res)->value().first == \P{key}) else *res == header}
    *
    * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
    *
@@ -1462,131 +1462,7 @@ class map {
    * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
    * aed2::map::insert_or_assign.
    */
-// esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
-  bool addElem(Node* &now, const value_type& value, int dir) {
-      if (now->child[dir] != nullptr) {
-          now = now->child[dir]; //si no es null, sigo bajando
-          return false;
-      }
-      else {
-          now->child[dir] = new InnerNode(now, value);
-          Node* aux = now->child[dir];
-         // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
-          insertionFix(now->child[dir], value);
-          now = aux;
-          return true;
-      }
-  }
 
-    void insertionFix(Node* newNode, const value_type &value) {
-        Node* aux;
-        if (static_cast<InnerNode*>(this->root())->value() == value) {
-            static_cast<InnerNode*>(this->root())->color = Color::Black;
-            return;
-        }
-        while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
-            Node* grandPa = newNode->parent->parent;
-            if (grandPa->child[0] == newNode->parent) {
-                if (grandPa->child[1] != nullptr) {
-                    aux = grandPa->child[1];
-                    if (aux->color == Color::Red) {
-                        newNode->parent->color = Color::Black;
-                        aux->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        newNode = grandPa;
-                    }
-                } else {
-                    if (newNode->parent->child[1] == newNode) {
-                        newNode = newNode->parent;
-                        leftrotate(newNode);
-                    }
-                    newNode->parent->color = Color::Black;
-                    grandPa->color = Color::Red;
-                    rightrotate(grandPa);
-                }
-            } else {
-                if (grandPa->child[0] != nullptr) {
-                    aux = grandPa->child[0];
-                    if (aux->color == Color::Red) {
-                        newNode->parent->color = Color::Black;
-                        aux->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        newNode = grandPa;
-                    }
-                } else {
-                    if (newNode->parent->child[0] == newNode) {
-                        newNode = newNode->parent;
-                        rightrotate(newNode);
-                    }
-                    newNode->parent->color = Color::Black;
-                    grandPa->color = Color::Red;
-                    leftrotate(grandPa);
-                }
-            }
-            root()->color = Color::Black;
-        }
-    }
-
-    void leftrotate(Node* p) {
-        if(p->child[1]==nullptr)
-            return ;
-        else {
-            Node* y = p->child[1];
-
-            if(y->child[0]!=nullptr) {
-                p->child[1]=y->child[0];
-                y->child[0]->parent=p;
-            } else { p->child[1]=nullptr; }
-
-            if(p->parent!=nullptr)
-                y->parent=p->parent;
-            if(p->parent->is_header()) {
-                this->header.parent = y;
-               // header.parent = y;
-                y->parent = &header;
-            } else {
-                if(p==p->parent->child[0])
-                    p->parent->child[0]=y;
-                else
-                    p->parent->child[1]=y;
-            }
-            y->child[0]=p;
-            p->parent=y;
-        }
-
-    }
-
-    void rightrotate(Node* p) {
-        if(p->child[0]==nullptr)
-            return ;
-        else {
-            Node* y = p->child[0];
-
-            if(y->child[1]!=nullptr) {
-                p->child[0]=y->child[1];
-                y->child[1]->parent=p;
-            } else { p->child[0]=nullptr; }
-
-            if(p->parent!=nullptr)
-                y->parent=p->parent;
-            if(p->parent->is_header()) {
-                this->header.parent = y;
-              //  header.parent = y;
-                y->parent = &header;
-            } else {
-                if(p==p->parent->child[0])
-                    p->parent->child[0]=y;
-                else
-                    p->parent->child[1]=y;
-            }
-            y->child[1]=p;
-            p->parent=y;
-        }
-
-    }
-    bool invalidHint(const_iterator hint, const value_type& value) {
-        return (hint.n == nullptr || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
-    }
     iterator insert(const_iterator hint, const value_type& value) {
          /*Tengo que insertar un elemento, para esto, distingo tres casos:
          * 1. el elemento a insertar es la raiz. Este es el caso mas facil, solo tengo que
@@ -2916,6 +2792,160 @@ iterator assignMaxOrMin(const value_type& value) {
       delete initRoot;
       count--;
   }
+
+  /**
+   * @brief Función auxiliar usada en el destructor. Elimina recursivamente todos
+   * los nodos que descienden de root; para esto, chequea que initRoot tenga hijos
+   * y si los tiene hace una llamada recursiva con una instancia más sencilla.
+   * initRoot debería ser un nodo que efectivamente pertenezca a la instancia de
+   * map que está llamando a la función; en el contexto del destructor esto
+   * obviamente se cumple.
+   */
+       bool addElem(Node* &now, const value_type& value, int dir) {
+        if (now->child[dir] != nullptr) {
+            now = now->child[dir]; //si no es null, sigo bajando
+            return false;
+        }
+        else {
+            now->child[dir] = new InnerNode(now, value);
+            Node* aux = now->child[dir];
+           // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
+            insertionFix(now->child[dir], value);
+            now = aux;
+            return true;
+        }
+    }
+
+    /**
+     * @brief Cambia los colores de los nodos o realiza rotaciones según el algoritmo
+     * del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba.
+     */
+
+    void insertionFix(Node* newNode, const value_type &value) {
+        Node* aux;
+        if (static_cast<InnerNode*>(this->root())->value() == value) {
+            static_cast<InnerNode*>(this->root())->color = Color::Black;
+            return;
+        }
+        while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
+            Node* grandPa = newNode->parent->parent;
+            if (grandPa->child[0] == newNode->parent) {
+                if (grandPa->child[1] != nullptr) {
+                    aux = grandPa->child[1];
+                    if (aux->color == Color::Red) {
+                        newNode->parent->color = Color::Black;
+                        aux->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        newNode = grandPa;
+                    }
+                } else {
+                    if (newNode->parent->child[1] == newNode) {
+                        newNode = newNode->parent;
+                        leftrotate(newNode);
+                    }
+                    newNode->parent->color = Color::Black;
+                    grandPa->color = Color::Red;
+                    rightrotate(grandPa);
+                }
+            } else {
+                if (grandPa->child[0] != nullptr) {
+                    aux = grandPa->child[0];
+                    if (aux->color == Color::Red) {
+                        newNode->parent->color = Color::Black;
+                        aux->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        newNode = grandPa;
+                    }
+                } else {
+                    if (newNode->parent->child[0] == newNode) {
+                        newNode = newNode->parent;
+                        rightrotate(newNode);
+                    }
+                    newNode->parent->color = Color::Black;
+                    grandPa->color = Color::Red;
+                    leftrotate(grandPa);
+                }
+            }
+            root()->color = Color::Black;
+        }
+    }
+
+    /**
+     * @brief Implementa la rotación descrita en el Cormen.
+     */
+
+    void leftrotate(Node* p) {
+        if(p->child[1]==nullptr)
+            return ;
+        else {
+            Node* y = p->child[1];
+
+            if(y->child[0]!=nullptr) {
+                p->child[1]=y->child[0];
+                y->child[0]->parent=p;
+            } else { p->child[1]=nullptr; }
+
+            if(p->parent!=nullptr)
+                y->parent=p->parent;
+            if(p->parent->is_header()) {
+                this->header.parent = y;
+               // header.parent = y;
+                y->parent = &header;
+            } else {
+                if(p==p->parent->child[0])
+                    p->parent->child[0]=y;
+                else
+                    p->parent->child[1]=y;
+            }
+            y->child[0]=p;
+            p->parent=y;
+        }
+
+    }
+
+    /**
+     * @brief Implementa la rotación descrita en el Cormen.
+     */
+
+    void rightrotate(Node* p) {
+        if(p->child[0]==nullptr)
+            return ;
+        else {
+            Node* y = p->child[0];
+
+            if(y->child[1]!=nullptr) {
+                p->child[0]=y->child[1];
+                y->child[1]->parent=p;
+            } else { p->child[0]=nullptr; }
+
+            if(p->parent!=nullptr)
+                y->parent=p->parent;
+            if(p->parent->is_header()) {
+                this->header.parent = y;
+              //  header.parent = y;
+                y->parent = &header;
+            } else {
+                if(p==p->parent->child[0])
+                    p->parent->child[0]=y;
+                else
+                    p->parent->child[1]=y;
+            }
+            y->child[1]=p;
+            p->parent=y;
+        }
+
+    }
+
+    /**
+     * @brief Devuelve true si la clave contenida en el nodo apuntado por hint
+     * <em> no es </em> la menor de las claves del diccionario que son mayores a la
+     * clave que se quiere insertar (es decir la clave contenida en el nodo apuntado
+     * por lower_bound).
+     */
+
+    bool invalidHint(const_iterator hint, const value_type& value) {
+        return (hint.n == nullptr || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
+    }
 };
 
 //////////////////////////////////////

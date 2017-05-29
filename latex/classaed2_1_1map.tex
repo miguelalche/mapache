@@ -91,16 +91,6 @@ size\+\_\+t \hyperlink{classaed2_1_1map_aa6e806b3be6dc0da79adbfae08b571bf_aa6e80
 \begin{Indent}\textbf{ Inserción, borrado y modificación}\par
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{classaed2_1_1map_a709e1a06ac3c5932c1eb6d9741f37b2c_a709e1a06ac3c5932c1eb6d9741f37b2c}{add\+Elem} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$\&now, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value, int dir)
-\begin{DoxyCompactList}\small\item\em Inserta {\bfseries value} en el diccionario. \end{DoxyCompactList}\item 
-void \hyperlink{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}{insertion\+Fix} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$new\+Node, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
-\begin{DoxyCompactList}\small\item\em Inserta {\bfseries value} en el diccionario. \end{DoxyCompactList}\item 
-void \hyperlink{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}{leftrotate} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Inserta {\bfseries value} en el diccionario. \end{DoxyCompactList}\item 
-void \hyperlink{classaed2_1_1map_a816d69fa4dfe18a984dc3628fee14e2f_a816d69fa4dfe18a984dc3628fee14e2f}{rightrotate} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$p)
-\begin{DoxyCompactList}\small\item\em Inserta {\bfseries value} en el diccionario. \end{DoxyCompactList}\item 
-bool \hyperlink{classaed2_1_1map_a7403745a296985d64b8666c18953b2c0_a7403745a296985d64b8666c18953b2c0}{invalid\+Hint} (\hyperlink{classaed2_1_1map_1_1const__iterator}{const\+\_\+iterator} hint, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
-\begin{DoxyCompactList}\small\item\em Inserta {\bfseries value} en el diccionario. \end{DoxyCompactList}\item 
 \hyperlink{classaed2_1_1map_1_1iterator}{iterator} \hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert} (\hyperlink{classaed2_1_1map_1_1const__iterator}{const\+\_\+iterator} hint, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
 \begin{DoxyCompactList}\small\item\em Inserta {\bfseries value} en el diccionario. \end{DoxyCompactList}\item 
 bool \hyperlink{classaed2_1_1map_a81db4ead6daafe94938d5410173bdb6c_a81db4ead6daafe94938d5410173bdb6c}{is\+Max\+Or\+Min} (const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
@@ -180,7 +170,17 @@ const \hyperlink{structaed2_1_1map_1_1InnerNode}{Inner\+Node} $\ast$ \hyperlink{
 bool \hyperlink{classaed2_1_1map_aebf6c09c424c39a874798165401b309e_aebf6c09c424c39a874798165401b309e}{eq} (const Key \&k1, const Key \&k2) const
 \begin{DoxyCompactList}\small\item\em Retorna true si las claves son iguales con respecto a {\bfseries this}-\/$>$lt. \end{DoxyCompactList}\item 
 void \hyperlink{classaed2_1_1map_a533bd88d0b7a584e3c968548d246c255_a533bd88d0b7a584e3c968548d246c255}{remove\+Sub\+Tree} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$init\+Root)
-\begin{DoxyCompactList}\small\item\em Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos que descienden de root; para esto, chequea que init\+Root tenga hijos y si los tiene hace una llamada recursiva con una instancia más sencilla. init\+Root debería ser un nodo que efectivamente pertenezca a la instancia de map que está llamando a la función; en el contexto del destructor esto obviamente se cumple. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos que descienden de root; para esto, chequea que init\+Root tenga hijos y si los tiene hace una llamada recursiva con una instancia más sencilla. init\+Root debería ser un nodo que efectivamente pertenezca a la instancia de map que está llamando a la función; en el contexto del destructor esto obviamente se cumple. \end{DoxyCompactList}\item 
+bool \hyperlink{classaed2_1_1map_a709e1a06ac3c5932c1eb6d9741f37b2c_a709e1a06ac3c5932c1eb6d9741f37b2c}{add\+Elem} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$\&now, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value, int dir)
+\begin{DoxyCompactList}\small\item\em Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos que descienden de root; para esto, chequea que init\+Root tenga hijos y si los tiene hace una llamada recursiva con una instancia más sencilla. init\+Root debería ser un nodo que efectivamente pertenezca a la instancia de map que está llamando a la función; en el contexto del destructor esto obviamente se cumple. \end{DoxyCompactList}\item 
+void \hyperlink{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}{insertion\+Fix} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$new\+Node, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
+\begin{DoxyCompactList}\small\item\em Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba. \end{DoxyCompactList}\item 
+void \hyperlink{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}{leftrotate} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Implementa la rotación descrita en el Cormen. \end{DoxyCompactList}\item 
+void \hyperlink{classaed2_1_1map_a816d69fa4dfe18a984dc3628fee14e2f_a816d69fa4dfe18a984dc3628fee14e2f}{rightrotate} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Implementa la rotación descrita en el Cormen. \end{DoxyCompactList}\item 
+bool \hyperlink{classaed2_1_1map_a7403745a296985d64b8666c18953b2c0_a7403745a296985d64b8666c18953b2c0}{invalid\+Hint} (\hyperlink{classaed2_1_1map_1_1const__iterator}{const\+\_\+iterator} hint, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
+\begin{DoxyCompactList}\small\item\em Devuelve true si la clave contenida en el nodo apuntado por hint {\itshape  no es } la menor de las claves del diccionario que son mayores a la clave que se quiere insertar (es decir la clave contenida en el nodo apuntado por lower\+\_\+bound). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \end{Indent}
 \subsubsection*{Atributos privados}
 \begin{Indent}\textbf{ Estructura de representación}\par
@@ -517,7 +517,7 @@ Cormen et al. {\bfseries [Cormen\+Leiserson\+Rivest\+Stein2009]} e \hyperlink{Im
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02573}{2573} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02449}{2449} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -775,7 +775,7 @@ completar
 {\bfseries P} $\equiv$ \{definido?({\bfseries key},this)\}
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{res  obtener({\bfseries key},this)\}
+{\bfseries Q} $\equiv$ \{res $=_{\rm obs}$ obtener({\bfseries key},this)\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -888,7 +888,7 @@ completar
 {\bfseries P} $\equiv$ \{true\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{if def?(key,this) then ($\ast$res)-\/$>$value().first == key) else $\ast$res == header\}
+{\bfseries Q} $\equiv$ \{if def?(key,{\bfseries this}) then ($\ast$res)-\/$>$value().first == {\bfseries key}) else $\ast$res == header\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -1021,256 +1021,6 @@ Devuelve la cantidad de valores en el diccionario.
 
 Definición en la línea \hyperlink{map_8h_source_l01423}{1423} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
-\mbox{\Hypertarget{classaed2_1_1map_a709e1a06ac3c5932c1eb6d9741f37b2c_a709e1a06ac3c5932c1eb6d9741f37b2c}\label{classaed2_1_1map_a709e1a06ac3c5932c1eb6d9741f37b2c_a709e1a06ac3c5932c1eb6d9741f37b2c}} 
-\index{aed2\+::map@{aed2\+::map}!add\+Elem@{add\+Elem}}
-\index{add\+Elem@{add\+Elem}!aed2\+::map@{aed2\+::map}}
-\paragraph{\texorpdfstring{add\+Elem()}{addElem()}}
-{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
-bool \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::add\+Elem (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$\&}]{now,  }\item[{const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&}]{value,  }\item[{int}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Inserta {\bfseries value} en el diccionario. 
-
-Inserta un {\bfseries nuevo} valor en el diccionario. Si {\bfseries $\ast$this} ya tiene un valor con clave {\bfseries value}.first, entonces la función no tiene efectos. El iterador de retorno apunta al elemento recien insertado (o aquel que previno la insercion).
-
-
-\begin{DoxyParams}{Parámetros}
-{\em value} & valor a insertar \\
-\hline
-{\em hint} & iterador apuntando al diccionario. Se espera que apunte al minimo valor mayor o igual a {\bfseries value}.first (i.\+e., a lower\+\_\+bound({\bfseries value}.first)). Igualmente, la función es robusta y funciona correctamente aunque esto no ocurra. \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Valores devueltos}
-{\em res} & iterador apuntando al elemento insertado o que previno la inserción\\
-\hline
-\end{DoxyRetVals}
-\begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
-\end{DoxyParagraph}
-\begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
-\end{DoxyPrecond}
-\begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
-\end{DoxyPostcond}
-
-\begin{DoxyDescription}
-\item[Complejidad Temporal]
-\begin{DoxyItemize}
-\item Peor caso\+: $O$( $\log$({\bfseries size}({\bfseries $\ast$this})) $\cdot$ {\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value}))
-\item Si {\bfseries hint} apunta al primer valor con clave al menos {\bfseries value}.first (o {\bfseries this}-\/$>$\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end()} en caso de no existir)\+: $O$({\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value})) amortizado. 
-\end{DoxyItemize}
-\end{DoxyDescription}
-
-\begin{DoxyAttention}{Atención}
-Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{aed2\+::map\+::insert\+\_\+or\+\_\+assign}. 
-\end{DoxyAttention}
-
-
-Definición en la línea \hyperlink{map_8h_source_l01466}{1466} del archivo \hyperlink{map_8h_source}{map.\+h}.
-
-\mbox{\Hypertarget{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}\label{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}} 
-\index{aed2\+::map@{aed2\+::map}!insertion\+Fix@{insertion\+Fix}}
-\index{insertion\+Fix@{insertion\+Fix}!aed2\+::map@{aed2\+::map}}
-\paragraph{\texorpdfstring{insertion\+Fix()}{insertionFix()}}
-{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
-void \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::insertion\+Fix (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$}]{new\+Node,  }\item[{const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Inserta {\bfseries value} en el diccionario. 
-
-Inserta un {\bfseries nuevo} valor en el diccionario. Si {\bfseries $\ast$this} ya tiene un valor con clave {\bfseries value}.first, entonces la función no tiene efectos. El iterador de retorno apunta al elemento recien insertado (o aquel que previno la insercion).
-
-
-\begin{DoxyParams}{Parámetros}
-{\em value} & valor a insertar \\
-\hline
-{\em hint} & iterador apuntando al diccionario. Se espera que apunte al minimo valor mayor o igual a {\bfseries value}.first (i.\+e., a lower\+\_\+bound({\bfseries value}.first)). Igualmente, la función es robusta y funciona correctamente aunque esto no ocurra. \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Valores devueltos}
-{\em res} & iterador apuntando al elemento insertado o que previno la inserción\\
-\hline
-\end{DoxyRetVals}
-\begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
-\end{DoxyParagraph}
-\begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
-\end{DoxyPrecond}
-\begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
-\end{DoxyPostcond}
-
-\begin{DoxyDescription}
-\item[Complejidad Temporal]
-\begin{DoxyItemize}
-\item Peor caso\+: $O$( $\log$({\bfseries size}({\bfseries $\ast$this})) $\cdot$ {\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value}))
-\item Si {\bfseries hint} apunta al primer valor con clave al menos {\bfseries value}.first (o {\bfseries this}-\/$>$\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end()} en caso de no existir)\+: $O$({\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value})) amortizado. 
-\end{DoxyItemize}
-\end{DoxyDescription}
-
-\begin{DoxyAttention}{Atención}
-Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{aed2\+::map\+::insert\+\_\+or\+\_\+assign}. 
-\end{DoxyAttention}
-
-
-Definición en la línea \hyperlink{map_8h_source_l01481}{1481} del archivo \hyperlink{map_8h_source}{map.\+h}.
-
-\mbox{\Hypertarget{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}\label{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}} 
-\index{aed2\+::map@{aed2\+::map}!leftrotate@{leftrotate}}
-\index{leftrotate@{leftrotate}!aed2\+::map@{aed2\+::map}}
-\paragraph{\texorpdfstring{leftrotate()}{leftrotate()}}
-{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
-void \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::leftrotate (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Inserta {\bfseries value} en el diccionario. 
-
-Inserta un {\bfseries nuevo} valor en el diccionario. Si {\bfseries $\ast$this} ya tiene un valor con clave {\bfseries value}.first, entonces la función no tiene efectos. El iterador de retorno apunta al elemento recien insertado (o aquel que previno la insercion).
-
-
-\begin{DoxyParams}{Parámetros}
-{\em value} & valor a insertar \\
-\hline
-{\em hint} & iterador apuntando al diccionario. Se espera que apunte al minimo valor mayor o igual a {\bfseries value}.first (i.\+e., a lower\+\_\+bound({\bfseries value}.first)). Igualmente, la función es robusta y funciona correctamente aunque esto no ocurra. \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Valores devueltos}
-{\em res} & iterador apuntando al elemento insertado o que previno la inserción\\
-\hline
-\end{DoxyRetVals}
-\begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
-\end{DoxyParagraph}
-\begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
-\end{DoxyPrecond}
-\begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
-\end{DoxyPostcond}
-
-\begin{DoxyDescription}
-\item[Complejidad Temporal]
-\begin{DoxyItemize}
-\item Peor caso\+: $O$( $\log$({\bfseries size}({\bfseries $\ast$this})) $\cdot$ {\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value}))
-\item Si {\bfseries hint} apunta al primer valor con clave al menos {\bfseries value}.first (o {\bfseries this}-\/$>$\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end()} en caso de no existir)\+: $O$({\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value})) amortizado. 
-\end{DoxyItemize}
-\end{DoxyDescription}
-
-\begin{DoxyAttention}{Atención}
-Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{aed2\+::map\+::insert\+\_\+or\+\_\+assign}. 
-\end{DoxyAttention}
-
-
-Definición en la línea \hyperlink{map_8h_source_l01530}{1530} del archivo \hyperlink{map_8h_source}{map.\+h}.
-
-\mbox{\Hypertarget{classaed2_1_1map_a816d69fa4dfe18a984dc3628fee14e2f_a816d69fa4dfe18a984dc3628fee14e2f}\label{classaed2_1_1map_a816d69fa4dfe18a984dc3628fee14e2f_a816d69fa4dfe18a984dc3628fee14e2f}} 
-\index{aed2\+::map@{aed2\+::map}!rightrotate@{rightrotate}}
-\index{rightrotate@{rightrotate}!aed2\+::map@{aed2\+::map}}
-\paragraph{\texorpdfstring{rightrotate()}{rightrotate()}}
-{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
-void \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::rightrotate (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Inserta {\bfseries value} en el diccionario. 
-
-Inserta un {\bfseries nuevo} valor en el diccionario. Si {\bfseries $\ast$this} ya tiene un valor con clave {\bfseries value}.first, entonces la función no tiene efectos. El iterador de retorno apunta al elemento recien insertado (o aquel que previno la insercion).
-
-
-\begin{DoxyParams}{Parámetros}
-{\em value} & valor a insertar \\
-\hline
-{\em hint} & iterador apuntando al diccionario. Se espera que apunte al minimo valor mayor o igual a {\bfseries value}.first (i.\+e., a lower\+\_\+bound({\bfseries value}.first)). Igualmente, la función es robusta y funciona correctamente aunque esto no ocurra. \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Valores devueltos}
-{\em res} & iterador apuntando al elemento insertado o que previno la inserción\\
-\hline
-\end{DoxyRetVals}
-\begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
-\end{DoxyParagraph}
-\begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
-\end{DoxyPrecond}
-\begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
-\end{DoxyPostcond}
-
-\begin{DoxyDescription}
-\item[Complejidad Temporal]
-\begin{DoxyItemize}
-\item Peor caso\+: $O$( $\log$({\bfseries size}({\bfseries $\ast$this})) $\cdot$ {\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value}))
-\item Si {\bfseries hint} apunta al primer valor con clave al menos {\bfseries value}.first (o {\bfseries this}-\/$>$\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end()} en caso de no existir)\+: $O$({\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value})) amortizado. 
-\end{DoxyItemize}
-\end{DoxyDescription}
-
-\begin{DoxyAttention}{Atención}
-Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{aed2\+::map\+::insert\+\_\+or\+\_\+assign}. 
-\end{DoxyAttention}
-
-
-Definición en la línea \hyperlink{map_8h_source_l01559}{1559} del archivo \hyperlink{map_8h_source}{map.\+h}.
-
-\mbox{\Hypertarget{classaed2_1_1map_a7403745a296985d64b8666c18953b2c0_a7403745a296985d64b8666c18953b2c0}\label{classaed2_1_1map_a7403745a296985d64b8666c18953b2c0_a7403745a296985d64b8666c18953b2c0}} 
-\index{aed2\+::map@{aed2\+::map}!invalid\+Hint@{invalid\+Hint}}
-\index{invalid\+Hint@{invalid\+Hint}!aed2\+::map@{aed2\+::map}}
-\paragraph{\texorpdfstring{invalid\+Hint()}{invalidHint()}}
-{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
-bool \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::invalid\+Hint (\begin{DoxyParamCaption}\item[{\hyperlink{classaed2_1_1map_1_1const__iterator}{const\+\_\+iterator}}]{hint,  }\item[{const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Inserta {\bfseries value} en el diccionario. 
-
-Inserta un {\bfseries nuevo} valor en el diccionario. Si {\bfseries $\ast$this} ya tiene un valor con clave {\bfseries value}.first, entonces la función no tiene efectos. El iterador de retorno apunta al elemento recien insertado (o aquel que previno la insercion).
-
-
-\begin{DoxyParams}{Parámetros}
-{\em value} & valor a insertar \\
-\hline
-{\em hint} & iterador apuntando al diccionario. Se espera que apunte al minimo valor mayor o igual a {\bfseries value}.first (i.\+e., a lower\+\_\+bound({\bfseries value}.first)). Igualmente, la función es robusta y funciona correctamente aunque esto no ocurra. \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Valores devueltos}
-{\em res} & iterador apuntando al elemento insertado o que previno la inserción\\
-\hline
-\end{DoxyRetVals}
-\begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
-\end{DoxyParagraph}
-\begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
-\end{DoxyPrecond}
-\begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
-\end{DoxyPostcond}
-
-\begin{DoxyDescription}
-\item[Complejidad Temporal]
-\begin{DoxyItemize}
-\item Peor caso\+: $O$( $\log$({\bfseries size}({\bfseries $\ast$this})) $\cdot$ {\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value}))
-\item Si {\bfseries hint} apunta al primer valor con clave al menos {\bfseries value}.first (o {\bfseries this}-\/$>$\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end()} en caso de no existir)\+: $O$({\bfseries cmp}({\bfseries $\ast$this}) $+$ {\bfseries copy}({\bfseries value})) amortizado. 
-\end{DoxyItemize}
-\end{DoxyDescription}
-
-\begin{DoxyAttention}{Atención}
-Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{aed2\+::map\+::insert\+\_\+or\+\_\+assign}. 
-\end{DoxyAttention}
-
-
-Definición en la línea \hyperlink{map_8h_source_l01587}{1587} del archivo \hyperlink{map_8h_source}{map.\+h}.
-
 \mbox{\Hypertarget{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}\label{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}} 
 \index{aed2\+::map@{aed2\+::map}!insert@{insert}}
 \index{insert@{insert}!aed2\+::map@{aed2\+::map}}
@@ -1319,7 +1069,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01590}{1590} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01466}{1466} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a81db4ead6daafe94938d5410173bdb6c_a81db4ead6daafe94938d5410173bdb6c}\label{classaed2_1_1map_a81db4ead6daafe94938d5410173bdb6c_a81db4ead6daafe94938d5410173bdb6c}} 
 \index{aed2\+::map@{aed2\+::map}!is\+Max\+Or\+Min@{is\+Max\+Or\+Min}}
@@ -1369,7 +1119,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01634}{1634} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01510}{1510} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a50aae07014200a53b95394f349f55948_a50aae07014200a53b95394f349f55948}\label{classaed2_1_1map_a50aae07014200a53b95394f349f55948_a50aae07014200a53b95394f349f55948}} 
 \index{aed2\+::map@{aed2\+::map}!assign\+Max\+Or\+Min@{assign\+Max\+Or\+Min}}
@@ -1419,7 +1169,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01638}{1638} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01514}{1514} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a60aacba06b1579630b3c8e996cf248c8_a60aacba06b1579630b3c8e996cf248c8}\label{classaed2_1_1map_a60aacba06b1579630b3c8e996cf248c8_a60aacba06b1579630b3c8e996cf248c8}} 
 \index{aed2\+::map@{aed2\+::map}!insert@{insert}}
@@ -1430,7 +1180,7 @@ Definición en la línea \hyperlink{map_8h_source_l01638}{1638} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l01654}{1654} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01530}{1530} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_aef47582a93a069c4ec95da8c595e4fee_aef47582a93a069c4ec95da8c595e4fee}\label{classaed2_1_1map_aef47582a93a069c4ec95da8c595e4fee_aef47582a93a069c4ec95da8c595e4fee}} 
 \index{aed2\+::map@{aed2\+::map}!insert\+\_\+or\+\_\+upsert@{insert\+\_\+or\+\_\+upsert}}
@@ -1480,7 +1230,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01658}{1658} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01534}{1534} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}\label{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}} 
 \index{aed2\+::map@{aed2\+::map}!insert\+\_\+or\+\_\+assign@{insert\+\_\+or\+\_\+assign}}
@@ -1533,7 +1283,7 @@ Esta función es similar al operator\mbox{[}\mbox{]}, pero tiene dos ventajas y 
 \end{DoxyRemark}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01732}{1732} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01608}{1608} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a9128a806713bcc999ebd8a97ab77e765_a9128a806713bcc999ebd8a97ab77e765}\label{classaed2_1_1map_a9128a806713bcc999ebd8a97ab77e765_a9128a806713bcc999ebd8a97ab77e765}} 
 \index{aed2\+::map@{aed2\+::map}!insert\+\_\+or\+\_\+assign@{insert\+\_\+or\+\_\+assign}}
@@ -1544,7 +1294,7 @@ Definición en la línea \hyperlink{map_8h_source_l01732}{1732} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l01744}{1744} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01620}{1620} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_ad8e796bf9c9c558e5ce6b61e116253fe_ad8e796bf9c9c558e5ce6b61e116253fe}\label{classaed2_1_1map_ad8e796bf9c9c558e5ce6b61e116253fe_ad8e796bf9c9c558e5ce6b61e116253fe}} 
 \index{aed2\+::map@{aed2\+::map}!erase@{erase}}
@@ -1585,7 +1335,7 @@ completar.
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l01766}{1766} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01642}{1642} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5_a6c9fb4a85c0e8d2de5dcbdbc0d695be5}\label{classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5_a6c9fb4a85c0e8d2de5dcbdbc0d695be5}} 
 \index{aed2\+::map@{aed2\+::map}!Transplant@{Transplant}}
@@ -1635,7 +1385,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01806}{1806} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01682}{1682} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a2ffadb42cd5f0bc7b3752ff159b75334_a2ffadb42cd5f0bc7b3752ff159b75334}\label{classaed2_1_1map_a2ffadb42cd5f0bc7b3752ff159b75334_a2ffadb42cd5f0bc7b3752ff159b75334}} 
 \index{aed2\+::map@{aed2\+::map}!erase@{erase}}
@@ -1667,7 +1417,7 @@ completar
 \item[Complejidad Temporal]$O$({\bfseries del}({\bfseries $\ast$pos}) + $\log$({\bfseries size}({\bfseries $\ast$this})) $\cdot$ {\bfseries cmp}({\bfseries $\ast$this}))
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l01834}{1834} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01710}{1710} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_ae908761d06411046290cf49a5e0618bd_ae908761d06411046290cf49a5e0618bd}\label{classaed2_1_1map_ae908761d06411046290cf49a5e0618bd_ae908761d06411046290cf49a5e0618bd}} 
 \index{aed2\+::map@{aed2\+::map}!fix\+Right@{fix\+Right}}
@@ -1717,7 +1467,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01840}{1840} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01716}{1716} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_ae69c26a9d27f538124cd827646e56feb_ae69c26a9d27f538124cd827646e56feb}\label{classaed2_1_1map_ae69c26a9d27f538124cd827646e56feb_ae69c26a9d27f538124cd827646e56feb}} 
 \index{aed2\+::map@{aed2\+::map}!fix\+Left@{fix\+Left}}
@@ -1767,7 +1517,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01841}{1841} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01717}{1717} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a056322ff63d37b43d042ffa0378c9fd2_a056322ff63d37b43d042ffa0378c9fd2}\label{classaed2_1_1map_a056322ff63d37b43d042ffa0378c9fd2_a056322ff63d37b43d042ffa0378c9fd2}} 
 \index{aed2\+::map@{aed2\+::map}!delfix@{delfix}}
@@ -1817,7 +1567,7 @@ Para garantizar que el nuevo elemento se inserte sí o sí, usar \hyperlink{clas
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l01872}{1872} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01748}{1748} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a2bfa5165825979bf2431db55bc6bc9ca_a2bfa5165825979bf2431db55bc6bc9ca}\label{classaed2_1_1map_a2bfa5165825979bf2431db55bc6bc9ca_a2bfa5165825979bf2431db55bc6bc9ca}} 
 \index{aed2\+::map@{aed2\+::map}!clear@{clear}}
@@ -1844,7 +1594,7 @@ Se invalidan todos los iteradores asociados a {\bfseries $\ast$this}, con excepc
 \item[Complejidad Temporal]$O$({\bfseries del}({\bfseries $\ast$this}))
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l01968}{1968} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01844}{1844} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a43ddb71cc91e5c6021a7a1f243d6cc4a_a43ddb71cc91e5c6021a7a1f243d6cc4a}\label{classaed2_1_1map_a43ddb71cc91e5c6021a7a1f243d6cc4a_a43ddb71cc91e5c6021a7a1f243d6cc4a}} 
 \index{aed2\+::map@{aed2\+::map}!swap@{swap}}
@@ -1886,7 +1636,7 @@ La razón por la que se \char`\"{}invalidan\char`\"{} los iteradores pasando-\/e
 \end{DoxyNote}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02018}{2018} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01894}{1894} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a58a95705d54b3dda7f775ce5a22225cb_a58a95705d54b3dda7f775ce5a22225cb}\label{classaed2_1_1map_a58a95705d54b3dda7f775ce5a22225cb_a58a95705d54b3dda7f775ce5a22225cb}} 
 \index{aed2\+::map@{aed2\+::map}!begin@{begin}}
@@ -1918,7 +1668,7 @@ completar
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02053}{2053} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01929}{1929} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_af3b1818c2b44e37221cc3b131768555b_af3b1818c2b44e37221cc3b131768555b}\label{classaed2_1_1map_af3b1818c2b44e37221cc3b131768555b_af3b1818c2b44e37221cc3b131768555b}} 
 \index{aed2\+::map@{aed2\+::map}!begin@{begin}}
@@ -1929,7 +1679,7 @@ Definición en la línea \hyperlink{map_8h_source_l02053}{2053} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02058}{2058} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01934}{1934} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_ab96ad892caa28f193481a578f4956a2a_ab96ad892caa28f193481a578f4956a2a}\label{classaed2_1_1map_ab96ad892caa28f193481a578f4956a2a_ab96ad892caa28f193481a578f4956a2a}} 
 \index{aed2\+::map@{aed2\+::map}!cbegin@{cbegin}}
@@ -1940,7 +1690,7 @@ Definición en la línea \hyperlink{map_8h_source_l02058}{2058} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02064}{2064} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01940}{1940} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}\label{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}} 
 \index{aed2\+::map@{aed2\+::map}!end@{end}}
@@ -1972,7 +1722,7 @@ completar
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02082}{2082} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01958}{1958} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a91e7cad1a638c55659c169d5574cd5d7_a91e7cad1a638c55659c169d5574cd5d7}\label{classaed2_1_1map_a91e7cad1a638c55659c169d5574cd5d7_a91e7cad1a638c55659c169d5574cd5d7}} 
 \index{aed2\+::map@{aed2\+::map}!end@{end}}
@@ -1983,7 +1733,7 @@ Definición en la línea \hyperlink{map_8h_source_l02082}{2082} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02087}{2087} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01963}{1963} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a7bb91e94cbc875f1a011b142ef877912_a7bb91e94cbc875f1a011b142ef877912}\label{classaed2_1_1map_a7bb91e94cbc875f1a011b142ef877912_a7bb91e94cbc875f1a011b142ef877912}} 
 \index{aed2\+::map@{aed2\+::map}!cend@{cend}}
@@ -1994,7 +1744,7 @@ Definición en la línea \hyperlink{map_8h_source_l02087}{2087} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02092}{2092} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01968}{1968} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_ac412d3902112122c1bffe2d4283a4e9d_ac412d3902112122c1bffe2d4283a4e9d}\label{classaed2_1_1map_ac412d3902112122c1bffe2d4283a4e9d_ac412d3902112122c1bffe2d4283a4e9d}} 
 \index{aed2\+::map@{aed2\+::map}!rbegin@{rbegin}}
@@ -2026,7 +1776,7 @@ completar
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02109}{2109} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01985}{1985} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a71ab53ab04f5e35a189c6576fddeb483_a71ab53ab04f5e35a189c6576fddeb483}\label{classaed2_1_1map_a71ab53ab04f5e35a189c6576fddeb483_a71ab53ab04f5e35a189c6576fddeb483}} 
 \index{aed2\+::map@{aed2\+::map}!rbegin@{rbegin}}
@@ -2037,7 +1787,7 @@ Definición en la línea \hyperlink{map_8h_source_l02109}{2109} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02114}{2114} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01990}{1990} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a6ad62765a2b2e00247b9e35a7542b448_a6ad62765a2b2e00247b9e35a7542b448}\label{classaed2_1_1map_a6ad62765a2b2e00247b9e35a7542b448_a6ad62765a2b2e00247b9e35a7542b448}} 
 \index{aed2\+::map@{aed2\+::map}!crbegin@{crbegin}}
@@ -2048,7 +1798,7 @@ Definición en la línea \hyperlink{map_8h_source_l02114}{2114} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02120}{2120} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l01996}{1996} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a277f03b4f4b6b98879e4e4921081801f_a277f03b4f4b6b98879e4e4921081801f}\label{classaed2_1_1map_a277f03b4f4b6b98879e4e4921081801f_a277f03b4f4b6b98879e4e4921081801f}} 
 \index{aed2\+::map@{aed2\+::map}!rend@{rend}}
@@ -2080,7 +1830,7 @@ completar
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02138}{2138} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02014}{2014} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a7cf14a4b505505d0f074034b7399fb24_a7cf14a4b505505d0f074034b7399fb24}\label{classaed2_1_1map_a7cf14a4b505505d0f074034b7399fb24_a7cf14a4b505505d0f074034b7399fb24}} 
 \index{aed2\+::map@{aed2\+::map}!rend@{rend}}
@@ -2091,7 +1841,7 @@ Definición en la línea \hyperlink{map_8h_source_l02138}{2138} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02143}{2143} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02019}{2019} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a40933b2efe1cb479de9195ea947244d1_a40933b2efe1cb479de9195ea947244d1}\label{classaed2_1_1map_a40933b2efe1cb479de9195ea947244d1_a40933b2efe1cb479de9195ea947244d1}} 
 \index{aed2\+::map@{aed2\+::map}!crend@{crend}}
@@ -2102,7 +1852,7 @@ Definición en la línea \hyperlink{map_8h_source_l02143}{2143} del archivo \hyp
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02148}{2148} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02024}{2024} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a07ab50eda249a57858a34037d4c4c7b2_a07ab50eda249a57858a34037d4c4c7b2}\label{classaed2_1_1map_a07ab50eda249a57858a34037d4c4c7b2_a07ab50eda249a57858a34037d4c4c7b2}} 
 \index{aed2\+::map@{aed2\+::map}!root@{root}}
@@ -2120,7 +1870,7 @@ Nodo a la raiz del arbol.
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02882}{2882} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02758}{2758} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a66fe019d885578cc52949409f80858eb_a66fe019d885578cc52949409f80858eb}\label{classaed2_1_1map_a66fe019d885578cc52949409f80858eb_a66fe019d885578cc52949409f80858eb}} 
 \index{aed2\+::map@{aed2\+::map}!root@{root}}
@@ -2131,7 +1881,7 @@ const \hyperlink{structaed2_1_1map_1_1InnerNode}{Inner\+Node}$\ast$ \hyperlink{c
 
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02885}{2885} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02761}{2761} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_aebf6c09c424c39a874798165401b309e_aebf6c09c424c39a874798165401b309e}\label{classaed2_1_1map_aebf6c09c424c39a874798165401b309e_aebf6c09c424c39a874798165401b309e}} 
 \index{aed2\+::map@{aed2\+::map}!eq@{eq}}
@@ -2156,7 +1906,7 @@ true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfserie
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02901}{2901} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02777}{2777} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a533bd88d0b7a584e3c968548d246c255_a533bd88d0b7a584e3c968548d246c255}\label{classaed2_1_1map_a533bd88d0b7a584e3c968548d246c255_a533bd88d0b7a584e3c968548d246c255}} 
 \index{aed2\+::map@{aed2\+::map}!remove\+Sub\+Tree@{remove\+Sub\+Tree}}
@@ -2171,7 +1921,82 @@ Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02913}{2913} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02789}{2789} del archivo \hyperlink{map_8h_source}{map.\+h}.
+
+\mbox{\Hypertarget{classaed2_1_1map_a709e1a06ac3c5932c1eb6d9741f37b2c_a709e1a06ac3c5932c1eb6d9741f37b2c}\label{classaed2_1_1map_a709e1a06ac3c5932c1eb6d9741f37b2c_a709e1a06ac3c5932c1eb6d9741f37b2c}} 
+\index{aed2\+::map@{aed2\+::map}!add\+Elem@{add\+Elem}}
+\index{add\+Elem@{add\+Elem}!aed2\+::map@{aed2\+::map}}
+\paragraph{\texorpdfstring{add\+Elem()}{addElem()}}
+{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
+bool \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::add\+Elem (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$\&}]{now,  }\item[{const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&}]{value,  }\item[{int}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos que descienden de root; para esto, chequea que init\+Root tenga hijos y si los tiene hace una llamada recursiva con una instancia más sencilla. init\+Root debería ser un nodo que efectivamente pertenezca a la instancia de map que está llamando a la función; en el contexto del destructor esto obviamente se cumple. 
+
+
+
+Definición en la línea \hyperlink{map_8h_source_l02804}{2804} del archivo \hyperlink{map_8h_source}{map.\+h}.
+
+\mbox{\Hypertarget{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}\label{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}} 
+\index{aed2\+::map@{aed2\+::map}!insertion\+Fix@{insertion\+Fix}}
+\index{insertion\+Fix@{insertion\+Fix}!aed2\+::map@{aed2\+::map}}
+\paragraph{\texorpdfstring{insertion\+Fix()}{insertionFix()}}
+{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
+void \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::insertion\+Fix (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$}]{new\+Node,  }\item[{const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba. 
+
+
+
+Definición en la línea \hyperlink{map_8h_source_l02824}{2824} del archivo \hyperlink{map_8h_source}{map.\+h}.
+
+\mbox{\Hypertarget{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}\label{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}} 
+\index{aed2\+::map@{aed2\+::map}!leftrotate@{leftrotate}}
+\index{leftrotate@{leftrotate}!aed2\+::map@{aed2\+::map}}
+\paragraph{\texorpdfstring{leftrotate()}{leftrotate()}}
+{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
+void \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::leftrotate (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Implementa la rotación descrita en el Cormen. 
+
+
+
+Definición en la línea \hyperlink{map_8h_source_l02877}{2877} del archivo \hyperlink{map_8h_source}{map.\+h}.
+
+\mbox{\Hypertarget{classaed2_1_1map_a816d69fa4dfe18a984dc3628fee14e2f_a816d69fa4dfe18a984dc3628fee14e2f}\label{classaed2_1_1map_a816d69fa4dfe18a984dc3628fee14e2f_a816d69fa4dfe18a984dc3628fee14e2f}} 
+\index{aed2\+::map@{aed2\+::map}!rightrotate@{rightrotate}}
+\index{rightrotate@{rightrotate}!aed2\+::map@{aed2\+::map}}
+\paragraph{\texorpdfstring{rightrotate()}{rightrotate()}}
+{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
+void \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::rightrotate (\begin{DoxyParamCaption}\item[{\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Implementa la rotación descrita en el Cormen. 
+
+
+
+Definición en la línea \hyperlink{map_8h_source_l02910}{2910} del archivo \hyperlink{map_8h_source}{map.\+h}.
+
+\mbox{\Hypertarget{classaed2_1_1map_a7403745a296985d64b8666c18953b2c0_a7403745a296985d64b8666c18953b2c0}\label{classaed2_1_1map_a7403745a296985d64b8666c18953b2c0_a7403745a296985d64b8666c18953b2c0}} 
+\index{aed2\+::map@{aed2\+::map}!invalid\+Hint@{invalid\+Hint}}
+\index{invalid\+Hint@{invalid\+Hint}!aed2\+::map@{aed2\+::map}}
+\paragraph{\texorpdfstring{invalid\+Hint()}{invalidHint()}}
+{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
+bool \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::invalid\+Hint (\begin{DoxyParamCaption}\item[{\hyperlink{classaed2_1_1map_1_1const__iterator}{const\+\_\+iterator}}]{hint,  }\item[{const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Devuelve true si la clave contenida en el nodo apuntado por hint {\itshape  no es } la menor de las claves del diccionario que son mayores a la clave que se quiere insertar (es decir la clave contenida en el nodo apuntado por lower\+\_\+bound). 
+
+
+
+Definición en la línea \hyperlink{map_8h_source_l02946}{2946} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -2227,7 +2052,7 @@ Para determinar la igualdad de las claves no se utiliza el functor de comparaci�
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02952}{2952} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02982}{2982} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_abce0fa35c5b25fd67111c2e704616f09_abce0fa35c5b25fd67111c2e704616f09}\label{classaed2_1_1map_abce0fa35c5b25fd67111c2e704616f09_abce0fa35c5b25fd67111c2e704616f09}} 
 \index{aed2\+::map@{aed2\+::map}!operator"!=@{operator"!=}}
@@ -2245,7 +2070,7 @@ aed2\+::operator==()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02964}{2964} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02994}{2994} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a8ff07f6a24c290ea7e8f63ec7ab24f8d_a8ff07f6a24c290ea7e8f63ec7ab24f8d}\label{classaed2_1_1map_a8ff07f6a24c290ea7e8f63ec7ab24f8d_a8ff07f6a24c290ea7e8f63ec7ab24f8d}} 
 \index{aed2\+::map@{aed2\+::map}!operator$<$@{operator$<$}}
@@ -2298,7 +2123,7 @@ Para determinar la comparación de las claves no se utiliza el functor de compar
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02995}{2995} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03025}{3025} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a2000cd874b72034ce7fe730c811b6c63_a2000cd874b72034ce7fe730c811b6c63}\label{classaed2_1_1map_a2000cd874b72034ce7fe730c811b6c63_a2000cd874b72034ce7fe730c811b6c63}} 
 \index{aed2\+::map@{aed2\+::map}!operator$>$@{operator$>$}}
@@ -2316,7 +2141,7 @@ aed2\+::operator$<$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03007}{3007} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03037}{3037} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_afe374b37f17263d0cad3ee19a590d208_afe374b37f17263d0cad3ee19a590d208}\label{classaed2_1_1map_afe374b37f17263d0cad3ee19a590d208_afe374b37f17263d0cad3ee19a590d208}} 
 \index{aed2\+::map@{aed2\+::map}!operator$<$=@{operator$<$=}}
@@ -2334,7 +2159,7 @@ aed2\+::operator$<$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03018}{3018} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03048}{3048} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a093a6d1a055339c5fc6297a1d47a9159_a093a6d1a055339c5fc6297a1d47a9159}\label{classaed2_1_1map_a093a6d1a055339c5fc6297a1d47a9159_a093a6d1a055339c5fc6297a1d47a9159}} 
 \index{aed2\+::map@{aed2\+::map}!operator$>$=@{operator$>$=}}
@@ -2352,7 +2177,7 @@ aed2\+::operator$<$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03029}{3029} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03059}{3059} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a119cb2938bbc11c25ebd4fb824782a72_a119cb2938bbc11c25ebd4fb824782a72}\label{classaed2_1_1map_a119cb2938bbc11c25ebd4fb824782a72_a119cb2938bbc11c25ebd4fb824782a72}} 
 \index{aed2\+::map@{aed2\+::map}!swap@{swap}}
@@ -2391,7 +2216,7 @@ Implementa la función swap para cumplir con el concepto swappable.
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03053}{3053} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03083}{3083} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -2409,7 +2234,7 @@ Orden total para comparar claves.
 
 Definición\+: lt(x, y) == true cuando x es menor que y; si lt(x,y) == lt(y,x) == false, entonces x e y son iguales. 
 
-Definición en la línea \hyperlink{map_8h_source_l02865}{2865} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02741}{2741} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a44236c4f16cdc20a10759862b198bde4_a44236c4f16cdc20a10759862b198bde4}\label{classaed2_1_1map_a44236c4f16cdc20a10759862b198bde4_a44236c4f16cdc20a10759862b198bde4}} 
 \index{aed2\+::map@{aed2\+::map}!count@{count}}
@@ -2424,7 +2249,7 @@ Cantidad de elementos en el diccionario.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02867}{2867} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02743}{2743} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_a92d93f905c8ad73fba18fdc7e8915cce_a92d93f905c8ad73fba18fdc7e8915cce}\label{classaed2_1_1map_a92d93f905c8ad73fba18fdc7e8915cce_a92d93f905c8ad73fba18fdc7e8915cce}} 
 \index{aed2\+::map@{aed2\+::map}!header@{header}}
@@ -2439,7 +2264,7 @@ Cabeceera del arbol; ver \hyperlink{Implementacion}{Implementación del árbol r
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02869}{2869} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02745}{2745} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
