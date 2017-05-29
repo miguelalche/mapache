@@ -13,7 +13,7 @@ var NAVTREE =
         [ "Todo", "functions.html", null ],
         [ "Funciones", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
-        [ "'typedefs'", "functions_type.html", null ],
+        [ "typedefs", "functions_type.html", null ],
         [ "Enumeraciones", "functions_enum.html", null ]
       ] ]
     ] ],

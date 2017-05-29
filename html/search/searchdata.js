@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefghiklmnoprsuv~",
+  0: "_abcdefghiklmnoprstuv~",
   1: "cimn",
   2: "a",
   3: "m",
-  4: "abcefghiklmnoprsv~",
+  4: "abcdefghiklmnoprstv~",
   5: "_chlnp",
   6: "cdikmprsv",
   7: "c",
@@ -32,7 +32,7 @@ var indexSectionLabels =
   3: "Archivos",
   4: "Funciones",
   5: "Variables",
-  6: "&apos;typedefs&apos;",
+  6: "typedefs",
   7: "Enumeraciones",
   8: "Páginas"
 };

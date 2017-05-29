@@ -1041,7 +1041,7 @@ class map {
    * @retval res diccionario recién construido
    *
    * \pre \aedpre{true}
-   * \post \aedpost{res \igobs vac\'io}
+   * \post \aedpost{res \IGOBS vacío}
    *
    * \complexity{\O(1)}
    *
@@ -1061,7 +1061,7 @@ class map {
    * @retval res diccionario recien construido
    *
    * \pre \aedpre{true}
-   * \post \aedpost{res \igobs other}
+   * \post \aedpost{res \IGOBS other}
    *
    * \complexity{\O(\COPY(\P{other}))}
    *
@@ -1162,7 +1162,7 @@ class map {
    * @brief Destructor
    *
    *
-   * \aliasing{completar}
+   * \aliasing{Todos los iteradores que apuntaban a algún elemento de \P{*this} se invalidan.}
    *
    * \pre \aedpre{true}
    * \post \aedpost{true}
@@ -1193,17 +1193,6 @@ class map {
       //delete header;
   }
 
-    //RemoveSubTree
-    //Toma una "raiz" de un subarbol, y se aplica recursivamente primero al hijo izquierdo
-    //y luego al derecho de ese subarbol, hasta llegar al elemento sin hijos, que elimina.
-    //de esta manera, cuando pasa los dos ifs se asegura de no tener hijos, por lo que se elimina.
-
-    void removeSubTree(Node* raiz){
-        if (raiz->hasChild(0)) {removeSubTree(raiz->child[0]);}
-        if (raiz->hasChild(1)) {removeSubTree(raiz->child[1]);}
-        delete raiz;
-        count--;
-    }
   ///@}
 
   ////////////////////////////////////////////
@@ -2911,6 +2900,21 @@ iterator assignMaxOrMin(const value_type& value) {
    */
   inline bool eq(const Key& k1, const Key& k2) const {
     return lt(k1, k2) == lt(k2, k1);
+  }
+
+  /**
+   * @brief Función auxiliar usada en el destructor. Elimina recursivamente todos
+   * los nodos que descienden de root; para esto, chequea que initRoot tenga hijos
+   * y si los tiene hace una llamada recursiva con una instancia más sencilla.
+   * initRoot debería ser un nodo que efectivamente pertenezca a la instancia de
+   * map que está llamando a la función; en el contexto del destructor esto
+   * obviamente se cumple.
+   */
+  void removeSubTree(Node* initRoot){
+      if (initRoot->hasChild(0)) {removeSubTree(initRoot->child[0]);}
+      if (initRoot->hasChild(1)) {removeSubTree(initRoot->child[1]);}
+      delete initRoot;
+      count--;
   }
 };
 

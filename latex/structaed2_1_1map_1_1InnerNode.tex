@@ -14,12 +14,12 @@ Estructura (privada) de un nodo no cabecera del árbol red-\/black.
 
 
 \subsubsection{Descripción detallada}
-\subsubsection*{template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$\\*
+\subsubsection*{template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$\newline
 struct aed2\+::map$<$ Key, Meaning, Compare $>$\+::\+Inner\+Node}
 
 Estructura (privada) de un nodo no cabecera del árbol red-\/black. 
 
-Tal como sugiere Cormen et al. \cite{CormenLeisersonRivestStein2009}, como se implementa en G\+CC, y cómo explicamos en \hyperlink{Implementacion}{Implementación del árbol red-\/black}, el árbol tiene dos tipos de nodos. Aquellos que tienen un valor e implementan el árbol y aquellos que se usan como centinelas. La estructura \hyperlink{structaed2_1_1map_1_1InnerNode}{Inner\+Node} hereda de la estructura \hyperlink{structaed2_1_1map_1_1Node}{aed2\+::map\+::\+Node}, agregando el valor, para representar a los nodos no cabecera.
+Tal como sugiere Cormen et al. {\bfseries [Cormen\+Leiserson\+Rivest\+Stein2009]}, como se implementa en G\+CC, y cómo explicamos en \hyperlink{Implementacion}{Implementación del árbol red-\/black}, el árbol tiene dos tipos de nodos. Aquellos que tienen un valor e implementan el árbol y aquellos que se usan como centinelas. La estructura \hyperlink{structaed2_1_1map_1_1InnerNode}{Inner\+Node} hereda de la estructura \hyperlink{structaed2_1_1map_1_1Node}{aed2\+::map\+::\+Node}, agregando el valor, para representar a los nodos no cabecera.
 
 Además de definir los campos de la estructura de un nodo, esta clase podría implementar una especie de submodulo que incluya funciones para manipular el árbol red-\/black. Se sugiere incluir en esta estructura aquellas funciones que, si bien no requieren conocer el resto de la estructura red-\/black, explotan el conocimiento de que el árbol red-\/black tiene un unico nodo sentinela que sirve de cabecera.
 
@@ -28,17 +28,21 @@ Como \hyperlink{structaed2_1_1map_1_1InnerNode}{Inner\+Node} es una estructura p
 \end{DoxyRemark}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02625}{2625} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02820}{2820} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
 \subsubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{structaed2_1_1map_1_1InnerNode_a53fd8a50986fec67601dd77c44c1657e_a53fd8a50986fec67601dd77c44c1657e}\label{structaed2_1_1map_1_1InnerNode_a53fd8a50986fec67601dd77c44c1657e_a53fd8a50986fec67601dd77c44c1657e}} 
 \index{aed2\+::map\+::\+Inner\+Node@{aed2\+::map\+::\+Inner\+Node}!\+\_\+value@{\+\_\+value}}
 \index{\+\_\+value@{\+\_\+value}!aed2\+::map\+::\+Inner\+Node@{aed2\+::map\+::\+Inner\+Node}}
-\paragraph[{\texorpdfstring{\+\_\+value}{_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ {\bf value\+\_\+type} {\bf aed2\+::map}$<$ Key, Meaning, Compare $>$\+::Inner\+Node\+::\+\_\+value}\hypertarget{structaed2_1_1map_1_1InnerNode_a53fd8a50986fec67601dd77c44c1657e_a53fd8a50986fec67601dd77c44c1657e}{}\label{structaed2_1_1map_1_1InnerNode_a53fd8a50986fec67601dd77c44c1657e_a53fd8a50986fec67601dd77c44c1657e}
+\paragraph{\texorpdfstring{\+\_\+value}{\_value}}
+{\footnotesize\ttfamily template$<$class Key, class Meaning, class Compare = std\+::less$<$\+Key$>$$>$ \\
+\hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \hyperlink{classaed2_1_1map}{aed2\+::map}$<$ Key, Meaning, Compare $>$\+::Inner\+Node\+::\+\_\+value}
+
 Valor del nodo 
 
-Definición en la línea \hyperlink{map_8h_source_l02627}{2627} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02822}{2822} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
