@@ -120,12 +120,75 @@ esDiccionario?(s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> sin
 <p class="enddd"><span id="primeros">primeros</span>: secu(tupla( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>, <img class="formulaInl" alt="$\beta$" src="form_10.png"/>)) <img class="formulaInl" alt="$\to$" src="form_4.png"/> secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)<br />
 primeros(s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> vacia?(s) <b>then</b> &lt;&gt; <b>else</b> <img class="formulaInl" alt="$\pi_1$" src="form_12.png"/>(prim(s)) <img class="formulaInl" alt="$\bullet$" src="form_6.png"/> <a href="axiomas.html#primeros">primeros</a>(fin(s)) <b>fi</b> </p>
 </dd></dl>
+<dl class="section user"><dt>esÁrbol?</dt><dd><p class="startdd">Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).</p>
+<p><span id="esÁrbol?">esÁrbol?</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+esÁrbol?(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> true <img class="formulaInl" alt="$\Leftrightarrow$" src="form_18.png"/> ( <img class="formulaInl" alt="$\exists$" src="form_21.png"/> k:<span class="paramname">nat</span>) \árbolK(p,k) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> árbolK(p,k+1) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(\árbolK(p,k))</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>árbolK</dt><dd><p class="startdd">Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.</p>
+<p><span id="árbolK">árbolK</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">nat</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">ab(puntero(nodo))</span> <br />
+árbolK(p,k) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+ <b>if</b> p = nullptr <b>then</b> <br />
+ nil <br />
+ <b>else</b> <br />
+<b>if</b> k = 0 <b>then</b> ab(nil,p,nil) <b>else</b> ab(\árbolK(p-&gt;child[0],k-1),p,\árbolK(p-&gt;child[1],k-1)) <b>fi</b> <br />
+ <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>sinRepetidosAB</dt><dd><p class="startdd">Dice si un árbol binario tiene o no elementos repetidos.</p>
+<p><span id="sinRepetidosAB">sinRepetidosAB</span>: <span class="paramname">ab( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+sinRepetidosAB(a) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+<b>if</b> a = nil <b>then</b> <br />
+true <br />
+<b>else</b> <br />
+ <img class="formulaInl" alt="$\_linebr eg$" src="form_22.png"/> (á?(raíz(a),izq(a)) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> á?(raíz(a),der(a))) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(izq(a)) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(der(a)) <br />
+ <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>está?</dt><dd><p class="startdd">Dice si un elemento está o no en un árbol binario.</p>
+<p><span id="está?">está?</span>: <span class="paramname"> <img class="formulaInl" alt="$\alpha$" src="form_5.png"/></span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">ab( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> está?(e,a) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+<b>if</b> a = nil <b>then</b> <br />
+false <br />
+<b>else</b> <br />
+raíz(a) = e <img class="formulaInl" alt="$\lor$" src="form_23.png"/> á?(e,izq(a)) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> á?(e,der(a)) <br />
+ <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>esABBDicc</dt><dd><p class="startdd">Dice si el árbol binario que tiene a p como raíz es un ABB sin claves repetidas. Para asegurar esto último, las funciones auxiliares <a href="axiomas.html#todosMenores">todosMenores</a> y <a href="axiomas.html#todosMayores">todosMayores</a> hacen comparaciones <em>estrictas</em>.</p>
+<p><span id="esABBDicc">esABBDicc</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+esABBDicc(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+<b>if</b> p = nullptr <b>then</b> <br />
+true <br />
+<b>else</b> <br />
+<a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[0],p-&gt;value.first) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[1],p-&gt;value.first) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esABBDicc">esABBDicc</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esABBDicc">esABBDicc</a>(p-&gt;child[1]) <br />
+ <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>todosMenores</dt><dd><p class="startdd">Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente menores a e.</p>
+<p><span id="todosMenores">todosMenores</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">Key</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+todosMenores(p,e) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+<b>if</b> p = nullptr <b>then</b> <br />
+true <br />
+<b>else</b> <br />
+p-&gt;value.first <img class="formulaInl" alt="$&lt;$" src="form_0.png"/> e <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[0],e) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[1],e) <br />
+ <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>todosMayores</dt><dd><p class="startdd">Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente mayores a e.</p>
+<p class="enddd"><span id="todosMayores">todosMayores</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">Key</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+todosMayores(p,e) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+<b>if</b> p = nullptr <b>then</b> <br />
+true <br />
+<b>else</b> <br />
+p-&gt;value.first <img class="formulaInl" alt="$&gt;$" src="form_24.png"/> e <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[0],e) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[1],e) <br />
+ <b>fi</b> </p>
+</dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado el Lunes, 29 de Mayo de 2017 00:01:03 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Lunes, 29 de Mayo de 2017 15:08:42 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

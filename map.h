@@ -818,6 +818,89 @@
  * \primeros(fin(s)) \FI
  * \endparblock
  *
+ * \par esÁrbol?
+ * \parblock
+ * Proposición que dice si una estructura representada con punteros a nodo
+ * se corresponde efectivamente con un árbol binario finito. La primera proposición
+ * asegura que el árbol termina, mientras que la segunda afirma que ningún nodo
+ * es hijo de dos nodos distintos (es decir, no hay ciclos).
+ *
+ * \axioma{esÁrbol?}: \T{puntero(nodo)} \TO \T{bool} \n
+ * esÁrbol?(p) \EQUIV true \IFF (\EXISTS k:\T{nat}) \árbolK(p,k) \IGOBS árbolK(p,k+1)
+ * \LAND \sinRepetidosAB(\árbolK(p,k))
+ *
+ * \par árbolK
+ * \parblock
+ * Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.
+ *
+ * \axioma{árbolK}: \T{puntero(nodo)} \TIMES \T{nat} \TO \T{ab(puntero(nodo))} \n
+ * árbolK(p,k) \EQUIV \n \IF p = nullptr \THEN \n  nil \n \ELSE \n
+ * \IF k = 0 \THEN ab(nil,p,nil) \ELSE
+ * ab(\árbolK(p->child[0],k-1),p,\árbolK(p->child[1],k-1)) \FI \n \FI
+ *
+ * \par sinRepetidosAB
+ * \parblock
+ * Dice si un árbol binario tiene o no elementos repetidos.
+ *
+ * \axioma{sinRepetidosAB}: \T{ab(\ALPHA)} \TO \T{bool} \n
+ * sinRepetidosAB(a) \EQUIV \n
+ * \IF a = nil \THEN \n
+ * true \n
+ * \ELSE \n
+ * \LNOT (\está?(raíz(a),izq(a)) \LOR \está?(raíz(a),der(a))) \LAND
+ * \sinRepetidosAB(izq(a)) \LAND \sinRepetidosAB(der(a)) \n \FI
+ *
+ * \par está?
+ * \parblock
+ * Dice si un elemento está o no en un árbol binario.
+ *
+ * \axioma{está?}: \T{\ALPHA} \TIMES \T{ab(\ALPHA)} \TO \T{bool}
+ * está?(e,a) \EQUIV \n
+ * \IF a = nil \THEN \n
+ * false \n
+ * \ELSE \n
+ * raíz(a) = e \LOR \está?(e,izq(a)) \LOR \está?(e,der(a)) \n \FI
+ *
+ * \par esABBDicc
+ * \parblock
+ * Dice si el árbol binario que tiene a p como raíz es un ABB sin
+ * claves repetidas. Para asegurar esto último, las funciones auxiliares
+ * \todosMenores y \todosMayores hacen comparaciones <em>estrictas</em>.
+ *
+ * \axioma{esABBDicc}: \T{puntero(nodo)} \TO \T{bool} \n
+ * esABBDicc(p) \EQUIV \n
+ * \IF p = nullptr \THEN \n
+ * true \n
+ * \ELSE \n
+ * \todosMenores(p->child[0],p->value.first) \LAND
+ * \todosMayores(p->child[1],p->value.first) \LAND
+ * \esABBDicc(p->child[0]) \LAND \esABBDicc(p->child[1]) \n \FI
+ *
+ * \par todosMenores
+ * \parblock
+ * Dice si todas las claves del árbol binario que tiene como raíz a p
+ * son estrictamentente menores a e.
+ *
+ * \axioma{todosMenores}: \T{puntero(nodo)} \TIMES \T{Key} \TO \T{bool} \n
+ * todosMenores(p,e) \EQUIV \n
+ * \IF p = nullptr \THEN \n
+ * true \n
+ * \ELSE \n
+ * p->value.first \LT e \LAND \todosMenores(p->child[0],e) \LAND
+ * \todosMenores(p->child[1],e) \n \FI
+ *
+ * \par todosMayores
+ * \parblock
+ * Dice si todas las claves del árbol binario que tiene como raíz a p
+ * son estrictamentente mayores a e.
+ *
+ * \axioma{todosMayores}: \T{puntero(nodo)} \TIMES \T{Key} \TO \T{bool} \n
+ * todosMayores(p,e) \EQUIV \n
+ * \IF p = nullptr \THEN \n
+ * true \n
+ * \ELSE \n
+ * p->value.first \GT e \LAND \todosMayores(p->child[0],e) \LAND
+ * \todosMayores(p->child[1],e) \n \FI
  */
 
 #ifndef MAP_H_
@@ -1507,25 +1590,7 @@ class map {
         }
 
     }
-bool isMaxOrMin(const value_type& value) {
-    return lt((header.child[1])->value().first, value.first) || lt(value.first, (header.child[0])->value().first);
-}
 
-iterator assignMaxOrMin(const value_type& value) {
-    if (lt(header.child[1]->value().first, value.first)) {
-        header.child[1]->child[1] = new InnerNode(header.child[1], value);
-        header.child[1] = header.child[1]->child[1];
-        insertionFix(header.child[1], value);
-        return iterator(header.child[1]->child[1]);
-
-    } else {
-        header.child[0]->child[0] = new InnerNode(header.child[0], value);
-        header.child[0] = header.child[0]->child[0];
-        insertionFix(header.child[0], value);
-        return iterator(header.child[0]);
-    }
-
-}
     /** \overload*/
   iterator insert(const value_type& value) {
       return insert_or_upsert(value, 0);
@@ -2721,14 +2786,19 @@ iterator assignMaxOrMin(const value_type& value) {
    *
    * \par Invariante de representacion
        * \parblock
-       * rep: map \TO bool\n
-       * rep(m) \EQUIV true \iff asd
+       * repMap: map \TO bool\n(
+       * repMap(m) \EQUIV true \iff m.header.color \IGOBS Header \LAND ( elHeaderEstáPiola(m)
+       * \LOR_L ( esÁrbol?(raíz(m)) \LAND_L esABBDicc(raíz(m)) \LAND esRBTree(raíz(m))
+       * \LAND_L m.count \IGOBS cantNodos(raíz(m)) \LAND familiaCorrecta(m.header,raíz(m))
+       * \LAND parentCorrecto(raíz(m)) ) )
        * \endparblock
        *
-       * \par Función de abstracción
+    * \par Función de abstracción
        * \parblock
-       * abs: map m \TO Diccionario(\T{Key}, \T{Meaning})  {rep(n)}\n
-       * abs(m) \EQUIV if m.empty() then vacio else definir (m.root()->value().first,m.root()->value().second, Abs(m.erase(m.root()->value().first)) )
+       * abs: map m \TO dicc(\T{Key}, \T{Meaning})  {repMap(n)}\n
+       * (\FORALL m:map) Abs(m) \EQUIV d:dicc(\T{Key}, \T{Meaning}) | \n (\FORALL c:\T{Key})
+       * def?(c,d) \IFF estáClave?(c,raíz(m)) \LAND_L (def?(c,d) \IMPLIES_L obtener(c,d)
+       * \IGOBS significado(c,raíz(m)))
        * \endparblock
    */
   //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2945,6 +3015,35 @@ iterator assignMaxOrMin(const value_type& value) {
 
     bool invalidHint(const_iterator hint, const value_type& value) {
         return (hint.n == nullptr || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
+    }
+
+    /**
+     * @brief Devuelve true si \P{value} es mayor que el máximo o menor que el mínimo
+     * elemento de \P{this}. Como el máximo y el mínimo son los hijos del nodo cabecera,
+     * estas comparaciones se pueden hacer en tiempo O(1).
+     */
+
+    bool isMaxOrMin(const value_type& value) {
+        return lt((header.child[1])->value().first, value.first) || lt(value.first, (header.child[0])->value().first);
+    }
+
+    /**
+     * @brief PENDIENTE: VER BIEN QUÉ HACE ESTA FUNCIÓN.
+     */
+
+    iterator assignMaxOrMin(const value_type& value) {
+        if (lt(header.child[1]->value().first, value.first)) {
+            header.child[1]->child[1] = new InnerNode(header.child[1], value);
+            header.child[1] = header.child[1]->child[1];
+            insertionFix(header.child[1], value);
+            return iterator(header.child[1]->child[1]);
+          } else {
+            header.child[0]->child[0] = new InnerNode(header.child[0], value);
+            header.child[0] = header.child[0]->child[0];
+            insertionFix(header.child[0], value);
+            return iterator(header.child[0]);
+        }
+
     }
 };
 

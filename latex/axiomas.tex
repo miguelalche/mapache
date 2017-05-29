@@ -38,3 +38,88 @@ Proyecta las primeras componentes de una secuencia de pares
 primeros\+: secu(tupla( $\alpha$, $\beta$)) $\to$ secu( $\alpha$)~\newline
 primeros(s) $\equiv$ {\bfseries if} vacia?(s) {\bfseries then} $<$$>$ {\bfseries else} $\pi_1$(prim(s)) $\bullet$ \href{axiomas.html#primeros}{\tt primeros}(fin(s)) {\bfseries fi} 
 \end{DoxyParagraph}
+
+
+\begin{DoxyParagraph}{esÁrbol?}
+Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).
+
+esÁrbol?\+: puntero(nodo) $\to$ bool ~\newline
+esÁrbol?(p) $\equiv$ true $\Leftrightarrow$ ( $\exists$ k\+:nat) \textbackslash{}árbol\+K(p,k) $=_{\rm obs}$ árbolK(p,k+1) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(\textbackslash{}árbol\+K(p,k))
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{árbolK}
+Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.
+
+árbolK\+: puntero(nodo) $\times$ nat $\to$ ab(puntero(nodo)) ~\newline
+árbol\+K(p,k) $\equiv$ ~\newline
+ {\bfseries if} p = nullptr {\bfseries then} ~\newline
+ nil ~\newline
+ {\bfseries else} ~\newline
+{\bfseries if} k = 0 {\bfseries then} ab(nil,p,nil) {\bfseries else} ab(\textbackslash{}árbolK(p-\/$>$child\mbox{[}0\mbox{]},k-\/1),p,\textbackslash{}árbolK(p-\/$>$child\mbox{[}1\mbox{]},k-\/1)) {\bfseries fi} ~\newline
+ {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{sin\+Repetidos\+AB}
+Dice si un árbol binario tiene o no elementos repetidos.
+
+sin\+Repetidos\+AB\+: ab( $\alpha$) $\to$ bool ~\newline
+sin\+Repetidos\+A\+B(a) $\equiv$ ~\newline
+{\bfseries if} a = nil {\bfseries then} ~\newline
+true ~\newline
+{\bfseries else} ~\newline
+ $\_linebr eg$ (á?(raíz(a),izq(a)) $\lor$ á?(raíz(a),der(a))) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(izq(a)) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(der(a)) ~\newline
+ {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{está?}
+Dice si un elemento está o no en un árbol binario.
+
+está?\+:  $\alpha$ $\times$ ab( $\alpha$) $\to$ bool está?(e,a) $\equiv$ ~\newline
+{\bfseries if} a = nil {\bfseries then} ~\newline
+false ~\newline
+{\bfseries else} ~\newline
+raíz(a) = e $\lor$ á?(e,izq(a)) $\lor$ á?(e,der(a)) ~\newline
+ {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{es\+A\+B\+B\+Dicc}
+Dice si el árbol binario que tiene a p como raíz es un A\+BB sin claves repetidas. Para asegurar esto último, las funciones auxiliares \href{axiomas.html#todosMenores}{\tt todos\+Menores} y \href{axiomas.html#todosMayores}{\tt todos\+Mayores} hacen comparaciones {\itshape estrictas}.
+
+es\+A\+B\+B\+Dicc\+: puntero(nodo) $\to$ bool ~\newline
+es\+A\+B\+B\+Dicc(p) $\equiv$ ~\newline
+{\bfseries if} p = nullptr {\bfseries then} ~\newline
+true ~\newline
+{\bfseries else} ~\newline
+\href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}0\mbox{]},p-\/$>$value.\+first) $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}1\mbox{]},p-\/$>$value.\+first) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(p-\/$>$child\mbox{[}1\mbox{]}) ~\newline
+ {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{todos\+Menores}
+Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente menores a e.
+
+todos\+Menores\+: puntero(nodo) $\times$ Key $\to$ bool ~\newline
+todos\+Menores(p,e) $\equiv$ ~\newline
+{\bfseries if} p = nullptr {\bfseries then} ~\newline
+true ~\newline
+{\bfseries else} ~\newline
+p-\/$>$value.\+first $<$ e $\land$ \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}1\mbox{]},e) ~\newline
+ {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{todos\+Mayores}
+Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente mayores a e.
+
+todos\+Mayores\+: puntero(nodo) $\times$ Key $\to$ bool ~\newline
+todos\+Mayores(p,e) $\equiv$ ~\newline
+{\bfseries if} p = nullptr {\bfseries then} ~\newline
+true ~\newline
+{\bfseries else} ~\newline
+p-\/$>$value.\+first $>$ e $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}1\mbox{]},e) ~\newline
+ {\bfseries fi} 
+\end{DoxyParagraph}
