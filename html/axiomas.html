@@ -120,75 +120,125 @@ esDiccionario?(s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> sin
 <p class="enddd"><span id="primeros">primeros</span>: secu(tupla( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>, <img class="formulaInl" alt="$\beta$" src="form_10.png"/>)) <img class="formulaInl" alt="$\to$" src="form_4.png"/> secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)<br />
 primeros(s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> vacia?(s) <b>then</b> &lt;&gt; <b>else</b> <img class="formulaInl" alt="$\pi_1$" src="form_12.png"/>(prim(s)) <img class="formulaInl" alt="$\bullet$" src="form_6.png"/> <a href="axiomas.html#primeros">primeros</a>(fin(s)) <b>fi</b> </p>
 </dd></dl>
-<dl class="section user"><dt>esÁrbol?</dt><dd><p class="startdd">Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).</p>
-<p><span id="esÁrbol?">esÁrbol?</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
-esÁrbol?(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> true <img class="formulaInl" alt="$\Leftrightarrow$" src="form_18.png"/> ( <img class="formulaInl" alt="$\exists$" src="form_21.png"/> k:<span class="paramname">nat</span>) \árbolK(p,k) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> árbolK(p,k+1) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(\árbolK(p,k))</p>
+<dl class="section user"><dt>raiz</dt><dd><p class="startdd">Devuelve un puntero a la raíz del árbol representado por m.</p>
+<p><span id="raiz">raiz</span>: <span class="paramname">map</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">puntero(nodo)</span> <br />
+raiz(m) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> m.header-&gt;parent</p>
 <p class="enddd"></p>
 </dd></dl>
-<dl class="section user"><dt>árbolK</dt><dd><p class="startdd">Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.</p>
-<p><span id="árbolK">árbolK</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">nat</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">ab(puntero(nodo))</span> <br />
-árbolK(p,k) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
+<dl class="section user"><dt>esArbol</dt><dd><p class="startdd">Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).</p>
+<p><span id="esArbol">esArbol</span>: <span class="paramname">puntero(Node)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+esArbol(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> true <img class="formulaInl" alt="$\Leftrightarrow$" src="form_18.png"/> ( <img class="formulaInl" alt="$\exists$" src="form_21.png"/> k:<span class="paramname">nat</span>) <a href="axiomas.html#arbolK">arbolK</a>(p,k) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <a href="axiomas.html#arbolK">arbolK</a>(p,k+1) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(<a href="axiomas.html#arbolK">arbolK</a>(p,k))</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>arbolK</dt><dd><p class="startdd">Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es apuntada por p.</p>
+<p><span id="arbolK">arbolK</span>: <span class="paramname">puntero(Node)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">nat</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">ab(puntero(Node))</span> <br />
+arbolK(p,k) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
  <b>if</b> p = nullptr <b>then</b> <br />
  nil <br />
  <b>else</b> <br />
-<b>if</b> k = 0 <b>then</b> ab(nil,p,nil) <b>else</b> ab(\árbolK(p-&gt;child[0],k-1),p,\árbolK(p-&gt;child[1],k-1)) <b>fi</b> <br />
+<b>if</b> k = 0 <b>then</b> ab(nil,p,nil) <b>else</b> ab(<a href="axiomas.html#arbolK">arbolK</a>(p-&gt;child[0],k-1),p,<a href="axiomas.html#arbolK">arbolK</a>(p-&gt;child[1],k-1)) <b>fi</b> <br />
  <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
 <dl class="section user"><dt>sinRepetidosAB</dt><dd><p class="startdd">Dice si un árbol binario tiene o no elementos repetidos.</p>
 <p><span id="sinRepetidosAB">sinRepetidosAB</span>: <span class="paramname">ab( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
-sinRepetidosAB(a) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
-<b>if</b> a = nil <b>then</b> <br />
-true <br />
-<b>else</b> <br />
- <img class="formulaInl" alt="$\_linebr eg$" src="form_22.png"/> (á?(raíz(a),izq(a)) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> á?(raíz(a),der(a))) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(izq(a)) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(der(a)) <br />
- <b>fi</b> </p>
+sinRepetidosAB(a) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> a = nil <b>then</b> true <b>else</b> <img class="formulaInl" alt="$\_linebr eg$" src="form_22.png"/> (<a href="axiomas.html#perteneceAB">perteneceAB</a>(raíz(a),izq(a)) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> <a href="axiomas.html#perteneceAB">perteneceAB</a>(raíz(a),der(a))) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(izq(a)) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#sinRepetidosAB">sinRepetidosAB</a>(der(a)) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
-<dl class="section user"><dt>está?</dt><dd><p class="startdd">Dice si un elemento está o no en un árbol binario.</p>
-<p><span id="está?">está?</span>: <span class="paramname"> <img class="formulaInl" alt="$\alpha$" src="form_5.png"/></span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">ab( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> está?(e,a) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
-<b>if</b> a = nil <b>then</b> <br />
-false <br />
-<b>else</b> <br />
-raíz(a) = e <img class="formulaInl" alt="$\lor$" src="form_23.png"/> á?(e,izq(a)) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> á?(e,der(a)) <br />
- <b>fi</b> </p>
+<dl class="section user"><dt>perteneceAB</dt><dd><p class="startdd">Dice si un elemento está o no en un árbol binario.</p>
+<p><span id="perteneceAB">perteneceAB</span>: <span class="paramname"> <img class="formulaInl" alt="$\alpha$" src="form_5.png"/></span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">ab( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+perteneceAB(e,a) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> a = nil <b>then</b> false <b>else</b> raíz(a) = e <img class="formulaInl" alt="$\lor$" src="form_23.png"/> <a href="axiomas.html#perteneceAB">perteneceAB</a>(e,izq(a)) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> <a href="axiomas.html#perteneceAB">perteneceAB</a>(e,der(a)) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
 <dl class="section user"><dt>esABBDicc</dt><dd><p class="startdd">Dice si el árbol binario que tiene a p como raíz es un ABB sin claves repetidas. Para asegurar esto último, las funciones auxiliares <a href="axiomas.html#todosMenores">todosMenores</a> y <a href="axiomas.html#todosMayores">todosMayores</a> hacen comparaciones <em>estrictas</em>.</p>
-<p><span id="esABBDicc">esABBDicc</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
-esABBDicc(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
-<b>if</b> p = nullptr <b>then</b> <br />
-true <br />
-<b>else</b> <br />
-<a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[0],p-&gt;value.first) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[1],p-&gt;value.first) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esABBDicc">esABBDicc</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esABBDicc">esABBDicc</a>(p-&gt;child[1]) <br />
- <b>fi</b> </p>
+<p><span id="esABBDicc">esABBDicc</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+esABBDicc(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> true <b>else</b> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[0],p-&gt;value.first) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[1],p-&gt;value.first) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esABBDicc">esABBDicc</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esABBDicc">esABBDicc</a>(p-&gt;child[1]) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
-<dl class="section user"><dt>todosMenores</dt><dd><p class="startdd">Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente menores a e.</p>
-<p><span id="todosMenores">todosMenores</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">Key</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
-todosMenores(p,e) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
-<b>if</b> p = nullptr <b>then</b> <br />
-true <br />
-<b>else</b> <br />
-p-&gt;value.first <img class="formulaInl" alt="$&lt;$" src="form_0.png"/> e <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[0],e) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[1],e) <br />
- <b>fi</b> </p>
+<dl class="section user"><dt>todosMenores</dt><dd><p class="startdd">Dice si todas las claves del árbol binario a cuya raíz apunta p son estrictamentente menores a e.</p>
+<p><span id="todosMenores">todosMenores</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">Key</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+todosMenores(p,e) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> true <b>else</b> p-&gt;value.first <img class="formulaInl" alt="$&lt;$" src="form_0.png"/> e <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[0],e) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMenores">todosMenores</a>(p-&gt;child[1],e) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
-<dl class="section user"><dt>todosMayores</dt><dd><p class="startdd">Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente mayores a e.</p>
-<p class="enddd"><span id="todosMayores">todosMayores</span>: <span class="paramname">puntero(nodo)</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">Key</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
-todosMayores(p,e) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <br />
-<b>if</b> p = nullptr <b>then</b> <br />
-true <br />
-<b>else</b> <br />
-p-&gt;value.first <img class="formulaInl" alt="$&gt;$" src="form_24.png"/> e <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[0],e) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[1],e) <br />
- <b>fi</b> </p>
+<dl class="section user"><dt>todosMayores</dt><dd><p class="startdd">Dice si todas las claves del árbol binario a cuya raíz apunta p son estrictamentente mayores a e.</p>
+<p><span id="todosMayores">todosMayores</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">Key</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+todosMayores(p,e) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> true <b>else</b> p-&gt;value.first <img class="formulaInl" alt="$&gt;$" src="form_24.png"/> e <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[0],e) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#todosMayores">todosMayores</a>(p-&gt;child[1],e) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>esRBTree</dt><dd><p class="startdd">Dice si el árbol binario a cuya raíz apunta p cumple el invariante de red-black tree (adaptado a nuestra implementación con hojas nullptr): todos los nodos son o rojos o negros, la raíz es negra, todos los nodos rojos tienen sólo hijos negros y todas las ramas desde cualquier nodo interno tienen la misma cantidad de nodos negros.</p>
+<p><span id="esRBTree">esRBTree</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+<a href="axiomas.html#esRBTree">esRBTree</a>(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> p = nullptr <img class="formulaInl" alt="$\lor_{\rm L}$" src="form_25.png"/> (<a href="axiomas.html#coloresValidos">coloresValidos</a>(p) <img class="formulaInl" alt="$\land$" src="form_14.png"/> p-&gt;color = Black <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#mismaCantNegros">mismaCantNegros</a>(p) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#rojoImplicaHijosNegros">rojoImplicaHijosNegros</a>(p) )</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>coloresValidos</dt><dd><p class="startdd">Dice si el árbol binario a cuya raíz apunta p sólo tiene nodos negros y rojos.</p>
+<p><span id="coloresValidos">coloresValidos</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+coloresValidos(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> true <b>else</b> p-&gt;color <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> Header <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#coloresValidos">coloresValidos</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#coloresValidos">coloresValidos</a>(p-&gt;child[1]) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>mismaCantNegros</dt><dd><p class="startdd">Dice si todas las ramas que salen desde cualquier nodo del árbol binario a cuya raíz apunta tienen la misma cantidad de nodos negros. Observar que, como estamos pidiendo que los hijos de p cumplan este axioma, alcanza con verificar que la cantidad de nodos negros de una rama (en particular la extrema izquierda) es la misma para los dos hijos, y de esa forma aseguramos que se cumple recursivamente mismaCantNegros.</p>
+<p><span id="mismaCantNegros">mismaCantNegros</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+mismaCantNegros(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> p = nullptr <img class="formulaInl" alt="$\lor_{\rm L}$" src="form_25.png"/> ( <a href="axiomas.html#cantNegros">cantNegros</a>(p-&gt;child[0]) = <a href="axiomas.html#cantNegros">cantNegros</a>(p-&gt;child[1]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#mismaCantNegros">mismaCantNegros</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#mismaCantNegros">mismaCantNegros</a>(p-&gt;child[1]) )</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>cantNegros</dt><dd><p class="startdd">Devuelve la cantidad de nodos negros de la rama extrema izquierda del árbol binario a cuya raíz apunta p. Por lo explicado anteriormente, esta función sirve para computar mismaCantNegros.</p>
+<p><span id="cantNegros">cantNegros</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">nat</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+cantNegros(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> 0 <b>else</b> <a href="axiomas.html#cantNegros">cantNegros</a>(p-&gt;child[0]) <img class="formulaInl" alt="$+$" src="form_20.png"/> (<b>if</b> p-&gt;color = Black <b>then</b> 1 <b>else</b> 0 <b>fi</b> ) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>rojoImplicaHijosNegros</dt><dd><p class="startdd">Dice si todos los nodos rojos del árbol binario a cuya raíz apunta p tienen únicamente hijos negros.</p>
+<p><span id="rojoImplicaHijosNegros">rojoImplicaHijosNegros</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+rojoImplicaHijosNegros(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> true <b>else</b> p-&gt;color = Red <img class="formulaInl" alt="$\Rightarrow_{\rm L}$" src="form_27.png"/> ( <a href="axiomas.html#noEsRojo">noEsRojo</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#noEsRojo">noEsRojo</a>(p-&gt;child[1]) ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#rojoImplicaHijosNegros">rojoImplicaHijosNegros</a>(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#rojoImplicaHijosNegros">rojoImplicaHijosNegros</a>(p-&gt;child[1]) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>noEsRojo</dt><dd><p class="startdd">Autoexplicativo.</p>
+<p><span id="noEsRojo">noEsRojo</span>: <span class="paramname">puntero(Node)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+noEsRojo(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> p <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> nullptr <img class="formulaInl" alt="$\Rightarrow_{\rm L}$" src="form_27.png"/> p-&gt;color <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> Red</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>familiaCorrecta</dt><dd><p class="startdd">Función auxiliar de repMap para verificar si el padre de la cabecera es efectivamente la raíz (y viceversa), si el hijo izquierdo de la cabecera es el menor elemento del árbol y si el hijo derecho de la cabecera es el mayor elemento del árbol.</p>
+<p><span id="familiaCorrecta">familiaCorrecta</span>: <span class="paramname">nodo</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {p <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> nullptr} <br />
+familiaCorrecta(n,p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> n.child[0] = <a href="axiomas.html#getDMost">getDMost</a>(p,0) <img class="formulaInl" alt="$\land$" src="form_14.png"/> n.child[1] = <a href="axiomas.html#getDMost">getDMost</a>(p,1) <img class="formulaInl" alt="$\land$" src="form_14.png"/> n.parent = p <img class="formulaInl" alt="$\land$" src="form_14.png"/> p-&gt;parent = n</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>getDMost</dt><dd><p class="startdd">Si d es 0, devuelve el nodo de extrema izquierda del árbol binario a cuya raíz apunta p; si es 1, devuelve el de extrema derecha.</p>
+<p><span id="getDMost">getDMost</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">nat</span> d <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">puntero(Node)</span> {d <img class="formulaInl" alt="$\leq$" src="form_28.png"/> 1 <img class="formulaInl" alt="$\land$" src="form_14.png"/> p <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> nullptr <img class="formulaInl" alt="$\land$" src="form_14.png"/> <a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+getDMost(p,d) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p-&gt;child[d] = nullptr <b>then</b> p <b>else</b> <a href="axiomas.html#getDMost">getDMost</a>(p-&gt;child[d],d) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>parentCorrecto</dt><dd><p class="startdd">Dice si todos los nodos del árbol binario cuya raíz es apuntada por p tienen como padre al nodo que los tiene como hijos.</p>
+<p><span id="parentCorrecto">parentCorrecto</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} parentCorrecto(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> true <b>else</b> (p-&gt;child[0] <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> nullptr <img class="formulaInl" alt="$\Rightarrow_{\rm L}$" src="form_27.png"/> p-&gt;child[0]-&gt;parent = p) <img class="formulaInl" alt="$\land$" src="form_14.png"/> (p-&gt;child[1] <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> nullptr <img class="formulaInl" alt="$\Rightarrow_{\rm L}$" src="form_27.png"/> p-&gt;child[1]-&gt;parent = p) <img class="formulaInl" alt="$\land$" src="form_14.png"/> parentCorrecto(p-&gt;child[0]) <img class="formulaInl" alt="$\land$" src="form_14.png"/> parentCorrecto(p-&gt;child[0]) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>cantNodos</dt><dd><p class="startdd">Devuelve la cantidad total de nodos del árbol binario a cuya raíz apunta p.</p>
+<p><span id="cantNodos">cantNodos</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">nat</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+cantNodos(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> 0 <b>else</b> suc(<a href="axiomas.html#cantNodos">cantNodos</a>(p-&gt;child[0]) + <a href="axiomas.html#cantNodos">cantNodos</a>(p-&gt;child[1])) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>perteneceClaveABB</dt><dd><p class="startdd">Dice si la clave c pertenece al árbol binario cuya raíz es apuntada por p.</p>
+<p><span id="perteneceClaveABB">perteneceClaveABB</span>: <span class="paramname">Key</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> {<a href="axiomas.html#esArbol">esArbol</a>(p)} <br />
+perteneceClaveABB(c,p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p = nullptr <b>then</b> false <b>else</b> p-&gt;value.first = c <img class="formulaInl" alt="$\lor$" src="form_23.png"/> <a href="axiomas.html#perteneceClaveABB">perteneceClaveABB</a>(c,p-&gt;child[0]) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> <a href="axiomas.html#perteneceClaveABB">perteneceClaveABB</a>(c,p-&gt;child[1]) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>significadoABB</dt><dd><p class="startdd">Devuelve el significado de la clave c en el árbol binario cuya raíz es apuntada por p. Si hay dos tuplas en el árbol que tienen a c como primer componente, devuelve la que esté más a la izquierda, pero en este contexto sólo la llamaremos con árboles que son diccionarios y por lo tanto no tienen repetidos, así que esto no hace diferencia.</p>
+<p><span id="significadoABB">significadoABB</span>: <span class="paramname">Key</span> <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">Meaning</span> {<a href="axiomas.html#esArbol">esArbol</a>(p) <img class="formulaInl" alt="$\land_{\rm L}$" src="form_17.png"/> <a href="axiomas.html#perteneceClaveABB">perteneceClaveABB</a>(c,p)} <br />
+significadoABB(c,p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p-&gt;value.first = c <b>then</b> p-&gt;value.second <b>else</b> ( <b>if</b> <a href="axiomas.html#perteneceClaveABB">perteneceClaveABB</a>(c,p-&gt;child[0]) <b>then</b> <a href="axiomas.html#significadoABB">significadoABB</a>(c,p-&gt;child[0]) <b>else</b> <a href="axiomas.html#significadoABB">significadoABB</a>(c,p-&gt;child[1]) <b>fi</b> ) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>elHeaderEstaPiola</dt><dd><p class="startdd">Función auxiliar para verificar la correctitud de  cuando el árbol representado es vacío. Responde a la estructura dada por la cátedra, en la que el constructor sin parámetros de map genera un árbol cuya cabecera tiene como hijo izquierdo y derecho a sí misma.</p>
+<p><span id="elHeaderEstaPiola">elHeaderEstaPiola</span>: <span class="paramname">map</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+elHeaderEstaPiola(m) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> m.header.parent = nullptr <img class="formulaInl" alt="$\land$" src="form_14.png"/> m.header.child[0] = &amp;(m.header) <img class="formulaInl" alt="$\land$" src="form_14.png"/> m.header.child[0] = &amp;(m.header) <img class="formulaInl" alt="$\land$" src="form_14.png"/> m.count = 0</p>
+<p class="enddd"></p>
+</dd></dl>
+<dl class="section user"><dt>parentK</dt><dd><p class="startdd">Función similar a <a href="axiomas.html#arbolK">arbolK</a>, pero en vez de devolver los primeros k niveles de un árbol, devuelve el resultado de subir k veces por el nodo apuntado por p. Si se llega a un nodo que tiene como padre a nullptr, devuelve un puntero al último nodo que tenía como padre a un puntero no nulo.</p>
+<p class="enddd"><span id="parentK">parentK</span>: <span class="paramname">puntero(Node)</span> p <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">nat</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">puntero(Node)</span> {p <img class="formulaInl" alt="$\_linebr eq$" src="form_26.png"/> nullptr} <br />
+parentK(p,k) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p-&gt;parent = nullptr <b>then</b> p <b>else</b> (<b>if</b> k = 0 <b>then</b> p <b>else</b> parentK(p-&gt;parent,k-1) <b>fi</b> ) <b>fi</b> </p>
 </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado el Lunes, 29 de Mayo de 2017 15:08:42 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Martes, 30 de Mayo de 2017 01:57:41 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

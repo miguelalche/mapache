@@ -58,7 +58,7 @@ bool \hyperlink{classaed2_1_1map_1_1iterator_a748cdf8c35707d1c2e9ef8ef9d862d37_a
 
 \end{DoxyParagraph}
 rep\+\_\+iter\+: puntero(\+Node) $\to$ bool~\newline
-rep\+\_\+iter(n) $\equiv$ completar
+rep\+\_\+iter(n) $\equiv$ true $\Leftrightarrow$ n = nullptr $\lor_{\rm L}$ ( ( $\exists$ k\+:nat) \href{axiomas.html#parentK}{\tt parentK}(n,k) $\_linebr eq$ nullptr $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k).color = Header $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k) = \href{axiomas.html#parentK}{\tt parentK}(n,k+2) $\land$ \href{axiomas.html#esArbol}{\tt es\+Arbol}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esRBTree}{\tt es\+R\+B\+Tree}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(p,\href{axiomas.html#arbolK}{\tt arbolK}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1),k+1)) $\land$ \href{axiomas.html#parentCorrecto}{\tt parent\+Correcto}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#familiaCorrecta}{\tt familia\+Correcta}($\ast$\href{axiomas.html#parentK}{\tt parentK}(n,k),\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) )
 
 \begin{DoxyParagraph}{Función de abstracción}
 
@@ -109,7 +109,7 @@ En caso de usar los iteradores como punteros, se desaconseja el uso de la posici
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02137}{2137} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02282}{2282} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -127,7 +127,7 @@ Categoria del iterador\+: bidireccional. Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02144}{2144} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02289}{2289} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a4e1d954ef5c6a64bbcd881854f039a16_a4e1d954ef5c6a64bbcd881854f039a16}\label{classaed2_1_1map_1_1iterator_a4e1d954ef5c6a64bbcd881854f039a16_a4e1d954ef5c6a64bbcd881854f039a16}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!value\+\_\+type@{value\+\_\+type}}
@@ -142,7 +142,7 @@ Tipo de los valores recorridos. Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02146}{2146} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02291}{2291} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_ac19788914a3110897e44c53f1318f6af_ac19788914a3110897e44c53f1318f6af}\label{classaed2_1_1map_1_1iterator_ac19788914a3110897e44c53f1318f6af_ac19788914a3110897e44c53f1318f6af}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!reference@{reference}}
@@ -157,7 +157,7 @@ Tipo de la referencia (resultado de operator$\ast$). Requerido por estándar C++
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02149}{2149} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02294}{2294} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a52ea7bdbf1dc6b252aec76633564bdf5_a52ea7bdbf1dc6b252aec76633564bdf5}\label{classaed2_1_1map_1_1iterator_a52ea7bdbf1dc6b252aec76633564bdf5_a52ea7bdbf1dc6b252aec76633564bdf5}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!pointer@{pointer}}
@@ -172,7 +172,7 @@ Tipo del puntero (resultado de operator-\/$>$). Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02152}{2152} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02297}{2297} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a803083681db1f62aed5138194abc1f06_a803083681db1f62aed5138194abc1f06}\label{classaed2_1_1map_1_1iterator_a803083681db1f62aed5138194abc1f06_a803083681db1f62aed5138194abc1f06}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!difference\+\_\+type@{difference\+\_\+type}}
@@ -187,7 +187,7 @@ Resultado de la diferencia entre dos punteros. Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02155}{2155} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02300}{2300} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -233,7 +233,7 @@ El iterador {\bfseries res} no está asociado a ningún diccionario.
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02187}{2187} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02332}{2332} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_ab0ea21abcb32b6d5a72cf341b9029838_ab0ea21abcb32b6d5a72cf341b9029838}\label{classaed2_1_1map_1_1iterator_ab0ea21abcb32b6d5a72cf341b9029838_ab0ea21abcb32b6d5a72cf341b9029838}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!iterator@{iterator}}
@@ -278,7 +278,7 @@ Este constructor permite castear punteros a nodos en iteradores.
 \end{DoxyNote}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02363}{2363} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02508}{2508} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -313,7 +313,7 @@ completar
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02200}{2200} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02345}{2345} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a712522d62f461c1eb9b02ecf248bae8c_a712522d62f461c1eb9b02ecf248bae8c}\label{classaed2_1_1map_1_1iterator_a712522d62f461c1eb9b02ecf248bae8c_a712522d62f461c1eb9b02ecf248bae8c}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator-\/$>$@{operator-\/$>$}}
@@ -350,7 +350,7 @@ No hay forma de expresar, en el lenguaje de T\+A\+Ds, que un puntero apunta a la
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02218}{2218} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02363}{2363} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a7c44de7f0508186e135ddbcfe782fec5_a7c44de7f0508186e135ddbcfe782fec5}\label{classaed2_1_1map_1_1iterator_a7c44de7f0508186e135ddbcfe782fec5_a7c44de7f0508186e135ddbcfe782fec5}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator++@{operator++}}
@@ -386,7 +386,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02235}{2235} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02380}{2380} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_af4fe5565eb478cfccd254b2ef230b974_af4fe5565eb478cfccd254b2ef230b974}\label{classaed2_1_1map_1_1iterator_af4fe5565eb478cfccd254b2ef230b974_af4fe5565eb478cfccd254b2ef230b974}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator++@{operator++}}
@@ -424,7 +424,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02265}{2265} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02410}{2410} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_ae7f70f71545d2a9de17b65edaaec748a_ae7f70f71545d2a9de17b65edaaec748a}\label{classaed2_1_1map_1_1iterator_ae7f70f71545d2a9de17b65edaaec748a_ae7f70f71545d2a9de17b65edaaec748a}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator-\/-\/@{operator-\/-\/}}
@@ -460,7 +460,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02286}{2286} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02431}{2431} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_add45e9ddbb8eeda99326cdb9ac9dd225_add45e9ddbb8eeda99326cdb9ac9dd225}\label{classaed2_1_1map_1_1iterator_add45e9ddbb8eeda99326cdb9ac9dd225_add45e9ddbb8eeda99326cdb9ac9dd225}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator-\/-\/@{operator-\/-\/}}
@@ -496,7 +496,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02306}{2306} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02451}{2451} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a34f6622845af93ca42f1be8516eeafa2_a34f6622845af93ca42f1be8516eeafa2}\label{classaed2_1_1map_1_1iterator_a34f6622845af93ca42f1be8516eeafa2_a34f6622845af93ca42f1be8516eeafa2}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator==@{operator==}}
@@ -538,7 +538,7 @@ No es necesario que {\bfseries $\ast$this} y {\bfseries other} estén asociados 
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02329}{2329} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02474}{2474} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_a748cdf8c35707d1c2e9ef8ef9d862d37_a748cdf8c35707d1c2e9ef8ef9d862d37}\label{classaed2_1_1map_1_1iterator_a748cdf8c35707d1c2e9ef8ef9d862d37_a748cdf8c35707d1c2e9ef8ef9d862d37}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator"!=@{operator"!=}}
@@ -553,7 +553,7 @@ idem !$\vert$operator==
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02333}{2333} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02478}{2478} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \mbox{\Hypertarget{classaed2_1_1map_1_1iterator_af609b04effc1c7ff9ec33b40c31bdc95_af609b04effc1c7ff9ec33b40c31bdc95}\label{classaed2_1_1map_1_1iterator_af609b04effc1c7ff9ec33b40c31bdc95_af609b04effc1c7ff9ec33b40c31bdc95}} 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator Node $\ast$@{operator Node $\ast$}}
@@ -578,7 +578,7 @@ Esta función se brinda como ayuda para el TP
 \end{DoxyRemark}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02376}{2376} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02521}{2521} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -596,7 +596,7 @@ Puntero al nodo actual. Ver Estructura de Representación.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02405}{2405} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02555}{2555} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 

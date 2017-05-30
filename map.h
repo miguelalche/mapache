@@ -818,48 +818,55 @@
  * \primeros(fin(s)) \FI
  * \endparblock
  *
- * \par esÁrbol?
+ * \par raiz
+ * \parblock
+ * Devuelve un puntero a la raíz del árbol representado por m.
+ *
+ * \axioma{raiz}: \T{map} \TO \T{puntero(nodo)} \n
+ * raiz(m) \EQUIV m.header->parent
+ *
+ * \par esArbol
  * \parblock
  * Proposición que dice si una estructura representada con punteros a nodo
  * se corresponde efectivamente con un árbol binario finito. La primera proposición
  * asegura que el árbol termina, mientras que la segunda afirma que ningún nodo
  * es hijo de dos nodos distintos (es decir, no hay ciclos).
  *
- * \axioma{esÁrbol?}: \T{puntero(nodo)} \TO \T{bool} \n
- * esÁrbol?(p) \EQUIV true \IFF (\EXISTS k:\T{nat}) \árbolK(p,k) \IGOBS árbolK(p,k+1)
- * \LAND \sinRepetidosAB(\árbolK(p,k))
+ * \axioma{esArbol}: \T{puntero(Node)} \TO \T{bool} \n
+ * esArbol(p) \EQUIV true \IFF (\EXISTS k:\T{nat}) \arbolK(p,k) \IGOBS \arbolK(p,k+1)
+ * \LAND \sinRepetidosAB(\arbolK(p,k))
  *
- * \par árbolK
+ * \par arbolK
  * \parblock
- * Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.
+ * Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es apuntada por p.
  *
- * \axioma{árbolK}: \T{puntero(nodo)} \TIMES \T{nat} \TO \T{ab(puntero(nodo))} \n
- * árbolK(p,k) \EQUIV \n \IF p = nullptr \THEN \n  nil \n \ELSE \n
+ * \axioma{arbolK}: \T{puntero(Node)} \TIMES \T{nat} \TO \T{ab(puntero(Node))} \n
+ * arbolK(p,k) \EQUIV \n \IF p = nullptr \THEN \n  nil \n \ELSE \n
  * \IF k = 0 \THEN ab(nil,p,nil) \ELSE
- * ab(\árbolK(p->child[0],k-1),p,\árbolK(p->child[1],k-1)) \FI \n \FI
+ * ab(\arbolK(p->child[0],k-1),p,\arbolK(p->child[1],k-1)) \FI \n \FI
  *
  * \par sinRepetidosAB
  * \parblock
  * Dice si un árbol binario tiene o no elementos repetidos.
  *
  * \axioma{sinRepetidosAB}: \T{ab(\ALPHA)} \TO \T{bool} \n
- * sinRepetidosAB(a) \EQUIV \n
- * \IF a = nil \THEN \n
- * true \n
- * \ELSE \n
- * \LNOT (\está?(raíz(a),izq(a)) \LOR \está?(raíz(a),der(a))) \LAND
- * \sinRepetidosAB(izq(a)) \LAND \sinRepetidosAB(der(a)) \n \FI
+ * sinRepetidosAB(a) \EQUIV
+ * \IF a = nil \THEN
+ * true
+ * \ELSE
+ * \LNOT (\perteneceAB(raíz(a),izq(a)) \LOR \perteneceAB(raíz(a),der(a))) \LAND
+ * \sinRepetidosAB(izq(a)) \LAND \sinRepetidosAB(der(a)) \FI
  *
- * \par está?
+ * \par perteneceAB
  * \parblock
  * Dice si un elemento está o no en un árbol binario.
  *
- * \axioma{está?}: \T{\ALPHA} \TIMES \T{ab(\ALPHA)} \TO \T{bool}
- * está?(e,a) \EQUIV \n
- * \IF a = nil \THEN \n
- * false \n
- * \ELSE \n
- * raíz(a) = e \LOR \está?(e,izq(a)) \LOR \está?(e,der(a)) \n \FI
+ * \axioma{perteneceAB}: \T{\ALPHA} \TIMES \T{ab(\ALPHA)} \TO \T{bool} \n
+ * perteneceAB(e,a) \EQUIV
+ * \IF a = nil \THEN
+ * false
+ * \ELSE
+ * raíz(a) = e \LOR \perteneceAB(e,izq(a)) \LOR \perteneceAB(e,der(a)) \FI
  *
  * \par esABBDicc
  * \parblock
@@ -867,40 +874,178 @@
  * claves repetidas. Para asegurar esto último, las funciones auxiliares
  * \todosMenores y \todosMayores hacen comparaciones <em>estrictas</em>.
  *
- * \axioma{esABBDicc}: \T{puntero(nodo)} \TO \T{bool} \n
- * esABBDicc(p) \EQUIV \n
- * \IF p = nullptr \THEN \n
- * true \n
- * \ELSE \n
+ * \axioma{esABBDicc}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * esABBDicc(p) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
  * \todosMenores(p->child[0],p->value.first) \LAND
  * \todosMayores(p->child[1],p->value.first) \LAND
- * \esABBDicc(p->child[0]) \LAND \esABBDicc(p->child[1]) \n \FI
+ * \esABBDicc(p->child[0]) \LAND \esABBDicc(p->child[1])  \FI
  *
  * \par todosMenores
  * \parblock
- * Dice si todas las claves del árbol binario que tiene como raíz a p
+ * Dice si todas las claves del árbol binario a cuya raíz apunta p
  * son estrictamentente menores a e.
  *
- * \axioma{todosMenores}: \T{puntero(nodo)} \TIMES \T{Key} \TO \T{bool} \n
- * todosMenores(p,e) \EQUIV \n
- * \IF p = nullptr \THEN \n
- * true \n
- * \ELSE \n
+ * \axioma{todosMenores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
+ * todosMenores(p,e) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
  * p->value.first \LT e \LAND \todosMenores(p->child[0],e) \LAND
- * \todosMenores(p->child[1],e) \n \FI
+ * \todosMenores(p->child[1],e) \FI
  *
  * \par todosMayores
  * \parblock
- * Dice si todas las claves del árbol binario que tiene como raíz a p
+ * Dice si todas las claves del árbol binario a cuya raíz apunta p
  * son estrictamentente mayores a e.
  *
- * \axioma{todosMayores}: \T{puntero(nodo)} \TIMES \T{Key} \TO \T{bool} \n
- * todosMayores(p,e) \EQUIV \n
- * \IF p = nullptr \THEN \n
- * true \n
- * \ELSE \n
+ * \axioma{todosMayores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
+ * todosMayores(p,e) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
  * p->value.first \GT e \LAND \todosMayores(p->child[0],e) \LAND
- * \todosMayores(p->child[1],e) \n \FI
+ * \todosMayores(p->child[1],e)  \FI
+ *
+ * \par esRBTree
+ * \parblock
+ * Dice si el árbol binario a cuya raíz apunta p cumple el invariante
+ * de red-black tree (adaptado a nuestra implementación con hojas nullptr):
+ * todos los nodos son o rojos o negros, la raíz es negra, todos los nodos
+ * rojos tienen sólo hijos negros y todas las ramas desde cualquier nodo
+ * interno tienen la misma cantidad de nodos negros.
+ *
+ * \axioma{esRBTree}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * \esRBTree(p) \EQUIV p = nullptr \LOR_L (\coloresValidos(p) \LAND
+ * p->color = Black \LAND \mismaCantNegros(p) \LAND \rojoImplicaHijosNegros(p) )
+ *
+ * \par coloresValidos
+ * \parblock
+ * Dice si el árbol binario a cuya raíz apunta p sólo tiene nodos
+ * negros y rojos.
+ *
+ * \axioma{coloresValidos}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * coloresValidos(p) \EQUIV \IF p = nullptr \THEN true \ELSE
+ * p->color \NEQ Header \LAND \coloresValidos(p->child[0]) \LAND \coloresValidos(p->child[1]) \FI
+ *
+ * \par mismaCantNegros
+ * \parblock
+ * Dice si todas las ramas que salen desde cualquier nodo del árbol binario
+ * a cuya raíz apunta tienen la misma cantidad de nodos negros. Observar
+ * que, como estamos pidiendo que los hijos de p cumplan este axioma, alcanza
+ * con verificar que la cantidad de nodos negros de una rama (en
+ * particular la extrema izquierda) es la misma para los dos hijos, y de esa
+ * forma aseguramos que se cumple recursivamente mismaCantNegros.
+ *
+ * \axioma{mismaCantNegros}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * mismaCantNegros(p) \EQUIV p = nullptr \LOR_L ( \cantNegros(p->child[0]) = \cantNegros(p->child[1])
+ * \LAND \mismaCantNegros(p->child[0]) \LAND \mismaCantNegros(p->child[1]) )
+ *
+ * \par cantNegros
+ * \parblock
+ * Devuelve la cantidad de nodos negros de la rama extrema izquierda del
+ * árbol binario a cuya raíz apunta p. Por lo explicado anteriormente,
+ * esta función sirve para computar mismaCantNegros.
+ *
+ * \axioma{cantNegros}: \T{puntero(Node)} p \TO \T{nat} {\esArbol(p)} \n
+ * cantNegros(p) \EQUIV \IF p = nullptr \THEN 0 \ELSE \cantNegros(p->child[0])
+ * \f$+\f$ (\IF p->color = Black \THEN 1 \ELSE 0 \FI ) \FI
+ *
+ * \par rojoImplicaHijosNegros
+ * \parblock
+ * Dice si todos los nodos rojos del árbol binario a cuya raíz apunta p
+ * tienen únicamente hijos negros.
+ *
+ * \axioma{rojoImplicaHijosNegros}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * rojoImplicaHijosNegros(p) \EQUIV \IF p = nullptr \THEN true \ELSE
+ * p->color = Red \IMPLIES_L ( \noEsRojo(p->child[0]) \LAND \noEsRojo(p->child[1]) )
+ * \LAND \rojoImplicaHijosNegros(p->child[0]) \LAND
+ * \rojoImplicaHijosNegros(p->child[1]) \FI
+ *
+ * \par noEsRojo
+ * \parblock
+ * Autoexplicativo.
+ *
+ * \axioma{noEsRojo}: \T{puntero(Node)} \TO \T{bool} \n
+ * noEsRojo(p) \EQUIV p \NEQ nullptr \IMPLIES_L p->color \NEQ Red
+ *
+ * \par familiaCorrecta
+ * \parblock
+ * Función auxiliar de repMap para verificar si el padre de la cabecera es efectivamente la raíz
+ * (y viceversa), si el hijo izquierdo de la cabecera es el menor elemento del árbol y si el
+ * hijo derecho de la cabecera es el mayor elemento del árbol.
+ *
+ * \axioma{familiaCorrecta}: \T{nodo} \TIMES \T{puntero(Node)} p \TO \T{bool} {p \NEQ nullptr} \n
+ * familiaCorrecta(n,p) \EQUIV n.child[0] = \getDMost(p,0) \LAND n.child[1] = \getDMost(p,1)
+ * \LAND n.parent = p \LAND p->parent = n
+ *
+ * \par getDMost
+ * \parblock
+ * Si d es 0, devuelve el nodo de extrema izquierda del árbol binario a cuya raíz apunta
+ * p; si es 1, devuelve el de extrema derecha.
+ *
+ * \axioma{getDMost}: \T{puntero(Node)} p \TIMES \T{nat} d \TO \T{puntero(Node)} {d \LEQ 1 \LAND p \NEQ nullptr \LAND \esArbol(p)} \n
+ * getDMost(p,d) \EQUIV \IF p->child[d] = nullptr \THEN p \ELSE \getDMost(p->child[d],d) \FI
+ *
+ * \par parentCorrecto
+ * \parblock
+ * Dice si todos los nodos del árbol binario cuya raíz es apuntada por p tienen como padre al nodo que los tiene
+ * como hijos.
+ *
+ * \axioma{parentCorrecto}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)}
+ * parentCorrecto(p) \EQUIV \IF p = nullptr \THEN true \ELSE (p->child[0] \NEQ nullptr
+ * \IMPLIES_L p->child[0]->parent = p) \LAND (p->child[1] \NEQ nullptr \IMPLIES_L
+ * p->child[1]->parent = p) \LAND parentCorrecto(p->child[0]) \LAND parentCorrecto(p->child[0]) \FI
+ *
+ * \par cantNodos
+ * \parblock
+ * Devuelve la cantidad total de nodos del árbol binario a cuya raíz apunta p.
+ *
+ * \axioma{cantNodos}: \T{puntero(Node)} p \TO \T{nat} {\esArbol(p)} \n
+ * cantNodos(p) \EQUIV \IF p = nullptr \THEN 0 \ELSE suc(\cantNodos(p->child[0]) + \cantNodos(p->child[1])) \FI
+ *
+ * \par perteneceClaveABB
+ * \parblock
+ * Dice si la clave c pertenece al árbol binario cuya raíz es apuntada por p.
+ *
+ * \axioma{perteneceClaveABB}: \T{Key} \TIMES \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * perteneceClaveABB(c,p) \EQUIV \IF p = nullptr \THEN false \ELSE
+ * p->value.first = c \LOR \perteneceClaveABB(c,p->child[0]) \LOR \perteneceClaveABB(c,p->child[1]) \FI
+ *
+ * \par significadoABB
+ * \parblock
+ * Devuelve el significado de la clave c en el árbol binario cuya raíz es apuntada por p.
+ * Si hay dos tuplas en el árbol que tienen a c como primer componente, devuelve la que esté
+ * más a la izquierda, pero en este contexto sólo la llamaremos con árboles que son diccionarios
+ * y por lo tanto no tienen repetidos, así que esto no hace diferencia.
+ *
+ * \axioma{significadoABB}: \T{Key} \TIMES \T{puntero(Node)} p \TO \T{Meaning} {\esArbol(p) \LAND_L \perteneceClaveABB(c,p)} \n
+ * significadoABB(c,p) \EQUIV \IF p->value.first = c \THEN p->value.second
+ * \ELSE ( \IF \perteneceClaveABB(c,p->child[0]) \THEN \significadoABB(c,p->child[0])
+ * \ELSE \significadoABB(c,p->child[1]) \FI ) \FI
+ *
+ * \par elHeaderEstaPiola
+ * \parblock
+ * Función auxiliar para verificar la correctitud de \repMap cuando el árbol representado es vacío.
+ * Responde a la estructura dada por la cátedra, en la que el constructor sin parámetros de map
+ * genera un árbol cuya cabecera tiene como hijo izquierdo y derecho a sí misma.
+ *
+ * \axioma{elHeaderEstaPiola}: \T{map} \TO \T{bool} \n
+ * elHeaderEstaPiola(m) \EQUIV m.header.parent = nullptr \LAND m.header.child[0] = &(m.header)
+ * \LAND m.header.child[0] = &(m.header) \LAND m.count = 0
+ *
+ * \par parentK
+ * \parblock
+ * Función similar a \arbolK, pero en vez de devolver los primeros k niveles de un árbol,
+ * devuelve el resultado de subir k veces por el nodo apuntado por p. Si se llega a un nodo
+ * que tiene como padre a nullptr, devuelve un puntero al último nodo que tenía como padre
+ * a un puntero no nulo.
+ *
+ * \axioma{parentK}: \T{puntero(Node)} p \TIMES \T{nat} \TO \T{puntero(Node)} {p \NEQ nullptr} \n
+ * parentK(p,k) \EQUIV \IF p->parent = nullptr \THEN p \ELSE (\IF k = 0 \THEN p \ELSE
+ * parentK(p->parent,k-1) \FI ) \FI
  */
 
 #ifndef MAP_H_
@@ -2382,7 +2527,12 @@ class map {
      * \par Invariante de representación
      *
      * rep_iter: puntero(Node) \TO bool\n
-     * rep_iter(n) \EQUIV completar
+     * rep_iter(n) \EQUIV true \IFF n = nullptr \LOR_L ( (\EXISTS k:\T{nat})
+     * \parentK(n,k) \NEQ nullptr \LAND_L \parentK(n,k).color = Header \LAND_L
+     * \parentK(n,k) = \parentK(n,k+2) \LAND \esArbol(\parentK(n,k+1)) \LAND
+     * \esABBDicc(\parentK(n,k+1)) \LAND \esRBTree(\parentK(n,k+1)) \LAND
+     * \perteneceAB(p,\arbolK(\parentK(n,k+1),k+1)) \LAND \parentCorrecto(\parentK(n,k+1))
+     * \LAND \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
      *
      * \par Función de abstracción
      *
@@ -2787,18 +2937,18 @@ class map {
    * \par Invariante de representacion
        * \parblock
        * repMap: map \TO bool\n(
-       * repMap(m) \EQUIV true \iff m.header.color \IGOBS Header \LAND ( elHeaderEstáPiola(m)
-       * \LOR_L ( esÁrbol?(raíz(m)) \LAND_L esABBDicc(raíz(m)) \LAND esRBTree(raíz(m))
-       * \LAND_L m.count \IGOBS cantNodos(raíz(m)) \LAND familiaCorrecta(m.header,raíz(m))
-       * \LAND parentCorrecto(raíz(m)) ) )
+       * repMap(m) \EQUIV true \iff m.header.color \IGOBS Header \LAND ( \elHeaderEstaPiola(m)
+       * \LOR_L ( \esArbol(\raiz(m)) \LAND_L \esABBDicc(\raiz(m)) \LAND \esRBTree(\raiz(m))
+       * \LAND_L m.count \IGOBS \cantNodos(\raiz(m)) \LAND \familiaCorrecta(m.header,\raiz(m))
+       * \LAND \parentCorrecto(\raiz(m)) ) )
        * \endparblock
        *
     * \par Función de abstracción
        * \parblock
        * abs: map m \TO dicc(\T{Key}, \T{Meaning})  {repMap(n)}\n
        * (\FORALL m:map) Abs(m) \EQUIV d:dicc(\T{Key}, \T{Meaning}) | \n (\FORALL c:\T{Key})
-       * def?(c,d) \IFF estáClave?(c,raíz(m)) \LAND_L (def?(c,d) \IMPLIES_L obtener(c,d)
-       * \IGOBS significado(c,raíz(m)))
+       * def?(c,d) \IFF \perteneceClaveABB(c,\raiz(m)) \LAND_L (def?(c,d) \IMPLIES_L obtener(c,d)
+       * \IGOBS \significadoABB(c,\raiz(m)))
        * \endparblock
    */
   //////////////////////////////////////////////////////////////////////////////////////////////////////

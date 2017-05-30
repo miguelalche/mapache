@@ -40,23 +40,31 @@ primeros(s) $\equiv$ {\bfseries if} vacia?(s) {\bfseries then} $<$$>$ {\bfseries
 \end{DoxyParagraph}
 
 
-\begin{DoxyParagraph}{esÁrbol?}
-Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).
+\begin{DoxyParagraph}{raiz}
+Devuelve un puntero a la raíz del árbol representado por m.
 
-esÁrbol?\+: puntero(nodo) $\to$ bool ~\newline
-esÁrbol?(p) $\equiv$ true $\Leftrightarrow$ ( $\exists$ k\+:nat) \textbackslash{}árbol\+K(p,k) $=_{\rm obs}$ árbolK(p,k+1) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(\textbackslash{}árbol\+K(p,k))
+raiz\+: map $\to$ puntero(nodo) ~\newline
+raiz(m) $\equiv$ m.\+header-\/$>$parent
 
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{árbolK}
-Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.
+\begin{DoxyParagraph}{es\+Arbol}
+Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).
 
-árbolK\+: puntero(nodo) $\times$ nat $\to$ ab(puntero(nodo)) ~\newline
-árbol\+K(p,k) $\equiv$ ~\newline
+es\+Arbol\+: puntero(\+Node) $\to$ bool ~\newline
+es\+Arbol(p) $\equiv$ true $\Leftrightarrow$ ( $\exists$ k\+:nat) \href{axiomas.html#arbolK}{\tt arbolK}(p,k) $=_{\rm obs}$ \href{axiomas.html#arbolK}{\tt arbolK}(p,k+1) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(\href{axiomas.html#arbolK}{\tt arbolK}(p,k))
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{arbolK}
+Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es apuntada por p.
+
+arbolK\+: puntero(\+Node) $\times$ nat $\to$ ab(puntero(\+Node)) ~\newline
+arbol\+K(p,k) $\equiv$ ~\newline
  {\bfseries if} p = nullptr {\bfseries then} ~\newline
  nil ~\newline
  {\bfseries else} ~\newline
-{\bfseries if} k = 0 {\bfseries then} ab(nil,p,nil) {\bfseries else} ab(\textbackslash{}árbolK(p-\/$>$child\mbox{[}0\mbox{]},k-\/1),p,\textbackslash{}árbolK(p-\/$>$child\mbox{[}1\mbox{]},k-\/1)) {\bfseries fi} ~\newline
+{\bfseries if} k = 0 {\bfseries then} ab(nil,p,nil) {\bfseries else} ab(\href{axiomas.html#arbolK}{\tt arbolK}(p-\/$>$child\mbox{[}0\mbox{]},k-\/1),p,\href{axiomas.html#arbolK}{\tt arbolK}(p-\/$>$child\mbox{[}1\mbox{]},k-\/1)) {\bfseries fi} ~\newline
  {\bfseries fi} 
 
 
@@ -65,61 +73,148 @@ Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es p.
 Dice si un árbol binario tiene o no elementos repetidos.
 
 sin\+Repetidos\+AB\+: ab( $\alpha$) $\to$ bool ~\newline
-sin\+Repetidos\+A\+B(a) $\equiv$ ~\newline
-{\bfseries if} a = nil {\bfseries then} ~\newline
-true ~\newline
-{\bfseries else} ~\newline
- $\_linebr eg$ (á?(raíz(a),izq(a)) $\lor$ á?(raíz(a),der(a))) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(izq(a)) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(der(a)) ~\newline
- {\bfseries fi} 
+sin\+Repetidos\+A\+B(a) $\equiv$ {\bfseries if} a = nil {\bfseries then} true {\bfseries else} $\_linebr eg$ (\href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(raíz(a),izq(a)) $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(raíz(a),der(a))) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(izq(a)) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\+Repetidos\+AB}(der(a)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{está?}
+\begin{DoxyParagraph}{pertenece\+AB}
 Dice si un elemento está o no en un árbol binario.
 
-está?\+:  $\alpha$ $\times$ ab( $\alpha$) $\to$ bool está?(e,a) $\equiv$ ~\newline
-{\bfseries if} a = nil {\bfseries then} ~\newline
-false ~\newline
-{\bfseries else} ~\newline
-raíz(a) = e $\lor$ á?(e,izq(a)) $\lor$ á?(e,der(a)) ~\newline
- {\bfseries fi} 
+pertenece\+AB\+:  $\alpha$ $\times$ ab( $\alpha$) $\to$ bool ~\newline
+pertenece\+A\+B(e,a) $\equiv$ {\bfseries if} a = nil {\bfseries then} false {\bfseries else} raíz(a) = e $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(e,izq(a)) $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(e,der(a)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{es\+A\+B\+B\+Dicc}
 Dice si el árbol binario que tiene a p como raíz es un A\+BB sin claves repetidas. Para asegurar esto último, las funciones auxiliares \href{axiomas.html#todosMenores}{\tt todos\+Menores} y \href{axiomas.html#todosMayores}{\tt todos\+Mayores} hacen comparaciones {\itshape estrictas}.
 
-es\+A\+B\+B\+Dicc\+: puntero(nodo) $\to$ bool ~\newline
-es\+A\+B\+B\+Dicc(p) $\equiv$ ~\newline
-{\bfseries if} p = nullptr {\bfseries then} ~\newline
-true ~\newline
-{\bfseries else} ~\newline
-\href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}0\mbox{]},p-\/$>$value.\+first) $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}1\mbox{]},p-\/$>$value.\+first) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(p-\/$>$child\mbox{[}1\mbox{]}) ~\newline
- {\bfseries fi} 
+es\+A\+B\+B\+Dicc\+: puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+es\+A\+B\+B\+Dicc(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}0\mbox{]},p-\/$>$value.\+first) $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}1\mbox{]},p-\/$>$value.\+first) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{todos\+Menores}
-Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente menores a e.
+Dice si todas las claves del árbol binario a cuya raíz apunta p son estrictamentente menores a e.
 
-todos\+Menores\+: puntero(nodo) $\times$ Key $\to$ bool ~\newline
-todos\+Menores(p,e) $\equiv$ ~\newline
-{\bfseries if} p = nullptr {\bfseries then} ~\newline
-true ~\newline
-{\bfseries else} ~\newline
-p-\/$>$value.\+first $<$ e $\land$ \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}1\mbox{]},e) ~\newline
- {\bfseries fi} 
+todos\+Menores\+: puntero(\+Node) p $\times$ Key $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+todos\+Menores(p,e) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$value.\+first $<$ e $\land$ \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMenores}{\tt todos\+Menores}(p-\/$>$child\mbox{[}1\mbox{]},e) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{todos\+Mayores}
-Dice si todas las claves del árbol binario que tiene como raíz a p son estrictamentente mayores a e.
+Dice si todas las claves del árbol binario a cuya raíz apunta p son estrictamentente mayores a e.
 
-todos\+Mayores\+: puntero(nodo) $\times$ Key $\to$ bool ~\newline
-todos\+Mayores(p,e) $\equiv$ ~\newline
-{\bfseries if} p = nullptr {\bfseries then} ~\newline
-true ~\newline
-{\bfseries else} ~\newline
-p-\/$>$value.\+first $>$ e $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}1\mbox{]},e) ~\newline
- {\bfseries fi} 
+todos\+Mayores\+: puntero(\+Node) p $\times$ Key $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+todos\+Mayores(p,e) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$value.\+first $>$ e $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMayores}{\tt todos\+Mayores}(p-\/$>$child\mbox{[}1\mbox{]},e) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{es\+R\+B\+Tree}
+Dice si el árbol binario a cuya raíz apunta p cumple el invariante de red-\/black tree (adaptado a nuestra implementación con hojas nullptr)\+: todos los nodos son o rojos o negros, la raíz es negra, todos los nodos rojos tienen sólo hijos negros y todas las ramas desde cualquier nodo interno tienen la misma cantidad de nodos negros.
+
+es\+R\+B\+Tree\+: puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+\href{axiomas.html#esRBTree}{\tt es\+R\+B\+Tree}(p) $\equiv$ p = nullptr $\lor_{\rm L}$ (\href{axiomas.html#coloresValidos}{\tt colores\+Validos}(p) $\land$ p-\/$>$color = Black $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\+Cant\+Negros}(p) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\+Implica\+Hijos\+Negros}(p) )
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{colores\+Validos}
+Dice si el árbol binario a cuya raíz apunta p sólo tiene nodos negros y rojos.
+
+colores\+Validos\+: puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+colores\+Validos(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$color $\_linebr eq$ Header $\land$ \href{axiomas.html#coloresValidos}{\tt colores\+Validos}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#coloresValidos}{\tt colores\+Validos}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{misma\+Cant\+Negros}
+Dice si todas las ramas que salen desde cualquier nodo del árbol binario a cuya raíz apunta tienen la misma cantidad de nodos negros. Observar que, como estamos pidiendo que los hijos de p cumplan este axioma, alcanza con verificar que la cantidad de nodos negros de una rama (en particular la extrema izquierda) es la misma para los dos hijos, y de esa forma aseguramos que se cumple recursivamente misma\+Cant\+Negros.
+
+misma\+Cant\+Negros\+: puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+misma\+Cant\+Negros(p) $\equiv$ p = nullptr $\lor_{\rm L}$ ( \href{axiomas.html#cantNegros}{\tt cant\+Negros}(p-\/$>$child\mbox{[}0\mbox{]}) = \href{axiomas.html#cantNegros}{\tt cant\+Negros}(p-\/$>$child\mbox{[}1\mbox{]}) $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\+Cant\+Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\+Cant\+Negros}(p-\/$>$child\mbox{[}1\mbox{]}) )
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{cant\+Negros}
+Devuelve la cantidad de nodos negros de la rama extrema izquierda del árbol binario a cuya raíz apunta p. Por lo explicado anteriormente, esta función sirve para computar misma\+Cant\+Negros.
+
+cant\+Negros\+: puntero(\+Node) p $\to$ nat \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+cant\+Negros(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} 0 {\bfseries else} \href{axiomas.html#cantNegros}{\tt cant\+Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $+$ ({\bfseries if} p-\/$>$color = Black {\bfseries then} 1 {\bfseries else} 0 {\bfseries fi} ) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{rojo\+Implica\+Hijos\+Negros}
+Dice si todos los nodos rojos del árbol binario a cuya raíz apunta p tienen únicamente hijos negros.
+
+rojo\+Implica\+Hijos\+Negros\+: puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+rojo\+Implica\+Hijos\+Negros(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$color = Red $\Rightarrow_{\rm L}$ ( \href{axiomas.html#noEsRojo}{\tt no\+Es\+Rojo}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#noEsRojo}{\tt no\+Es\+Rojo}(p-\/$>$child\mbox{[}1\mbox{]}) ) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\+Implica\+Hijos\+Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\+Implica\+Hijos\+Negros}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{no\+Es\+Rojo}
+Autoexplicativo.
+
+no\+Es\+Rojo\+: puntero(\+Node) $\to$ bool ~\newline
+no\+Es\+Rojo(p) $\equiv$ p $\_linebr eq$ nullptr $\Rightarrow_{\rm L}$ p-\/$>$color $\_linebr eq$ Red
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{familia\+Correcta}
+Función auxiliar de rep\+Map para verificar si el padre de la cabecera es efectivamente la raíz (y viceversa), si el hijo izquierdo de la cabecera es el menor elemento del árbol y si el hijo derecho de la cabecera es el mayor elemento del árbol.
+
+familia\+Correcta\+: nodo $\times$ puntero(\+Node) p $\to$ bool \{p $\_linebr eq$ nullptr\} ~\newline
+familia\+Correcta(n,p) $\equiv$ n.\+child\mbox{[}0\mbox{]} = \href{axiomas.html#getDMost}{\tt get\+D\+Most}(p,0) $\land$ n.\+child\mbox{[}1\mbox{]} = \href{axiomas.html#getDMost}{\tt get\+D\+Most}(p,1) $\land$ n.\+parent = p $\land$ p-\/$>$parent = n
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{get\+D\+Most}
+Si d es 0, devuelve el nodo de extrema izquierda del árbol binario a cuya raíz apunta p; si es 1, devuelve el de extrema derecha.
+
+get\+D\+Most\+: puntero(\+Node) p $\times$ nat d $\to$ puntero(\+Node) \{d $\leq$ 1 $\land$ p $\_linebr eq$ nullptr $\land$ \href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+get\+D\+Most(p,d) $\equiv$ {\bfseries if} p-\/$>$child\mbox{[}d\mbox{]} = nullptr {\bfseries then} p {\bfseries else} \href{axiomas.html#getDMost}{\tt get\+D\+Most}(p-\/$>$child\mbox{[}d\mbox{]},d) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{parent\+Correcto}
+Dice si todos los nodos del árbol binario cuya raíz es apuntada por p tienen como padre al nodo que los tiene como hijos.
+
+parent\+Correcto\+: puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} parent\+Correcto(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} (p-\/$>$child\mbox{[}0\mbox{]} $\_linebr eq$ nullptr $\Rightarrow_{\rm L}$ p-\/$>$child\mbox{[}0\mbox{]}-\/$>$parent = p) $\land$ (p-\/$>$child\mbox{[}1\mbox{]} $\_linebr eq$ nullptr $\Rightarrow_{\rm L}$ p-\/$>$child\mbox{[}1\mbox{]}-\/$>$parent = p) $\land$ parent\+Correcto(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ parent\+Correcto(p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{cant\+Nodos}
+Devuelve la cantidad total de nodos del árbol binario a cuya raíz apunta p.
+
+cant\+Nodos\+: puntero(\+Node) p $\to$ nat \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+cant\+Nodos(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} 0 {\bfseries else} suc(\href{axiomas.html#cantNodos}{\tt cant\+Nodos}(p-\/$>$child\mbox{[}0\mbox{]}) + \href{axiomas.html#cantNodos}{\tt cant\+Nodos}(p-\/$>$child\mbox{[}1\mbox{]})) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{pertenece\+Clave\+A\+BB}
+Dice si la clave c pertenece al árbol binario cuya raíz es apuntada por p.
+
+pertenece\+Clave\+A\+BB\+: Key $\times$ puntero(\+Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p)\} ~\newline
+pertenece\+Clave\+A\+B\+B(c,p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} false {\bfseries else} p-\/$>$value.\+first = c $\lor$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\+Clave\+A\+BB}(c,p-\/$>$child\mbox{[}0\mbox{]}) $\lor$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\+Clave\+A\+BB}(c,p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{significado\+A\+BB}
+Devuelve el significado de la clave c en el árbol binario cuya raíz es apuntada por p. Si hay dos tuplas en el árbol que tienen a c como primer componente, devuelve la que esté más a la izquierda, pero en este contexto sólo la llamaremos con árboles que son diccionarios y por lo tanto no tienen repetidos, así que esto no hace diferencia.
+
+significado\+A\+BB\+: Key $\times$ puntero(\+Node) p $\to$ Meaning \{\href{axiomas.html#esArbol}{\tt es\+Arbol}(p) $\land_{\rm L}$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\+Clave\+A\+BB}(c,p)\} ~\newline
+significado\+A\+B\+B(c,p) $\equiv$ {\bfseries if} p-\/$>$value.\+first = c {\bfseries then} p-\/$>$value.\+second {\bfseries else} ( {\bfseries if} \href{axiomas.html#perteneceClaveABB}{\tt pertenece\+Clave\+A\+BB}(c,p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries then} \href{axiomas.html#significadoABB}{\tt significado\+A\+BB}(c,p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries else} \href{axiomas.html#significadoABB}{\tt significado\+A\+BB}(c,p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} ) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{el\+Header\+Esta\+Piola}
+Función auxiliar para verificar la correctitud de  cuando el árbol representado es vacío. Responde a la estructura dada por la cátedra, en la que el constructor sin parámetros de map genera un árbol cuya cabecera tiene como hijo izquierdo y derecho a sí misma.
+
+el\+Header\+Esta\+Piola\+: map $\to$ bool ~\newline
+el\+Header\+Esta\+Piola(m) $\equiv$ m.\+header.\+parent = nullptr $\land$ m.\+header.\+child\mbox{[}0\mbox{]} = \&(m.\+header) $\land$ m.\+header.\+child\mbox{[}0\mbox{]} = \&(m.\+header) $\land$ m.\+count = 0
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{parentK}
+Función similar a \href{axiomas.html#arbolK}{\tt arbolK}, pero en vez de devolver los primeros k niveles de un árbol, devuelve el resultado de subir k veces por el nodo apuntado por p. Si se llega a un nodo que tiene como padre a nullptr, devuelve un puntero al último nodo que tenía como padre a un puntero no nulo.
+
+parentK\+: puntero(\+Node) p $\times$ nat $\to$ puntero(\+Node) \{p $\_linebr eq$ nullptr\} ~\newline
+parent\+K(p,k) $\equiv$ {\bfseries if} p-\/$>$parent = nullptr {\bfseries then} p {\bfseries else} ({\bfseries if} k = 0 {\bfseries then} p {\bfseries else} parentK(p-\/$>$parent,k-\/1) {\bfseries fi} ) {\bfseries fi} 
 \end{DoxyParagraph}
