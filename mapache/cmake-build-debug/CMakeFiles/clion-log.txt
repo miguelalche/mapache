@@ -1,0 +1,14 @@
+/home/oliver/Oliver/Programas/clion-2017.1.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/oliver/Oliver/Programación/Algo 2/TP2/mapache"
+-- Found GTest: /usr/lib/libgtest.a  
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/oliver/Oliver/Programación/Algo 2/TP2/mapache/cmake-build-debug

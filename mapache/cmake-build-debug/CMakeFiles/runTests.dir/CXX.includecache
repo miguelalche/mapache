@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/map.h
+algorithm
+-
+cassert
+-
+functional
+-
+iterator
+-
+utility
+-
+iostream
+-
+
+/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/test.cpp
+map.h
+/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/map.h
+gtest/gtest.h
+-
+map
+-
+iostream
+-
+
