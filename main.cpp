@@ -20,7 +20,11 @@ int main() {
     aed2::map<int,int>::const_iterator it = miMap->insert(par3);
     miMap->insert(par4);
     //miMap->operator[](3) = 10;
-    miMap->clear();
+    auto myit = miMap->begin();
+    while (myit != miMap->end())
+    {
+        ++myit;
+    }
    // miMap[6] = *miMap;
 
     //miMap->insert(par5);

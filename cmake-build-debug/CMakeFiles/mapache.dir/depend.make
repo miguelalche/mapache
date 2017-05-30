@@ -4,6 +4,3 @@
 CMakeFiles/mapache.dir/main.cpp.o: ../main.cpp
 CMakeFiles/mapache.dir/main.cpp.o: ../map.h
 
-CMakeFiles/mapache.dir/test.cpp.o: ../map.h
-CMakeFiles/mapache.dir/test.cpp.o: ../test.cpp
-

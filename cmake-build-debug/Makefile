@@ -169,7 +169,6 @@ test.o: test.cpp.o
 
 # target to build an object file
 test.cpp.o:
-	$(MAKE) -f CMakeFiles/mapache.dir/build.make CMakeFiles/mapache.dir/test.cpp.o
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test.cpp.o
 .PHONY : test.cpp.o
 
@@ -179,7 +178,6 @@ test.i: test.cpp.i
 
 # target to preprocess a source file
 test.cpp.i:
-	$(MAKE) -f CMakeFiles/mapache.dir/build.make CMakeFiles/mapache.dir/test.cpp.i
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test.cpp.i
 .PHONY : test.cpp.i
 
@@ -189,7 +187,6 @@ test.s: test.cpp.s
 
 # target to generate assembly for a file
 test.cpp.s:
-	$(MAKE) -f CMakeFiles/mapache.dir/build.make CMakeFiles/mapache.dir/test.cpp.s
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test.cpp.s
 .PHONY : test.cpp.s
 

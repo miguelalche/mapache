@@ -1,1 +1,1 @@
-/usr/bin/c++    -std=c++11 -g   CMakeFiles/mapache.dir/main.cpp.o CMakeFiles/mapache.dir/test.cpp.o  -o mapache 
+/usr/bin/c++    -std=c++11 -g   CMakeFiles/mapache.dir/main.cpp.o  -o mapache 

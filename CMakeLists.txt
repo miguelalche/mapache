@@ -13,4 +13,4 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(runTests test.cpp map.h)
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 
-add_executable(mapache ${SOURCE_FILES})
+add_executable(mapache map.h main.cpp)

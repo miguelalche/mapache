@@ -1070,7 +1070,10 @@ class map {
    * \LT es igual al operator() del comparador de \P{other}
    *
    */
-  map(const map& other) { *this = other; }
+  map(const map& other) { *this = other;
+     // this->count = other.count;
+      //this->header = new Node(other.header);
+  }
 
   /**
    * @brief Crea un diccionario con los elementos del rango [\P{first},
@@ -1946,7 +1949,8 @@ iterator assignMaxOrMin(const value_type& value) {
    * \CMP(\P{*this}))}
    */
   void erase(const Key& key) {
-    erase(find(key));
+      iterator it = find(key);
+      if (it != end()) erase(find(key));
   }
 
 
@@ -2436,8 +2440,8 @@ iterator assignMaxOrMin(const value_type& value) {
      * }
      */
     iterator operator++(int) {
-      iterator it = *this;
-        (*this)++;
+      iterator it(*this);
+        *this = (*this)++;
         return it;
     }
     /**
@@ -2742,7 +2746,11 @@ iterator assignMaxOrMin(const value_type& value) {
          if (!this->is_header()) {
              if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
              if (next->isChild(1 - dir)) return next->parent;
-             while (next->isChild(dir)) *next = next->parent;
+             while (next->isChild(dir))
+             {
+                 next = next->parent;
+             }
+             next = next->parent;
          }
          return next;
      }
@@ -2761,9 +2769,15 @@ iterator assignMaxOrMin(const value_type& value) {
       bool hasChild(int dir) const { return this->child[dir] != nullptr; }
       const Node* nextInorder(int dir = 1) const{
           const Node* next = this;
-          if (next->hasChild(dir)) return next->child[dir]->getDMost(1 - dir);
-          if (next->isChild(1 - dir)) return next->parent;
-          while (next->isChild(dir)) next = next->parent;
+          if (!this->is_header()) {
+              if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
+              if (next->isChild(1 - dir)) return next->parent;
+              while (next->isChild(dir))
+              {
+                  next = next->parent;
+              }
+              next = next->parent;
+          }
           return next;
       }
       const Node* prevInorder() const{ return this->nextInorder(0); }
@@ -2787,7 +2801,8 @@ iterator assignMaxOrMin(const value_type& value) {
      *
      * \complexity{\O(1)}
      */
-    Node(Node* p, Color c = Color::Red) : parent(p), color(c) {}
+    Node(Node* p, Color c = Color::Red) : parent(p), color(c) {
+    }
     //@}
 
     /**
@@ -3052,8 +3067,12 @@ iterator assignMaxOrMin(const value_type& value) {
  */
 template <class K, class V, class C>
 bool operator==(const map<K, V, C>& m1, const map<K, V, C>& m2) {
-  return m1.size() == m2.size() and
-         std::equal(m1.begin(), m1.end(), m2.begin());
+        auto it = m1.begin();
+        while (it != m1.end())
+        {
+            it++;
+        }
+  return std::equal(m1.begin(), m1.end(), m2.begin());
 }
 
 /**

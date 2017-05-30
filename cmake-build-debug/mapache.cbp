@@ -138,7 +138,6 @@
 			<Option target="runTests"/>
 		</Unit>
 		<Unit filename="/home/jscherman/Desktop/mapache/test.cpp">
-			<Option target="mapache"/>
 			<Option target="runTests"/>
 		</Unit>
 		<Unit filename="/home/jscherman/Desktop/mapache/CMakeLists.txt">
