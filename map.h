@@ -1070,10 +1070,40 @@ class map {
    * \LT es igual al operator() del comparador de \P{other}
    *
    */
-  map(const map& other) { *this = other;
-     // this->count = other.count;
+  map(const map& other) {
+      this->count = other.count;
+      this->header = Node();
+      if (other.header.parent)
+      {
+          header.parent = new InnerNode(&header, static_cast<InnerNode*>(other.header.parent)->_value);
+          header.parent->color = Color::Black;
+          header.child[0] = header.child[1] = header.parent;
+          insertarTodos(header.parent, static_cast<InnerNode*>(header.parent->child[0]), static_cast<InnerNode*>(other.header.parent->child[0]), 0);
+          insertarTodos(header.parent, static_cast<InnerNode*>(header.parent->child[1]), static_cast<InnerNode*>(other.header.parent->child[1]), 1);
+      }
+
+      // this->count = other.count;
       //this->header = new Node(other.header);
   }
+    void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir)
+    {
+        if (otherActual != nullptr)
+        {
+            actual = new InnerNode(parent, otherActual->_value);
+            actual->color = otherActual->color;
+            actual->parent->child[dir] = actual;
+            if (lt(actual->key(), header.child[0]->key()))
+            {
+                header.child[0] = actual;
+            }
+            if (lt(header.child[1]->key(), actual->key()))
+            {
+                header.child[1] = actual;
+            }
+            insertarTodos(actual, static_cast<InnerNode*>(actual->child[0]), static_cast<InnerNode*>(otherActual->child[0]), 0);
+            insertarTodos(actual, static_cast<InnerNode*>(actual->child[1]), static_cast<InnerNode*>(otherActual->child[1]), 1);
+        }
+    }
 
   /**
    * @brief Crea un diccionario con los elementos del rango [\P{first},
