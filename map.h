@@ -1396,13 +1396,15 @@ class map {
    *
    */
   const_iterator lower_bound(const Key& key) const {
+
       InnerNode* actual = root();
-      InnerNode* papi = root();
-      if (actual != nullptr)
+      InnerNode* papi = nullptr;
+      if (actual && !lt(header.child[1]->key(), key))
       {
-          while(actual && lt(actual->key(), key)  ||lt(key, actual->key()))
+          while(actual && !(!lt(actual->key(), key)  && ((!actual->child[0]) || lt(actual->child[0]->key(), key))))
           {
               papi = actual;
+              if (!lt(key, actual->key()) && !lt(actual->key(), key)) break;
               if (lt(key, actual->key()))
               {
                   actual = static_cast<InnerNode*>(actual->child[0]);
@@ -1413,20 +1415,22 @@ class map {
               }
           }
       }
-      if (actual) return const_iterator(actual);
-      else if (root()) return const_iterator(papi);
+      if (actual && !lt(actual->key(), key) && !lt(key, actual->key()) ) return const_iterator(actual);
+          else if (papi) return const_iterator(papi);
       else return const_iterator(&header);
   }
 
   /** \overload */
   iterator lower_bound(const Key& key) {
       InnerNode* actual = root();
-      InnerNode* papi = root();
-      if (actual != nullptr)
+      InnerNode* papi = nullptr;
+      if (actual && !lt(header.child[1]->key(), key))
       {
-          while(actual && lt(actual->key(), key)  ||lt(key, actual->key()))
+          //while actual no es nullptr y no pasa que la clave es mayorigual a key y su hijo izq es menor a key
+          while(actual && !(!lt(actual->key(), key)  && ((!actual->child[0]) || lt(actual->child[0]->key(), key))))
           {
               papi = actual;
+              if (!lt(key, actual->key()) && !lt(actual->key(), key)) break;
               if (lt(key, actual->key()))
               {
                   actual = static_cast<InnerNode*>(actual->child[0]);
@@ -1437,8 +1441,8 @@ class map {
               }
           }
       }
-      if (actual) return iterator(actual);
-      else if (root()) return iterator(papi);
+      if (actual && !lt(actual->key(), key)) return iterator(actual);
+      else if (papi) return iterator(papi);
       else return iterator(&header);
   }
   ///@}
@@ -1634,7 +1638,7 @@ class map {
 
     }
     bool invalidHint(const_iterator hint, const value_type& value) {
-        return (hint.n == nullptr || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
+        return (hint.n == nullptr || hint.n == &header || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
     }
     iterator insert(const_iterator hint, const value_type& value) {
          /*Tengo que insertar un elemento, para esto, distingo tres casos:
@@ -1662,7 +1666,7 @@ class map {
          * A continuacion obvio hay que llamar al insertionFIx.
          * En caso de que el hint no sea correcto, hayq ue llamar a insertar casi tla cual de los algoritmos del Cormen.
          * */
-       ;
+
         if ((header.parent == nullptr) || isMaxOrMin(value) || invalidHint(hint, value)) {
            insert(value);
         } else {
@@ -1689,7 +1693,7 @@ iterator assignMaxOrMin(const value_type& value) {
         header.child[1]->child[1] = new InnerNode(header.child[1], value);
         header.child[1] = header.child[1]->child[1];
         insertionFix(header.child[1], value);
-        return iterator(header.child[1]->child[1]);
+        return iterator(header.child[1]);
 
     } else {
         header.child[0]->child[0] = new InnerNode(header.child[0], value);
@@ -1728,10 +1732,25 @@ iterator assignMaxOrMin(const value_type& value) {
                         InnerNode* nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
                         nuevo->child[0] = now->child[0];
                         nuevo->child[1] = now->child[1];
-                        nuevo->child[0]->parent = nuevo;
-                        nuevo->child[1]->parent = nuevo;
-                        if (now->isChild(0)) nuevo->parent->child[0] = nuevo;
-                        else nuevo->parent->child[1] = nuevo;
+                        if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
+                        if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
+                        if (now->parent != &header && now->isChild(0)) {
+                            nuevo->parent->child[0] = nuevo;
+                        }
+                        else if (now->parent != &header && now->isChild(1)) {
+                            nuevo->parent->child[1] = nuevo;
+                        }
+                        else {
+                            header.parent = nuevo;
+                        }
+                        if (now == header.child[0])
+                        {
+                            header.child[0] = nuevo;
+                        }
+                        else if (now == header.child[1])
+                        {
+                            header.child[1] = nuevo;
+                        }
                         InnerNode* aux = now;
                         now = nuevo;
                         delete aux;
@@ -1788,10 +1807,39 @@ iterator assignMaxOrMin(const value_type& value) {
    * notación no es tan bonita.
    */
   iterator insert_or_assign(const_iterator hint, const value_type& value) {
-    if ((*hint).first == value.first)
+    if (hint.n && !hint.n->is_header() && (*hint).first == value.first)
     {
-        const_cast<Node*>(hint.n)->value().second = value.second;
-        return iterator(const_cast<Node*>(hint.n));
+        InnerNode* now = static_cast<InnerNode*>(const_cast<Node*>(hint.n));
+        InnerNode* nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
+        nuevo->child[0] = now->child[0];
+        nuevo->child[1] = now->child[1];
+        if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
+        if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
+        if (now->parent != &header && now->isChild(0)) {
+            nuevo->parent->child[0] = nuevo;
+        }
+        else if (now->parent != &header && now->isChild(1)) {
+            nuevo->parent->child[1] = nuevo;
+        }
+        else {
+            header.parent = nuevo;
+        }
+        if (now == header.child[0])
+        {
+            header.child[0] = nuevo;
+        }
+        else if (now == header.child[1])
+        {
+            header.child[1] = nuevo;
+        }
+        InnerNode* aux = now;
+        now = nuevo;
+        delete aux;
+        // inserted = true;
+        // count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
+        return iterator(now);
+        //const_cast<Node*>(hint.n)->value().second = value.second;
+        //return iterator(const_cast<Node*>(hint.n));
     }
     else
         if (invalidHint(hint, value)) return insert_or_assign(value);
@@ -1853,10 +1901,18 @@ iterator assignMaxOrMin(const value_type& value) {
           y->color = z->color;
 
       }
-      if(y_original_color==Color::Black) delfix(x);
+      if (count == 1)
+      {
+          //header.parent = nullptr;
+          header.child[0] = header.child[1] = &header;
+          //delete pos.n;
+      }
+      else {
+          if (y_original_color == Color::Black) delfix(x);
+
+      }
       count--;
       delete z;
-
 
   }
 
@@ -1871,7 +1927,7 @@ iterator assignMaxOrMin(const value_type& value) {
         }else if(u==u->parent->child[1]){
             u->parent->child[1]=v;
         }
-        v->parent=u->parent;
+        if (v) v->parent=u->parent;
     }
 
 
