@@ -1911,13 +1911,19 @@ iterator assignMaxOrMin(const value_type& value) {
       Color y_original_color = y->color;
       iterator it;
 
+
       it.n = y->nextInorder();
       if (z == begin()){
           header.child[0]=it.n;
       }else if(z == header.child[1]){
           header.child[1]=z->prevInorder();
       }
-
+      if (!y->hasChild(0)and!y->hasChild(1)and y_original_color==Color::Black) {
+          delfix(y);
+          if(y->parent->child[0]==y) y->parent->child[0]=nullptr;
+          if(y->parent->child[1]==y) y->parent->child[1]=nullptr;
+          delete y;
+      }else{
       if (!z->hasChild(0)){
           x = y->child[1];
           Transplant(y,y->child[1]);
@@ -1948,14 +1954,13 @@ iterator assignMaxOrMin(const value_type& value) {
           //delete pos.n;
       }
       else {
-          if (x==nullptr and y_original_color == Color::Black){
-              delfix(it.n);
-          }
-          else if (y_original_color == Color::Black) delfix(x);
+          if (y_original_color == Color::Black) delfix(x);
 
       }
+          delete z;
+      }
       count--;
-      delete z;
+
       return it;
   }
 
@@ -1998,39 +2003,38 @@ iterator assignMaxOrMin(const value_type& value) {
     void fixRight(Node* myNode) { fixLeft(myNode, 1);}
     void fixLeft(Node* myNode, bool dir = 0)
     {
-        Node* w = myNode->parent->child[1];
-        if (w != nullptr) {
-            if (w->color == Color::Red) {
-                w->color = Color::Black;
-                myNode->parent->color = Color::Red;
-                leftrotate(myNode->parent);
-                w = myNode->parent->child[1];
-            }
-            if ((!w->hasChild(0) ||(w->child[0]->color == Color::Black)) &&
-                    (!w->hasChild(1) || w->child[1]->color == Color::Black))
-            {
-                w->color = Color::Red;
-                myNode = myNode->parent;
-            }
-            else if (!w->hasChild(1) || w->child[1]->color == Color::Black)
-            {
-                if (w->hasChild(0)) w->child[0]->color = Color::Black;
-                w->color = Color::Red;
-                rightrotate(w);
-                w = myNode->parent->child[1];
-            } else{
-                w->color = myNode->parent->color;
-                myNode->parent->color = Color::Black;
-                if (w->hasChild(1)) w->child[1]->color = Color::Black;
-                leftrotate(myNode->parent);
-                myNode = header.parent;
+        while (myNode != header.parent && myNode->color == Color::Black) {
+            Node *w = myNode->parent->child[1];
+            if (w != nullptr) {
+                if (w->color == Color::Red) {
+                    w->color = Color::Black;
+                    myNode->parent->color = Color::Red;
+                    leftrotate(myNode->parent);
+                    w = myNode->parent->child[1];
+                }
+                if ((!w->hasChild(0) || (w->child[0]->color == Color::Black)) &&
+                    (!w->hasChild(1) || w->child[1]->color == Color::Black)) {
+                    w->color = Color::Red;
+                    myNode = myNode->parent;
+                } else if (!w->hasChild(1) || w->child[1]->color == Color::Black) {
+                    if (w->hasChild(0)) w->child[0]->color = Color::Black;
+                    w->color = Color::Red;
+                    rightrotate(w);
+                    w = myNode->parent->child[1];
+                } else {
+                    w->color = myNode->parent->color;
+                    myNode->parent->color = Color::Black;
+                    if (w->hasChild(1)) w->child[1]->color = Color::Black;
+                    leftrotate(myNode->parent);
+                    myNode = header.parent;
+                }
             }
         }
     }
     void delfix(Node* myNode)
     {
-          while (myNode != header.parent && myNode->color == Color::Black)
-          {
+
+
               if (myNode->isChild(0))
               {
                   fixLeft(myNode);
@@ -2038,7 +2042,7 @@ iterator assignMaxOrMin(const value_type& value) {
               {
                   fixRight(myNode);
               }
-          }
+
           myNode->color = Color::Black;
 //          Node *s;
 //          while(myNode != root() && myNode->color == Color::Black)

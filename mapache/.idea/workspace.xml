@@ -102,8 +102,8 @@
       <file leaf-file-name="map.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="1910" column="40" lean-forward="true" selection-start-line="1910" selection-start-column="40" selection-end-line="1910" selection-end-column="40" />
+            <state relative-caret-position="412">
+              <caret line="1924" column="19" lean-forward="true" selection-start-line="1924" selection-start-column="19" selection-end-line="1924" selection-end-column="19" />
               <folding>
                 <element signature="e#0#402#0" expanded="false" />
                 <element signature="e#403#1609#0" expanded="false" />
@@ -134,8 +134,8 @@
       <file leaf-file-name="test.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2092">
-              <caret line="296" column="25" lean-forward="false" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
+            <state relative-caret-position="1152">
+              <caret line="271" column="0" lean-forward="false" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
               <folding>
                 <element signature="e#58#74#0" expanded="true" />
               </folding>
@@ -162,7 +162,6 @@
       <find>next</find>
       <find>black</find>
       <find>meaning</find>
-      <find>find</find>
       <find>insert</find>
       <find>operator[]</find>
       <find>clear</find>
@@ -179,13 +178,14 @@
       <find>rend</find>
       <find>reverse_itera</find>
       <find>reverse_iterator</find>
-      <find>iterator</find>
       <find>reverse</find>
       <find>operator--</find>
       <find>rbegin</find>
       <find>end()</find>
       <find>begin()</find>
       <find>header.child[1]</find>
+      <find>find</find>
+      <find>iterator</find>
       <find>erase</find>
     </findStrings>
   </component>
@@ -211,10 +211,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-11" />
-    <option name="width" value="1857" />
-    <option name="height" value="1092" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -546,43 +546,44 @@
       <workItem from="1496178374879" duration="122000" />
       <workItem from="1496178514652" duration="4528000" />
       <workItem from="1496183868839" duration="1469000" />
+      <workItem from="1496249420387" duration="9274000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 49m 42s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 22m 07s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 50m 24s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 24m 44s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 50m 26s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 25m 30s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 50m 55s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 29m 09s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 56m 45s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 42m 02s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 57m 42s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 42m 06s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 57m 56s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 45m 39s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 58m 11s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 46m 33s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 19h 59m 37s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 47m 12s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_CRBegin - 2017.05.30 at 20h 01m 52s.xml">
+    <history-entry file="BasicMapInstances_CRBegin - 2017.05.31 at 16h 49m 09s.xml">
       <configuration name="BasicMapInstances.CRBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105682000" />
+    <option name="totallyTimeSpent" value="114956000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -594,7 +595,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1541779" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -602,12 +603,12 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32721713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32672232" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32110092" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2925586" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -661,7 +662,7 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/map.h</url>
-          <line>3084</line>
+          <line>3088</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -671,12 +672,12 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/map.h</url>
-          <line>2422</line>
+          <line>2426</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/map.h</url>
-          <line>3079</line>
+          <line>3083</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -693,7 +694,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="131" />
+      <option name="time" value="164" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeGoogleTestRunConfigurationType">
@@ -1018,7 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17920">
           <caret line="896" column="0" lean-forward="false" selection-start-line="896" selection-start-column="0" selection-end-line="896" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,7 +1026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5280">
           <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,6 +1033,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1347">
           <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="38" lean-forward="false" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1041,7 +1047,7 @@
     <entry file="file:///usr/include/c++/5/bits/stl_pair.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
-          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1054,18 +1060,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="38" lean-forward="false" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2092">
-          <caret line="296" column="25" lean-forward="false" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
+        <state relative-caret-position="1152">
+          <caret line="271" column="0" lean-forward="false" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
           <folding>
             <element signature="e#58#74#0" expanded="true" />
           </folding>
@@ -1074,8 +1072,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="1910" column="40" lean-forward="true" selection-start-line="1910" selection-start-column="40" selection-end-line="1910" selection-end-column="40" />
+        <state relative-caret-position="412">
+          <caret line="1924" column="19" lean-forward="true" selection-start-line="1924" selection-start-column="19" selection-end-line="1924" selection-end-column="19" />
           <folding>
             <element signature="e#0#402#0" expanded="false" />
             <element signature="e#403#1609#0" expanded="false" />
