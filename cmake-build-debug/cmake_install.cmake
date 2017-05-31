@@ -1,4 +1,4 @@
-# Install script for directory: /home/jscherman/Desktop/mapache
+# Install script for directory: /home/jscherman/CLionProjects/mapache
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jscherman/Desktop/mapache/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jscherman/CLionProjects/mapache/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

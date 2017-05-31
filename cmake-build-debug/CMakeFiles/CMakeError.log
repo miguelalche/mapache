@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_acc59/fast"
-/usr/bin/make -f CMakeFiles/cmTC_acc59.dir/build.make CMakeFiles/cmTC_acc59.dir/build
-make[1]: Entering directory '/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_acc59.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_acc59.dir/CheckSymbolExists.c.o   -c /home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_acc59
-/usr/local/clion-2017.1.1/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_acc59.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_acc59.dir/CheckSymbolExists.c.o  -o cmTC_acc59 
-CMakeFiles/cmTC_acc59.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_9c94c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9c94c.dir/build.make CMakeFiles/cmTC_9c94c.dir/build
+make[1]: Entering directory '/home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9c94c.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_9c94c.dir/CheckSymbolExists.c.o   -c /home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_9c94c
+/usr/local/clion-2017.1.1/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9c94c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_9c94c.dir/CheckSymbolExists.c.o  -o cmTC_9c94c 
+CMakeFiles/cmTC_9c94c.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_acc59.dir/build.make:97: recipe for target 'cmTC_acc59' failed
-make[1]: *** [cmTC_acc59] Error 1
-make[1]: Leaving directory '/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_acc59/fast' failed
-make: *** [cmTC_acc59/fast] Error 2
+CMakeFiles/cmTC_9c94c.dir/build.make:97: recipe for target 'cmTC_9c94c' failed
+make[1]: *** [cmTC_9c94c] Error 1
+make[1]: Leaving directory '/home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_9c94c/fast' failed
+make: *** [cmTC_9c94c/fast] Error 2
 
-File /home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ccf4a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ccf4a.dir/build.make CMakeFiles/cmTC_ccf4a.dir/build
-make[1]: Entering directory '/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ccf4a.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ccf4a.dir/CheckFunctionExists.c.o   -c /usr/local/clion-2017.1.1/bin/cmake/share/cmake-3.7/Modules/CheckFunctionExists.c
-Linking C executable cmTC_ccf4a
-/usr/local/clion-2017.1.1/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccf4a.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_ccf4a.dir/CheckFunctionExists.c.o  -o cmTC_ccf4a -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_bc9a9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bc9a9.dir/build.make CMakeFiles/cmTC_bc9a9.dir/build
+make[1]: Entering directory '/home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bc9a9.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_bc9a9.dir/CheckFunctionExists.c.o   -c /usr/local/clion-2017.1.1/bin/cmake/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bc9a9
+/usr/local/clion-2017.1.1/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc9a9.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_bc9a9.dir/CheckFunctionExists.c.o  -o cmTC_bc9a9 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_ccf4a.dir/build.make:97: recipe for target 'cmTC_ccf4a' failed
-make[1]: *** [cmTC_ccf4a] Error 1
-make[1]: Leaving directory '/home/jscherman/Desktop/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_ccf4a/fast' failed
-make: *** [cmTC_ccf4a/fast] Error 2
+CMakeFiles/cmTC_bc9a9.dir/build.make:97: recipe for target 'cmTC_bc9a9' failed
+make[1]: *** [cmTC_bc9a9] Error 1
+make[1]: Leaving directory '/home/jscherman/CLionProjects/mapache/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_bc9a9/fast' failed
+make: *** [cmTC_bc9a9/fast] Error 2
 
 
