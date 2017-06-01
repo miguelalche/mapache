@@ -469,7 +469,7 @@ Cormen et al. {\bfseries [Cormen\+Leiserson\+Rivest\+Stein2009]} e \hyperlink{Im
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02845}{2845} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02846}{2846} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -1746,7 +1746,7 @@ Definición en la línea \hyperlink{map_8h_source_l02375}{2375} del archivo \hyp
 Devuelve un iterador apuntando a la posición pasando-\/el-\/ultimo del diccionario, en un recorrido al revés. 
 
 \begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
+Si se modifica el valor apuntado por {\bfseries res}, se modifica la estructura subyacente.
 \end{DoxyParagraph}
 
 \begin{DoxyRetVals}{Valores devueltos}
@@ -1754,17 +1754,17 @@ completar
 \hline
 \end{DoxyRetVals}
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
+{\bfseries P} $\equiv$ \{true\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
+{\bfseries Q} $\equiv$ \{coleccion({\bfseries res}) $=_{\rm obs}$ get({\bfseries this}) $\land$ Siguientes({\bfseries res}) $=_{\rm obs}$ vacía $\land$ Anteriores({\bfseries this}) $=_{\rm obs}$ valores\+Ordenados\+Al\+Reves($\ast$coleccion({\bfseries this})) \}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02393}{2393} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02394}{2394} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!rend@{rend}}
 \index{rend@{rend}!aed2\+::map@{aed2\+::map}}
@@ -1775,7 +1775,7 @@ Definición en la línea \hyperlink{map_8h_source_l02393}{2393} del archivo \hyp
 ) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classaed2_1_1map_aafce6e53c53c460897613747fec89f9d_aafce6e53c53c460897613747fec89f9d}{}\label{classaed2_1_1map_aafce6e53c53c460897613747fec89f9d_aafce6e53c53c460897613747fec89f9d}
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02398}{2398} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02399}{2399} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!crend@{crend}}
 \index{crend@{crend}!aed2\+::map@{aed2\+::map}}
@@ -1786,7 +1786,7 @@ Definición en la línea \hyperlink{map_8h_source_l02398}{2398} del archivo \hyp
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classaed2_1_1map_a40933b2efe1cb479de9195ea947244d1_a40933b2efe1cb479de9195ea947244d1}{}\label{classaed2_1_1map_a40933b2efe1cb479de9195ea947244d1_a40933b2efe1cb479de9195ea947244d1}
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02403}{2403} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02404}{2404} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!root@{root}}
 \index{root@{root}!aed2\+::map@{aed2\+::map}}
@@ -1804,7 +1804,7 @@ Nodo a la raiz del arbol.
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03180}{3180} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03181}{3181} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!root@{root}}
 \index{root@{root}!aed2\+::map@{aed2\+::map}}
@@ -1815,7 +1815,7 @@ Definición en la línea \hyperlink{map_8h_source_l03180}{3180} del archivo \hyp
 ) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{classaed2_1_1map_a89cf44cf0661a97f5dd0985160dcc0e7_a89cf44cf0661a97f5dd0985160dcc0e7}{}\label{classaed2_1_1map_a89cf44cf0661a97f5dd0985160dcc0e7_a89cf44cf0661a97f5dd0985160dcc0e7}
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l03183}{3183} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03184}{3184} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!eq@{eq}}
 \index{eq@{eq}!aed2\+::map@{aed2\+::map}}
@@ -1841,7 +1841,7 @@ true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfserie
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03199}{3199} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03200}{3200} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!remove\+Sub\+Tree@{remove\+Sub\+Tree}}
 \index{remove\+Sub\+Tree@{remove\+Sub\+Tree}!aed2\+::map@{aed2\+::map}}
@@ -1856,7 +1856,7 @@ Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03210}{3210} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03211}{3211} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!add\+Elem@{add\+Elem}}
 \index{add\+Elem@{add\+Elem}!aed2\+::map@{aed2\+::map}}
@@ -1873,7 +1873,7 @@ Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03225}{3225} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03226}{3226} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!insertion\+Fix@{insertion\+Fix}}
 \index{insertion\+Fix@{insertion\+Fix}!aed2\+::map@{aed2\+::map}}
@@ -1889,7 +1889,7 @@ Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cor
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03243}{3243} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03244}{3244} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!leftrotate@{leftrotate}}
 \index{leftrotate@{leftrotate}!aed2\+::map@{aed2\+::map}}
@@ -1904,7 +1904,7 @@ Implementa la rotación descrita en el Cormen.
 
 Implementa la rotación descrita en el Cormen. 
 
-Definición en la línea \hyperlink{map_8h_source_l03339}{3339} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03340}{3340} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!rightrotate@{rightrotate}}
 \index{rightrotate@{rightrotate}!aed2\+::map@{aed2\+::map}}
@@ -1919,7 +1919,7 @@ Implementa la rotación descrita en el Cormen.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03372}{3372} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03373}{3373} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!invalid\+Hint@{invalid\+Hint}}
 \index{invalid\+Hint@{invalid\+Hint}!aed2\+::map@{aed2\+::map}}
@@ -1935,7 +1935,7 @@ Devuelve true si la clave contenida en el nodo apuntado por hint {\itshape  no e
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03408}{3408} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03409}{3409} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!is\+Max\+Or\+Min@{is\+Max\+Or\+Min}}
 \index{is\+Max\+Or\+Min@{is\+Max\+Or\+Min}!aed2\+::map@{aed2\+::map}}
@@ -1950,7 +1950,7 @@ Devuelve true si {\bfseries value} es mayor que el máximo o menor que el mínim
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03419}{3419} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03420}{3420} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!assign\+Max\+Or\+Min@{assign\+Max\+Or\+Min}}
 \index{assign\+Max\+Or\+Min@{assign\+Max\+Or\+Min}!aed2\+::map@{aed2\+::map}}
@@ -1965,7 +1965,7 @@ P\+E\+N\+D\+I\+E\+N\+TE\+: V\+ER B\+I\+EN Q\+UÉ H\+A\+CE E\+S\+TA F\+U\+N\+C\+I
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03430}{3430} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03431}{3431} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!insert\+\_\+or\+\_\+upsert@{insert\+\_\+or\+\_\+upsert}}
 \index{insert\+\_\+or\+\_\+upsert@{insert\+\_\+or\+\_\+upsert}!aed2\+::map@{aed2\+::map}}
@@ -1991,7 +1991,7 @@ true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfserie
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03446}{3446} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03447}{3447} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!Update@{Update}}
 \index{Update@{Update}!aed2\+::map@{aed2\+::map}}
@@ -2017,7 +2017,7 @@ true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfserie
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03477}{3477} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03478}{3478} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -2074,7 +2074,7 @@ Para determinar la igualdad de las claves no se utiliza el functor de comparaci�
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03534}{3534} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03535}{3535} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!aed2\+::map@{aed2\+::map}}
@@ -2093,7 +2093,7 @@ aed2\+::operator==()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03546}{3546} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03547}{3547} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!aed2\+::map@{aed2\+::map}}
@@ -2147,7 +2147,7 @@ Para determinar la comparación de las claves no se utiliza el functor de compar
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03577}{3577} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03578}{3578} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$>$@{operator$>$}}
 \index{operator$>$@{operator$>$}!aed2\+::map@{aed2\+::map}}
@@ -2166,7 +2166,7 @@ aed2\+::operator$<$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03589}{3589} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03590}{3590} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$<$=@{operator$<$=}}
 \index{operator$<$=@{operator$<$=}!aed2\+::map@{aed2\+::map}}
@@ -2185,7 +2185,7 @@ aed2\+::operator$<$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03600}{3600} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03601}{3601} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$>$=@{operator$>$=}}
 \index{operator$>$=@{operator$>$=}!aed2\+::map@{aed2\+::map}}
@@ -2204,7 +2204,7 @@ aed2\+::operator$<$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03611}{3611} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03612}{3612} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!swap@{swap}}
 \index{swap@{swap}!aed2\+::map@{aed2\+::map}}
@@ -2244,7 +2244,7 @@ Implementa la función swap para cumplir con el concepto swappable.
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03635}{3635} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03636}{3636} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -2258,7 +2258,7 @@ Orden total para comparar claves.
 
 Definición\+: lt(x, y) == true cuando x es menor que y; si lt(x,y) == lt(y,x) == false, entonces x e y son iguales. 
 
-Definición en la línea \hyperlink{map_8h_source_l03163}{3163} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03164}{3164} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!count@{count}}
 \index{count@{count}!aed2\+::map@{aed2\+::map}}
@@ -2269,7 +2269,7 @@ Cantidad de elementos en el diccionario.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03165}{3165} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03166}{3166} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!header@{header}}
 \index{header@{header}!aed2\+::map@{aed2\+::map}}
@@ -2280,7 +2280,7 @@ Cabeceera del arbol; ver \hyperlink{Implementacion}{Implementación del árbol r
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03167}{3167} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03168}{3168} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 

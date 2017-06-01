@@ -2380,13 +2380,14 @@ bool borrarX = false;
          * @brief Devuelve un iterador apuntando a la posición pasando-el-ultimo del
          * diccionario, en un recorrido al revés
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por \P{res}, se modifica la estructura subyacente.}
          *
          * @retval res iterador a la posicion pasando-al-ultimo, en un recorrido al
          * revés
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{true}
+         * \post \aedpost{coleccion(\P{res}) \IGOBS get(\P{this}) \LAND Siguientes(\P{res})
+         * \IGOBS vacía \LAND Anteriores(\P{this}) \IGOBS valoresOrdenadosAlReves(*coleccion(\P{this})) }
          *
          * \complexity{\O(1)}
          */
