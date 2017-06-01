@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['haschild',['hasChild',['../structaed2_1_1map_1_1Node_a7156a65bc1ffc8fd6c8548e437bc2e43.html#a7156a65bc1ffc8fd6c8548e437bc2e43',1,'aed2::map::Node::hasChild(int dir)'],['../structaed2_1_1map_1_1Node_afe6fb054255e6b83c1a64783641f9f13.html#afe6fb054255e6b83c1a64783641f9f13',1,'aed2::map::Node::hasChild(int dir) const ']]]
+  ['getdmost',['getDMost',['../structaed2_1_1map_1_1Node_afc97d72bfcc58f0dbe8f2d5b03950dc8.html#afc97d72bfcc58f0dbe8f2d5b03950dc8',1,'aed2::map::Node::getDMost(int dir)'],['../structaed2_1_1map_1_1Node_aa6701efb52999be16d2ce9b50e147f36.html#aa6701efb52999be16d2ce9b50e147f36',1,'aed2::map::Node::getDMost(int dir) const ']]]
 ];

@@ -17,14 +17,25 @@
 00014     \textcolor{keyword}{const} std::pair<const int, int> par7 = std::make\_pair(1, 5);
 00015 
 00016     \textcolor{keyword}{const} std::pair<const int, int> par8 = std::make\_pair(10, 234);
-00017     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par1);
-00018     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par2);
-00019     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par3);
-00020     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par4);
-00021     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par5);
-00022     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par6);
-00023     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par7);
-00024     miMap->\hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{insert\_or\_assign}(par8);
-00025     \textcolor{keywordflow}{return} 0;
-00026 \}
+00017 
+00018     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par1);
+00019     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par2);
+00020     \hyperlink{classaed2_1_1map_1_1const__iterator}{aed2::map<int,int>::const\_iterator} it = miMap->
+      \hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par3);
+00021     miMap->\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(par4);
+00022     \textcolor{comment}{//miMap->operator[](3) = 10;}
+00023     \textcolor{keyword}{auto} myit = miMap->\hyperlink{classaed2_1_1map_a58a95705d54b3dda7f775ce5a22225cb_a58a95705d54b3dda7f775ce5a22225cb}{begin}();
+00024     \textcolor{keywordflow}{while} (myit != miMap->\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end}())
+00025     \{
+00026         ++myit;
+00027     \}
+00028    \textcolor{comment}{// miMap[6] = *miMap;}
+00029 
+00030     \textcolor{comment}{//miMap->insert(par5);}
+00031    \textcolor{comment}{// miMap->insert(par6);}
+00032    \textcolor{comment}{// miMap->insert(par7);}
+00033     \textcolor{comment}{//miMap->insert\_or\_assign(par8);}
+00034     \textcolor{comment}{//miMap->erase(it);}
+00035     \textcolor{keywordflow}{return} 0;
+00036 \}
 \end{DoxyCode}
