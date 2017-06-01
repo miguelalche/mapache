@@ -1647,10 +1647,16 @@ namespace aed2 {
          * @retval res iterador apuntando al valor con clave \P{key} (o a
          * \P{this}->end() si dicho elemento no existe)
          *
-         * \aliasing{completar}
+         * \aliasing{Cualquier cambio en el valor apuntado por \P{res} afectará la estructura
+         * subyacente y viceversa. En caso de eliminarse el valor apuntado, \P{res} se invalida.}
          *
-         * \pre \aedpre{true}
-         * \post \aedpost{}
+         * \pre \aedpre{\a self = \P{*this}}
+         * \post \aedpost{\P{*this} \IGOBS \a self \LAND ( ( def?(\P{key}, \a self) \LAND_L
+         * \P{res}->value.first \IGOBS \P{key} \LAND \P{res}->value.second \IGOBS
+         * obtener(\P{key}, \a self) \LAND Anteriores(\P{res}) \IGOBS \antesDe(\P{key},\valoresOrdenados(\a self))
+         * Siguientes(\P{res}) \IGOBS \despuesDe(\P{key},\valoresOrdenados(\a self)) ) \LOR
+         * ( \LNOT def?(\P{key}, \a self) \LAND \P{res}->color \IGOBS Header \LAND
+         * Anteriores(\P{res}) \IGOBS \valoresOrdenados(\a self) \LAND Siguientes(\P{res}) \IGOBS vacía ) )}
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
          *
