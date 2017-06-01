@@ -237,18 +237,18 @@ buscar\-Raiz\-: puntero(nodo) p $\to$ puntero(nodo) \{rep\-\_\-iter(p) $\land$ p
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{despues\-De}
-Dados un elemento y una secuencia que lo contiene, devuelve una subsecuencia que lo tiene como primeros elemento. En caso de haber varias, devuelve la que empieza con la primera aparición.
+Dados un elemento e y una secuencia s que lo tiene como primer campo de alguno de sus elementos, devuelve una subsecuencia que tiene como primer elemento a una tupla cuyo primer campo es e. En caso de haber varias, devuelve la que empieza con la primera aparición.
 
 despues\-De\-:  $\alpha$ e $\times$ secu( $\alpha$) s $\to$ secu( $\alpha$) \{esta(e,s)\} \par
- despues\-De(e,s) $\equiv$ {\bfseries if} prim(s) = e {\bfseries then} s {\bfseries else} \href{axiomas.html#despuesDe}{\tt despues\-De}(e,fin(s)) {\bfseries fi} 
+ despues\-De(e,s) $\equiv$ {\bfseries if} prim(s).first = e {\bfseries then} s {\bfseries else} \href{axiomas.html#despuesDe}{\tt despues\-De}(e,fin(s)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{antes\-De}
 Similar a \href{axiomas.html#despuesDe}{\tt despues\-De}, pero devuelve la subsecuencia que termina justo antes de la primera aparición del elemento.
 
-antes\-De\-:  $\alpha$ e $\times$ secu( $\alpha$) s $\to$ secu( $\alpha$) \{esta(e,s)\} \par
- antes\-De(e,s) $\equiv$ {\bfseries if} prim(s) = e {\bfseries then} vacía {\bfseries else} prim(s) $\bullet$ (e,fin(s)) {\bfseries fi} 
+antes\-De\-: Key e $\times$ secu(value) s $\to$ secu( $\alpha$) \{esta(e,\href{axiomas.html#primeros}{\tt primeros}(s))\} \par
+ antes\-De(e,s) $\equiv$ {\bfseries if} prim(s).first = e {\bfseries then} vacía {\bfseries else} prim(s) $\bullet$ \href{axiomas.html#antesDe}{\tt antes\-De}(e,fin(s)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}

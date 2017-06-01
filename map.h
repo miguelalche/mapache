@@ -1064,19 +1064,20 @@
  *
  * \par despuesDe
  * \parblock
- * Dados un elemento y una secuencia que lo contiene, devuelve una subsecuencia que lo tiene como primeros
- * elemento. En caso de haber varias, devuelve la que empieza con la primera aparición.
+ * Dados un elemento e y una secuencia s que lo tiene como primer campo de alguno de sus elementos,
+ * devuelve una subsecuencia que tiene como primer elemento a una tupla cuyo primer campo es e y termina al final de s.
+ * En caso de haber varias, devuelve la que empieza con la primera aparición.
  *
- * \axioma{despuesDe}: \T{\ALPHA} e \TIMES \T{secu(\ALPHA)} s \TO \T{secu(\ALPHA)} {esta(e,s)} \n
- * despuesDe(e,s) \EQUIV \IF prim(s) = e \THEN s \ELSE \despuesDe(e,fin(s)) \FI
+ * \axioma{despuesDe}: \T{\ALPHA} e \TIMES \T{secu(\ALPHA)} s \TO \T{secu(\ALPHA)} {esta(e,\primeros(s))} \n
+ * despuesDe(e,s) \EQUIV \IF prim(s).first = e \THEN s \ELSE \despuesDe(e,fin(s)) \FI
  *
  * \par antesDe
  * \parblock
  * Similar a \despuesDe, pero devuelve la subsecuencia que termina justo antes de la primera aparición
  * del elemento.
  *
- * \axioma{antesDe}: \T{\ALPHA} e \TIMES \T{secu(\ALPHA)} s \TO \T{secu(\ALPHA)} {esta(e,s)} \n
- * antesDe(e,s) \EQUIV \IF prim(s) = e \THEN vacía \ELSE prim(s) \BULLET \antesDe(e,fin(s)) \FI
+ * \axioma{antesDe}: \T{Key} e \TIMES \T{secu(value)} s \TO \T{secu(\ALPHA)} {esta(e,\primeros(s))} \n
+ * antesDe(e,s) \EQUIV \IF prim(s).first = e \THEN vacía \ELSE prim(s) \BULLET \antesDe(e,fin(s)) \FI
  *
  * \par longDicc
  * \parblock
@@ -1140,14 +1141,20 @@
  * valoresOrdenados(d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE
  * \insertarOrdenado( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), \valoresOrdenados(borrar(dameUno(claves(d)),d)) ) \FI 
 
-* \par valoresOrdenadosAlReves
+ * \par valoresOrdenadosAlReves
  * \parblock
  * Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos
  * significados ordenadas de manera decreciente por el primer campo.
  *
  * \axioma{valoresOrdenadosAlReves}: \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
- * valoresOrdenadosAlReves(d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE
- * \insertarOrdenadoDec( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), \valoresOrdenados(borrar(dameUno(claves(d)),d)) ) \FI
+ * valoresOrdenadosAlReves(d) \reverso(\valoresOrdenados(d))
+ *
+ * \par reverso
+ * \parblock
+ * Devuelve el reverso de una secuencia.
+ *
+ * \axioma{reverso}: \T{secu(\ALPHA)} \TO \T{secu(\ALPHA)}
+ * reverso(s) \EQUIV \IF vacía?(s) \THEN vacía \ELSE \reverso(fin(s)) \BULLET prim(s)
  */
 
 #ifndef MAP_H_
@@ -1620,6 +1627,7 @@ namespace aed2 {
          * def?(\P{key}, \P{*this}) \LAND ( (\FORALL c:Key) def?(c, \P{*this}) \IFF
          * (def?(c, \a self) \LOR c = \P{Key}) \LAND (def?(c, \a self) \LAND c \NEQ \P{key})
          * \IMPLIES_L obtener(c,\P{*this}) \IGOBS obtener(c, \a self) ) )  }
+         *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) + \a x) donde
          * - \a x = 1 si def?(\a self, \P{key}), y
          * - \a x = \a c en caso contrario.}
@@ -1656,7 +1664,7 @@ namespace aed2 {
          * \post \aedpost{\P{*this} \IGOBS \a self \LAND ( ( def?(\P{key}, \a self) \LAND_L
          * \P{res}->value.first \IGOBS \P{key} \LAND \P{res}->value.second \IGOBS
          * obtener(\P{key}, \a self) \LAND Anteriores(\P{res}) \IGOBS \antesDe(\P{key},\valoresOrdenados(\a self))
-         * Siguientes(\P{res}) \IGOBS \despuesDe(\P{key},\valoresOrdenados(\a self)) ) \LOR
+         * \LAND Siguientes(\P{res}) \IGOBS \despuesDe(\P{key},\valoresOrdenados(\a self)) ) \LOR
          * ( \LNOT def?(\P{key}, \a self) \LAND \P{res}->color \IGOBS Header \LAND
          * Anteriores(\P{res}) \IGOBS \valoresOrdenados(\a self) \LAND Siguientes(\P{res}) \IGOBS vacía ) )}
          *

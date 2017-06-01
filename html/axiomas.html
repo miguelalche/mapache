@@ -243,14 +243,14 @@ Axiomas y proposiciones auxiliares</h1>
  buscarRaiz(p) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> p-&gt;color = Header <b>then</b> p-&gt;parent <b>else</b> buscarRaiz(p-&gt;parent) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
-<dl class="section user"><dt>despuesDe</dt><dd><p class="startdd">Dados un elemento y una secuencia que lo contiene, devuelve una subsecuencia que lo tiene como primeros elemento. En caso de haber varias, devuelve la que empieza con la primera aparición.</p>
+<dl class="section user"><dt>despuesDe</dt><dd><p class="startdd">Dados un elemento e y una secuencia s que lo tiene como primer campo de alguno de sus elementos, devuelve una subsecuencia que tiene como primer elemento a una tupla cuyo primer campo es e. En caso de haber varias, devuelve la que empieza con la primera aparición.</p>
 <p><span id="despuesDe">despuesDe</span>: <span class="paramname"> <img class="formulaInl" alt="$\alpha$" src="form_5.png"/></span> e <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> s <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> {esta(e,s)} <br/>
- despuesDe(e,s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> prim(s) = e <b>then</b> s <b>else</b> <a href="axiomas.html#despuesDe">despuesDe</a>(e,fin(s)) <b>fi</b> </p>
+ despuesDe(e,s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> prim(s).first = e <b>then</b> s <b>else</b> <a href="axiomas.html#despuesDe">despuesDe</a>(e,fin(s)) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
 <dl class="section user"><dt>antesDe</dt><dd><p class="startdd">Similar a <a href="axiomas.html#despuesDe">despuesDe</a>, pero devuelve la subsecuencia que termina justo antes de la primera aparición del elemento.</p>
-<p><span id="antesDe">antesDe</span>: <span class="paramname"> <img class="formulaInl" alt="$\alpha$" src="form_5.png"/></span> e <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> s <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> {esta(e,s)} <br/>
- antesDe(e,s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> prim(s) = e <b>then</b> vacía <b>else</b> prim(s) <img class="formulaInl" alt="$\bullet$" src="form_6.png"/> (e,fin(s)) <b>fi</b> </p>
+<p><span id="antesDe">antesDe</span>: <span class="paramname">Key</span> e <img class="formulaInl" alt="$\times$" src="form_7.png"/> <span class="paramname">secu(value)</span> s <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">secu( <img class="formulaInl" alt="$\alpha$" src="form_5.png"/>)</span> {esta(e,<a href="axiomas.html#primeros">primeros</a>(s))} <br/>
+ antesDe(e,s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> prim(s).first = e <b>then</b> vacía <b>else</b> prim(s) <img class="formulaInl" alt="$\bullet$" src="form_6.png"/> <a href="axiomas.html#antesDe">antesDe</a>(e,fin(s)) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
 <dl class="section user"><dt>longDicc</dt><dd><p class="startdd">Como su nombre lo indica, devuelve la longitud de un diccionario.</p>
@@ -297,7 +297,7 @@ Axiomas y proposiciones auxiliares</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 20:31:27 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 20:49:08 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
