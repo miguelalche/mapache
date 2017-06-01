@@ -26,3 +26,10 @@
 \form#25:$\lor_{\rm L}$
 \form#26:$\Rightarrow_{\rm L}$
 \form#27:$\leq$
+\form#28:$\geq$
+\form#29:$\Rightarrow$
+\form#30:$\_linebr eq$
+\form#31:$\!=$
+\form#32:$=/=$
+\form#33:$ \_linebr eq$
+\form#34:$_{0}$

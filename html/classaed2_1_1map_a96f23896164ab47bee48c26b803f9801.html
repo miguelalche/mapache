@@ -3,24 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.11"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
 <title>Trabajo práctico 2: diccionario sobre RB-tree: aed2::map::operator[]</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { init_search(); });
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
@@ -31,7 +29,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectalign" style="padding-left: 0.5em;">
+  <td style="padding-left: 0.5em;">
    <div id="projectname">Trabajo práctico 2: diccionario sobre RB-tree
    &#160;<span id="projectnumber">0.1</span>
    </div>
@@ -57,7 +55,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.8.11 -->
+<!-- Generado por Doxygen 1.8.6 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
 </script>
@@ -73,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('classaed2_1_1map_a96f23896164ab47bee48c26b803f9801.html','');});
+$(document).ready(function(){initNavTree('classaed2_1_1map.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -81,7 +79,7 @@ $(document).ready(function(){initNavTree('classaed2_1_1map_a96f23896164ab47bee48
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-</div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>&apos;typedefs&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,7 +115,15 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 
 <p>Devuelve el significado asociado a <b class="paramname">key</b>, asegurando su existencia. </p>
 <p>Devuelve el significado asociado a <b class="paramname">key</b>. Si <b class="paramname">key</b> no está definido en <b class="paramname">*this</b>, entonces se inserta un nuevo valor con clave <b class="paramname">key</b> y significado <span class="paramname">Value</span>(). De esta forma, podemos usar <code>operator[]</code> para definir nuevos valores o modificar los existentes.</p>
-<p>Ejemplo: </p><div class="fragment"><div class="line"><a class="code" href="classaed2_1_1map.html">aed2::map&lt;int, int&gt;</a> d;</div><div class="line">d[1] = 2;      <span class="comment">//define 1 -&gt; 2</span></div><div class="line">d[1] = 3;      <span class="comment">//redefine 1 -&gt; 3</span></div><div class="line"></div><div class="line"><a class="code" href="classaed2_1_1map.html">aed2::map&lt;int, int&gt;</a> m;</div><div class="line"><span class="keywordflow">if</span>(m[1] == 3) {...} <span class="comment">//posible bug: define 1 -&gt; basura (que puede o no ser</span></div><div class="line">3).</div></div><!-- fragment --><dl class="params"><dt>Parámetros</dt><dd>
+<p>Ejemplo: </p>
+<div class="fragment"><div class="line"><a class="code" href="classaed2_1_1map.html">aed2::map&lt;int, int&gt;</a> d;</div>
+<div class="line">d[1] = 2;      <span class="comment">//define 1 -&gt; 2</span></div>
+<div class="line">d[1] = 3;      <span class="comment">//redefine 1 -&gt; 3</span></div>
+<div class="line"></div>
+<div class="line"><a class="code" href="classaed2_1_1map.html">aed2::map&lt;int, int&gt;</a> m;</div>
+<div class="line"><span class="keywordflow">if</span>(m[1] == 3) {...} <span class="comment">//posible bug: define 1 -&gt; basura (que puede o no ser</span></div>
+<div class="line">3).</div>
+</div><!-- fragment --><dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>clave a buscar. </td></tr>
   </table>
@@ -132,7 +138,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <dl class="section user"><dt>Requerimientos sobre el tipo Meaning</dt><dd>Requiere que <span class="paramname">Meaning</span> tenga un constructor sin parámetros con complejidad <img class="formulaInl" alt="$O$" src="form_1.png"/>(<em>c</em>)</dd></dl>
 <dl class="section user"><dt>Aspectos de aliasing:</dt><dd>Cualquier cambio en <b class="paramname">res</b> afectará la estructura subyacente y viceversa.</dd></dl>
 <dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {<em>self</em> = <b class="paramname">this</b>} </dd></dl>
-<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { ( def?(<b class="paramname">key</b>, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> <b class="paramname">res</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> obtener(<b class="paramname">key</b>, ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <em>self</em> ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> ( <img class="formulaInl" alt="$\lnot$" src="form_22.png"/> def?(<b class="paramname">key</b>, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> def?(<b class="paramname">key</b>, <b class="paramname">*this</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> ( ( <img class="formulaInl" alt="$\forall$" src="form_16.png"/> c:Key) def?(c, <b class="paramname">*this</b>) <img class="formulaInl" alt="$\Leftrightarrow$" src="form_18.png"/> (def?(c, <em>self</em>) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> c = <b class="paramname">Key</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> (def?(c, <em>self</em>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> c  <b class="paramname">key</b>) <img class="formulaInl" alt="$\Rightarrow_{\rm L}$" src="form_26.png"/> obtener(c,<b class="paramname">*this</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> obtener(c, <em>self</em>) ) ) } <dl class="section complexity">
+<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { ( def?(<b class="paramname">key</b>, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> <b class="paramname">res</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> obtener(<b class="paramname">key</b>, ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <em>self</em> ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> ( <img class="formulaInl" alt="$\lnot$" src="form_22.png"/> def?(<b class="paramname">key</b>, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> def?(<b class="paramname">key</b>, <b class="paramname">*this</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> ( ( <img class="formulaInl" alt="$\forall$" src="form_16.png"/> c:Key) def?(c, <b class="paramname">*this</b>) <img class="formulaInl" alt="$\Leftrightarrow$" src="form_18.png"/> (def?(c, <em>self</em>) <img class="formulaInl" alt="$\lor$" src="form_23.png"/> c = <b class="paramname">Key</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> (def?(c, <em>self</em>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> c <img class="formulaInl" alt="$=/=$" src="form_32.png"/> <b class="paramname">key</b>) <img class="formulaInl" alt="$\Rightarrow_{\rm L}$" src="form_26.png"/> obtener(c,<b class="paramname">*this</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> obtener(c, <em>self</em>) ) ) } <dl class="section complexity">
 <dt>Complejidad Temporal</dt>
 <dd><img class="formulaInl" alt="$O$" src="form_1.png"/>( <img class="formulaInl" alt="$\log$" src="form_19.png"/>(<b>size</b>(<b class="paramname">*this</b>)) <img class="formulaInl" alt="$\cdot$" src="form_13.png"/> <b>cmp</b>(<b class="paramname">*this</b>) + <em>x</em>) donde<ul>
 <li><em>x</em> = 1 si def?(<em>self</em>, <b class="paramname">key</b>), y</li>
@@ -142,7 +148,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 </dl>
 </dd></dl>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l01644">1644</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l01628">1628</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -152,9 +158,9 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 16:46:25 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 20:31:27 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
 </div>
 </body>

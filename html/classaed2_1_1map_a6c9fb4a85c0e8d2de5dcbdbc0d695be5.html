@@ -3,24 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.11"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
 <title>Trabajo práctico 2: diccionario sobre RB-tree: aed2::map::Transplant</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { init_search(); });
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
@@ -31,7 +29,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectalign" style="padding-left: 0.5em;">
+  <td style="padding-left: 0.5em;">
    <div id="projectname">Trabajo práctico 2: diccionario sobre RB-tree
    &#160;<span id="projectnumber">0.1</span>
    </div>
@@ -57,7 +55,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.8.11 -->
+<!-- Generado por Doxygen 1.8.6 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
 </script>
@@ -73,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5.html','');});
+$(document).ready(function(){initNavTree('classaed2_1_1map.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -81,7 +79,7 @@ $(document).ready(function(){initNavTree('classaed2_1_1map_a6c9fb4a85c0e8d2de5dc
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-</div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>&apos;typedefs&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -120,40 +118,22 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Inserta <b class="paramname">value</b> en el diccionario. </p>
-<p>Inserta un <b>nuevo</b> valor en el diccionario. Si <b class="paramname">*this</b> ya tiene un valor con clave <b class="paramname">value</b>.first, entonces la función no tiene efectos. El iterador de retorno apunta al elemento recien insertado (o aquel que previno la insercion).</p>
+<p>Retorna true si las claves son iguales con respecto a <b class="paramname">this</b>-&gt;lt. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>valor a insertar </td></tr>
-    <tr><td class="paramname">hint</td><td>iterador apuntando al diccionario. Se espera que apunte al minimo valor mayor o igual a <b class="paramname">value</b>.first (i.e., a lower_bound(<b class="paramname">value</b>.first)). Igualmente, la función es robusta y funciona correctamente aunque esto no ocurra. </td></tr>
+    <tr><td class="paramname">k1</td><td>clave a comparar </td></tr>
+    <tr><td class="paramname">k2</td><td>clave a comparar </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="retval"><dt>Valores devueltos</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">res</td><td>iterador apuntando al elemento insertado o que previno la inserción</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>Si se modifica el valor apuntado por <b class="paramname">res</b>, se modifica la estructura subyacente.</dd></dl>
-<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {<em>self</em> = <b class="paramname">*this</b>} </dd></dl>
-<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {( <img class="formulaInl" alt="$\lnot$" src="form_22.png"/> def?(<b class="paramname">value</b>.first, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> definir(<b class="paramname">value</b>.first, <b class="paramname">value</b>.second, <em>self</em>) ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> ( def?(<b class="paramname">value</b>.first, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <em>self</em> ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Siguientes(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <a href="axiomas.html#mayoresOrdenados">mayoresOrdenados</a>(<b class="paramname">value</b>.first,<b class="paramname">*this</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Anteriores(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <a href="axiomas.html#menoresOrdenados">menoresOrdenados</a>(<b class="paramname">value</b>.first,<b class="paramname">*this</b>)}</dd></dl>
-<dl class="section complexity">
-<dt>Complejidad Temporal</dt>
-<dd><ul>
-<li>Peor caso: <img class="formulaInl" alt="$O$" src="form_1.png"/>( <img class="formulaInl" alt="$\log$" src="form_19.png"/>(<b>size</b>(<b class="paramname">*this</b>)) <img class="formulaInl" alt="$\cdot$" src="form_13.png"/> <b>cmp</b>(<b class="paramname">*this</b>) <img class="formulaInl" alt="$+$" src="form_20.png"/> <b>copy</b>(<b class="paramname">value</b>))</li>
-<li>Si <b class="paramname">hint</b> apunta al primer valor con clave al menos <b class="paramname">value</b>.first (o <b class="paramname">this</b>-&gt;<a class="el" href="classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983.html#a76023e6a56cb625513e1b5ea028bf983" title="Devuelve un iterador apuntando a la posición pasando-el-ultimo del diccionario. ">end()</a> en caso de no existir): <img class="formulaInl" alt="$O$" src="form_1.png"/>(<b>cmp</b>(<b class="paramname">*this</b>) <img class="formulaInl" alt="$+$" src="form_20.png"/> <b>copy</b>(<b class="paramname">value</b>)) amortizado. </li>
-</ul>
-</dd>
-</dl>
-<dl class="section attention"><dt>Atención</dt><dd>Para garantizar que el nuevo elemento se inserte sí o sí, usar <a class="el" href="classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475.html#a2ef6723c183916276b0afc4a4c721475" title="Inserta o redefine value en el diccionario. ">aed2::map::insert_or_assign</a>. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true cuando <b class="paramname">k1</b> y <b class="paramname">k2</b> son iguales con respecto a <b class="paramname">this</b>-&gt;lt. </dd></dl>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l02066">2066</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l03426">3426</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -163,9 +143,9 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 16:46:26 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 20:31:27 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
 </div>
 </body>

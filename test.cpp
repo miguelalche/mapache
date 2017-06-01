@@ -88,7 +88,7 @@ TEST(TestsBasicos, IteradorAlInsertarUnElemento) {
     // TODO esto no va al testear iteradores? deberia ir antes de insertConHint*
     EXPECT_NE(it, singleton.end());
     EXPECT_EQ(it->first, 1);
-    //EXPECT_EQ(it->second, "uno");
+    EXPECT_EQ(it->second, "uno");
     EXPECT_EQ(++it, singleton.end());
 }
 
@@ -144,7 +144,7 @@ TEST_F(BasicMapInstances, findEnVacio) {
 
 TEST_F(BasicMapInstances, findQueExisteEnSingleton) {
     EXPECT_EQ(singleton.find(1)->first, 1);
-    //EXPECT_EQ(singleton.find(1)->second, "uno");
+    EXPECT_EQ(singleton.find(1)->second, "uno");
 }
 
 TEST_F(BasicMapInstances, findQueNoExisteEnSingleton) {
@@ -153,10 +153,10 @@ TEST_F(BasicMapInstances, findQueNoExisteEnSingleton) {
 
 TEST_F(BasicMapInstances, findQueExiste) {
     EXPECT_EQ(cinco_elementos.find(1)->first, 1);
-    //EXPECT_EQ(cinco_elementos.find(1)->second, "uno");
+    EXPECT_EQ(cinco_elementos.find(1)->second, "uno");
 
     EXPECT_EQ(cinco_elementos.find(5)->first, 5);
-    //EXPECT_EQ(cinco_elementos.find(5)->second, "cinco");
+    EXPECT_EQ(cinco_elementos.find(5)->second, "cinco");
 }
 
 TEST_F(BasicMapInstances, findQueNoExiste) {

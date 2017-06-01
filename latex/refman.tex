@@ -2,24 +2,21 @@
 \documentclass[twoside]{article}
 
 % Packages required by doxygen
-\usepackage{fixltx2e}
 \usepackage{calc}
 \usepackage{doxygen}
-\usepackage[export]{adjustbox} % also loads graphicx
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{makeidx}
 \usepackage{multicol}
 \usepackage{multirow}
-\PassOptionsToPackage{warn}{textcomp}
 \usepackage{textcomp}
-\usepackage[nointegrals]{wasysym}
 \usepackage[table]{xcolor}
 
 % NLS support packages
 \usepackage[spanish]{babel}
 % Font selection
 \usepackage[T1]{fontenc}
+\usepackage{mathptmx}
 \usepackage[scaled=.90]{helvet}
 \usepackage{courier}
 \usepackage{amssymb}
@@ -33,7 +30,6 @@
   \fontseries{bc}\selectfont%
   \color{darkgray}%
 }
-\newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
 
 % Page & text layout
 \usepackage{geometry}
@@ -49,7 +45,7 @@
 \hbadness=750
 \setlength{\emergencystretch}{15pt}
 \setlength{\parindent}{0cm}
-\setlength{\parskip}{3ex plus 2ex minus 2ex}
+\setlength{\parskip}{0.2cm}
 \makeatletter
 \renewcommand{\paragraph}{%
   \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
@@ -74,8 +70,8 @@
 \fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
 \fancyfoot[LE]{\fancyplain{}{}}
 \fancyfoot[CE]{\fancyplain{}{}}
-\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Generado por Doxygen }}
-\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Generado por Doxygen }}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Generado el Jueves, 1 de Junio de 2017 20\-:31\-:28 para Trabajo práctico 2\-: diccionario sobre R\-B-\/tree por Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Generado el Jueves, 1 de Junio de 2017 20\-:31\-:28 para Trabajo práctico 2\-: diccionario sobre R\-B-\/tree por Doxygen }}
 \fancyfoot[CO]{\fancyplain{}{}}
 \fancyfoot[RO]{\fancyplain{}{}}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -109,25 +105,22 @@
   \newpage{\pagestyle{empty}\cleardoublepage}%
 }
 
-\usepackage{caption}
-\captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
 
 %===== C O N T E N T S =====
 
 \begin{document}
 
 % Titlepage & ToC
-\hypersetup{pageanchor=false,
-             bookmarksnumbered=true,
-             pdfencoding=unicode
-            }
+\hypersetup{pageanchor=false}
 \pagenumbering{roman}
 \begin{titlepage}
 \vspace*{7cm}
 \begin{center}%
-{\Large Trabajo práctico 2\+: diccionario sobre R\+B-\/tree \\[1ex]\large 0.\+1 }\\
+{\Large Trabajo práctico 2\-: diccionario sobre R\-B-\/tree \\[1ex]\large 0.\-1 }\\
 \vspace*{1cm}
-{\large Generado por Doxygen 1.8.11}\\
+{\large Generado por Doxygen 1.8.6}\\
+\vspace*{0.5cm}
+{\small Jueves, 1 de Junio de 2017 20:31:28}\\
 \end{center}
 \end{titlepage}
 \tableofcontents
@@ -135,7 +128,7 @@
 \hypersetup{pageanchor=true}
 
 %--- Begin generated contents ---
-\section{Modulo aed2\+:\+:map}
+\section{Modulo aed2\-:\-:map}
 \label{index}\hypertarget{index}{}\input{index}
 \section{Enunciado}
 \label{Enunciado}
@@ -186,14 +179,13 @@
 % Bibliography
 \newpage
 \phantomsection
-\bibliographystyle{plain}
-\bibliography{bibTmpFile_1}
 \addcontentsline{toc}{section}{Referencias bibliográficas}
+\bibliographystyle{plain}
+\bibliography{biblio}
 
 % Index
 \newpage
 \phantomsection
-\clearemptydoublepage
 \addcontentsline{toc}{section}{Índice}
 \printindex
 

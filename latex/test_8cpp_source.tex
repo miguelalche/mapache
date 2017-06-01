@@ -1,4 +1,5 @@
-\hypertarget{test_8cpp_source}{}\subsection{test.\+cpp}
+\hypertarget{test_8cpp_source}{\subsection{test.\-cpp}
+}
 
 \begin{DoxyCode}
 00001 \textcolor{comment}{//}
@@ -6,7 +7,7 @@
 00003 \textcolor{comment}{//}
 00004 
 00005 \textcolor{preprocessor}{#define DEBUG}
-00006 \textcolor{preprocessor}{#include "\hyperlink{map_8h}{map.h}"}
+00006 \textcolor{preprocessor}{}\textcolor{preprocessor}{#include "\hyperlink{map_8h}{map.h}"}
 00007 \textcolor{preprocessor}{#include <gtest/gtest.h>}
 00008 
 00009 \textcolor{preprocessor}{#include <map>}
@@ -14,7 +15,7 @@
 00011 
 00013 \textcolor{comment}{// Estructuras básicas de testing //}
 00015 \textcolor{comment}{}
-\hypertarget{test_8cpp_source.tex_l00021}{}\hyperlink{classNat}{00021} \textcolor{keyword}{class }\hyperlink{classNat}{Nat}
+\hypertarget{test_8cpp_source_l00021}{}\hyperlink{classNat}{00021} \textcolor{keyword}{class }\hyperlink{classNat}{Nat}
 00022 \{
 00023 \textcolor{keyword}{public}:
 00024 
@@ -33,7 +34,7 @@
 00037     \textcolor{keywordtype}{size\_t} n\_;
 00038 \};
 00039 
-00040 \textcolor{keywordtype}{bool} operator < (\textcolor{keyword}{const} \hyperlink{classNat}{Nat}& a, \textcolor{keyword}{const} \hyperlink{classNat}{Nat}& b)
+00040 \textcolor{keywordtype}{bool} \hyperlink{classaed2_1_1map_a8ff07f6a24c290ea7e8f63ec7ab24f8d_a8ff07f6a24c290ea7e8f63ec7ab24f8d}{operator < }(\textcolor{keyword}{const} \hyperlink{classNat}{Nat}& a, \textcolor{keyword}{const} \hyperlink{classNat}{Nat}& b)
 00041 \{ \textcolor{keywordflow}{return} a.n\_ < b.n\_; \}
 00042 
 00043 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MAP\_T>
@@ -82,7 +83,7 @@
 00088     \textcolor{comment}{// TODO esto no va al testear iteradores? deberia ir antes de insertConHint*}
 00089     EXPECT\_NE(it, singleton.\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end}());
 00090     EXPECT\_EQ(it->first, 1);
-00091     \textcolor{comment}{//EXPECT\_EQ(it->second, "uno");}
+00091     EXPECT\_EQ(it->second, \textcolor{stringliteral}{"uno"});
 00092     EXPECT\_EQ(++it, singleton.\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end}());
 00093 \}
 00094 
@@ -102,20 +103,20 @@
 00110 \textcolor{comment}{}
 00111 TEST\_F(BasicMapInstances, empty) \{
 00112     EXPECT\_TRUE(vacio.empty());
-00113     EXPECT\_FALSE(singleton.empty());
+00113     EXPECT\_FALSE(singleton.\hyperlink{classaed2_1_1map_af5320ca0a7df4d16015441d5d055a7ee_af5320ca0a7df4d16015441d5d055a7ee}{empty}());
 00114     EXPECT\_FALSE(cinco\_elementos.empty());
 00115 \}
 00116 
 00117 TEST\_F(BasicMapInstances, size) \{
 00118     EXPECT\_EQ(vacio.size(), 0);
-00119     EXPECT\_EQ(singleton.size(), 1);
+00119     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a89f2613f926ac13293eafe65889d6021_a89f2613f926ac13293eafe65889d6021}{size}(), 1);
 00120     EXPECT\_EQ(cinco\_elementos.size(), 5);
 00121 \}
 00122 
 00124 \textcolor{comment}{// Tests de "Busqueda y acceso a los valores" (Thomas) //}
 00126 \textcolor{comment}{}
 00127 TEST\_F(BasicMapInstances, at) \{
-00128     EXPECT\_EQ(singleton.at(1), \textcolor{stringliteral}{"uno"});
+00128     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a0b0a11f906da2926f9eb342fcee79fd7_a0b0a11f906da2926f9eb342fcee79fd7}{at}(1), \textcolor{stringliteral}{"uno"});
 00129     EXPECT\_EQ(cinco\_elementos.at(1), \textcolor{stringliteral}{"uno"});
 00130     EXPECT\_EQ(cinco\_elementos.at(3), \textcolor{stringliteral}{"tres"});
 00131     EXPECT\_EQ(cinco\_elementos.at(5), \textcolor{stringliteral}{"cinco"});
@@ -133,20 +134,20 @@
 00143 \}
 00144 
 00145 TEST\_F(BasicMapInstances, findQueExisteEnSingleton) \{
-00146     EXPECT\_EQ(singleton.find(1)->first, 1);
-00147     \textcolor{comment}{//EXPECT\_EQ(singleton.find(1)->second, "uno");}
+00146     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_afd0fc1a8234888e61e0e615de7e245b8_afd0fc1a8234888e61e0e615de7e245b8}{find}(1)->first, 1);
+00147     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_afd0fc1a8234888e61e0e615de7e245b8_afd0fc1a8234888e61e0e615de7e245b8}{find}(1)->second, \textcolor{stringliteral}{"uno"});
 00148 \}
 00149 
 00150 TEST\_F(BasicMapInstances, findQueNoExisteEnSingleton) \{
-00151     EXPECT\_EQ(singleton.find(2), singleton.end());
+00151     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_afd0fc1a8234888e61e0e615de7e245b8_afd0fc1a8234888e61e0e615de7e245b8}{find}(2), singleton.\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end}());
 00152 \}
 00153 
 00154 TEST\_F(BasicMapInstances, findQueExiste) \{
 00155     EXPECT\_EQ(cinco\_elementos.find(1)->first, 1);
-00156     \textcolor{comment}{//EXPECT\_EQ(cinco\_elementos.find(1)->second, "uno");}
+00156     EXPECT\_EQ(cinco\_elementos.find(1)->second, \textcolor{stringliteral}{"uno"});
 00157 
 00158     EXPECT\_EQ(cinco\_elementos.find(5)->first, 5);
-00159     \textcolor{comment}{//EXPECT\_EQ(cinco\_elementos.find(5)->second, "cinco");}
+00159     EXPECT\_EQ(cinco\_elementos.find(5)->second, \textcolor{stringliteral}{"cinco"});
 00160 \}
 00161 
 00162 TEST\_F(BasicMapInstances, findQueNoExiste) \{
@@ -158,10 +159,10 @@
 00168 \}
 00169 
 00170 TEST\_F(BasicMapInstances, lowerBoundEnSingleton) \{
-00171     EXPECT\_EQ(singleton.lower\_bound(1)->first, 1);
-00172     EXPECT\_EQ(singleton.lower\_bound(0)->first, 1);
-00173     EXPECT\_EQ(singleton.lower\_bound(-1)->first, 1);
-00174     EXPECT\_EQ(singleton.lower\_bound(2), singleton.end());
+00171     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a3399d36fdd5a880b494f3a5795d3f18f_a3399d36fdd5a880b494f3a5795d3f18f}{lower\_bound}(1)->first, 1);
+00172     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a3399d36fdd5a880b494f3a5795d3f18f_a3399d36fdd5a880b494f3a5795d3f18f}{lower\_bound}(0)->first, 1);
+00173     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a3399d36fdd5a880b494f3a5795d3f18f_a3399d36fdd5a880b494f3a5795d3f18f}{lower\_bound}(-1)->first, 1);
+00174     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a3399d36fdd5a880b494f3a5795d3f18f_a3399d36fdd5a880b494f3a5795d3f18f}{lower\_bound}(2), singleton.\hyperlink{classaed2_1_1map_a76023e6a56cb625513e1b5ea028bf983_a76023e6a56cb625513e1b5ea028bf983}{end}());
 00175 \}
 00176 
 00177 TEST\_F(BasicMapInstances, lowerBoundExtenso) \{
@@ -178,8 +179,8 @@
 00190 \textcolor{comment}{//TEST\_F(BasicMapInstances, insertSinHint) \{\}}
 00191 
 00192 TEST\_F(BasicMapInstances, insertElMismoElementoSinHint) \{
-00193     singleton.insert(\{1, \textcolor{stringliteral}{"diez"}\});
-00194     EXPECT\_EQ(singleton.at(1), \textcolor{stringliteral}{"uno"});
+00193     singleton.\hyperlink{classaed2_1_1map_a6941cde9a79c27f054b5c97a587a1854_a6941cde9a79c27f054b5c97a587a1854}{insert}(\{1, \textcolor{stringliteral}{"diez"}\});
+00194     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a0b0a11f906da2926f9eb342fcee79fd7_a0b0a11f906da2926f9eb342fcee79fd7}{at}(1), \textcolor{stringliteral}{"uno"});
 00195 \}
 00196 
 00197 TEST\_F(BasicMapInstances, insertElMismoElementoConHint) \{
@@ -212,8 +213,8 @@
 00224 \textcolor{comment}{// Ya probé inserts, asi que solo voy a testear assigns}
 00225 
 00226 TEST\_F(BasicMapInstances, insertOrAssignSinHint) \{
-00227     singleton.insert\_or\_assign(\{1, \textcolor{stringliteral}{"diez"}\});
-00228     EXPECT\_EQ(singleton.at(1), \textcolor{stringliteral}{"diez"});
+00227     singleton.\hyperlink{classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475_a2ef6723c183916276b0afc4a4c721475}{insert\_or\_assign}(\{1, \textcolor{stringliteral}{"diez"}\});
+00228     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a0b0a11f906da2926f9eb342fcee79fd7_a0b0a11f906da2926f9eb342fcee79fd7}{at}(1), \textcolor{stringliteral}{"diez"});
 00229 \}
 00230 
 00231 TEST\_F(BasicMapInstances, insertOrAssignConHintBueno) \{
@@ -231,8 +232,8 @@
 00243 \}
 00244 
 00245 TEST\_F(BasicMapInstances, erasePorClave) \{
-00246     singleton.erase( 1 );
-00247     EXPECT\_TRUE( singleton.empty() );
+00246     singleton.\hyperlink{classaed2_1_1map_ad8e796bf9c9c558e5ce6b61e116253fe_ad8e796bf9c9c558e5ce6b61e116253fe}{erase}( 1 );
+00247     EXPECT\_TRUE( singleton.\hyperlink{classaed2_1_1map_af5320ca0a7df4d16015441d5d055a7ee_af5320ca0a7df4d16015441d5d055a7ee}{empty}() );
 00248 
 00249     cinco\_elementos.erase(1);
 00250     EXPECT\_EQ(cinco\_elementos.size(), 4);
@@ -248,8 +249,8 @@
 00260 \}
 00261 
 00262 TEST\_F(BasicMapInstances, erasePorIterador) \{
-00263     singleton.erase( singleton.begin() );
-00264     EXPECT\_TRUE( singleton.empty() );
+00263     singleton.\hyperlink{classaed2_1_1map_ad8e796bf9c9c558e5ce6b61e116253fe_ad8e796bf9c9c558e5ce6b61e116253fe}{erase}( singleton.\hyperlink{classaed2_1_1map_a58a95705d54b3dda7f775ce5a22225cb_a58a95705d54b3dda7f775ce5a22225cb}{begin}() );
+00264     EXPECT\_TRUE( singleton.\hyperlink{classaed2_1_1map_af5320ca0a7df4d16015441d5d055a7ee_af5320ca0a7df4d16015441d5d055a7ee}{empty}() );
 00265 
 00266     \textcolor{keyword}{auto} it = cinco\_elementos.insert(\{7, \textcolor{stringliteral}{"siete"}\});
 00267     it = cinco\_elementos.erase( it );
@@ -265,9 +266,9 @@
 00277     EXPECT\_TRUE(vacio.empty());
 00278     EXPECT\_EQ(vacio.size(), 0);
 00279 
-00280     singleton.clear();
-00281     EXPECT\_TRUE(singleton.empty());
-00282     EXPECT\_EQ(singleton.size(), 0);
+00280     singleton.\hyperlink{classaed2_1_1map_a2bfa5165825979bf2431db55bc6bc9ca_a2bfa5165825979bf2431db55bc6bc9ca}{clear}();
+00281     EXPECT\_TRUE(singleton.\hyperlink{classaed2_1_1map_af5320ca0a7df4d16015441d5d055a7ee_af5320ca0a7df4d16015441d5d055a7ee}{empty}());
+00282     EXPECT\_EQ(singleton.\hyperlink{classaed2_1_1map_a89f2613f926ac13293eafe65889d6021_a89f2613f926ac13293eafe65889d6021}{size}(), 0);
 00283 
 00284     cinco\_elementos.clear();
 00285     EXPECT\_TRUE(cinco\_elementos.empty());
@@ -290,7 +291,7 @@
 00302     \textcolor{keyword}{auto} copia\_singleton( singleton );
 00303     \textcolor{keyword}{auto} copia\_cinco\_elementos( cinco\_elementos );
 00304 
-00305     singleton.swap( cinco\_elementos );
+00305     singleton.\hyperlink{classaed2_1_1map_a43ddb71cc91e5c6021a7a1f243d6cc4a_a43ddb71cc91e5c6021a7a1f243d6cc4a}{swap}( cinco\_elementos );
 00306 
 00307     EXPECT\_EQ(singleton, copia\_cinco\_elementos);
 00308     EXPECT\_EQ(copia\_singleton, cinco\_elementos);
@@ -339,7 +340,8 @@
 00350 \textcolor{comment}{// Asumo que si andan los iteradores => anda el operador ==}
 00351 
 00352 \textcolor{keyword}{template}<\textcolor{keyword}{class} K, \textcolor{keyword}{class} V, \textcolor{keyword}{class} CMP>
-00353 \textcolor{keywordtype}{bool} operator == (\textcolor{keyword}{const} std::map<K,V,CMP>& m1, \textcolor{keyword}{const} \hyperlink{classaed2_1_1map}{aed2::map<K,V,CMP>}& m2) \{
+00353 \textcolor{keywordtype}{bool} \hyperlink{classaed2_1_1map_abfc51b39670220e79037ac067006e933_abfc51b39670220e79037ac067006e933}{operator == }(\textcolor{keyword}{const} std::map<K,V,CMP>& m1, \textcolor{keyword}{const} 
+      \hyperlink{classaed2_1_1map}{aed2::map<K,V,CMP>}& m2) \{
 00354     \textcolor{keywordflow}{return} m1.size() == m2.\hyperlink{classaed2_1_1map_a89f2613f926ac13293eafe65889d6021_a89f2613f926ac13293eafe65889d6021}{size}() and std::equal(m1.begin(), m1.end(), m2.
       \hyperlink{classaed2_1_1map_a58a95705d54b3dda7f775ce5a22225cb_a58a95705d54b3dda7f775ce5a22225cb}{begin}());
 00355 \}

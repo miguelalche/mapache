@@ -1416,25 +1416,7 @@ namespace aed2 {
             // this->count = other.count;
             //this->header = new Node(other.header);
         }
-       void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir)
-        {
-            if (otherActual != nullptr)
-            {
-                actual = new InnerNode(parent, otherActual->_value);
-                actual->color = otherActual->color;
-                actual->parent->child[dir] = actual;
-                if (lt(actual->key(), header.child[0]->key()))
-                {
-                    header.child[0] = actual;
-                }
-                if (lt(header.child[1]->key(), actual->key()))
-                {
-                    header.child[1] = actual;
-                }
-                insertarTodos(actual, static_cast<InnerNode*>(actual->child[0]), static_cast<InnerNode*>(otherActual->child[0]), 0);
-                insertarTodos(actual, static_cast<InnerNode*>(actual->child[1]), static_cast<InnerNode*>(otherActual->child[1]), 1);
-            }
-        }
+       
 
         /**
          * @brief Crea un diccionario con los elementos del rango [\P{first},
@@ -1507,10 +1489,11 @@ namespace aed2 {
          * @param other diccionario a copiar
          * @retval res referencia a *this
          *
-         * \aliasing{completar}
+         * \aliasing{Como \P{other} se pasa por copia, no hay aliasing. Las modificaciones sobre un valor
+         * no afectan al otro.}
          *
-         * \pre \aedpre{other0 = other}
-         * \post \aedpost{res = other0}
+         * \pre \aedpre{\a self = \P{this} \LAND \P{other} = \P{other \f$_{0}\f$}}
+         * \post \aedpost{\P{res} \IGOBS \P{this} \P{*res} \IGOBS \P{*other \f$_{0}\f$} \LAND get(\P{this}) \NEQ &\P{other}}
          *
          * \complexity{\O(\DEL(\P{*this}) \PLUS \COPY(\P{other}))}
          *
@@ -1574,7 +1557,8 @@ namespace aed2 {
          * @param key clave a buscar.
          * @retval res referencia al significado asociado a \P{key}.
          *
-         * \aliasing{Cualquier cambio en \P{res} afectará a la estructura subyacente y viceversa.}
+         * \aliasing{Hay aliasing. No se puede modificar \P{res}, pero si se pudiera,
+         * cualquier cambio en \P{res} afectará a la estructura subyacente y viceversa.}
          *
          * \pre \aedpre{definido?(\P{key},this)}
          *
@@ -1696,18 +1680,6 @@ namespace aed2 {
             }
         }
 
-        Node *findAux(const Key &key, Node *now) const {
-            while (now != nullptr) {
-                if (eq(now->value().first, key)) {
-                    return now;
-                } else if (lt(key, now->value().first)) {
-                    now = now->child[0];
-                } else {
-                    now = now->child[1];
-                }
-            }
-            return nullptr;
-        }
 
         /** \overload */
         const_iterator find(const Key &key) const {
@@ -1758,21 +1730,7 @@ namespace aed2 {
             else return end();
         }
 
-        Node* lowerBoundAux(const Key &key) const {
-            Node *actual = header.parent;
-            Node *mother = nullptr;
-            if (actual && !lt(header.child[1]->key(), key)) {
-                //while actual no es nullptr y no es el lower bound
-                while (actual && (lt(actual->key(), key) || (actual->child[0] && !lt(actual->child[0]->key(), key)))) {
-                    mother = actual;
-                    if (eq(key, actual->key())) break;
-                    actual = lt(key, actual->key()) ? actual->child[0] : actual->child[1];
-                }
-            }
-            if (actual && !lt(actual->key(), key)) return actual;
-            else if (mother) return mother;
-            else return nullptr;
-        }
+
         ///@}
 
         ///////////////////////////////////
@@ -2063,18 +2021,7 @@ bool borrarX = false;
         }
 
 
-        void Transplant(Node* u, Node* v){
 
-
-            if (root()==u){
-                header.parent=v;
-            }else if(u==u->parent->child[0]){
-                u->parent->child[0]=v;
-            }else if(u==u->parent->child[1]){
-                u->parent->child[1]=v;
-            }
-            if (v) v->parent=u->parent;
-        }
 
 
 
@@ -2097,119 +2044,6 @@ bool borrarX = false;
         }
 
 
-
-        void fixRight(Node* myNode) { fixLeft(myNode, 1);}
-        void fixLeft(Node* myNode, bool dir = 0)
-        {
-            while (myNode != header.parent && myNode->color == Color::Black) {
-                Node *w = myNode->parent->child[1 - dir];
-                if (w != nullptr) {
-                    if (w->color == Color::Red) {
-                        w->color = Color::Black;
-                        myNode->parent->color = Color::Red;
-                        if (dir == 0) { leftrotate(myNode->parent);}
-                        else rightrotate((myNode->parent));
-                        w = myNode->parent->child[1 - dir];
-                    }
-                    if ((!w->hasChild(0) || (w->child[0]->color == Color::Black)) &&
-                        (!w->hasChild(1) || w->child[1]->color == Color::Black)) {
-                        w->color = Color::Red;
-                        myNode = myNode->parent;
-                    } else if (!w->hasChild(1-dir) || w->child[1-dir]->color == Color::Black) {
-                        if (w->hasChild(dir)) w->child[dir]->color = Color::Black;
-                        w->color = Color::Red;
-                        if (dir == 0) rightrotate(w);
-                        else leftrotate(w);
-                        w = myNode->parent->child[1 - dir];
-                    } else {
-                        w->color = myNode->parent->color;
-                        myNode->parent->color = Color::Black;
-                        if (w->hasChild(1 - dir)) w->child[1 - dir]->color = Color::Black;
-                        if (dir == 0) leftrotate(myNode->parent);
-                        else rightrotate(myNode->parent);
-                        myNode = header.parent;
-                    }
-                }
-            }
-        }
-        void delfix(Node* myNode) {
-            /* Node *s;
-             while(myNode != header.parent && myNode->color == Color::Black)
-             {
-                 if(myNode->parent->child[0] == myNode)
-                 {
-                     s = myNode->parent->child[1];
-                     if(s->color==Color::Red)
-                     {
-                         s->color=Color::Black;
-                         myNode->parent->color= Color::Red;
-                         leftrotate(myNode->parent);
-                         s=myNode->parent->child[1];
-                     }
-                     if((!s->hasChild(1) || s->child[1]->color==Color::Black) && (!s->hasChild(0) || s->child[0]->color== Color::Black))
-                     {
-                         s->color= Color::Red;
-                         myNode = myNode->parent;
-                     }
-                     else
-                     {
-                         if(!s->hasChild(1) || s->child[1]->color== Color::Black)
-                         {
-                             s->child[0]->color = Color::Black;
-                             s->color= Color::Red;
-                             rightrotate(s);
-                             s=myNode->parent->child[1];
-                         }
-                         s->color=myNode->parent->color;
-                         myNode->parent->color = Color::Black;
-                         s->child[1]->color = Color::Black;
-                         leftrotate(myNode->parent);
-                         myNode = header.parent;
-                     }
-                 }
-                 else
-                 {
-                     s=myNode->parent->child[0];
-                     if(s->color== Color::Red)
-                     {
-                         s->color= Color::Black;
-                         myNode->parent->color= Color::Red;
-                         rightrotate(myNode->parent);
-                         s=myNode->parent->child[0];
-                     }
-                     if((!s->hasChild(0) || s->child[0]->color == Color::Black) && (!s->hasChild(1) || s->child[1]->color== Color::Black))
-                     {
-                         s->color= Color::Red;
-                         myNode=myNode->parent;
-                     }
-                     else
-                     {
-                         if(!s->hasChild(0) || s->child[0]->color == Color::Black)
-                         {
-                             s->child[1]->color = Color::Black;
-                             s->color = Color::Red;
-                             leftrotate(s);
-                             s=myNode->parent->child[0];
-                         }
-                         s->color=myNode->parent->color;
-                         myNode->parent->color = Color::Black;
-                         s->child[0]->color= Color::Black;
-                         rightrotate(myNode->parent);
-                         myNode= header.parent;
-                     }
-                 }
-                 myNode->color= Color::Black;
-                 header.parent->color = Color::Black;
-             }
-         }*/
-            if (myNode->isChild(0)) {
-                fixLeft(myNode);
-            } else {
-                fixRight(myNode);
-            }
-
-            myNode->color = Color::Black;
-        }
 
 
 
@@ -2506,7 +2340,7 @@ bool borrarX = false;
              * @retval res referencia al valor apuntado por \P{*this}
              *
              * \aliasing{Como se devuelve una referencia, cualquier cambio en \P{res}
-             * afectará la estructura subyacente y viceversa.
+             * afectará la estructura subyacente y viceversa.}
              *
              * \pre \aedpre{\a self = \P{this}}
              * \post \aedpost{\P{res} \IGOBS \P{*this} \LAND \a self = \P{this}}
@@ -2519,9 +2353,10 @@ bool borrarX = false;
              *
              * @retval res puntero al valor apuntado por \P{*this}
              *
-             * \aliasing{completar}
+             * \aliasing{Como devuelve un puntero a un elemento de la estructura, cualquier cambio en \P{res}
+             * afectará a la estructura subyacente y viceversa.}
              *
-             * \pre \aedpre{true}
+             * \pre \aedpre{haySiguiente(\P{*this})}
              * \post \aedpost{\P{*res} \IGOBS Siguiente(\P{*this})}
              *
              * \complexity{\O(1)}
@@ -2555,14 +2390,6 @@ bool borrarX = false;
                 // if (n->is_header()) return &iterator();
                 return *this;
             }
-            /**
-             *\brief Busca el sucesor inorder del nodo al que apunta el iterador
-             *
-             *@retval res puntero apuntando a la dirección del sucesor
-             *
-             *
-             *
-             */
 
             /**
              * \brief Avanza el iterador a la siguiente posición
@@ -2646,7 +2473,9 @@ bool borrarX = false;
              * - true, cuando ambos son nulos.}
              *
              * \pre \aedpre{true}
-             * \post \aedpost{completar}
+             * \post \aedpost{ \P{res} \IGOBS ((\P{this} \IGOBS nullptr \IFF \P{other} \IGOBS) nullptr) \LAND
+             * ((\P{this} \NEQ nullptr) \IMP_LUEGO (\P{this}->value \IGOBS \P{other}->value \LAND coleccion(\P{this})
+             * \IGOBS coleccion(\P{other}))}
              *
              * \complexity{\O(1)}
              */
@@ -2718,7 +2547,7 @@ bool borrarX = false;
             * abs_iter: puntero(Node) n \TO IteradorBidireccional(Diccionario(\T{Key},
             * \T{Meaning}), tupla(\T{Key}, \T{Meaning}))  {rep_iter(n)}\n
             * (\FORALL n:puntero(nodo)) abs_iter(n) \IGOBS i:IteradorBidireccional |
-            * (n \IGOBS nullptr \LAND Anteriores(i) \ IGOBS vacía \LAND Siguientes(i) \IGOBS vacía) \LOR_L
+            * (n \IGOBS nullptr \LAND Anteriores(i) \IGOBS vacía \LAND Siguientes(i) \IGOBS vacía) \LOR_L
             * (\inorder(\buscarRaiz(n)) \IGOBS SecuSuby(i) \LAND_L Siguientes(i) \IGOBS
             * \despuesDe(n->value,SecuSuby(i)) \LAND Anteriores(i) \IGOBS \antesDe(n->value,SecuSuby(i)))
             *
@@ -2894,6 +2723,10 @@ bool borrarX = false;
              */
             Node() : color(Color::Header) { child[0] = child[1] = this; }
             bool hasChild(int dir) { return this->child[dir] != nullptr; }
+
+             /**
+             *\brief Busca el sucesor inorder del nodo al que apunta el iterador
+             */
 
             Node* nextInorder(int dir = 1) {
                 assert(not(is_header() && dir == 1));
@@ -3475,8 +3308,8 @@ bool borrarX = false;
             if (inserted) count++;
             return it;
         }
-        void Update(InnerNode* &now, const value_type& value)
-        {
+
+        void Update(InnerNode* &now, const value_type& value) {
             InnerNode *nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
 
             nuevo->child[0] = now->child[0];
@@ -3499,6 +3332,110 @@ bool borrarX = false;
             now = nuevo;
             delete aux;
         }
+
+        void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir) {
+            if (otherActual != nullptr) {
+                actual = new InnerNode(parent, otherActual->_value);
+                actual->color = otherActual->color;
+                actual->parent->child[dir] = actual;
+                
+                if (lt(actual->key(), header.child[0]->key())) {
+                    header.child[0] = actual;
+                }
+                if (lt(header.child[1]->key(), actual->key())) {
+                    header.child[1] = actual;
+                }
+                insertarTodos(actual, static_cast<InnerNode*>(actual->child[0]), static_cast<InnerNode*>(otherActual->child[0]), 0);
+                insertarTodos(actual, static_cast<InnerNode*>(actual->child[1]), static_cast<InnerNode*>(otherActual->child[1]), 1);
+            }
+        }
+        Node *findAux(const Key &key, Node *now) const {
+            while (now != nullptr) {
+                if (eq(now->value().first, key)) {
+                    return now;
+                } else if (lt(key, now->value().first)) {
+                    now = now->child[0];
+                } else {
+                    now = now->child[1];
+                }
+            }
+            return nullptr;
+        }
+
+
+        void fixRight(Node* myNode) { fixLeft(myNode, 1);}
+        void fixLeft(Node* myNode, bool dir = 0)
+        {
+            while (myNode != header.parent && myNode->color == Color::Black) {
+                Node *w = myNode->parent->child[1 - dir];
+                if (w != nullptr) {
+                    if (w->color == Color::Red) {
+                        w->color = Color::Black;
+                        myNode->parent->color = Color::Red;
+                        if (dir == 0) { leftrotate(myNode->parent);}
+                        else rightrotate((myNode->parent));
+                        w = myNode->parent->child[1 - dir];
+                    }
+                    if ((!w->hasChild(0) || (w->child[0]->color == Color::Black)) &&
+                        (!w->hasChild(1) || w->child[1]->color == Color::Black)) {
+                        w->color = Color::Red;
+                        myNode = myNode->parent;
+                    } else if (!w->hasChild(1-dir) || w->child[1-dir]->color == Color::Black) {
+                        if (w->hasChild(dir)) w->child[dir]->color = Color::Black;
+                        w->color = Color::Red;
+                        if (dir == 0) rightrotate(w);
+                        else leftrotate(w);
+                        w = myNode->parent->child[1 - dir];
+                    } else {
+                        w->color = myNode->parent->color;
+                        myNode->parent->color = Color::Black;
+                        if (w->hasChild(1 - dir)) w->child[1 - dir]->color = Color::Black;
+                        if (dir == 0) leftrotate(myNode->parent);
+                        else rightrotate(myNode->parent);
+                        myNode = header.parent;
+                    }
+                }
+            }
+        }
+        void delfix(Node* myNode) {
+            if (myNode->isChild(0)) {
+                fixLeft(myNode);
+            } else {
+                fixRight(myNode);
+            }
+
+            myNode->color = Color::Black;
+        }
+
+        Node* lowerBoundAux(const Key &key) const {
+            Node *actual = header.parent;
+            Node *mother = nullptr;
+            if (actual && !lt(header.child[1]->key(), key)) {
+                //while actual no es nullptr y no es el lower bound
+                while (actual && (lt(actual->key(), key) || (actual->child[0] && !lt(actual->child[0]->key(), key)))) {
+                    mother = actual;
+                    if (eq(key, actual->key())) break;
+                    actual = lt(key, actual->key()) ? actual->child[0] : actual->child[1];
+                }
+            }
+            if (actual && !lt(actual->key(), key)) return actual;
+            else if (mother) return mother;
+            else return nullptr;
+        }
+
+        void Transplant(Node* u, Node* v){
+
+
+            if (root()==u){
+                header.parent=v;
+            }else if(u==u->parent->child[0]){
+                u->parent->child[0]=v;
+            }else if(u==u->parent->child[1]){
+                u->parent->child[1]=v;
+            }
+            if (v) v->parent=u->parent;
+        }
+
     };
 
 //////////////////////////////////////
