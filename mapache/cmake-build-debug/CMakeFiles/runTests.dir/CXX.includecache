@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/map.h
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/map.h
 algorithm
 -
 cassert
@@ -20,9 +20,9 @@ utility
 iostream
 -
 
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/test.cpp
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/test.cpp
 map.h
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/map.h
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/map.h
 gtest/gtest.h
 -
 map

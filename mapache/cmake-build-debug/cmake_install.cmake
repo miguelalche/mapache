@@ -1,4 +1,4 @@
-# Install script for directory: /home/oliver/Oliver/Programación/Algo 2/TP2/mapache
+# Install script for directory: /home/jscherman/CLionProjects/mapache2/mapache/mapache
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jscherman/CLionProjects/mapache2/mapache/mapache/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

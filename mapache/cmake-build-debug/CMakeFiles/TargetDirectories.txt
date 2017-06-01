@@ -1,4 +1,4 @@
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/cmake-build-debug/CMakeFiles/mapache.dir
-/home/oliver/Oliver/Programación/Algo 2/TP2/mapache/cmake-build-debug/CMakeFiles/runTests.dir
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/cmake-build-debug/CMakeFiles/mapache.dir
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/cmake-build-debug/CMakeFiles/runTests.dir
