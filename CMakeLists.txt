@@ -1,11 +1,16 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.7)
 project(mapache)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-    main.cpp
-    map.h test.cpp)
+        main.cpp
+        map.h
+        test.cpp)
+
+set(SOURCE_FILES
+        main.cpp
+        map.h test.cpp)
 
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})

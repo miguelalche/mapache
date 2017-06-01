@@ -1,2 +1,0 @@
-copiar por swap, aliasing y punteros
-destructor complejidad

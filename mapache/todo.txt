@@ -1,5 +1,0 @@
-Corregir operador corchetes
-Poner asserts donde haga falta
-Hacer operator++(int) y operator--(int)
-Preguntarle a Soulignac por las precondiciones y postcondiciones (en especial los nombres de las variables de explicación). ¡Hacer esto el viernes en clase!
-Hacer operator= para iteradores (o consultar si es la única solución para las cosas en las que podríamos necesitarlo)

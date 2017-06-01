@@ -818,6 +818,234 @@
  * \primeros(fin(s)) \FI
  * \endparblock
  *
+ * \par raiz
+ * \parblock
+ * Devuelve un puntero a la raíz del árbol representado por m.
+ *
+ * \axioma{raiz}: \T{map} \TO \T{puntero(nodo)} \n
+ * raiz(m) \EQUIV m.header->parent
+ *
+ * \par esArbol
+ * \parblock
+ * Proposición que dice si una estructura representada con punteros a nodo
+ * se corresponde efectivamente con un árbol binario finito. La primera proposición
+ * asegura que el árbol termina, mientras que la segunda afirma que ningún nodo
+ * es hijo de dos nodos distintos (es decir, no hay ciclos).
+ *
+ * \axioma{esArbol}: \T{puntero(Node)} \TO \T{bool} \n
+ * esArbol(p) \EQUIV true \IFF (\EXISTS k:\T{nat}) \arbolK(p,k) \IGOBS \arbolK(p,k+1)
+ * \LAND \sinRepetidosAB(\arbolK(p,k))
+ *
+ * \par arbolK
+ * \parblock
+ * Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es apuntada por p.
+ *
+ * \axioma{arbolK}: \T{puntero(Node)} \TIMES \T{nat} \TO \T{ab(puntero(Node))} \n
+ * arbolK(p,k) \EQUIV \n \IF p = nullptr \THEN \n  nil \n \ELSE \n
+ * \IF k = 0 \THEN ab(nil,p,nil) \ELSE
+ * ab(\arbolK(p->child[0],k-1),p,\arbolK(p->child[1],k-1)) \FI \n \FI
+ *
+ * \par sinRepetidosAB
+ * \parblock
+ * Dice si un árbol binario tiene o no elementos repetidos.
+ *
+ * \axioma{sinRepetidosAB}: \T{ab(\ALPHA)} \TO \T{bool} \n
+ * sinRepetidosAB(a) \EQUIV
+ * \IF a = nil \THEN
+ * true
+ * \ELSE
+ * \LNOT (\perteneceAB(raíz(a),izq(a)) \LOR \perteneceAB(raíz(a),der(a))) \LAND
+ * \sinRepetidosAB(izq(a)) \LAND \sinRepetidosAB(der(a)) \FI
+ *
+ * \par perteneceAB
+ * \parblock
+ * Dice si un elemento está o no en un árbol binario.
+ *
+ * \axioma{perteneceAB}: \T{\ALPHA} \TIMES \T{ab(\ALPHA)} \TO \T{bool} \n
+ * perteneceAB(e,a) \EQUIV
+ * \IF a = nil \THEN
+ * false
+ * \ELSE
+ * raíz(a) = e \LOR \perteneceAB(e,izq(a)) \LOR \perteneceAB(e,der(a)) \FI
+ *
+ * \par esABBDicc
+ * \parblock
+ * Dice si el árbol binario que tiene a p como raíz es un ABB sin
+ * claves repetidas. Para asegurar esto último, las funciones auxiliares
+ * \todosMenores y \todosMayores hacen comparaciones <em>estrictas</em>.
+ *
+ * \axioma{esABBDicc}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * esABBDicc(p) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
+ * \todosMenores(p->child[0],p->value.first) \LAND
+ * \todosMayores(p->child[1],p->value.first) \LAND
+ * \esABBDicc(p->child[0]) \LAND \esABBDicc(p->child[1])  \FI
+ *
+ * \par todosMenores
+ * \parblock
+ * Dice si todas las claves del árbol binario a cuya raíz apunta p
+ * son estrictamentente menores a e.
+ *
+ * \axioma{todosMenores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
+ * todosMenores(p,e) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
+ * p->value.first \LT e \LAND \todosMenores(p->child[0],e) \LAND
+ * \todosMenores(p->child[1],e) \FI
+ *
+ * \par todosMayores
+ * \parblock
+ * Dice si todas las claves del árbol binario a cuya raíz apunta p
+ * son estrictamentente mayores a e.
+ *
+ * \axioma{todosMayores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
+ * todosMayores(p,e) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
+ * p->value.first \GT e \LAND \todosMayores(p->child[0],e) \LAND
+ * \todosMayores(p->child[1],e)  \FI
+ *
+ * \par esRBTree
+ * \parblock
+ * Dice si el árbol binario a cuya raíz apunta p cumple el invariante
+ * de red-black tree (adaptado a nuestra implementación con hojas nullptr):
+ * todos los nodos son o rojos o negros, la raíz es negra, todos los nodos
+ * rojos tienen sólo hijos negros y todas las ramas desde cualquier nodo
+ * interno tienen la misma cantidad de nodos negros.
+ *
+ * \axioma{esRBTree}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * \esRBTree(p) \EQUIV p = nullptr \LOR_L (\coloresValidos(p) \LAND
+ * p->color = Black \LAND \mismaCantNegros(p) \LAND \rojoImplicaHijosNegros(p) )
+ *
+ * \par coloresValidos
+ * \parblock
+ * Dice si el árbol binario a cuya raíz apunta p sólo tiene nodos
+ * negros y rojos.
+ *
+ * \axioma{coloresValidos}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * coloresValidos(p) \EQUIV \IF p = nullptr \THEN true \ELSE
+ * p->color \NEQ Header \LAND \coloresValidos(p->child[0]) \LAND \coloresValidos(p->child[1]) \FI
+ *
+ * \par mismaCantNegros
+ * \parblock
+ * Dice si todas las ramas que salen desde cualquier nodo del árbol binario
+ * a cuya raíz apunta tienen la misma cantidad de nodos negros. Observar
+ * que, como estamos pidiendo que los hijos de p cumplan este axioma, alcanza
+ * con verificar que la cantidad de nodos negros de una rama (en
+ * particular la extrema izquierda) es la misma para los dos hijos, y de esa
+ * forma aseguramos que se cumple recursivamente mismaCantNegros.
+ *
+ * \axioma{mismaCantNegros}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * mismaCantNegros(p) \EQUIV p = nullptr \LOR_L ( \cantNegros(p->child[0]) = \cantNegros(p->child[1])
+ * \LAND \mismaCantNegros(p->child[0]) \LAND \mismaCantNegros(p->child[1]) )
+ *
+ * \par cantNegros
+ * \parblock
+ * Devuelve la cantidad de nodos negros de la rama extrema izquierda del
+ * árbol binario a cuya raíz apunta p. Por lo explicado anteriormente,
+ * esta función sirve para computar mismaCantNegros.
+ *
+ * \axioma{cantNegros}: \T{puntero(Node)} p \TO \T{nat} {\esArbol(p)} \n
+ * cantNegros(p) \EQUIV \IF p = nullptr \THEN 0 \ELSE \cantNegros(p->child[0])
+ * \f$+\f$ (\IF p->color = Black \THEN 1 \ELSE 0 \FI ) \FI
+ *
+ * \par rojoImplicaHijosNegros
+ * \parblock
+ * Dice si todos los nodos rojos del árbol binario a cuya raíz apunta p
+ * tienen únicamente hijos negros.
+ *
+ * \axioma{rojoImplicaHijosNegros}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * rojoImplicaHijosNegros(p) \EQUIV \IF p = nullptr \THEN true \ELSE
+ * p->color = Red \IMPLIES_L ( \noEsRojo(p->child[0]) \LAND \noEsRojo(p->child[1]) )
+ * \LAND \rojoImplicaHijosNegros(p->child[0]) \LAND
+ * \rojoImplicaHijosNegros(p->child[1]) \FI
+ *
+ * \par noEsRojo
+ * \parblock
+ * Autoexplicativo.
+ *
+ * \axioma{noEsRojo}: \T{puntero(Node)} \TO \T{bool} \n
+ * noEsRojo(p) \EQUIV p \NEQ nullptr \IMPLIES_L p->color \NEQ Red
+ *
+ * \par familiaCorrecta
+ * \parblock
+ * Función auxiliar de repMap para verificar si el padre de la cabecera es efectivamente la raíz
+ * (y viceversa), si el hijo izquierdo de la cabecera es el menor elemento del árbol y si el
+ * hijo derecho de la cabecera es el mayor elemento del árbol.
+ *
+ * \axioma{familiaCorrecta}: \T{nodo} \TIMES \T{puntero(Node)} p \TO \T{bool} {p \NEQ nullptr} \n
+ * familiaCorrecta(n,p) \EQUIV n.child[0] = \getDMost(p,0) \LAND n.child[1] = \getDMost(p,1)
+ * \LAND n.parent = p \LAND p->parent = n
+ *
+ * \par getDMost
+ * \parblock
+ * Si d es 0, devuelve el nodo de extrema izquierda del árbol binario a cuya raíz apunta
+ * p; si es 1, devuelve el de extrema derecha.
+ *
+ * \axioma{getDMost}: \T{puntero(Node)} p \TIMES \T{nat} d \TO \T{puntero(Node)} {d \LEQ 1 \LAND p \NEQ nullptr \LAND \esArbol(p)} \n
+ * getDMost(p,d) \EQUIV \IF p->child[d] = nullptr \THEN p \ELSE \getDMost(p->child[d],d) \FI
+ *
+ * \par parentCorrecto
+ * \parblock
+ * Dice si todos los nodos del árbol binario cuya raíz es apuntada por p tienen como padre al nodo que los tiene
+ * como hijos.
+ *
+ * \axioma{parentCorrecto}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)}
+ * parentCorrecto(p) \EQUIV \IF p = nullptr \THEN true \ELSE (p->child[0] \NEQ nullptr
+ * \IMPLIES_L p->child[0]->parent = p) \LAND (p->child[1] \NEQ nullptr \IMPLIES_L
+ * p->child[1]->parent = p) \LAND parentCorrecto(p->child[0]) \LAND parentCorrecto(p->child[0]) \FI
+ *
+ * \par cantNodos
+ * \parblock
+ * Devuelve la cantidad total de nodos del árbol binario a cuya raíz apunta p.
+ *
+ * \axioma{cantNodos}: \T{puntero(Node)} p \TO \T{nat} {\esArbol(p)} \n
+ * cantNodos(p) \EQUIV \IF p = nullptr \THEN 0 \ELSE suc(\cantNodos(p->child[0]) + \cantNodos(p->child[1])) \FI
+ *
+ * \par perteneceClaveABB
+ * \parblock
+ * Dice si la clave c pertenece al árbol binario cuya raíz es apuntada por p.
+ *
+ * \axioma{perteneceClaveABB}: \T{Key} \TIMES \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * perteneceClaveABB(c,p) \EQUIV \IF p = nullptr \THEN false \ELSE
+ * p->value.first = c \LOR \perteneceClaveABB(c,p->child[0]) \LOR \perteneceClaveABB(c,p->child[1]) \FI
+ *
+ * \par significadoABB
+ * \parblock
+ * Devuelve el significado de la clave c en el árbol binario cuya raíz es apuntada por p.
+ * Si hay dos tuplas en el árbol que tienen a c como primer componente, devuelve la que esté
+ * más a la izquierda, pero en este contexto sólo la llamaremos con árboles que son diccionarios
+ * y por lo tanto no tienen repetidos, así que esto no hace diferencia.
+ *
+ * \axioma{significadoABB}: \T{Key} \TIMES \T{puntero(Node)} p \TO \T{Meaning} {\esArbol(p) \LAND_L \perteneceClaveABB(c,p)} \n
+ * significadoABB(c,p) \EQUIV \IF p->value.first = c \THEN p->value.second
+ * \ELSE ( \IF \perteneceClaveABB(c,p->child[0]) \THEN \significadoABB(c,p->child[0])
+ * \ELSE \significadoABB(c,p->child[1]) \FI ) \FI
+ *
+ * \par elHeaderEstaPiola
+ * \parblock
+ * Función auxiliar para verificar la correctitud de \repMap cuando el árbol representado es vacío.
+ * Responde a la estructura dada por la cátedra, en la que el constructor sin parámetros de map
+ * genera un árbol cuya cabecera tiene como hijo izquierdo y derecho a sí misma.
+ *
+ * \axioma{elHeaderEstaPiola}: \T{map} \TO \T{bool} \n
+ * elHeaderEstaPiola(m) \EQUIV m.header.parent = nullptr \LAND m.header.child[0] = &(m.header)
+ * \LAND m.header.child[0] = &(m.header) \LAND m.count = 0
+ *
+ * \par parentK
+ * \parblock
+ * Función similar a \arbolK, pero en vez de devolver los primeros k niveles de un árbol,
+ * devuelve el resultado de subir k veces por el nodo apuntado por p. Si se llega a un nodo
+ * que tiene como padre a nullptr, devuelve un puntero al último nodo que tenía como padre
+ * a un puntero no nulo.
+ *
+ * \axioma{parentK}: \T{puntero(Node)} p \TIMES \T{nat} \TO \T{puntero(Node)} {p \NEQ nullptr} \n
+ * parentK(p,k) \EQUIV \IF p->parent = nullptr \THEN p \ELSE (\IF k = 0 \THEN p \ELSE
+ * parentK(p->parent,k-1) \FI ) \FI
  */
 
 #ifndef MAP_H_
@@ -830,7 +1058,6 @@
 #include <utility>
 //#include <mmcobj.h>
 #include <iostream>
-
 #ifdef DEBUG
 // Aca se puede incluir cualquier cosa que consideren que necesitan para debug
 //#include <iostream>
@@ -935,18 +1162,16 @@ namespace aed2 {
  * define en
  * tiempo de ejecución, como ocurre en este caso.
  */
-    template<class Key, class Meaning, class Compare = std::less<Key> >
+    template <class Key, class Meaning, class Compare = std::less<Key> >
     class map {
         // forward declarations (innecesario, pero ayuda al analizador semantico de
         // Eclipse)
         class Node;
-
         class InnerNode;
 
     public:
         // forward declarations
         class iterator;
-
         class const_iterator;
 
         /**
@@ -973,22 +1198,22 @@ namespace aed2 {
          * \brief Renombre para poder acceder al tipo de referencia de los valores
          * guardados.  Compatible con estándar C++.
          */
-        using reference = value_type &;
+        using reference = value_type&;
         /**
          * \brief Renombre para poder acceder al tipo de referencia constante de los
          * valores guardados.  Compatible con estándar C++.
          */
-        using const_reference = const value_type &;
+        using const_reference = const value_type&;
         /**
          * \brief Renombre para poder acceder al tipo de los punteros de los valores
          * guardados.  Compatible con estándar C++.
          */
-        using pointer = value_type *;
+        using pointer = value_type*;
         /**
          * \brief Renombre para poder acceder al tipo de los punteros de los valores
          * constantes guardados.  Compatible con estándar C++.
          */
-        using const_pointer = const value_type *;
+        using const_pointer = const value_type*;
         /**
          * \brief Renombre para poder acceder al tipo usado para describir tamaños.
          * Compatible con estándar C++.
@@ -1044,7 +1269,7 @@ namespace aed2 {
          * @retval res diccionario recién construido
          *
          * \pre \aedpre{true}
-         * \post \aedpost{res \igobs vac\'io}
+         * \post \aedpost{res \IGOBS vacío}
          *
          * \complexity{\O(1)}
          *
@@ -1064,7 +1289,7 @@ namespace aed2 {
          * @retval res diccionario recien construido
          *
          * \pre \aedpre{true}
-         * \post \aedpost{res \igobs other}
+         * \post \aedpost{res \IGOBS other}
          *
          * \complexity{\O(\COPY(\P{other}))}
          *
@@ -1073,39 +1298,39 @@ namespace aed2 {
          * \LT es igual al operator() del comparador de \P{other}
          *
          */
-        map(const map &other) {
-            count = other.count;
-            header = Node(); //le asigno un nodo, como la asignacion es por copia, esta todo ok
+        map(const map& other) {
+            this->count = other.count;
+            this->header = Node();
             header.child[0] = header.child[1] = &header; // no deberia estar esta linea
-            if (other.header.parent) {
-                header.parent = new InnerNode(&header, other.header.parent->value());
+            if (other.header.parent)
+            {
+                header.parent = new InnerNode(&header, static_cast<InnerNode*>(other.header.parent)->_value);
                 header.parent->color = Color::Black;
                 header.child[0] = header.child[1] = header.parent;
-                insertarTodos(header.parent, static_cast<InnerNode *>(header.parent->child[0]),
-                              static_cast<InnerNode *>(other.header.parent->child[0]), 0);
-                insertarTodos(header.parent, static_cast<InnerNode *>(header.parent->child[1]),
-                              static_cast<InnerNode *>(other.header.parent->child[1]), 1);
+                insertarTodos(header.parent, static_cast<InnerNode*>(header.parent->child[0]), static_cast<InnerNode*>(other.header.parent->child[0]), 0);
+                insertarTodos(header.parent, static_cast<InnerNode*>(header.parent->child[1]), static_cast<InnerNode*>(other.header.parent->child[1]), 1);
             }
 
             // this->count = other.count;
             //this->header = new Node(other.header);
         }
-
-        void insertarTodos(Node *parent, InnerNode *actual, InnerNode *otherActual, bool dir) {
-            if (otherActual != nullptr) {
+       void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir)
+        {
+            if (otherActual != nullptr)
+            {
                 actual = new InnerNode(parent, otherActual->_value);
                 actual->color = otherActual->color;
                 actual->parent->child[dir] = actual;
-                if (lt(actual->key(), header.child[0]->key())) {
+                if (lt(actual->key(), header.child[0]->key()))
+                {
                     header.child[0] = actual;
                 }
-                if (lt(header.child[1]->key(), actual->key())) {
+                if (lt(header.child[1]->key(), actual->key()))
+                {
                     header.child[1] = actual;
                 }
-                insertarTodos(actual, static_cast<InnerNode *>(actual->child[0]),
-                              static_cast<InnerNode *>(otherActual->child[0]), 0);
-                insertarTodos(actual, static_cast<InnerNode *>(actual->child[1]),
-                              static_cast<InnerNode *>(otherActual->child[1]), 1);
+                insertarTodos(actual, static_cast<InnerNode*>(actual->child[0]), static_cast<InnerNode*>(otherActual->child[0]), 0);
+                insertarTodos(actual, static_cast<InnerNode*>(actual->child[1]), static_cast<InnerNode*>(otherActual->child[1]), 1);
             }
         }
 
@@ -1165,7 +1390,7 @@ namespace aed2 {
          * \sa [Documentación de
          * InputIterator](http://en.cppreference.com/w/cpp/concept/InputIterator)
          */
-        template<class iterator>
+        template <class iterator>
         map(iterator first, iterator last, Compare c = Compare()) : lt(c) {
             auto it = end();
             while (first != last) {
@@ -1190,7 +1415,7 @@ namespace aed2 {
          * \note Es importante remarcar que no se realiza ninguna comparación entre
          * los elementos.
          */
-        map &operator=(map other) {
+        map& operator=(map other) {
             swap(other);
             return *this;
         }
@@ -1224,7 +1449,7 @@ namespace aed2 {
          */
         ~map() {
             //SOLUCIÒN RECURSIVA
-            if (count > 0) {
+            if (count>0){
                 removeSubTree(root());
             }
             //delete header;
@@ -1235,12 +1460,6 @@ namespace aed2 {
         //y luego al derecho de ese subarbol, hasta llegar al elemento sin hijos, que elimina.
         //de esta manera, cuando pasa los dos ifs se asegura de no tener hijos, por lo que se elimina.
 
-        void removeSubTree(Node *raiz) {
-            if (raiz->hasChild(0)) { removeSubTree(raiz->child[0]); }
-            if (raiz->hasChild(1)) { removeSubTree(raiz->child[1]); }
-            delete raiz;
-            count--;
-        }
         ///@}
 
         ////////////////////////////////////////////
@@ -1257,7 +1476,7 @@ namespace aed2 {
          *
          * \pre \aedpre{definido?(\P{key},this)}
          *
-         * \post \aedpost{res \igobs obtener(\P{key},this)}
+         * \post \aedpost{res \IGOBS obtener(\P{key},this)}
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this}) \CDOT \CMP(\P{*this}))}
          *
@@ -1267,33 +1486,15 @@ namespace aed2 {
          * obligación
          * recurrir a la función find.
          */
-        const Meaning &at(const Key &key) const {
+        const Meaning& at(const Key& key) const {
             const_iterator it = find(key);
-            if (it.n != nullptr) { return static_cast<InnerNode *>(it.n)->_value.first; }
-            // const InnerNode* actual = root();
-            // while (actual->_value.first != key) {
-            //   if (lt(key, actual->_value.first)) {
-            //     actual = static_cast<InnerNode*>(actual->child[0]);
-            //   } else {
-            //     actual = static_cast<InnerNode*>(actual->child[1]);
-            //   }
-            // }
-            // return actual->_value.second;
+            if (it.n != nullptr) { return it.n->value().second; }
         }
 
         /** \overload */
-        Meaning &at(const Key &key) {
+        Meaning& at(const Key& key) {
             iterator it = find(key);
-            if (it.n != nullptr) { return static_cast<InnerNode *>(it.n)->_value.second; }
-            // InnerNode* actual = root();
-            // while (actual->_value.first != key) {
-            //   if (lt(key, actual->_value.first)) {
-            //     actual = static_cast<InnerNode*>(actual->child[0]);
-            //   } else {
-            //     actual = static_cast<InnerNode*>(actual->child[1]);
-            //   }
-            // }
-            // return actual->_value.second;
+            if (it.n != nullptr) { return it.n->value().second; }
         }
 
         /**
@@ -1335,15 +1536,16 @@ namespace aed2 {
          * - \a x = \a c en caso contrario.}
          *
          */
-        Meaning &operator[](const Key &key) {
+        Meaning& operator[](const Key& key) {
 
-            iterator itNodo = find(key); //busco el nodo
-            if (itNodo == end()) { //si no lo encontre, lo inserto con el constructor por defecto
-                std::pair<const Key, Meaning> par1 = std::make_pair(key, Meaning());
-                iterator MyIterator = insert(par1);
-                return MyIterator.n->value().second;
-            } else {
-                return itNodo.n->value().second;
+            iterator nodo = find(key);
+            if (nodo==end()){
+                Meaning significado = Meaning();
+                const std::pair<const Key, Meaning > par1 = std::make_pair(key,significado);
+                insert(par1);
+                return significado;
+            }else {
+                return (static_cast<InnerNode*>(nodo.n))->_value.second;
             }
         }
 
@@ -1528,112 +1730,13 @@ namespace aed2 {
          * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
          * aed2::map::insert_or_assign.
          */
+
 // esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
-        bool addElem(InnerNode *&now, const value_type &value, int dir) {
-            if (now->child[dir] != nullptr) {
-                now = static_cast<InnerNode *>(now->child[dir]); //si no es null, sigo bajando
-                return false;
-            } else {
-                now->child[dir] = new InnerNode(now, value);
-                InnerNode *aux = static_cast<InnerNode *>(now->child[dir]);
-                insertionFix(now->child[dir], value);
-                now = aux;
-                return true;
-            }
-        }
 
-        //insertionFix adaptado del cormen
-        void insertionFix(Node *newNode, const value_type &value) {
-            Node *aux;
-            if (eq(root()->key(), value.first)) {
-                header.parent->color = Color::Black;
-                return;
-            }
-            while (!(newNode->parent->is_header()) && (newNode->parent->color == Color::Red)) {
-                Node *grandPa = newNode->parent->parent;
-                if (grandPa->child[0] == newNode->parent) {
-                    if (grandPa->child[1] != nullptr) {
-                        aux = grandPa->child[1];
-                        if (aux->color == Color::Red) {
-                            newNode->parent->color = Color::Black;
-                            aux->color = Color::Black;
-                            grandPa->color = Color::Red;
-                            newNode = grandPa;
-                        }
-                    } else {
-                        if (newNode->parent->child[1] == newNode) {
-                            newNode = newNode->parent;
-                            leftRotate(newNode);
-                        }
-                        newNode->parent->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        rightRotate(grandPa);
-                    }
-                } else {
-                    if (grandPa->child[0] != nullptr) {
-                        aux = grandPa->child[0];
-                        if (aux->color == Color::Red) {
-                            newNode->parent->color = Color::Black;
-                            aux->color = Color::Black;
-                            grandPa->color = Color::Red;
-                            newNode = grandPa;
-                        }
-                    } else {
-                        if (newNode->parent->child[0] == newNode) {
-                            newNode = newNode->parent;
-                            rightRotate(newNode);
-                        }
-                        newNode->parent->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        leftRotate(grandPa);
-                    }
-                }
-                root()->color = Color::Black;
-            }
-        }
 
-//rotaciones de un rb-tree
-        void dirRotate(Node *p, int dir = 0) {
-            if (p->child[1 - dir] == nullptr)
-                return;
-            else {
-                Node *y = p->child[1-dir];
 
-                if (y->child[dir] != nullptr) {
-                    p->child[1-dir] = y->child[dir];
-                    y->child[dir]->parent = p;
-                } else { p->child[1-dir] = nullptr; }
 
-                if (p->parent != nullptr)
-                    y->parent = p->parent;
-                if (p->parent->is_header()) {
-                    this->header.parent = y;
-                    // header.parent = y;
-                    y->parent = &header;
-                } else {
-                    if (p == p->parent->child[dir])
-                        p->parent->child[dir] = y;
-                    else
-                        p->parent->child[1-dir] = y;
-                }
-                y->child[dir] = p;
-                p->parent = y;
-            }
-
-        }
-
-        void rightRotate(Node *p) { dirRotate(p, 1); }
-        void leftRotate(Node* p) {dirRotate(p, 0);}
-
-        bool invalidHint(const_iterator hint, const value_type &value) {
-            return (hint.n == nullptr || hint.n == &header || lt((*hint).first, value.first) ||
-                    lt(value.first, (hint.n)->prevInorder()->key()));
-            //retorna un bool diciendo si el hint pasado por parametro es el lower bound de value
-            //notar que podria ser lower bound valido el header, pero en ese caso el elemento
-            //a insertar es un maximo, y ese caso lo contemplo antes
-        }
-
-        iterator insert(const_iterator hint, const value_type &value) {
+        iterator insert(const_iterator hint, const value_type& value) {
             /*Tengo que insertar un elemento, para esto, distingo tres casos:
             * 1. el elemento a insertar es la raiz. Este es el caso mas facil, solo tengo que
             * ponerlo en relacion incestuosa con el header y ponerle el valor correspondiente.
@@ -1661,102 +1764,31 @@ namespace aed2 {
             * */
 
             if ((header.parent == nullptr) || isMaxOrMin(value) || invalidHint(hint, value)) {
-                insert(value); //casos en que el hint es invalido o no me ayuda mucho (por ej si inserto un maximo)
+                insert(value);
             } else {
                 if (hint.n->child[0] == nullptr) { //lo asigno a la izquierda del hint
-                    const_cast<Node *>(hint.n)->child[0] = new InnerNode(const_cast<Node *>(hint.n), value);
+                    const_cast<Node*>(hint.n)->child[0] = new InnerNode(const_cast<Node*>(hint.n), value);
                     insertionFix(hint.n->child[0], value);
                     return iterator(hint.n->child[0]);
-                } else { //lo asigno a la derecha del hint, siempre uno es nullptr
-                    Node *previo = const_cast<Node *>(hint.n->prevInorder());
+                } else {
+                    Node* previo =  const_cast<Node*>(hint.n->prevInorder());
                     previo->child[1] = new InnerNode(previo, value);
                     insertionFix(previo->child[1], value);
                     return iterator(hint.n->child[1]);
                 }
-            }
-        }
-
-        bool isMaxOrMin(const value_type &value) {
-            return lt((header.child[1])->key(), value.first) ||
-                   lt(value.first, (header.child[0])->key());
-        }
-
-        iterator assignMaxOrMin(const value_type &value) {
-            if (lt(header.child[1]->key(), value.first)) {
-                header.child[1]->child[1] = new InnerNode(header.child[1], value);
-                header.child[1] = header.child[1]->child[1];
-                insertionFix(header.child[1], value);
-                return iterator(header.child[1]);
-
-            } else {
-                header.child[0]->child[0] = new InnerNode(header.child[0], value);
-                header.child[0] = header.child[0]->child[0];
-                insertionFix(header.child[0], value);
-                return iterator(header.child[0]);
+                // count++; ver q onda count
             }
 
         }
+
+
+
 
         /** \overload*/
-        iterator insert(const value_type &value) {
+        iterator insert(const value_type& value) {
             return insert_or_upsert(value, 0);
         }
 
-        iterator insert_or_upsert(const value_type &value, bool upsert) {
-            InnerNode *now = static_cast<InnerNode *>(this->header.parent);
-            bool inserted = false;
-            iterator it(now);
-
-            if (root() == nullptr) {
-                header.parent = new InnerNode(&header, value);
-                header.parent->color = Color::Black; //la raiz siempre es negra
-                header.child[0] = header.child[1] = header.parent; //la raiz es el maximo y el minimo pues es el unico valor
-                inserted = true;
-                it = iterator(header.parent);
-            } else if (isMaxOrMin(value)) {
-                it = assignMaxOrMin(value);
-                inserted = true;
-            } else {
-                while (now != nullptr && !inserted) {
-                    if (lt(now->key(), value.first)) { //si es menor, lo inserto a la derecha o me voy para la derecha
-                        inserted = addElem(now, value, 1);
-                    } else {
-                        if (eq(now->key(), value.first) && upsert) { //si es igual y habilite el assign, piso el valor
-                            Update(now, value);
-                            return iterator(now);
-                        } else inserted = addElem(now, value, 0);
-
-                    }
-                    it = iterator(now);
-                }
-            }
-            if (inserted) count++;
-            return it;
-        }
-        void Update(InnerNode* &now, const value_type& value)
-        {
-            InnerNode *nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
-
-            nuevo->child[0] = now->child[0];
-            nuevo->child[1] = now->child[1];
-            if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
-            if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
-            if (now->parent != &header && now->isChild(0)) {
-                nuevo->parent->child[0] = nuevo;
-            } else if (now->parent != &header && now->isChild(1)) {
-                nuevo->parent->child[1] = nuevo;
-            } else {
-                header.parent = nuevo;
-            }
-            if (now == header.child[0]) {
-                header.child[0] = nuevo;
-            } else if (now == header.child[1]) {
-                header.child[1] = nuevo;
-            }
-            InnerNode *aux = now;
-            now = nuevo;
-            delete aux;
-        }
         /**
          * @brief Inserta o redefine \P{value} en el diccionario
          *
@@ -1828,69 +1860,104 @@ namespace aed2 {
          * }
          *
          */
-        iterator erase(const_iterator pos) {
+
+
+        iterator erase(const_iterator pos){
             if (header.parent == nullptr) return iterator();
-            Node *x;
-            Node *y = const_cast<Node *>(pos.n);
-            Node *z = y;
+            Node* x;
+            Node* y = const_cast<Node*>(pos.n);
+            Node* z = y;
             Color y_original_color = y->color;
             iterator it;
 
+bool borrarX = false;
             it.n = y->nextInorder();
-            if (z == begin()) {
-                header.child[0] = it.n;
+            if (z == begin()){
+                header.child[0]=it.n;
+            }else if(z == header.child[1]){
+                header.child[1]=z->prevInorder();
+                it = end();
             }
-            if (z == header.child[1]) {
-                header.child[1] = z->prevInorder();
-            }
-
-            if (!z->hasChild(0)) {
-                x = y->child[1];
-                Transplant(y, y->child[1]);
-            } else if (!z->hasChild(1)) {
-                x = y->child[0];
-                Transplant(y, y->child[0]);
-            } else {
-                y = y->nextInorder();
-                y_original_color = y->color;
-                x = y->child[1];
-                if (y->parent != z) {
-                    Transplant(y, y->child[1]);
-                    y->child[1] = z->child[1];
-                    y->child[1]->parent = y;
+            if (!y->hasChild(0)and!y->hasChild(1)and y_original_color==Color::Black) {
+                delfix(y);
+                if(y->parent->child[0]==y) y->parent->child[0]=nullptr;
+                if(y->parent->child[1]==y) y->parent->child[1]=nullptr;
+                delete y;
+                if (count == 1)
+                {
+                    header.parent = nullptr;
+                    header.child[0] = header.child[1] = &header;
+                    it = end();
+                    //delete pos.n;
                 }
-                Transplant(z, y);
-                y->child[0] = z->child[0];
-                y->child[0]->parent = y;
-                y->color = z->color;
+            }else{
+                it = iterator(z->nextInorder());
+                if (!z->hasChild(0)){
+                    x = y->child[1];
+                    Transplant(y,y->child[1]);
+                }
+                else if(!z->hasChild(1)){
+                    x = y->child[0];
+                    Transplant(y,y->child[0]);
+                }
+                else{
+                    y = y->nextInorder();
+                    y_original_color = y->color;
+                    x = y->child[1];
+                    if (!x)
+                    {
+                        x = new Node(y, Color::Black);
+                        borrarX = true;
+                        y->child[1] = x;
+                    }
+                    if (y->parent!=z) {
+                        Transplant(y,y->child[1]);
+                        y->child[1] = z->child[1];
+                        y->child[1]->parent = y;
+                    }
+                    Transplant(z,y);
+                    y->child[0]=z->child[0];
+                    y->child[0]->parent = y;
+                    y->color = z->color;
 
-            }
-            if (count == 1) {
-                //header.parent = nullptr;
-                header.child[0] = header.child[1] = &header;
-                //delete pos.n;
-            } else {
-                if (x == nullptr and y_original_color == Color::Black) {
-                    delfix(it.n);
-                } else if (y_original_color == Color::Black) delfix(x);
+                }
+                if (count == 1)
+                {
+                    header.parent = nullptr;
+                    header.child[0] = header.child[1] = &header;
+                    it = end();
+                    //delete pos.n;
+                }
+                else {
+                    if (y_original_color == Color::Black) delfix(x);
 
+                }
+                delete z;
             }
             count--;
-            delete z;
+            if (borrarX)
+            {
+                if (x->isChild(0)) x->parent->child[0] = nullptr;
+                else x->parent->child[1] = nullptr;
+                delete x;
+            }
             return it;
         }
 
 
-        void Transplant(Node *u, Node *v) {
-            if (root() == u) {
-                header.parent = v;
-            } else if (u == u->parent->child[0]) {
-                u->parent->child[0] = v;
-            } else if (u == u->parent->child[1]) {
-                u->parent->child[1] = v;
+        void Transplant(Node* u, Node* v){
+
+
+            if (root()==u){
+                header.parent=v;
+            }else if(u==u->parent->child[0]){
+                u->parent->child[0]=v;
+            }else if(u==u->parent->child[1]){
+                u->parent->child[1]=v;
             }
-            if (v) v->parent = u->parent;
+            if (v) v->parent=u->parent;
         }
+
 
 
         /**
@@ -1906,121 +1973,128 @@ namespace aed2 {
          * \complexity{\O(\DEL(\P{*pos}) + \LOG(\SIZE(\P{*this})) \CDOT
          * \CMP(\P{*this}))}
          */
-        void erase(const Key &key) {
+        void erase(const Key& key) {
             iterator it = find(key);
             if (it != end()) erase(find(key));
         }
 
 
-        void fixRight(Node *myNode) { fixLeft(myNode, 1); }
 
-        void fixLeft(Node *myNode, bool dir = 0) {
-            Node *w = myNode->parent->child[1];
-            if (w != nullptr) {
-                if (w->color == Color::Red) {
-                    w->color = Color::Black;
-                    myNode->parent->color = Color::Red;
-                    leftRotate(myNode->parent);
-                    w = myNode->parent->child[1];
-                }
-                if ((!w->hasChild(0) || (w->child[0]->color == Color::Black)) &&
-                    (!w->hasChild(1) || w->child[1]->color == Color::Black)) {
-                    w->color = Color::Red;
-                    myNode = myNode->parent;
-                } else if (!w->hasChild(1) || w->child[1]->color == Color::Black) {
-                    if (w->hasChild(0)) w->child[0]->color = Color::Black;
-                    w->color = Color::Red;
-                    rightRotate(w);
-                    w = myNode->parent->child[1];
-                } else {
-                    w->color = myNode->parent->color;
-                    myNode->parent->color = Color::Black;
-                    if (w->hasChild(1)) w->child[1]->color = Color::Black;
-                    leftRotate(myNode->parent);
-                    myNode = header.parent;
-                }
-            }
-        }
-
-        void delfix(Node *myNode) {
+        void fixRight(Node* myNode) { fixLeft(myNode, 1);}
+        void fixLeft(Node* myNode, bool dir = 0)
+        {
             while (myNode != header.parent && myNode->color == Color::Black) {
-                if (myNode->isChild(0)) {
-                    fixLeft(myNode);
-                } else {
-                    fixRight(myNode);
+                Node *w = myNode->parent->child[1 - dir];
+                if (w != nullptr) {
+                    if (w->color == Color::Red) {
+                        w->color = Color::Black;
+                        myNode->parent->color = Color::Red;
+                        if (dir == 0) { leftrotate(myNode->parent);}
+                        else rightrotate((myNode->parent));
+                        w = myNode->parent->child[1 - dir];
+                    }
+                    if ((!w->hasChild(0) || (w->child[0]->color == Color::Black)) &&
+                        (!w->hasChild(1) || w->child[1]->color == Color::Black)) {
+                        w->color = Color::Red;
+                        myNode = myNode->parent;
+                    } else if (!w->hasChild(1-dir) || w->child[1-dir]->color == Color::Black) {
+                        if (w->hasChild(dir)) w->child[dir]->color = Color::Black;
+                        w->color = Color::Red;
+                        if (dir == 0) rightrotate(w);
+                        else leftrotate(w);
+                        w = myNode->parent->child[1 - dir];
+                    } else {
+                        w->color = myNode->parent->color;
+                        myNode->parent->color = Color::Black;
+                        if (w->hasChild(1 - dir)) w->child[1 - dir]->color = Color::Black;
+                        if (dir == 0) leftrotate(myNode->parent);
+                        else rightrotate(myNode->parent);
+                        myNode = header.parent;
+                    }
                 }
             }
-            myNode->color = Color::Black;
-//          Node *s;
-//          while(myNode != root() && myNode->color == Color::Black)
-//          {
-//              if(myNode->parent->child[0] == myNode)
-//              {
-//                  s = myNode->parent->child[1];
-//                  if(s->color==Color::Red)
-//                  {
-//                      s->color=Color::Black;
-//                      myNode->parent->color= Color::Red;
-//                      leftrotate(myNode->parent);
-//                      s=myNode->parent->child[1];
-//                  }
-//                  if(s->child[1]->color==Color::Black && s->child[0]->color== Color::Black)
-//                  {
-//                      s->color= Color::Red;
-//                      myNode = myNode->parent;
-//                  }
-//                  else
-//                  {
-//                      if(s->child[1]->color== Color::Black)
-//                      {
-//                          s->child[0]->color = Color::Black;
-//                          s->color= Color::Red;
-//                          rightrotate(s);
-//                          s=myNode->parent->child[1];
-//                      }
-//                      s->color=myNode->parent->color;
-//                      myNode->parent->color = Color::Black;
-//                      s->child[1]->color = Color::Black;
-//                      leftrotate(myNode->parent);
-//                      myNode = header.parent;
-//                  }
-//              }
-//              else
-//              {
-//                  s=myNode->parent->child[0];
-//                  if(s->color== Color::Red)
-//                  {
-//                      s->color= Color::Black;
-//                      myNode->parent->color= Color::Red;
-//                      rightrotate(myNode->parent);
-//                      s=myNode->parent->child[0];
-//                  }
-//                  if(s->child[0]->color == Color::Black && s->child[1]->color== Color::Black)
-//                  {
-//                      s->color= Color::Red;
-//                      myNode=myNode->parent;
-//                  }
-//                  else
-//                  {
-//                      if(s->child[0]->color == Color::Black)
-//                      {
-//                          s->child[1]->color = Color::Black;
-//                          s->color = Color::Red;
-//                          leftrotate(s);
-//                          s=myNode->parent->child[0];
-//                      }
-//                      s->color=myNode->parent->color;
-//                      myNode->parent->color = Color::Black;
-//                      s->child[0]->color= Color::Black;
-//                      rightrotate(myNode->parent);
-//                      myNode= header.parent;
-//                  }
-//              }
-//              myNode->color= Color::Black;
-//              header.parent->color = Color::Black;
-//          }
-
         }
+        void delfix(Node* myNode) {
+            /* Node *s;
+             while(myNode != header.parent && myNode->color == Color::Black)
+             {
+                 if(myNode->parent->child[0] == myNode)
+                 {
+                     s = myNode->parent->child[1];
+                     if(s->color==Color::Red)
+                     {
+                         s->color=Color::Black;
+                         myNode->parent->color= Color::Red;
+                         leftrotate(myNode->parent);
+                         s=myNode->parent->child[1];
+                     }
+                     if((!s->hasChild(1) || s->child[1]->color==Color::Black) && (!s->hasChild(0) || s->child[0]->color== Color::Black))
+                     {
+                         s->color= Color::Red;
+                         myNode = myNode->parent;
+                     }
+                     else
+                     {
+                         if(!s->hasChild(1) || s->child[1]->color== Color::Black)
+                         {
+                             s->child[0]->color = Color::Black;
+                             s->color= Color::Red;
+                             rightrotate(s);
+                             s=myNode->parent->child[1];
+                         }
+                         s->color=myNode->parent->color;
+                         myNode->parent->color = Color::Black;
+                         s->child[1]->color = Color::Black;
+                         leftrotate(myNode->parent);
+                         myNode = header.parent;
+                     }
+                 }
+                 else
+                 {
+                     s=myNode->parent->child[0];
+                     if(s->color== Color::Red)
+                     {
+                         s->color= Color::Black;
+                         myNode->parent->color= Color::Red;
+                         rightrotate(myNode->parent);
+                         s=myNode->parent->child[0];
+                     }
+                     if((!s->hasChild(0) || s->child[0]->color == Color::Black) && (!s->hasChild(1) || s->child[1]->color== Color::Black))
+                     {
+                         s->color= Color::Red;
+                         myNode=myNode->parent;
+                     }
+                     else
+                     {
+                         if(!s->hasChild(0) || s->child[0]->color == Color::Black)
+                         {
+                             s->child[1]->color = Color::Black;
+                             s->color = Color::Red;
+                             leftrotate(s);
+                             s=myNode->parent->child[0];
+                         }
+                         s->color=myNode->parent->color;
+                         myNode->parent->color = Color::Black;
+                         s->child[0]->color= Color::Black;
+                         rightrotate(myNode->parent);
+                         myNode= header.parent;
+                     }
+                 }
+                 myNode->color= Color::Black;
+                 header.parent->color = Color::Black;
+             }
+         }*/
+            if (myNode->isChild(0)) {
+                fixLeft(myNode);
+            } else {
+                fixRight(myNode);
+            }
+
+            myNode->color = Color::Black;
+        }
+
+
+
 
         /**
          * @brief Vacia el diccionario
@@ -2036,21 +2110,12 @@ namespace aed2 {
          */
         void clear() {
 
-            if (count > 0) {
+            if (count>0){
                 removeSubTree(root());
             }
-            header.child[0] = nullptr;
-            header.child[1] = nullptr;
-            header.parent = nullptr;
-            /*
-            Node* miArrayVacio[2] = {nullptr, nullptr};
-          while ((header.parent->child) != miArrayVacio)
-          {
-              if (header.parent->child[0] != nullptr)  erase(header.parent->child[0]);
-              if (header.parent->child[1] != nullptr) erase(header.parent->child[1]);
-          }
-            erase(header.parent);
-             */
+            header.child[0]=nullptr;
+            header.child[1]=nullptr;
+            header.parent=nullptr;
 
         }
 
@@ -2084,7 +2149,7 @@ namespace aed2 {
          * pasando-el-ultimo.
          *
          */
-        void swap(map &other) {
+        void swap(map& other) {
             using std::swap;
             swap(lt, other.lt);
             swap(count, other.count);
@@ -2176,18 +2241,18 @@ namespace aed2 {
          * \complexity{\O(1)}
          */
         reverse_iterator rbegin() {
-            return reverse_iterator(begin());
+            return reverse_iterator(end());
         }
 
         /** \overload */
         const_reverse_iterator rbegin() const {
 
-            return const_reverse_iterator(begin());
+            return const_reverse_iterator(end());
         }
 
         /** \overload */
         const_reverse_iterator crbegin() {
-            return const_reverse_iterator(begin());
+            return const_reverse_iterator(end());
         }
 
         /**
@@ -2313,7 +2378,6 @@ namespace aed2 {
              * \complexity{\O(1)}
              */
             iterator() {}
-
             /**
              * \brief Retorna el valor apuntado por \P{*this}
              *
@@ -2327,7 +2391,6 @@ namespace aed2 {
              * \complexity{\O(1)}
              */
             reference operator*() const { return n->value(); }
-
             /**
              * \brief Retorna la dirección del valor apuntado por \P{*this}
              *
@@ -2346,7 +2409,6 @@ namespace aed2 {
              * en las otras funciones del TP.
              */
             pointer operator->() const { return &(n->value()); }
-
             /**
              * \brief Avanza el iterador a la siguiente posición
              *
@@ -2363,7 +2425,7 @@ namespace aed2 {
              * - Peor caso amortizado: \O(1)
              * }
              */
-            iterator &operator++() {
+            iterator& operator++() {
                 this->n = this->n->nextInorder();
                 // if (n->is_header()) return &iterator();
                 return *this;
@@ -2395,10 +2457,9 @@ namespace aed2 {
              */
             iterator operator++(int) {
                 iterator res = iterator(this->n);
-                this->n = this->n->nextInorder();
+                this->n = ++*this;
                 return res;
             }
-
             /**
              * \brief Retrocede el iterador a la posición anterior
              *
@@ -2415,11 +2476,10 @@ namespace aed2 {
              * - Peor caso amortizado: \O(1)
              * }
              */
-            iterator &operator--() {
+            iterator& operator--() {
                 this->n = this->n->prevInorder();
                 return *this;
             }
-
             /**
              * \brief Retrocede el iterador a la posición anterior
              *
@@ -2438,10 +2498,9 @@ namespace aed2 {
              */
             iterator operator--(int) {
                 iterator it = *this;
-                (*this)--;
+                *this = (*this)--;
                 return it;
             }
-
             /**
              * \brief Operador de igualdad
              *
@@ -2463,10 +2522,9 @@ namespace aed2 {
             bool operator==(iterator other) const {
                 return ((*this).n == other.n);
             }
-
             /** \brief idem !|operator== */
             bool operator!=(iterator other) const {
-                return !(*this == other);
+                return !(*this==other);
             }
 
         private:
@@ -2495,8 +2553,7 @@ namespace aed2 {
              *
              * \note Este constructor permite castear punteros a nodos en iteradores.
              */
-            iterator(Node *pos) : n(pos) {}
-
+            iterator(Node* pos) : n(pos) {}
             /**
              * @brief Operador de casteo a Node*
              *
@@ -2509,37 +2566,41 @@ namespace aed2 {
              *
              * \remark Esta función se brinda como ayuda para el TP
              */
-            operator Node *() const { return n; }
+            operator Node*() const { return n; }
             /////////////////////////////////////////////////////////////////////////////////////////////////
             /** \name Estructura de representación
-             *
-             * \T{iterator} se representa con \P{n}: puntero(Node)
-             *
-             * \par Invariante de representación
-             *
-             * rep_iter: puntero(Node) \TO bool\n
-             * rep_iter(n) \EQUIV completar
-             *
-             * \par Función de abstracción
-             *
-             * abs_iter: puntero(Node) n \TO IteradorBidireccional(Diccionario(\T{Key},
-             * \T{Meaning}), tupla(\T{Key}, \T{Meaning}))  {rep_iter(n)}\n
-             * abs_iter(n) \EQUIV completar
-             *
-             * Nota: se puede usar `d` para referirse al valor computacional del
-             * diccionario definido desde la cabecera (como en el constructor).
-             *
-             * \attention  No hay forma de expresar el diccionario `d` porque depende de
-             * un aspecto de aliasing.  Es por esto que permitimos usar
-             * castellano.
-             */
+            *
+            * \T{iterator} se representa con \P{n}: puntero(Node)
+            *
+            * \par Invariante de representación
+            *
+            * rep_iter: puntero(Node) \TO bool\n
+            * rep_iter(n) \EQUIV true \IFF n = nullptr \LOR_L ( (\EXISTS k:\T{nat})
+            * \parentK(n,k) \NEQ nullptr \LAND_L \parentK(n,k).color = Header \LAND_L
+            * \parentK(n,k) = \parentK(n,k+2) \LAND \esArbol(\parentK(n,k+1)) \LAND
+            * \esABBDicc(\parentK(n,k+1)) \LAND \esRBTree(\parentK(n,k+1)) \LAND
+            * \perteneceAB(p,\arbolK(\parentK(n,k+1),k+1)) \LAND \parentCorrecto(\parentK(n,k+1))
+            * \LAND \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
+            *
+            * \par Función de abstracción
+            *
+            * abs_iter: puntero(Node) n \TO IteradorBidireccional(Diccionario(\T{Key},
+            * \T{Meaning}), tupla(\T{Key}, \T{Meaning}))  {rep_iter(n)}\n
+            * abs_iter(n) \EQUIV completar
+            *
+            * Nota: se puede usar `d` para referirse al valor computacional del
+            * diccionario definido desde la cabecera (como en el constructor).
+            *
+            * \attention  No hay forma de expresar el diccionario `d` porque depende de
+            * un aspecto de aliasing.  Es por esto que permitimos usar
+            * castellano.
+            */
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //@{
             /**
              * \brief Puntero al nodo actual.  Ver Estructura de Representación
              */
-            Node *n{nullptr};
-
+            Node* n{nullptr};
             //@}
             friend class map;
         };
@@ -2566,7 +2627,6 @@ namespace aed2 {
 
             /** \brief Ver aed2::map::iterator::iterator() */
             const_iterator() {}
-
             /**
              * \brief Constructor desde un iterador modificable
              *
@@ -2589,44 +2649,36 @@ namespace aed2 {
             const_iterator(iterator it) {
                 this->n = it.n;
             }
-
             /** \brief Ver aed2::map::iterator::operator*() */
             reference operator*() const { return n->value(); }
-
             /** \brief Ver aed2::map::iterator::operator->() */
             pointer operator->() const { return &(n->value()); }
-
             /** \brief Ver aed2::map::iterator::operator++() */
-            const_iterator &operator++() {
+            const_iterator& operator++() {
                 this->n = (*(this->n)).nextInorder();
                 return *this;
             }
-
             /** \brief Ver aed2::map::iterator::operator++(int) */
             const_iterator operator++(int) {
                 const_iterator res = const_iterator(this->n);
-                this->n = *this++;
+                this->n = ++*this;
                 return res;
             }
-
             /** \brief Ver aed2::map::iterator::operator--() */
-            const_iterator &operator--() {
+            const_iterator& operator--() {
                 this->n = this->n->prevInorder();
                 return *this;
             }
-
             /** \brief Ver aed2::map::iterator::operator--(int) */
             const_iterator operator--(int) {
                 const_iterator res = const_iterator(this->n);
-                this->n = this->n->prevInorder();
+                this->n = --*this;
                 return res;
             }
-
             /** \brief Ver aed2::map::iterator::operator==() */
             bool operator==(const_iterator other) const {
                 return (this->n == other.n);
             }
-
             /** \brief Ver aed2::map::iterator::operator!=() */
             bool operator!=(const_iterator other) const {
                 return !(*this == other);
@@ -2634,20 +2686,16 @@ namespace aed2 {
 
         private:
             /** \brief Ver aed2::map::iterator::iterator(Node*) */
-            const_iterator(Node *pos) : n(pos) {}
-
+            const_iterator(Node* pos) : n(pos) {}
             /** \brief Ver aed2::map::iterator::operator Node*() */
-            operator Node *() const { return n; }
-
+            operator Node*() const { return n; }
             /** \brief Ver aed2::map::iterator::n */
-            Node *n{nullptr};
-
+            Node* n{nullptr};
             friend class map;
         };
 
     private:
         friend class iterator;
-
         friend class const_iterator;
 
         /** \brief Colores de los nodos en un árbol red-black.  Ver \ref
@@ -2661,9 +2709,7 @@ namespace aed2 {
          * \see Cormen et al. \cite CormenLeisersonRivestStein2009 e \ref
          * Implementacion
          */
-        enum class Color {
-            Red, Black, Header
-        };
+        enum class Color { Red, Black, Header };
 
         /**
          * \brief Estructura (privada) de un nodo del árbol red-black.
@@ -2693,10 +2739,10 @@ namespace aed2 {
          */
         struct Node {
             /** \brief Punteros a los hijos izquierdo (child[0]) y derecho (child[1]) */
-            Node *child[2]{nullptr, nullptr};
+            Node* child[2]{nullptr, nullptr};
             /** \brief Puntero al padre: garantiza insercion con puntero en O(1)
              * amortizado e iteracion en O(1) memoria */
-            Node *parent{nullptr};
+            Node* parent{nullptr};
             /** \brief Color del nodo */
             Color color{Color::Red};
 
@@ -2713,27 +2759,29 @@ namespace aed2 {
              * \complexity{\O(1)}
              */
             Node() : color(Color::Header) { child[0] = child[1] = this; }
-
             bool hasChild(int dir) { return this->child[dir] != nullptr; }
 
-            Node *nextInorder(int dir = 1) {
-                assert(not(is_header()));
-                Node *next = this;
+            Node* nextInorder(int dir = 1) {
+                assert(not(is_header() && dir == 1));
+                Node* next = this;
                 if (!this->is_header()) {
                     if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
                     if (next->isChild(1 - dir)) return next->parent;
-                    while (next->isChild(dir)) {
+                    while (next->isChild(dir))
+                    {
                         next = next->parent;
                     }
                     next = next->parent;
                 }
+                else {
+                    return this->child[1];
+                }
                 return next;
             }
+            Node* prevInorder() { return this->nextInorder(0); }
 
-            Node *prevInorder() { return this->nextInorder(0); }
-
-            Node *getDMost(int dir) {
-                Node *aux = this;
+            Node* getDMost(int dir) {
+                Node* aux = this;
                 while (aux != nullptr && aux->hasChild(dir)) {
                     aux = aux->child[dir];
                 }
@@ -2743,32 +2791,34 @@ namespace aed2 {
             bool isChild(int dir) { return this->parent->child[dir] == this; }
 
             bool hasChild(int dir) const { return this->child[dir] != nullptr; }
-
-            const Node *nextInorder(int dir = 1) const {
-                const Node *next = this;
+            const Node* nextInorder(int dir = 1) const{
+                const Node* next = this;
                 if (!this->is_header()) {
                     if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
                     if (next->isChild(1 - dir)) return next->parent;
-                    while (next->isChild(dir)) {
+                    while (next->isChild(dir))
+                    {
                         next = next->parent;
                     }
                     next = next->parent;
                 }
+                else
+                {
+                    return this->child[1];
+                }
                 return next;
             }
+            const Node* prevInorder() const{ return this->nextInorder(0); }
 
-            const Node *prevInorder() const { return this->nextInorder(0); }
-
-            const Node *getDMost(int dir) const {
-                const Node *aux = this;
+            const Node* getDMost(int dir) const {
+                const Node* aux = this;
                 while (aux != nullptr && aux->hasChild(dir)) {
                     aux = aux->child[dir];
                 }
                 return aux;
             }
 
-            bool isChild(int dir) const { return this->parent->child[dir] == this; }
-
+            bool isChild(int dir) const{ return this->parent->child[dir] == this; }
             /**
              * @brief Constructor para nodos del arbol red-black, sin enlaces.
              *
@@ -2779,7 +2829,7 @@ namespace aed2 {
              *
              * \complexity{\O(1)}
              */
-            Node(Node *p, Color c = Color::Red) : parent(p), color(c) {
+            Node(Node* p, Color c = Color::Red) : parent(p), color(c) {
             }
             //@}
 
@@ -2836,8 +2886,7 @@ namespace aed2 {
              * \complexity{\O(1)}
              */
             bool is_header() const {
-                return color == Color::Header;
-            }
+                return color == Color::Header; }
 
             /**
              * @brief Devuelve el valor asociado a un nodo no cabecera
@@ -2853,15 +2902,14 @@ namespace aed2 {
              *
              * \complexity{\O(1)}
              */
-            value_type &value() {
+            value_type& value() {
                 assert(not is_header());
-                return static_cast<InnerNode *>(this)->_value;
+                return static_cast<InnerNode*>(this)->_value;
             }
-
             /** \overload */
-            const value_type &value() const {
+            const value_type& value() const {
                 assert(not is_header());
-                return static_cast<const InnerNode *>(this)->_value;
+                return static_cast<const InnerNode*>(this)->_value;
             }
 
             /**
@@ -2878,7 +2926,7 @@ namespace aed2 {
              *
              * \complexity{\O(1)}
              */
-            const Key &key() const {
+            const Key& key() const {
                 assert(not is_header());
                 return value().first;
             }
@@ -2932,8 +2980,8 @@ namespace aed2 {
         struct InnerNode : public Node {
             /** Valor del nodo */
             value_type _value;
-
-            InnerNode(Node *myparent, const value_type &value) : Node(myparent), _value(value) {
+            InnerNode(Node* myparent, const value_type &value) : Node(myparent), _value(value)
+            {
                 //parent = myparent;
             }
             //  const InnerNode(const Node* myparent, const value_type &value) const : const Node(myparent), _value(value)
@@ -2955,17 +3003,22 @@ namespace aed2 {
          * Diccionario se representa con map: tupla(header: Node, count: Nat).  Ver
          * \ref axiomas
          *
-         * \par Invariante de representacion
-             * \parblock
-             * rep: map \TO bool\n
-             * rep(m) \EQUIV true \iff asd
-             * \endparblock
-             *
-             * \par Función de abstracción
-             * \parblock
-             * abs: map m \TO Diccionario(\T{Key}, \T{Meaning})  {rep(n)}\n
-             * abs(m) \EQUIV if m.empty() then vacio else definir (m.root()->value().first,m.root()->value().second, Abs(m.erase(m.root()->value().first)) )
-             * \endparblock
+        * \par Invariante de representacion
+           * \parblock
+           * repMap: map \TO bool\n(
+           * repMap(m) \EQUIV true \iff m.header.color \IGOBS Header \LAND ( \elHeaderEstaPiola(m)
+           * \LOR_L ( \esArbol(\raiz(m)) \LAND_L \esABBDicc(\raiz(m)) \LAND \esRBTree(\raiz(m))
+           * \LAND_L m.count \IGOBS \cantNodos(\raiz(m)) \LAND \familiaCorrecta(m.header,\raiz(m))
+           * \LAND \parentCorrecto(\raiz(m)) ) )
+           * \endparblock
+           *
+        * \par Función de abstracción
+           * \parblock
+           * abs: map m \TO dicc(\T{Key}, \T{Meaning})  {repMap(n)}\n
+           * (\FORALL m:map) Abs(m) \EQUIV d:dicc(\T{Key}, \T{Meaning}) | \n (\FORALL c:\T{Key})
+           * def?(c,d) \IFF \perteneceClaveABB(c,\raiz(m)) \LAND_L (def?(c,d) \IMPLIES_L obtener(c,d)
+           * \IGOBS \significadoABB(c,\raiz(m)))
+           * \endparblock
          */
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         //@{
@@ -2991,11 +3044,11 @@ namespace aed2 {
          *
          * @returns Nodo a la raiz del arbol.
          */
-        inline InnerNode *root() { return static_cast<InnerNode *>(header.parent); }
+        inline InnerNode* root() { return static_cast<InnerNode*>(header.parent); }
 
         /** \overload */
-        inline const InnerNode *root() const {
-            return static_cast<const InnerNode *>(header.parent);
+        inline const InnerNode* root() const {
+            return static_cast<const InnerNode*>(header.parent);
         }
         //@}
 
@@ -3010,8 +3063,307 @@ namespace aed2 {
          * @returns true cuando \P{k1} y \P{k2} son iguales con respecto a
          * \P{this}->lt.
          */
-        inline bool eq(const Key &k1, const Key &k2) const {
-            return !lt(k1, k2) && !lt(k2, k1);
+        inline bool eq(const Key& k1, const Key& k2) const {
+            return lt(k1, k2) == lt(k2, k1);
+        }
+        /**
+  * @brief Función auxiliar usada en el destructor. Elimina recursivamente todos
+  * los nodos que descienden de root; para esto, chequea que initRoot tenga hijos
+  * y si los tiene hace una llamada recursiva con una instancia más sencilla.
+  * initRoot debería ser un nodo que efectivamente pertenezca a la instancia de
+  * map que está llamando a la función; en el contexto del destructor esto
+  * obviamente se cumple.
+  */
+        void removeSubTree(Node* initRoot){
+            if (initRoot->hasChild(0)) {removeSubTree(initRoot->child[0]);}
+            if (initRoot->hasChild(1)) {removeSubTree(initRoot->child[1]);}
+            delete initRoot;
+            count--;
+        }
+
+        /**
+         * @brief Función auxiliar usada en el destructor. Elimina recursivamente todos
+         * los nodos que descienden de root; para esto, chequea que initRoot tenga hijos
+         * y si los tiene hace una llamada recursiva con una instancia más sencilla.
+         * initRoot debería ser un nodo que efectivamente pertenezca a la instancia de
+         * map que está llamando a la función; en el contexto del destructor esto
+         * obviamente se cumple.
+         */
+        bool addElem(InnerNode *&now, const value_type &value, int dir) {
+            if (now->child[dir] != nullptr) {
+                now = static_cast<InnerNode *>(now->child[dir]); //si no es null, sigo bajando
+                return false;
+            } else {
+                now->child[dir] = new InnerNode(now, value);
+                InnerNode *aux = static_cast<InnerNode *>(now->child[dir]);
+                insertionFix(now->child[dir], value);
+                now = aux;
+                return true;
+            }
+        }
+
+        /**
+         * @brief Cambia los colores de los nodos o realiza rotaciones según el algoritmo
+         * del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba.
+         */
+
+        void insertionFix(Node* newNode, const value_type &value) {
+            Node* aux;
+            if (!lt(static_cast<InnerNode*>(this->root())->value().first, value.first) && !lt(value.first, this->root()->value().first)) {
+                static_cast<InnerNode*>(this->root())->color = Color::Black;
+                return;
+            }
+            while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
+                Node* grandPa = newNode->parent->parent;
+                if (grandPa->child[0] == newNode->parent) {
+                    if (grandPa->child[1] != nullptr) {
+                        aux = grandPa->child[1];
+                        if (aux->color == Color::Red) {
+                            newNode->parent->color = Color::Black;
+                            aux->color = Color::Black;
+                            grandPa->color = Color::Red;
+                            newNode = grandPa;
+                        }
+                    } else {
+                        if (newNode->parent->child[1] == newNode) {
+                            newNode = newNode->parent;
+                            leftrotate(newNode);
+                        }
+                        newNode->parent->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        rightrotate(grandPa);
+                    }
+                } else {
+                    if (grandPa->child[0] != nullptr) {
+                        aux = grandPa->child[0];
+                        if (aux->color == Color::Red) {
+                            newNode->parent->color = Color::Black;
+                            aux->color = Color::Black;
+                            grandPa->color = Color::Red;
+                            newNode = grandPa;
+                        }
+                    } else {
+                        if (newNode->parent->child[0] == newNode) {
+                            newNode = newNode->parent;
+                            rightrotate(newNode);
+                        }
+                        newNode->parent->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        leftrotate(grandPa);
+                    }
+                }
+                root()->color = Color::Black;
+            }
+        }
+
+        /**
+         * @brief Implementa la rotación descrita en el Cormen.
+         */
+
+//        void leftrotate(Node* p) {
+//            DRotate(p, 0);
+//
+//        }
+//
+//        void DRotate(Node* p, bool dir = 1)
+//        {
+//            if(p->child[1-dir]==nullptr)
+//                return ;
+//            else {
+//                Node* y = p->child[1-dir];
+//
+//                if(y->child[dir]!=nullptr) {
+//                    p->child[1-dir]=y->child[dir];
+//                    y->child[dir]->parent=p;
+//                } else { p->child[1-dir]=nullptr; }
+//
+//                if(p->parent!=nullptr)
+//                    y->parent=p->parent;
+//                if(p->parent->is_header()) {
+//                    this->header.parent = y;
+//                    // header.parent = y;
+//                    y->parent = &header;
+//                } else {
+//                    if(p==p->parent->child[0])
+//                        p->parent->child[0]=y;
+//                    else
+//                        p->parent->child[1]=y;
+//                }
+//                y->child[dir]=p;
+//                p->parent=y;
+//            }
+//
+//        }
+//
+//        /**
+//         * @brief Implementa la rotación descrita en el Cormen.
+//         */
+//
+//        void rightrotate(Node* p) {
+//            DRotate(p, 1);
+//
+//        }
+        void leftrotate(Node* p) {
+            if(p->child[1]==nullptr)
+                return ;
+            else {
+                Node* y = p->child[1];
+
+                if(y->child[0]!=nullptr) {
+                    p->child[1]=y->child[0];
+                    y->child[0]->parent=p;
+                } else { p->child[1]=nullptr; }
+
+                if(p->parent!=nullptr)
+                    y->parent=p->parent;
+                if(p->parent->is_header()) {
+                    this->header.parent = y;
+                    // header.parent = y;
+                    y->parent = &header;
+                } else {
+                    if(p==p->parent->child[0])
+                        p->parent->child[0]=y;
+                    else
+                        p->parent->child[1]=y;
+                }
+                y->child[0]=p;
+                p->parent=y;
+            }
+
+        }
+
+        /**
+         * @brief Implementa la rotación descrita en el Cormen.
+         */
+
+        void rightrotate(Node* p) {
+            if(p->child[0]==nullptr)
+                return ;
+            else {
+                Node* y = p->child[0];
+
+                if(y->child[1]!=nullptr) {
+                    p->child[0]=y->child[1];
+                    y->child[1]->parent=p;
+                } else { p->child[0]=nullptr; }
+
+                if(p->parent!=nullptr)
+                    y->parent=p->parent;
+                if(p->parent->is_header()) {
+                    this->header.parent = y;
+                    //  header.parent = y;
+                    y->parent = &header;
+                } else {
+                    if(p==p->parent->child[0])
+                        p->parent->child[0]=y;
+                    else
+                        p->parent->child[1]=y;
+                }
+                y->child[1]=p;
+                p->parent=y;
+            }
+
+        }
+
+        /**
+         * @brief Devuelve true si la clave contenida en el nodo apuntado por hint
+         * <em> no es </em> la menor de las claves del diccionario que son mayores a la
+         * clave que se quiere insertar (es decir la clave contenida en el nodo apuntado
+         * por lower_bound).
+         */
+
+        bool invalidHint(const_iterator hint, const value_type& value) {
+            return (hint.n == nullptr || hint.n == &header || lt((*hint).first, value.first) ||
+                    lt(value.first, (hint.n)->prevInorder()->key()));
+        }
+
+        /**
+         * @brief Devuelve true si \P{value} es mayor que el máximo o menor que el mínimo
+         * elemento de \P{this}. Como el máximo y el mínimo son los hijos del nodo cabecera,
+         * estas comparaciones se pueden hacer en tiempo O(1).
+         */
+
+        bool isMaxOrMin(const value_type& value) {
+            return lt((header.child[1])->value().first, value.first) || lt(value.first, (header.child[0])->value().first);
+        }
+
+        /**
+         * @brief PENDIENTE: VER BIEN QUÉ HACE ESTA FUNCIÓN.
+         * Cata: esta funcion hace el insert cuando el valor que
+         * inserto es un maximo o un minimo, aca ya voy a saber donde insertarlo
+         * siempre y solo tengo q llamar a insertionFix
+         */
+
+        iterator assignMaxOrMin(const value_type& value) {
+            if (lt(header.child[1]->value().first, value.first)) {
+                header.child[1]->child[1] = new InnerNode(header.child[1], value);
+                header.child[1] = header.child[1]->child[1];
+                insertionFix(header.child[1], value);
+                return iterator(header.child[1]);
+
+            } else {
+                header.child[0]->child[0] = new InnerNode(header.child[0], value);
+                header.child[0] = header.child[0]->child[0];
+                insertionFix(header.child[0], value);
+                return iterator(header.child[0]);
+            }
+
+        }
+
+        iterator insert_or_upsert(const value_type &value, bool upsert) {
+            InnerNode *now = static_cast<InnerNode *>(this->header.parent);
+            bool inserted = false;
+            iterator it(now);
+
+            if (root() == nullptr) {
+                header.parent = new InnerNode(&header, value);
+                header.parent->color = Color::Black; //la raiz siempre es negra
+                header.child[0] = header.child[1] = header.parent; //la raiz es el maximo y el minimo pues es el unico valor
+                inserted = true;
+                it = iterator(header.parent);
+            } else if (isMaxOrMin(value)) {
+                it = assignMaxOrMin(value);
+                inserted = true;
+            } else {
+                while (now != nullptr && !inserted) {
+                    if (lt(now->key(), value.first)) { //si es menor, lo inserto a la derecha o me voy para la derecha
+                        inserted = addElem(now, value, 1);
+                    } else {
+                        if (eq(now->key(), value.first) && upsert) { //si es igual y habilite el assign, piso el valor
+                            Update(now, value);
+                            return iterator(now);
+                        } else inserted = addElem(now, value, 0);
+
+                    }
+                    it = iterator(now);
+                }
+            }
+            if (inserted) count++;
+            return it;
+        }
+        void Update(InnerNode* &now, const value_type& value)
+        {
+            InnerNode *nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
+
+            nuevo->child[0] = now->child[0];
+            nuevo->child[1] = now->child[1];
+            if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
+            if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
+            if (now->parent != &header && now->isChild(0)) {
+                nuevo->parent->child[0] = nuevo;
+            } else if (now->parent != &header && now->isChild(1)) {
+                nuevo->parent->child[1] = nuevo;
+            } else {
+                header.parent = nuevo;
+            }
+            if (now == header.child[0]) {
+                header.child[0] = nuevo;
+            } else if (now == header.child[1]) {
+                header.child[1] = nuevo;
+            }
+            InnerNode *aux = now;
+            now = nuevo;
+            delete aux;
         }
     };
 
@@ -3045,8 +3397,8 @@ namespace aed2 {
  * ser distintos entre los diccionarios), sino si los valores son los mismos con
  * respecto al operator== de \T{K} y T{V}.
  */
-    template<class K, class V, class C>
-    bool operator==(const map<K, V, C> &m1, const map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    bool operator==(const map<K, V, C>& m1, const map<K, V, C>& m2) {
 
         return m1.size() == m2.size() && std::equal(m1.begin(), m1.end(), m2.begin());
     }
@@ -3057,8 +3409,8 @@ namespace aed2 {
  *
  * \sa aed2::operator==()
  */
-    template<class K, class V, class C>
-    bool operator!=(const map<K, V, C> &m1, const map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    bool operator!=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
         return not(m1 == m2);
     }
 
@@ -3088,8 +3440,8 @@ namespace aed2 {
  * ser distintos entre los diccionarios), sino si los valores son los mismos con
  * respecto al operator< de \T{K} y T{V}.
  */
-    template<class K, class V, class C>
-    bool operator<(const map<K, V, C> &m1, const map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    bool operator<(const map<K, V, C>& m1, const map<K, V, C>& m2) {
         return std::lexicographical_compare(m1.begin(), m1.end(), m2.begin(), m2.end());
         // completar.  Vale usar std::lexicographical_compare
     }
@@ -3100,8 +3452,8 @@ namespace aed2 {
  *
  * \sa aed2::operator<()
  */
-    template<class K, class V, class C>
-    bool operator>(const map<K, V, C> &m1, const map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    bool operator>(const map<K, V, C>& m1, const map<K, V, C>& m2) {
         return m2 < m1;
     }
 
@@ -3111,8 +3463,8 @@ namespace aed2 {
  *
  * \sa aed2::operator<()
  */
-    template<class K, class V, class C>
-    bool operator<=(const map<K, V, C> &m1, const map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    bool operator<=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
         return not(m2 < m1);
     }
 
@@ -3122,8 +3474,8 @@ namespace aed2 {
  *
  * \sa aed2::operator<()
  */
-    template<class K, class V, class C>
-    bool operator>=(const map<K, V, C> &m1, const map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    bool operator>=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
         return !(m1 < m2);
     }
 //@}
@@ -3146,8 +3498,8 @@ namespace aed2 {
  *
  * \sa [Swappable](http://en.cppreference.com/w/cpp/concept/Swappable)
  */
-    template<class K, class V, class C>
-    void swap(map<K, V, C> &m1, map<K, V, C> &m2) {
+    template <class K, class V, class C>
+    void swap(map<K, V, C>& m1, map<K, V, C>& m2) {
         m1.swap(m2);
     }
 }
