@@ -886,7 +886,7 @@
  * \par todosMenores
  * \parblock
  * Dice si todas las claves del árbol binario a cuya raíz apunta p
- * son estrictamentente menores a e.
+ * son estrictamente menores a e.
  *
  * \axioma{todosMenores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
  * todosMenores(p,e) \EQUIV
@@ -899,7 +899,7 @@
  * \par todosMayores
  * \parblock
  * Dice si todas las claves del árbol binario a cuya raíz apunta p
- * son estrictamentente mayores a e.
+ * son estrictamente mayores a e.
  *
  * \axioma{todosMayores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
  * todosMayores(p,e) \EQUIV
@@ -1046,6 +1046,90 @@
  * \axioma{parentK}: \T{puntero(Node)} p \TIMES \T{nat} \TO \T{puntero(Node)} {p \NEQ nullptr} \n
  * parentK(p,k) \EQUIV \IF p->parent = nullptr \THEN p \ELSE (\IF k = 0 \THEN p \ELSE
  * parentK(p->parent,k-1) \FI ) \FI
+ *
+ * \par inorder
+ * \parblock
+ * Dado un puntero p que apunta a la raíz de un ABB-diccionario válido, devuelve el recorrido inorder del árbol.
+ *
+ * \axioma{inorder}: \T{puntero(nodo)} p \TO \T{secu(value)} {esABBDicc(p)} \n
+ * inorder(p) \EQUIV \IF p = nullptr \THEN vacía \ELSE \inorder(p->child[0]) &&
+ * (p->value \BULLET \inorder(p->child[1])) \FI
+ *
+ * \par buscarRaiz
+ * \parblock
+ * Dado un puntero a nodo, busca la raíz del árbol al que pertenece.
+ *
+ * \axioma{buscarRaiz}: \T{puntero(nodo)} p \TO \T{puntero(nodo)} {rep_iter(p) \LAND p \NEQ nullptr} \n
+ * buscarRaiz(p) \EQUIV \IF p->color = Header \THEN p->parent \ELSE buscarRaiz(p->parent) \FI
+ *
+ * \par despuesDe
+ * \parblock
+ * Dados un elemento y una secuencia que lo contiene, devuelve una subsecuencia que lo tiene como primeros
+ * elemento. En caso de haber varias, devuelve la que empieza con la primera aparición.
+ *
+ * \axioma{despuesDe}: \T{\ALPHA} e \TIMES \T{secu(\ALPHA)} s \TO \T{secu(\ALPHA)} {esta(e,s)} \n
+ * despuesDe(e,s) \EQUIV \IF prim(s) = e \THEN s \ELSE \despuesDe(e,fin(s)) \FI
+ *
+ * \par antesDe
+ * \parblock
+ * Similar a \despuesDe, pero devuelve la subsecuencia que termina justo antes de la primera aparición
+ * del elemento.
+ *
+ * \axioma{antesDe}: \T{\ALPHA} e \TIMES \T{secu(\ALPHA)} s \TO \T{secu(\ALPHA)} {esta(e,s)} \n
+ * antesDe(e,s) \EQUIV \IF prim(s) = e \THEN vacía \ELSE prim(s) \BULLET \antesDe(e,fin(s)) \FI
+ *
+ * \par longDicc
+ * \parblock
+ * Como su nombre lo indica, devuelve la longitud de un diccionario.
+ *
+ * \axioma{longDicc}: \T{dicc(Key,Meaning)} \TO \T{nat} \n
+ * longDicc(d) \EQUIV \IF vacío?(d) \THEN 0 \ELSE suc(\longDicc(borrar(dameUno(claves(d)),d))) \FI
+ *
+ * \par menoresOrdenados
+ * \parblock
+ * Dados un diccionario d y una clave c, devuelve una lista ordenada con todas las claves de d
+ * que sean estrictamente menores que c y sus respectivas definiciones. No hace falta que c esté definida en d.
+ *
+ * \axioma{menoresOrdenados}: \T{Key} \TIMES \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
+ * menoresOrdenados(c,d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE ( \IF dameUno(claves(d)) \LT c \THEN
+ * \insertarOrdenado(((dameUno(claves(d)),obtener(dameUno(claves(d)))), \menoresOrdenados(borrar(dameUno(claves(d)),d))))
+ * \ELSE \menoresOrdenados(borrar(dameUno(claves(d)),d)))) \FI ) \FI
+ *
+ * \par mayoresOrdenados
+ * \parblock
+ * Similar a \menoresOrdenados. En este caso se pide que los elementos sean mayores o iguales que c, ya que
+ * estas funciones son usadas para emular los observadores de un iterador que apunta a c.
+ *
+ * \axioma{mayoresOrdenados}: \T{Key} \TIMES \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
+ * mayoresOrdenados(c,d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE ( \IF dameUno(claves(d)) \GEQ c \THEN
+ * \insertarOrdenado(((dameUno(claves(d)),obtener(dameUno(claves(d)))), \mayoresOrdenados(borrar(dameUno(claves(d)),d))))
+ * \ELSE \mayoresOrdenados(borrar(dameUno(claves(d)),d)))) \FI ) \FI
+ *
+ * \par insertarOrdenado
+ * \parblock
+ * Dadas una tupla (\T{Key},\T{Meaning}) e y una secuencia s ordenada crecientemente por el primer campo,
+ * devuelve una secuencia ordenada idéntica a s pero con c insertada en el lugar donde corresponde.
+ *
+ * \axioma{insertarOrdenado}: \T{value} \TIMES \T{secu(value)} s \TO \T{secu(value)} {\ordenada(s)} \n
+ * insertarOrdenado(c,s) \EQUIV \IF vacía?(s) \THEN c \BULLET s \ELSE (\IF prim(s) \GEQ c \THEN
+ * c \BULLET s \ELSE prim(s) \BULLET \insertarOrdenado(c,fin(s)) \FI ) \FI
+ *
+ * \par ordenada
+ * \parblock
+ * Dice si una secuencia está ordenada.
+ *
+ * \axioma{ordenada}: \T{secu(\ALPHA)} \TO \T{bool} \n
+ * ordenada(s) \EQUIV \IF long(s) \LEQ 1 \THEN true \ELSE prim(s) \LEQ prim(fin(s)) \LAND
+ * \ordenada(fin(s)) \FI
+ *
+ * \par valoresOrdenados
+ * \parblock
+ * Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos
+ * significados ordenadas de manera creciente por el primer campo.
+ *
+ * \axioma{valoresOrdenados}: \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
+ * valoresOrdenados(d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE
+ * \insertarOrdenado( (dameUno(d),obtener(dameUno(d),d)), \valoresOrdenados(borrar(dameUno(d),d)) ) \FI
  */
 
 #ifndef MAP_H_
@@ -1472,7 +1556,7 @@ namespace aed2 {
          * @param key clave a buscar.
          * @retval res referencia al significado asociado a \P{key}.
          *
-         * \aliasing{completar}
+         * \aliasing{Cualquier cambio en \P{res} afectará a la estructura subyacente y viceversa.}
          *
          * \pre \aedpre{definido?(\P{key},this)}
          *
@@ -1526,11 +1610,14 @@ namespace aed2 {
          * Requiere que \T{Meaning} tenga un constructor sin parámetros con
          * complejidad \O(\a c)
          *
-         * \aliasing{completar}
+         * \aliasing{Cualquier cambio en \P{res} afectará la estructura subyacente y viceversa.}
          *
-         * \pre \aedpre{definido?(\P{key},this)}
-         * \post \aedpost{res \igobs obtener(\P{key},this)}
-             *
+         * \pre \aedpre{\a self = \P{this}}
+         * \post \aedpost{ ( def?(\P{key}, \a self) \IMPLIES \P{res} \IGOBS obtener(\P{key}, \self) \LAND
+         * \P{*this} \IGOBS \a self ) \LAND ( \LNOT def?(\P{key}, \a self) \IMPLIES
+         * def?(\P{key}, \P{*this}) \LAND ( (\FORALL c:Key) def?(c, \P{*this}) \IFF
+         * (def?(c, \a self) \LOR c = \P{Key}) \LAND (def?(c, \a self) \LAND c \NEQ \P{key})
+         * \IMPLIES_L obtener(c,\P{*this}) \IGOBS obtener(c, \a self) ) )  }
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) + \a x) donde
          * - \a x = 1 si def?(\a self, \P{key}), y
          * - \a x = \a c en caso contrario.}
@@ -1544,7 +1631,7 @@ namespace aed2 {
                 const std::pair<const Key, Meaning > par1 = std::make_pair(key,significado);
                 insert(par1);
                 return significado;
-            }else {
+            } else {
                 return (static_cast<InnerNode*>(nodo.n))->_value.second;
             }
         }
@@ -1563,7 +1650,7 @@ namespace aed2 {
          * \aliasing{completar}
          *
          * \pre \aedpre{true}
-         * \post \aedpost{if def?(key,this) then (*res)->value().first == key) else *res == header}
+         * \post \aedpost{}
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
          *
@@ -1624,10 +1711,12 @@ namespace aed2 {
          * @retval res iterador apuntando al valor con clave al menos \P{key} (o a
          * \P{this}->end() si dicho elemento no existe)
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por el iterador devuelto, se modificará la estructura
+         * subyacente.}
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{true}
+         * \post \aedpost{ \P{*res}.first \GEQ \P{key} \LAND def?(\P{*res}.first,\P{*this}) \LAND
+         * ( (\FORALL c:\T{Key}) (def?(c,\P{*this}) \LAND c \GEQ \P{key}) \IMPLIES c \GEQ \P{*res}.first ) }
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
          *
@@ -1671,8 +1760,8 @@ namespace aed2 {
          *
          * @retval res denota true si y solo si el diccionario está vacío
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{true}
+         * \post \aedpost{\P{res} \IGOBS vacío?(\P{*this})}
          *
          * \complexity{\O(1)}
          */
@@ -1683,8 +1772,8 @@ namespace aed2 {
          *
          * @retval res cantidad de valores
              *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{true}
+         * \post \aedpost{\P{res} \IGOBS \longDicc(\P{*this})}
          *
          * \complexity{\O(1)}
          */
@@ -1713,11 +1802,15 @@ namespace aed2 {
          * @retval res iterador apuntando al elemento insertado o que previno la
          * inserción
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por \P{res}, se modifica la estructura subyacente.}
          *
          *
-         * \pre \aedpre{completar}
-         * \post  \aedpost{completar}
+         * \pre \aedpre{\a self = \P{*this}}
+         * \post  \aedpost{( \LNOT def?(\P{value}.first, \a self) \IMPLIES \P{*this} \IGOBS
+         * definir(\P{value}.first, \P{value}.second, \a self) ) \LAND ( def?(\P{value}.first, \a self)
+         * \IMPLIES \P{*this} \IGOBS \a self ) \LAND Siguientes(\P{res}) \IGOBS
+         * \mayoresOrdenados(\P{value}.first,\P{*this}) \LAND Anteriores(\P{res}) \IGOBS
+         * \menoresOrdenados(\P{value}.first,\P{*this})}
          *
          * \complexity{
          *  - Peor caso: \O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) \PLUS
@@ -1730,8 +1823,6 @@ namespace aed2 {
          * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
          * aed2::map::insert_or_assign.
          */
-
-// esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
 
 
 
@@ -1806,10 +1897,13 @@ namespace aed2 {
          * ocurra.
          * @retval res iterador apuntando al elemento insertado o redefinido
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por \P{res}, se modifica la estructura subyacente.}
          *
-         * \pre \aedpre{completar}
-         * \post  \aedpost{completar}
+         * \pre \aedpre{\a self = \P{*this}}
+         * \post  \aedpost{ \P{*this} \IGOBS definir(\P{value}.first, \P{value}.second, \a self)
+         * \LAND Siguientes(\P{res}) \IGOBS
+         * \mayoresOrdenados(\P{value}.first,\P{*this}) \LAND Anteriores(\P{res}) \IGOBS
+         * \menoresOrdenados(\P{value}.first,\P{*this})}
          *
          * \complexity{
          *  - Peor caso: \O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) \PLUS
@@ -1849,10 +1943,10 @@ namespace aed2 {
          * @retval res iterador apuntando al primer valor con clave mayor a \P{pos} (o
          * \P{this}->end(), si dicho valor no existe).
          *
-         * \aliasing{completar}.
+         * \aliasing{Se invalidan todos los iteradores que apuntaban al valor apuntado por \P{pos}.}
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{ \a self = \P{this} \LAND get(coleccion(\P{pos})) \IGOBS get(\P{this}) }
+         * \post \aedpost{ \P{this} \IGOBS borrar(\P{pos}->value.first, \P{*this}) }
          *
          * \complexity{
          * - Peor caso: \O(\DEL(\P{*pos}) + \LOG(\SIZE(\P{*this})))
@@ -2175,12 +2269,13 @@ bool borrarX = false;
         /**
          * @brief Devuelve un iterador al primer valor del diccionario
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por \P{res}, se modifica la estructura subyacente.}
          *
          * @retval res iterador al primer valor
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{\LNOT vacío?(\P{*this})}
+         * \post \aedpost{ coleccion(\P{res}) \IGOBS get(\P{this}) \LAND Siguientes(\P{res}) \IGOBS
+         * \valoresOrdenados(\P{*this}) \LAND Anteriores(\P{res}) \IGOBS vacía }
          *
          * \complexity{\O(1)}
          */
@@ -2204,12 +2299,13 @@ bool borrarX = false;
          * @brief Devuelve un iterador apuntando a la posición pasando-el-ultimo del
          * diccionario
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por \P{res}, se modifica la estructura subyacente.}
          *
          * @retval res iterador a la posicion pasando-al-ultimo
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{true}
+         * \post \aedpost{ coleccion(\P{res}) \IGOBS get(\P{this}) \LAND Siguientes(\P{res})
+         * \IGOBS vacía \LAND Anteriores(\P{this}) \IGOBS \valoresOrdenados(*coleccion(\P{this})) }
          *
          * \complexity{\O(1)}
          */
@@ -2383,10 +2479,11 @@ bool borrarX = false;
              *
              * @retval res referencia al valor apuntado por \P{*this}
              *
-             * \aliasing{completar}
+             * \aliasing{Como se devuelve una referencia, cualquier cambio en \P{res}
+             * afectará la estructura subyacente y viceversa.
              *
-             * \pre \aedpre{completar}
-             * \post \aedpost{completar}
+             * \pre \aedpre{\a self = \P{this}}
+             * \post \aedpost{\P{res} \IGOBS \P{*this} \LAND \a self = \P{this}}
              *
              * \complexity{\O(1)}
              */
@@ -2399,7 +2496,7 @@ bool borrarX = false;
              * \aliasing{completar}
              *
              * \pre \aedpre{true}
-             * \post \aedpost{\P{*res} \IGOBS siguiente(\P{*this})}
+             * \post \aedpost{\P{*res} \IGOBS Siguiente(\P{*this})}
              *
              * \complexity{\O(1)}
              *
@@ -2414,10 +2511,12 @@ bool borrarX = false;
              *
              * @retval res referencia a \P{*this}
              *
-             * \aliasing{completar}
+             * \aliasing{Como devuelve una referencia, cualquier cambio en \P{res} afecta a
+             * la estructura subyacente y viceversa. En caso de eliminarse de la estructura
+             * el valor apuntado por \P{this}, \P{res} se invalida.}
              *
-             * \pre \aedpre{completar}
-             * \post \aedpost{completar}
+             * \pre \aedpre{\a self = \P{res} \LAND HaySiguiente?(\P{this})}
+             * \post \aedpost{\P{this} = Avanzar(\a self) \LAND \P{res} = \P{this}}
              *
              * \complexity{
              * - Peor caso: \O(\LOG(SIZE(\a d)) donde \a d es el diccionario asociado a
@@ -2444,10 +2543,12 @@ bool borrarX = false;
              *
              * @retval res iterador apuntando a la dirección anterior de \P{*this}
              *
-             * \aliasing{completar}
+             * \aliasing{Como devuelve un iterador a la estructura, cualquier cambio en el valor
+             * apuntado por \P{res} afectará la estructura subyacente y viceversa. En caso de
+             * eliminarse el valor apuntado por \P{res}, \P{res} se invalida.}
              *
-             * \pre \aedpre{completar}
-             * \post \aedpost{completar}
+             * \pre \aedpre{\a self = \P{res} \LAND HaySiguiente?(\P{this})}
+             * \post \aedpost{\P{this} = Avanzar(\a self) \LAND \P{res} = \a self}
              *
              * \complexity{
              * - Peor caso: \O(\LOG(SIZE(\a d)) donde \a d es el diccionario asociado a
@@ -2465,10 +2566,12 @@ bool borrarX = false;
              *
              * @retval res referencia a \P{*this}
              *
-             * \aliasing{completar}
+             * \aliasing{Como devuelve una referencia, cualquier cambio en \P{res} afecta a
+             * la estructura subyacente y viceversa. En caso de eliminarse de la estructura
+             * el valor apuntado por \P{this}, \P{res} se invalida.}
              *
-             * \pre \aedpre{HayAnterior?(this)}
-             * \post \aedpost{completar}
+             * \pre \aedpre{\a self = \P{res} \LAND HayAnterior?(\P{this})}
+             * \post \aedpost{\P{this} = Retroceder(\a self) \LAND \P{res} = \P{this}}
              *
              * \complexity{
              * - Peor caso: \O(\LOG(SIZE(\a d)) donde \a d es el diccionario asociado a
@@ -2485,10 +2588,12 @@ bool borrarX = false;
              *
              * @retval res iterador apuntando a la dirección siguiente de \P{*this}
              *
-             * \aliasing{completar}
+             * \aliasing{Como devuelve un iterador a la estructura, cualquier cambio en el valor
+             * apuntado por \P{res} afectará la estructura subyacente y viceversa. En caso de
+             * eliminarse el valor apuntado por \P{res}, \P{res} se invalida.}
              *
-             * \pre \aedpre{HayAnterior?(\P{this})}
-             * \post \aedpost{completar}
+             * \pre \aedpre{\a self = \P{res} \LAND HayAnterior?(\P{this})}
+             * \post \aedpost{\P{this} = Retroceder(\a self) \LAND \P{res} = \a self}
              *
              * \complexity{
              * - Peor caso: \O(\LOG(SIZE(\a d)) donde \a d es el diccionario asociado a
@@ -2514,7 +2619,7 @@ bool borrarX = false;
              * - false, cuando alguno de ellos es no nulo, o
              * - true, cuando ambos son nulos.}
              *
-             * \pre \aedpre{completar}
+             * \pre \aedpre{true}
              * \post \aedpost{completar}
              *
              * \complexity{\O(1)}
@@ -2586,7 +2691,10 @@ bool borrarX = false;
             *
             * abs_iter: puntero(Node) n \TO IteradorBidireccional(Diccionario(\T{Key},
             * \T{Meaning}), tupla(\T{Key}, \T{Meaning}))  {rep_iter(n)}\n
-            * abs_iter(n) \EQUIV completar
+            * (\FORALL n:puntero(nodo)) abs_iter(n) \IGOBS i:IteradorBidireccional |
+            * (n \IGOBS nullptr \LAND Anteriores(i) \ IGOBS vacía \LAND Siguientes(i) \IGOBS vacía) \LOR_L
+            * (\inorder(\buscarRaiz(n)) \IGOBS SecuSuby(i) \LAND_L Siguientes(i) \IGOBS
+            * \despuesDe(n->value,SecuSuby(i)) \LAND Anteriores(i) \IGOBS \antesDe(n->value,SecuSuby(i)))
             *
             * Nota: se puede usar `d` para referirse al valor computacional del
             * diccionario definido desde la cabecera (como en el constructor).
