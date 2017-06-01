@@ -58,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="map.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/map.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="2107" column="13" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3431" selection-end-column="19" />
+            <state relative-caret-position="157">
+              <caret line="1978" column="0" lean-forward="false" selection-start-line="1978" selection-start-column="0" selection-end-line="1978" selection-end-column="0" />
               <folding>
                 <element signature="e#0#402#0" expanded="false" />
                 <element signature="e#403#1609#0" expanded="false" />
@@ -71,25 +71,55 @@
                 <element signature="e#12982#20429#0" expanded="false" />
                 <element signature="e#20430#34290#0" expanded="false" />
                 <element signature="e#34291#35528#0" expanded="false" />
-                <element signature="e#35529#37681#0" expanded="false" />
-                <element signature="e#37714#37734#0" expanded="true" />
-                <element signature="e#38000#38278#0" expanded="false" />
-                <element signature="e#38297#41633#0" expanded="false" />
-                <element signature="e#41647#41706#0" expanded="true" />
-                <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+                <element signature="e#35529#47570#0" expanded="false" />
+                <element signature="e#47603#47623#0" expanded="true" />
+                <element signature="e#47889#48167#0" expanded="false" />
+                <element signature="e#48186#51522#0" expanded="false" />
+                <element signature="e#51536#51595#0" expanded="true" />
+                <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="stl_algobase.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/stl_algobase.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="1068" column="0" lean-forward="false" selection-start-line="1068" selection-start-column="0" selection-end-line="1068" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stl_iterator.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/stl_iterator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+            <state relative-caret-position="268">
+              <caret line="251" column="0" lean-forward="true" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
               <folding>
                 <element signature="e#58#74#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stl_pair.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/stl_pair.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,18 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>trans</find>
-      <find>getDmost</find>
-      <find>next</find>
-      <find>black</find>
-      <find>meaning</find>
-      <find>insert</find>
-      <find>operator[]</find>
-      <find>clear</find>
-      <find>begin</find>
-      <find>lower</find>
-      <find>lower_bound</find>
-      <find>insert_or</find>
       <find>operator</find>
       <find>operator==</find>
       <find>Node(</find>
@@ -129,15 +147,27 @@
       <find>rend</find>
       <find>reverse_itera</find>
       <find>reverse_iterator</find>
-      <find>reverse</find>
       <find>operator--</find>
       <find>rbegin</find>
       <find>end()</find>
       <find>begin()</find>
       <find>header.child[1]</find>
       <find>find</find>
+      <find>insertionFix</find>
+      <find>addElem</find>
+      <find>removeSubTree</find>
+      <find>isMaxOrMin</find>
+      <find>assignMaxOrMin</find>
+      <find>rotate</find>
+      <find>reverse</find>
       <find>iterator</find>
+      <find>invalidHint</find>
+      <find>insert</find>
+      <find>assign</find>
+      <find>insert_or_assign</find>
+      <find>operator++</find>
       <find>erase</find>
+      <find>clear</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,8 +179,8 @@
         <option value="$USER_HOME$/Downloads/map.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/test.cpp" />
         <option value="$PROJECT_DIR$/map.h" />
+        <option value="$PROJECT_DIR$/test.cpp" />
       </list>
     </option>
   </component>
@@ -201,7 +231,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../algo-taller-tries" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -215,24 +245,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.BasicMapInstances.erasePorIterador">
-    <configuration default="false" name="BasicMapInstances.insertOrAssignConHintBueno" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="insertOrAssignConHintBueno" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="Google Test.All in test.cpp">
+    <configuration default="false" name="TestsBasicos.TipoRestrictivo" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="TestsBasicos" TEST_METHOD="TipoRestrictivo" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="BasicMapInstances.insertOrAssignConHintMalo" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="insertOrAssignConHintMalo" TEST_MODE="SUITE_TEST">
+    <configuration default="false" name="TestsBasicos.IteradorAlInsertarUnElemento" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="TestsBasicos" TEST_METHOD="IteradorAlInsertarUnElemento" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="BasicMapInstances.erasePorClave" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="erasePorClave" TEST_MODE="SUITE_TEST">
+    <configuration default="false" name="TestsBasicos.InsertarUnElemento" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="TestsBasicos" TEST_METHOD="InsertarUnElemento" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="BasicMapInstances.Begin" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="Begin" TEST_MODE="SUITE_TEST">
+    <configuration default="false" name="TestsBasicos.DiccionarioVacio" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="TestsBasicos" TEST_METHOD="DiccionarioVacio" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="BasicMapInstances.erasePorIterador" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="erasePorIterador" TEST_MODE="SUITE_TEST">
+    <configuration default="false" name="All in test.cpp" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_PATTERN="BasicMapInstances.*:BasicMapInstances/*.*:*/BasicMapInstances.*/*:*/BasicMapInstances/*.*:TestsBasicos.*:TestsBasicos/*.*:*/TestsBasicos.*/*:*/TestsBasicos/*.*" TEST_MODE="PATTERN">
       <envs />
       <method />
     </configuration>
@@ -434,10 +464,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="BasicMapInstances.RBegin" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="RBegin" TEST_MODE="SUITE_TEST">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="BasicMapInstances.ConstRBegin" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="ConstRBegin" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -446,27 +472,31 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="BasicMapInstances.RBegin" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
     <list size="12">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.mapache" />
       <item index="2" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CBegin" />
       <item index="3" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.ConstBegin" />
-      <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.RBegin" />
-      <item index="5" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.ConstRBegin" />
-      <item index="6" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CRBegin" />
-      <item index="7" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintBueno" />
-      <item index="8" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintMalo" />
-      <item index="9" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.erasePorClave" />
-      <item index="10" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.Begin" />
-      <item index="11" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.erasePorIterador" />
+      <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.ConstRBegin" />
+      <item index="5" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CRBegin" />
+      <item index="6" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.RBegin" />
+      <item index="7" class="java.lang.String" itemvalue="Google Test.TestsBasicos.TipoRestrictivo" />
+      <item index="8" class="java.lang.String" itemvalue="Google Test.TestsBasicos.IteradorAlInsertarUnElemento" />
+      <item index="9" class="java.lang.String" itemvalue="Google Test.TestsBasicos.InsertarUnElemento" />
+      <item index="10" class="java.lang.String" itemvalue="Google Test.TestsBasicos.DiccionarioVacio" />
+      <item index="11" class="java.lang.String" itemvalue="Google Test.All in test.cpp" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.erasePorIterador" />
-        <item index="1" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.erasePorClave" />
-        <item index="2" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.Begin" />
-        <item index="3" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintMalo" />
-        <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintBueno" />
+        <item index="0" class="java.lang.String" itemvalue="Google Test.All in test.cpp" />
+        <item index="1" class="java.lang.String" itemvalue="Google Test.TestsBasicos.DiccionarioVacio" />
+        <item index="2" class="java.lang.String" itemvalue="Google Test.TestsBasicos.InsertarUnElemento" />
+        <item index="3" class="java.lang.String" itemvalue="Google Test.TestsBasicos.IteradorAlInsertarUnElemento" />
+        <item index="4" class="java.lang.String" itemvalue="Google Test.TestsBasicos.TipoRestrictivo" />
       </list>
     </recent_temporary>
   </component>
@@ -498,44 +528,44 @@
       <workItem from="1496178514652" duration="4528000" />
       <workItem from="1496183868839" duration="1469000" />
       <workItem from="1496249420387" duration="9274000" />
-      <workItem from="1496279238125" duration="9334000" />
+      <workItem from="1496279238125" duration="15235000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.05.31 at 23h 40m 54s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="All_in_test_cpp - 2017.06.01 at 03h 15m 09s.xml">
+      <configuration name="All in test.cpp" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.05.31 at 23h 48m 28s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_RBegin - 2017.06.01 at 03h 08m 55s.xml">
+      <configuration name="BasicMapInstances.RBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.05.31 at 23h 52m 10s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_RBegin - 2017.06.01 at 03h 11m 24s.xml">
+      <configuration name="BasicMapInstances.RBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.05.31 at 23h 54m 49s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_RBegin - 2017.06.01 at 03h 11m 42s.xml">
+      <configuration name="BasicMapInstances.RBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.06.01 at 00h 02m 26s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_RBegin - 2017.06.01 at 03h 12m 04s.xml">
+      <configuration name="BasicMapInstances.RBegin" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.06.01 at 00h 31m 50s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="TestsBasicos_DiccionarioVacio - 2017.06.01 at 03h 12m 52s.xml">
+      <configuration name="TestsBasicos.DiccionarioVacio" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.06.01 at 00h 32m 33s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="TestsBasicos_InsertarTresElemento - 2017.06.01 at 03h 12m 30s.xml">
+      <configuration name="TestsBasicos.InsertarTresElemento" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.06.01 at 00h 33m 58s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="TestsBasicos_InsertarUnElemento - 2017.06.01 at 03h 12m 48s.xml">
+      <configuration name="TestsBasicos.InsertarUnElemento" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorClave - 2017.06.01 at 00h 41m 11s.xml">
-      <configuration name="BasicMapInstances.erasePorClave" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="TestsBasicos_IteradorAlInsertarUnElemento - 2017.06.01 at 03h 12m 39s.xml">
+      <configuration name="TestsBasicos.IteradorAlInsertarUnElemento" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_erasePorIterador - 2017.06.01 at 00h 36m 54s.xml">
-      <configuration name="BasicMapInstances.erasePorIterador" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="TestsBasicos_TipoRestrictivo - 2017.06.01 at 03h 12m 34s.xml">
+      <configuration name="TestsBasicos.TipoRestrictivo" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124290000" />
+    <option name="totallyTimeSpent" value="130191000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -550,16 +580,16 @@
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15588723" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256785" sideWeight="0.4079602" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32473117" sideWeight="0.40464345" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32672232" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46033403" sideWeight="0.14704256" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31941545" sideWeight="0.46821448" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.17573696" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31935483" sideWeight="0.46600333" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46033403" sideWeight="0.8529574" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44676408" sideWeight="0.82426304" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -589,17 +619,7 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/map.h</url>
-          <line>1402</line>
-          <option name="timeStamp" value="84" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>1876</line>
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>3301</line>
+          <line>3376</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -609,13 +629,8 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/map.h</url>
-          <line>3296</line>
+          <line>3371</line>
           <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/test.cpp</url>
-          <line>331</line>
-          <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/test.cpp</url>
@@ -634,44 +649,14 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/test.cpp</url>
-          <line>256</line>
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>2082</line>
-          <option name="timeStamp" value="171" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>2009</line>
-          <option name="timeStamp" value="172" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>2008</line>
-          <option name="timeStamp" value="173" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>1987</line>
-          <option name="timeStamp" value="174" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>1942</line>
-          <option name="timeStamp" value="175" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/map.h</url>
-          <line>1937</line>
-          <option name="timeStamp" value="176" />
+          <line>331</line>
+          <option name="timeStamp" value="180" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="177" />
+      <option name="time" value="181" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeGoogleTestRunConfigurationType">
@@ -707,12 +692,12 @@
             <element signature="e#12982#20429#0" expanded="false" />
             <element signature="e#20430#34290#0" expanded="false" />
             <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38000#38278#0" expanded="false" />
-            <element signature="e#38297#41633#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+            <element signature="e#35529#47570#0" expanded="false" />
+            <element signature="e#47603#47623#0" expanded="true" />
+            <element signature="e#47889#48167#0" expanded="false" />
+            <element signature="e#48186#51522#0" expanded="false" />
+            <element signature="e#51536#51595#0" expanded="true" />
+            <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
           </folding>
         </state>
       </provider>
@@ -746,12 +731,12 @@
             <element signature="e#12982#20429#0" expanded="false" />
             <element signature="e#20430#34290#0" expanded="false" />
             <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38000#38278#0" expanded="false" />
-            <element signature="e#38297#41633#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+            <element signature="e#35529#47570#0" expanded="false" />
+            <element signature="e#47603#47623#0" expanded="true" />
+            <element signature="e#47889#48167#0" expanded="false" />
+            <element signature="e#48186#51522#0" expanded="false" />
+            <element signature="e#51536#51595#0" expanded="true" />
+            <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
           </folding>
         </state>
       </provider>
@@ -788,12 +773,12 @@
             <element signature="e#12982#20429#0" expanded="false" />
             <element signature="e#20430#34290#0" expanded="false" />
             <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38000#38278#0" expanded="false" />
-            <element signature="e#38297#41633#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+            <element signature="e#35529#47570#0" expanded="false" />
+            <element signature="e#47603#47623#0" expanded="true" />
+            <element signature="e#47889#48167#0" expanded="false" />
+            <element signature="e#48186#51522#0" expanded="false" />
+            <element signature="e#51536#51595#0" expanded="true" />
+            <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
           </folding>
         </state>
       </provider>
@@ -830,12 +815,12 @@
             <element signature="e#12982#20429#0" expanded="false" />
             <element signature="e#20430#34290#0" expanded="false" />
             <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38000#38278#0" expanded="false" />
-            <element signature="e#38297#41633#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+            <element signature="e#35529#47570#0" expanded="false" />
+            <element signature="e#47603#47623#0" expanded="true" />
+            <element signature="e#47889#48167#0" expanded="false" />
+            <element signature="e#48186#51522#0" expanded="false" />
+            <element signature="e#51536#51595#0" expanded="true" />
+            <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
           </folding>
         </state>
       </provider>
@@ -860,12 +845,12 @@
             <element signature="e#12982#20429#0" expanded="false" />
             <element signature="e#20430#34290#0" expanded="false" />
             <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38000#38278#0" expanded="false" />
-            <element signature="e#38297#41633#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+            <element signature="e#35529#47570#0" expanded="false" />
+            <element signature="e#47603#47623#0" expanded="true" />
+            <element signature="e#47889#48167#0" expanded="false" />
+            <element signature="e#48186#51522#0" expanded="false" />
+            <element signature="e#51536#51595#0" expanded="true" />
+            <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
           </folding>
         </state>
       </provider>
@@ -908,13 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/5/bits/stl_iterator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/5/bits/stl_iterator_base_types.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4300">
@@ -933,13 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1240">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/5/bits/stl_algobase.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="1069" column="0" lean-forward="false" selection-start-line="1069" selection-start-column="0" selection-end-line="1069" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -978,14 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/5/bits/stl_pair.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/5/bits/stl_function.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7720">
@@ -1002,20 +965,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.cpp">
+    <entry file="file:///usr/include/c++/5/bits/stl_pair.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
-          <folding>
-            <element signature="e#58#74#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="178">
+          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/stl_iterator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/stl_algobase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="1068" column="0" lean-forward="false" selection-start-line="1068" selection-start-column="0" selection-end-line="1068" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/map.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="2107" column="13" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3431" selection-end-column="19" />
+        <state relative-caret-position="157">
+          <caret line="1978" column="0" lean-forward="false" selection-start-line="1978" selection-start-column="0" selection-end-line="1978" selection-end-column="0" />
           <folding>
             <element signature="e#0#402#0" expanded="false" />
             <element signature="e#403#1609#0" expanded="false" />
@@ -1024,12 +1001,22 @@
             <element signature="e#12982#20429#0" expanded="false" />
             <element signature="e#20430#34290#0" expanded="false" />
             <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38000#38278#0" expanded="false" />
-            <element signature="e#38297#41633#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <marker date="1496288203211" expanded="true" signature="86992:89815" ph="..." />
+            <element signature="e#35529#47570#0" expanded="false" />
+            <element signature="e#47603#47623#0" expanded="true" />
+            <element signature="e#47889#48167#0" expanded="false" />
+            <element signature="e#48186#51522#0" expanded="false" />
+            <element signature="e#51536#51595#0" expanded="true" />
+            <marker date="1496297479879" expanded="true" signature="79862:82685" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="251" column="0" lean-forward="true" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
+          <folding>
+            <element signature="e#58#74#0" expanded="true" />
           </folding>
         </state>
       </provider>

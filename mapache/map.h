@@ -818,6 +818,234 @@
  * \primeros(fin(s)) \FI
  * \endparblock
  *
+ * \par raiz
+ * \parblock
+ * Devuelve un puntero a la raíz del árbol representado por m.
+ *
+ * \axioma{raiz}: \T{map} \TO \T{puntero(nodo)} \n
+ * raiz(m) \EQUIV m.header->parent
+ *
+ * \par esArbol
+ * \parblock
+ * Proposición que dice si una estructura representada con punteros a nodo
+ * se corresponde efectivamente con un árbol binario finito. La primera proposición
+ * asegura que el árbol termina, mientras que la segunda afirma que ningún nodo
+ * es hijo de dos nodos distintos (es decir, no hay ciclos).
+ *
+ * \axioma{esArbol}: \T{puntero(Node)} \TO \T{bool} \n
+ * esArbol(p) \EQUIV true \IFF (\EXISTS k:\T{nat}) \arbolK(p,k) \IGOBS \arbolK(p,k+1)
+ * \LAND \sinRepetidosAB(\arbolK(p,k))
+ *
+ * \par arbolK
+ * \parblock
+ * Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es apuntada por p.
+ *
+ * \axioma{arbolK}: \T{puntero(Node)} \TIMES \T{nat} \TO \T{ab(puntero(Node))} \n
+ * arbolK(p,k) \EQUIV \n \IF p = nullptr \THEN \n  nil \n \ELSE \n
+ * \IF k = 0 \THEN ab(nil,p,nil) \ELSE
+ * ab(\arbolK(p->child[0],k-1),p,\arbolK(p->child[1],k-1)) \FI \n \FI
+ *
+ * \par sinRepetidosAB
+ * \parblock
+ * Dice si un árbol binario tiene o no elementos repetidos.
+ *
+ * \axioma{sinRepetidosAB}: \T{ab(\ALPHA)} \TO \T{bool} \n
+ * sinRepetidosAB(a) \EQUIV
+ * \IF a = nil \THEN
+ * true
+ * \ELSE
+ * \LNOT (\perteneceAB(raíz(a),izq(a)) \LOR \perteneceAB(raíz(a),der(a))) \LAND
+ * \sinRepetidosAB(izq(a)) \LAND \sinRepetidosAB(der(a)) \FI
+ *
+ * \par perteneceAB
+ * \parblock
+ * Dice si un elemento está o no en un árbol binario.
+ *
+ * \axioma{perteneceAB}: \T{\ALPHA} \TIMES \T{ab(\ALPHA)} \TO \T{bool} \n
+ * perteneceAB(e,a) \EQUIV
+ * \IF a = nil \THEN
+ * false
+ * \ELSE
+ * raíz(a) = e \LOR \perteneceAB(e,izq(a)) \LOR \perteneceAB(e,der(a)) \FI
+ *
+ * \par esABBDicc
+ * \parblock
+ * Dice si el árbol binario que tiene a p como raíz es un ABB sin
+ * claves repetidas. Para asegurar esto último, las funciones auxiliares
+ * \todosMenores y \todosMayores hacen comparaciones <em>estrictas</em>.
+ *
+ * \axioma{esABBDicc}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * esABBDicc(p) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
+ * \todosMenores(p->child[0],p->value.first) \LAND
+ * \todosMayores(p->child[1],p->value.first) \LAND
+ * \esABBDicc(p->child[0]) \LAND \esABBDicc(p->child[1])  \FI
+ *
+ * \par todosMenores
+ * \parblock
+ * Dice si todas las claves del árbol binario a cuya raíz apunta p
+ * son estrictamentente menores a e.
+ *
+ * \axioma{todosMenores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
+ * todosMenores(p,e) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
+ * p->value.first \LT e \LAND \todosMenores(p->child[0],e) \LAND
+ * \todosMenores(p->child[1],e) \FI
+ *
+ * \par todosMayores
+ * \parblock
+ * Dice si todas las claves del árbol binario a cuya raíz apunta p
+ * son estrictamentente mayores a e.
+ *
+ * \axioma{todosMayores}: \T{puntero(Node)} p \TIMES \T{Key} \TO \T{bool} {\esArbol(p)} \n
+ * todosMayores(p,e) \EQUIV
+ * \IF p = nullptr \THEN
+ * true
+ * \ELSE
+ * p->value.first \GT e \LAND \todosMayores(p->child[0],e) \LAND
+ * \todosMayores(p->child[1],e)  \FI
+ *
+ * \par esRBTree
+ * \parblock
+ * Dice si el árbol binario a cuya raíz apunta p cumple el invariante
+ * de red-black tree (adaptado a nuestra implementación con hojas nullptr):
+ * todos los nodos son o rojos o negros, la raíz es negra, todos los nodos
+ * rojos tienen sólo hijos negros y todas las ramas desde cualquier nodo
+ * interno tienen la misma cantidad de nodos negros.
+ *
+ * \axioma{esRBTree}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * \esRBTree(p) \EQUIV p = nullptr \LOR_L (\coloresValidos(p) \LAND
+ * p->color = Black \LAND \mismaCantNegros(p) \LAND \rojoImplicaHijosNegros(p) )
+ *
+ * \par coloresValidos
+ * \parblock
+ * Dice si el árbol binario a cuya raíz apunta p sólo tiene nodos
+ * negros y rojos.
+ *
+ * \axioma{coloresValidos}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * coloresValidos(p) \EQUIV \IF p = nullptr \THEN true \ELSE
+ * p->color \NEQ Header \LAND \coloresValidos(p->child[0]) \LAND \coloresValidos(p->child[1]) \FI
+ *
+ * \par mismaCantNegros
+ * \parblock
+ * Dice si todas las ramas que salen desde cualquier nodo del árbol binario
+ * a cuya raíz apunta tienen la misma cantidad de nodos negros. Observar
+ * que, como estamos pidiendo que los hijos de p cumplan este axioma, alcanza
+ * con verificar que la cantidad de nodos negros de una rama (en
+ * particular la extrema izquierda) es la misma para los dos hijos, y de esa
+ * forma aseguramos que se cumple recursivamente mismaCantNegros.
+ *
+ * \axioma{mismaCantNegros}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * mismaCantNegros(p) \EQUIV p = nullptr \LOR_L ( \cantNegros(p->child[0]) = \cantNegros(p->child[1])
+ * \LAND \mismaCantNegros(p->child[0]) \LAND \mismaCantNegros(p->child[1]) )
+ *
+ * \par cantNegros
+ * \parblock
+ * Devuelve la cantidad de nodos negros de la rama extrema izquierda del
+ * árbol binario a cuya raíz apunta p. Por lo explicado anteriormente,
+ * esta función sirve para computar mismaCantNegros.
+ *
+ * \axioma{cantNegros}: \T{puntero(Node)} p \TO \T{nat} {\esArbol(p)} \n
+ * cantNegros(p) \EQUIV \IF p = nullptr \THEN 0 \ELSE \cantNegros(p->child[0])
+ * \f$+\f$ (\IF p->color = Black \THEN 1 \ELSE 0 \FI ) \FI
+ *
+ * \par rojoImplicaHijosNegros
+ * \parblock
+ * Dice si todos los nodos rojos del árbol binario a cuya raíz apunta p
+ * tienen únicamente hijos negros.
+ *
+ * \axioma{rojoImplicaHijosNegros}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * rojoImplicaHijosNegros(p) \EQUIV \IF p = nullptr \THEN true \ELSE
+ * p->color = Red \IMPLIES_L ( \noEsRojo(p->child[0]) \LAND \noEsRojo(p->child[1]) )
+ * \LAND \rojoImplicaHijosNegros(p->child[0]) \LAND
+ * \rojoImplicaHijosNegros(p->child[1]) \FI
+ *
+ * \par noEsRojo
+ * \parblock
+ * Autoexplicativo.
+ *
+ * \axioma{noEsRojo}: \T{puntero(Node)} \TO \T{bool} \n
+ * noEsRojo(p) \EQUIV p \NEQ nullptr \IMPLIES_L p->color \NEQ Red
+ *
+ * \par familiaCorrecta
+ * \parblock
+ * Función auxiliar de repMap para verificar si el padre de la cabecera es efectivamente la raíz
+ * (y viceversa), si el hijo izquierdo de la cabecera es el menor elemento del árbol y si el
+ * hijo derecho de la cabecera es el mayor elemento del árbol.
+ *
+ * \axioma{familiaCorrecta}: \T{nodo} \TIMES \T{puntero(Node)} p \TO \T{bool} {p \NEQ nullptr} \n
+ * familiaCorrecta(n,p) \EQUIV n.child[0] = \getDMost(p,0) \LAND n.child[1] = \getDMost(p,1)
+ * \LAND n.parent = p \LAND p->parent = n
+ *
+ * \par getDMost
+ * \parblock
+ * Si d es 0, devuelve el nodo de extrema izquierda del árbol binario a cuya raíz apunta
+ * p; si es 1, devuelve el de extrema derecha.
+ *
+ * \axioma{getDMost}: \T{puntero(Node)} p \TIMES \T{nat} d \TO \T{puntero(Node)} {d \LEQ 1 \LAND p \NEQ nullptr \LAND \esArbol(p)} \n
+ * getDMost(p,d) \EQUIV \IF p->child[d] = nullptr \THEN p \ELSE \getDMost(p->child[d],d) \FI
+ *
+ * \par parentCorrecto
+ * \parblock
+ * Dice si todos los nodos del árbol binario cuya raíz es apuntada por p tienen como padre al nodo que los tiene
+ * como hijos.
+ *
+ * \axioma{parentCorrecto}: \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)}
+ * parentCorrecto(p) \EQUIV \IF p = nullptr \THEN true \ELSE (p->child[0] \NEQ nullptr
+ * \IMPLIES_L p->child[0]->parent = p) \LAND (p->child[1] \NEQ nullptr \IMPLIES_L
+ * p->child[1]->parent = p) \LAND parentCorrecto(p->child[0]) \LAND parentCorrecto(p->child[0]) \FI
+ *
+ * \par cantNodos
+ * \parblock
+ * Devuelve la cantidad total de nodos del árbol binario a cuya raíz apunta p.
+ *
+ * \axioma{cantNodos}: \T{puntero(Node)} p \TO \T{nat} {\esArbol(p)} \n
+ * cantNodos(p) \EQUIV \IF p = nullptr \THEN 0 \ELSE suc(\cantNodos(p->child[0]) + \cantNodos(p->child[1])) \FI
+ *
+ * \par perteneceClaveABB
+ * \parblock
+ * Dice si la clave c pertenece al árbol binario cuya raíz es apuntada por p.
+ *
+ * \axioma{perteneceClaveABB}: \T{Key} \TIMES \T{puntero(Node)} p \TO \T{bool} {\esArbol(p)} \n
+ * perteneceClaveABB(c,p) \EQUIV \IF p = nullptr \THEN false \ELSE
+ * p->value.first = c \LOR \perteneceClaveABB(c,p->child[0]) \LOR \perteneceClaveABB(c,p->child[1]) \FI
+ *
+ * \par significadoABB
+ * \parblock
+ * Devuelve el significado de la clave c en el árbol binario cuya raíz es apuntada por p.
+ * Si hay dos tuplas en el árbol que tienen a c como primer componente, devuelve la que esté
+ * más a la izquierda, pero en este contexto sólo la llamaremos con árboles que son diccionarios
+ * y por lo tanto no tienen repetidos, así que esto no hace diferencia.
+ *
+ * \axioma{significadoABB}: \T{Key} \TIMES \T{puntero(Node)} p \TO \T{Meaning} {\esArbol(p) \LAND_L \perteneceClaveABB(c,p)} \n
+ * significadoABB(c,p) \EQUIV \IF p->value.first = c \THEN p->value.second
+ * \ELSE ( \IF \perteneceClaveABB(c,p->child[0]) \THEN \significadoABB(c,p->child[0])
+ * \ELSE \significadoABB(c,p->child[1]) \FI ) \FI
+ *
+ * \par elHeaderEstaPiola
+ * \parblock
+ * Función auxiliar para verificar la correctitud de \repMap cuando el árbol representado es vacío.
+ * Responde a la estructura dada por la cátedra, en la que el constructor sin parámetros de map
+ * genera un árbol cuya cabecera tiene como hijo izquierdo y derecho a sí misma.
+ *
+ * \axioma{elHeaderEstaPiola}: \T{map} \TO \T{bool} \n
+ * elHeaderEstaPiola(m) \EQUIV m.header.parent = nullptr \LAND m.header.child[0] = &(m.header)
+ * \LAND m.header.child[0] = &(m.header) \LAND m.count = 0
+ *
+ * \par parentK
+ * \parblock
+ * Función similar a \arbolK, pero en vez de devolver los primeros k niveles de un árbol,
+ * devuelve el resultado de subir k veces por el nodo apuntado por p. Si se llega a un nodo
+ * que tiene como padre a nullptr, devuelve un puntero al último nodo que tenía como padre
+ * a un puntero no nulo.
+ *
+ * \axioma{parentK}: \T{puntero(Node)} p \TIMES \T{nat} \TO \T{puntero(Node)} {p \NEQ nullptr} \n
+ * parentK(p,k) \EQUIV \IF p->parent = nullptr \THEN p \ELSE (\IF k = 0 \THEN p \ELSE
+ * parentK(p->parent,k-1) \FI ) \FI
  */
 
 #ifndef MAP_H_
@@ -1041,7 +1269,7 @@ namespace aed2 {
          * @retval res diccionario recién construido
          *
          * \pre \aedpre{true}
-         * \post \aedpost{res \igobs vac\'io}
+         * \post \aedpost{res \IGOBS vacío}
          *
          * \complexity{\O(1)}
          *
@@ -1061,7 +1289,7 @@ namespace aed2 {
          * @retval res diccionario recien construido
          *
          * \pre \aedpre{true}
-         * \post \aedpost{res \igobs other}
+         * \post \aedpost{res \IGOBS other}
          *
          * \complexity{\O(\COPY(\P{other}))}
          *
@@ -1086,7 +1314,7 @@ namespace aed2 {
             // this->count = other.count;
             //this->header = new Node(other.header);
         }
-        void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir)
+       void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir)
         {
             if (otherActual != nullptr)
             {
@@ -1232,12 +1460,6 @@ namespace aed2 {
         //y luego al derecho de ese subarbol, hasta llegar al elemento sin hijos, que elimina.
         //de esta manera, cuando pasa los dos ifs se asegura de no tener hijos, por lo que se elimina.
 
-        void removeSubTree(Node* raiz){
-            if (raiz->hasChild(0)) {removeSubTree(raiz->child[0]);}
-            if (raiz->hasChild(1)) {removeSubTree(raiz->child[1]);}
-            delete raiz;
-            count--;
-        }
         ///@}
 
         ////////////////////////////////////////////
@@ -1254,7 +1476,7 @@ namespace aed2 {
          *
          * \pre \aedpre{definido?(\P{key},this)}
          *
-         * \post \aedpost{res \igobs obtener(\P{key},this)}
+         * \post \aedpost{res \IGOBS obtener(\P{key},this)}
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this}) \CDOT \CMP(\P{*this}))}
          *
@@ -1266,31 +1488,13 @@ namespace aed2 {
          */
         const Meaning& at(const Key& key) const {
             const_iterator it = find(key);
-            if (it.n != nullptr) { return static_cast<InnerNode*>(it.n)->_value.first; }
-            // const InnerNode* actual = root();
-            // while (actual->_value.first != key) {
-            //   if (lt(key, actual->_value.first)) {
-            //     actual = static_cast<InnerNode*>(actual->child[0]);
-            //   } else {
-            //     actual = static_cast<InnerNode*>(actual->child[1]);
-            //   }
-            // }
-            // return actual->_value.second;
+            if (it.n != nullptr) { return it.n->value().second; }
         }
 
         /** \overload */
         Meaning& at(const Key& key) {
             iterator it = find(key);
-            if (it.n != nullptr) { return static_cast<InnerNode*>(it.n)->_value.second; }
-            // InnerNode* actual = root();
-            // while (actual->_value.first != key) {
-            //   if (lt(key, actual->_value.first)) {
-            //     actual = static_cast<InnerNode*>(actual->child[0]);
-            //   } else {
-            //     actual = static_cast<InnerNode*>(actual->child[1]);
-            //   }
-            // }
-            // return actual->_value.second;
+            if (it.n != nullptr) { return it.n->value().second; }
         }
 
         /**
@@ -1370,40 +1574,39 @@ namespace aed2 {
          * inserción.
          *
          */
-        iterator find(const Key& key) {
-            if (root() == nullptr) {
+        iterator find(const Key &key) {
+            if (root() == nullptr) { //si el arbol esta vacio, no encuentro nada
                 return this->end();
             } else {
-                InnerNode* now = root();
-                while (now != nullptr) {
-                    if (now->_value.first == key) {
-                        return iterator(now);
-                    } else if (lt(key, now->_value.first)) {
-                        now = static_cast<InnerNode*>(now->child[0]);
-                    } else {
-                        now = static_cast<InnerNode*>(now->child[1]);
-                    }
-                }
-                return this->end();
+                Node *now = root();
+                now = findAux(key, now);
+                if (now) return iterator(now);
+                else return end();
             }
         }
 
+        Node *findAux(const Key &key, Node *now) const {
+            while (now != nullptr) {
+                if (eq(now->value().first, key)) {
+                    return now;
+                } else if (lt(key, now->value().first)) {
+                    now = now->child[0];
+                } else {
+                    now = now->child[1];
+                }
+            }
+            return nullptr;
+        }
+
         /** \overload */
-        const_iterator find(const Key& key) const {
-            if (root() == nullptr) {
+        const_iterator find(const Key &key) const {
+            if (root() == nullptr) { //si el arbol esta vacio, no encuentro nada
                 return this->end();
             } else {
-                InnerNode* now = root();
-                while (now != nullptr) {
-                    if (now->_value.first == key) {
-                        return const_iterator(now);
-                    } else if (lt(key, now->_value.first)) {
-                        now = static_cast<InnerNode*>(now->child[0]);
-                    } else {
-                        now = static_cast<InnerNode*>(now->child[1]);
-                    }
-                }
-                return this->end();
+                Node *now = root();
+                now = findAux(key, now);
+                if (now) return const_iterator(now);
+                else return end();
             }
         }
 
@@ -1429,55 +1632,33 @@ namespace aed2 {
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
          *
          */
-        const_iterator lower_bound(const Key& key) const {
-
-            InnerNode* actual = root();
-            InnerNode* papi = nullptr;
-            if (actual && !lt(header.child[1]->key(), key))
-            {
-                while(actual && !(!lt(actual->key(), key)  && ((!actual->child[0]) || lt(actual->child[0]->key(), key))))
-                {
-                    papi = actual;
-                    if (!lt(key, actual->key()) && !lt(actual->key(), key)) break;
-                    if (lt(key, actual->key()))
-                    {
-                        actual = static_cast<InnerNode*>(actual->child[0]);
-                    }
-                    else
-                    {
-                        actual = static_cast<InnerNode*>(actual->child[1]);
-                    }
-                }
-            }
-            if (actual && !lt(actual->key(), key) && !lt(key, actual->key()) ) return const_iterator(actual);
-            else if (papi) return const_iterator(papi);
-            else return const_iterator(&header);
+        const_iterator lower_bound(const Key &key) const {
+            Node *myLowerBoundNode = lowerBoundAux(key);
+            if (myLowerBoundNode) return const_iterator(myLowerBoundNode);
+            else return end();
         }
 
         /** \overload */
-        iterator lower_bound(const Key& key) {
-            InnerNode* actual = root();
-            InnerNode* papi = nullptr;
-            if (actual && !lt(header.child[1]->key(), key))
-            {
-                //while actual no es nullptr y no pasa que la clave es mayorigual a key y su hijo izq es menor a key
-                while(actual && !(!lt(actual->key(), key)  && ((!actual->child[0]) || lt(actual->child[0]->key(), key))))
-                {
-                    papi = actual;
-                    if (!lt(key, actual->key()) && !lt(actual->key(), key)) break;
-                    if (lt(key, actual->key()))
-                    {
-                        actual = static_cast<InnerNode*>(actual->child[0]);
-                    }
-                    else
-                    {
-                        actual = static_cast<InnerNode*>(actual->child[1]);
-                    }
+        iterator lower_bound(const Key &key) {
+            Node *myLowerBoundNode = lowerBoundAux(key);
+            if (myLowerBoundNode) return iterator(myLowerBoundNode);
+            else return end();
+        }
+
+        Node* lowerBoundAux(const Key &key) const {
+            Node *actual = header.parent;
+            Node *mother = nullptr;
+            if (actual && !lt(header.child[1]->key(), key)) {
+                //while actual no es nullptr y no es el lower bound
+                while (actual && (lt(actual->key(), key) || (actual->child[0] && !lt(actual->child[0]->key(), key)))) {
+                    mother = actual;
+                    if (eq(key, actual->key())) break;
+                    actual = lt(key, actual->key()) ? actual->child[0] : actual->child[1];
                 }
             }
-            if (actual && !lt(actual->key(), key)) return iterator(actual);
-            else if (papi) return iterator(papi);
-            else return iterator(&header);
+            if (actual && !lt(actual->key(), key)) return actual;
+            else if (mother) return mother;
+            else return nullptr;
         }
         ///@}
 
@@ -1549,131 +1730,12 @@ namespace aed2 {
          * \attention Para garantizar que el nuevo elemento se inserte sí o sí, usar
          * aed2::map::insert_or_assign.
          */
+
 // esta funcion es para generalizar agregar un elemento yendo por derecha y por izquierda
-        bool addElem(InnerNode* &now, const value_type& value, int dir) {
-            if (now->child[dir] != nullptr) {
-                now = static_cast<InnerNode*>(now->child[dir]); //si no es null, sigo bajando
-                return false;
-            }
-            else {
-                now->child[dir] = new InnerNode(now, value);
-                InnerNode* aux = static_cast<InnerNode*>(now->child[dir]);
-                // static_cast<InnerNode*>(now->child[side])->_value = value;//le asigno el valor al nuevo nodo
-                insertionFix(now->child[dir], value);
-                now = aux;
-                return true;
-            }
-        }
 
-        void insertionFix(Node* newNode, const value_type &value) {
-            Node* aux;
-            if (!lt(static_cast<InnerNode*>(this->root())->value().first, value.first) && !lt(value.first, this->root()->value().first)) {
-                static_cast<InnerNode*>(this->root())->color = Color::Black;
-                return;
-            }
-            while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
-                Node* grandPa = newNode->parent->parent;
-                if (grandPa->child[0] == newNode->parent) {
-                    if (grandPa->child[1] != nullptr) {
-                        aux = grandPa->child[1];
-                        if (aux->color == Color::Red) {
-                            newNode->parent->color = Color::Black;
-                            aux->color = Color::Black;
-                            grandPa->color = Color::Red;
-                            newNode = grandPa;
-                        }
-                    } else {
-                        if (newNode->parent->child[1] == newNode) {
-                            newNode = newNode->parent;
-                            leftrotate(newNode);
-                        }
-                        newNode->parent->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        rightrotate(grandPa);
-                    }
-                } else {
-                    if (grandPa->child[0] != nullptr) {
-                        aux = grandPa->child[0];
-                        if (aux->color == Color::Red) {
-                            newNode->parent->color = Color::Black;
-                            aux->color = Color::Black;
-                            grandPa->color = Color::Red;
-                            newNode = grandPa;
-                        }
-                    } else {
-                        if (newNode->parent->child[0] == newNode) {
-                            newNode = newNode->parent;
-                            rightrotate(newNode);
-                        }
-                        newNode->parent->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        leftrotate(grandPa);
-                    }
-                }
-                root()->color = Color::Black;
-            }
-        }
-//cambir por DROTATE y hacerlo generico
-        void leftrotate(Node* p) {
-            if(p->child[1]==nullptr)
-                return ;
-            else {
-                Node* y = p->child[1];
 
-                if(y->child[0]!=nullptr) {
-                    p->child[1]=y->child[0];
-                    y->child[0]->parent=p;
-                } else { p->child[1]=nullptr; }
 
-                if(p->parent!=nullptr)
-                    y->parent=p->parent;
-                if(p->parent->is_header()) {
-                    this->header.parent = y;
-                    // header.parent = y;
-                    y->parent = &header;
-                } else {
-                    if(p==p->parent->child[0])
-                        p->parent->child[0]=y;
-                    else
-                        p->parent->child[1]=y;
-                }
-                y->child[0]=p;
-                p->parent=y;
-            }
 
-        }
-
-        void rightrotate(Node* p) {
-            if(p->child[0]==nullptr)
-                return ;
-            else {
-                Node* y = p->child[0];
-
-                if(y->child[1]!=nullptr) {
-                    p->child[0]=y->child[1];
-                    y->child[1]->parent=p;
-                } else { p->child[0]=nullptr; }
-
-                if(p->parent!=nullptr)
-                    y->parent=p->parent;
-                if(p->parent->is_header()) {
-                    this->header.parent = y;
-                    //  header.parent = y;
-                    y->parent = &header;
-                } else {
-                    if(p==p->parent->child[0])
-                        p->parent->child[0]=y;
-                    else
-                        p->parent->child[1]=y;
-                }
-                y->child[1]=p;
-                p->parent=y;
-            }
-
-        }
-        bool invalidHint(const_iterator hint, const value_type& value) {
-            return (hint.n == nullptr || hint.n == &header || lt((*hint).first, value.first) || lt(value.first, (hint.n)->prevInorder()->value().first));
-        }
         iterator insert(const_iterator hint, const value_type& value) {
             /*Tengo que insertar un elemento, para esto, distingo tres casos:
             * 1. el elemento a insertar es la raiz. Este es el caso mas facil, solo tengo que
@@ -1718,89 +1780,15 @@ namespace aed2 {
             }
 
         }
-        bool isMaxOrMin(const value_type& value) {
-            return lt((header.child[1])->value().first, value.first) || lt(value.first, (header.child[0])->value().first);
-        }
 
-        iterator assignMaxOrMin(const value_type& value) {
-            if (lt(header.child[1]->value().first, value.first)) {
-                header.child[1]->child[1] = new InnerNode(header.child[1], value);
-                header.child[1] = header.child[1]->child[1];
-                insertionFix(header.child[1], value);
-                return iterator(header.child[1]);
 
-            } else {
-                header.child[0]->child[0] = new InnerNode(header.child[0], value);
-                header.child[0] = header.child[0]->child[0];
-                insertionFix(header.child[0], value);
-                return iterator(header.child[0]);
-            }
 
-        }
+
         /** \overload*/
         iterator insert(const value_type& value) {
             return insert_or_upsert(value, 0);
         }
 
-        iterator insert_or_upsert(const value_type& value, bool upsert) {
-            InnerNode* now = static_cast<InnerNode*>(this->header.parent);
-            bool inserted = false;
-            iterator it(now);
-            if (root() == nullptr) {
-                header.parent = new InnerNode(&header, value);
-                header.parent->color = Color::Black;
-                header.child[0] = header.child[1] = header.parent;
-                inserted = true; //notar q el count++ lo hago aca, no se si es lo mejor.
-                it = iterator(header.parent);
-            } else if (isMaxOrMin(value)) {
-                it = assignMaxOrMin(value);
-                inserted = true;
-            } else {
-                while(now != nullptr && !inserted) {
-                    if (lt(now->key(), value.first)) {
-                        inserted = addElem(now, value, 1);
-                        it = iterator(now);
-                    }
-                    else {
-                        if (!lt(now->key(),value.first) && !lt(value.first, now->key()) && upsert) {
-                            InnerNode* nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
-                            nuevo->child[0] = now->child[0];
-                            nuevo->child[1] = now->child[1];
-                            if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
-                            if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
-                            if (now->parent != &header && now->isChild(0)) {
-                                nuevo->parent->child[0] = nuevo;
-                            }
-                            else if (now->parent != &header && now->isChild(1)) {
-                                nuevo->parent->child[1] = nuevo;
-                            }
-                            else {
-                                header.parent = nuevo;
-                            }
-                            if (now == header.child[0])
-                            {
-                                header.child[0] = nuevo;
-                            }
-                            else if (now == header.child[1])
-                            {
-                                header.child[1] = nuevo;
-                            }
-                            InnerNode* aux = now;
-                            now = nuevo;
-                            delete aux;
-                            // inserted = true;
-                            // count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
-                            return iterator(now);
-                        }
-                        else inserted = addElem(now, value, 0);
-                        it = iterator(now);
-
-                    }
-                }
-            }
-            if (inserted) count++;
-            return it;
-        }
         /**
          * @brief Inserta o redefine \P{value} en el diccionario
          *
@@ -1840,48 +1828,17 @@ namespace aed2 {
          * \T{Meaning} tenga constructor sin parámetros.  La desventaja es que la
          * notación no es tan bonita.
          */
-        iterator insert_or_assign(const_iterator hint, const value_type& value) {
-            if (hint.n && !hint.n->is_header() && (*hint).first == value.first)
-            {
-                InnerNode* now = static_cast<InnerNode*>(const_cast<Node*>(hint.n));
-                InnerNode* nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
-                nuevo->child[0] = now->child[0];
-                nuevo->child[1] = now->child[1];
-                if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
-                if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
-                if (now->parent != &header && now->isChild(0)) {
-                    nuevo->parent->child[0] = nuevo;
-                }
-                else if (now->parent != &header && now->isChild(1)) {
-                    nuevo->parent->child[1] = nuevo;
-                }
-                else {
-                    header.parent = nuevo;
-                }
-                if (now == header.child[0])
-                {
-                    header.child[0] = nuevo;
-                }
-                else if (now == header.child[1])
-                {
-                    header.child[1] = nuevo;
-                }
-                InnerNode* aux = now;
-                now = nuevo;
-                delete aux;
-                // inserted = true;
-                // count--; //para que no me lo cuente dos veces, igual no es copado hacer esto habria q cambiarlo
+        iterator insert_or_assign(const_iterator hint, const value_type &value) {
+            if (hint.n && !hint.n->is_header() && eq((*hint).first,value.first)) {
+                InnerNode *now = static_cast<InnerNode *>(const_cast<Node *>(hint.n));
+                Update(now, value);
                 return iterator(now);
-                //const_cast<Node*>(hint.n)->value().second = value.second;
-                //return iterator(const_cast<Node*>(hint.n));
-            }
-            else
-            if (invalidHint(hint, value)) return insert_or_assign(value);
-            else return insert(hint, value);
+            } else if (invalidHint(hint, value)) return insert_or_assign(value); //si el hint es incorrecto, me lo olvido
+            else return insert(hint, value); //si el hint es correcto y no es mi elemento, no voy a updatear
         }
 
         /** \overload */
-        iterator insert_or_assign(const value_type& value) {
+        iterator insert_or_assign(const value_type &value) {
             return insert_or_upsert(value, 1);
         }
 
@@ -1902,130 +1859,8 @@ namespace aed2 {
          * - Peor caso amortizado: \O(\DEL(\P{*pos}))
          * }
          *
-//         */
-//        iterator erase(const_iterator pos){
-//            if (header.parent == nullptr) return iterator();
-//            Node* x = nullptr;
-//            Node* y = const_cast<Node*>(pos.n);
-//            Node* z = y;
-//            Color y_original_color = y->color;
-//            iterator it;
-//            bool borrarx = false;
-//
-//            it.n = y->nextInorder();
-//            if (z == begin()){
-//                header.child[0]=it.n;
-//            }else if(z == header.child[1]){
-//                header.child[1]=z->prevInorder();
-//            }
-//            if (!y->hasChild(0)and!y->hasChild(1)and y_original_color==Color::Black) {
-//                delfix(y);
-//                if(y->parent->child[0]==y) y->parent->child[0]=nullptr;
-//                if(y->parent->child[1]==y) y->parent->child[1]=nullptr;
-//                delete y;
-//            }else{
-//                if (!z->hasChild(0)){
-//                    x = y->child[1];
-//                    Transplant(y,y->child[1]);
-//                }
-//                else if(!z->hasChild(1)){
-//                    x = y->child[0];
-//                    Transplant(y,y->child[0]);
-//                }
-//                else{
-//                    y = z->nextInorder();
-//                    if (y->hasChild(0))
-//                    {
-//                        x = y->child[0];
-//                    }
-//                    else
-//                    {
-//                        if (y->hasChild(1)) {
-//                            x = y->child[1];
-//                        }
-//                        else {
-//
-//                            x = new Node(y, Color::Black);
-//                            borrarx = true;
-//                        }
-//                    }
-//                    x->parent = y->parent;
-//                    if (y->parent->is_header()) header.parent = x;
-//                    else if (y->isChild(0))
-//                    {
-//                        y->parent->child[0] = x;
-//                    }
-//                    else if (y->isChild(1))
-//                    {
-//                        y->parent->child[1] = x;
-//                    }
-//                    if (y != z)
-//                    {
-//                        InnerNode *nuevo = new InnerNode(z->parent, y->value());
-//
-//                        nuevo->child[0] = z->child[0];
-//                        nuevo->child[1] = z->child[1];
-//                        if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
-//                        if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
-//                        if (z->parent != &header && z->isChild(0)) {
-//                            nuevo->parent->child[0] = nuevo;
-//                        } else if (z->parent != &header && z->isChild(1)) {
-//                            nuevo->parent->child[1] = nuevo;
-//                        } else {
-//                            header.parent = nuevo;
-//                        }
-//                        if (z == header.child[0]) {
-//                            header.child[0] = nuevo;
-//                        } else if (z == header.child[1]) {
-//                            header.child[1] = nuevo;
-//                        }
-//                        // InnerNode *aux = static_cast<InnerNode*>(z);
-//                        z = nuevo;
-//                        // delete aux;
-//                        //   Transplant(z, y);
-//
-//                    }
-//                    //x = y->prevInorder();
-//                   /* y_original_color = y->color;
-//                   // x = y->child[1];
-//                    if (y->parent!=z) {
-//                        Transplant(y,y->child[1]);
-//                        y->child[1] = z->child[1];
-//                        y->child[1]->parent = y;
-//                    }
-//                    Transplant(z,y);
-//                    y->child[0]=z->child[0];
-//                    y->child[0]->parent = y;
-//                    y->color = z->color;*/
-//
-//                }
-//                if (count == 1)
-//                {
-//                    //header.parent = nullptr;
-//                    header.child[0] = header.child[1] = &header;
-//                    //delete pos.n;
-//                }
-//                else {
-//                    if (y_original_color == Color::Black) delfix(x);
-//
-//                }
-//                delete z;
-//                if (borrarx) {
-//                    if (x->isChild(0))
-//                    {
-//                        x->parent->child[0] = nullptr;
-//                    }
-//                    else
-//                    {
-//                        x->parent->child[1] = nullptr;
-//                    }
-//                    delete x;
-//                }
-//            }
-//            count--;
-//
-//            return it;
-//        }
+         */
+
 
         iterator erase(const_iterator pos){
             if (header.parent == nullptr) return iterator();
@@ -2257,74 +2092,7 @@ bool borrarX = false;
 
             myNode->color = Color::Black;
         }
-//          Node *s;
-//          while(myNode != root() && myNode->color == Color::Black)
-//          {
-//              if(myNode->parent->child[0] == myNode)
-//              {
-//                  s = myNode->parent->child[1];
-//                  if(s->color==Color::Red)
-//                  {
-//                      s->color=Color::Black;
-//                      myNode->parent->color= Color::Red;
-//                      leftrotate(myNode->parent);
-//                      s=myNode->parent->child[1];
-//                  }
-//                  if(s->child[1]->color==Color::Black && s->child[0]->color== Color::Black)
-//                  {
-//                      s->color= Color::Red;
-//                      myNode = myNode->parent;
-//                  }
-//                  else
-//                  {
-//                      if(s->child[1]->color== Color::Black)
-//                      {
-//                          s->child[0]->color = Color::Black;
-//                          s->color= Color::Red;
-//                          rightrotate(s);
-//                          s=myNode->parent->child[1];
-//                      }
-//                      s->color=myNode->parent->color;
-//                      myNode->parent->color = Color::Black;
-//                      s->child[1]->color = Color::Black;
-//                      leftrotate(myNode->parent);
-//                      myNode = header.parent;
-//                  }
-//              }
-//              else
-//              {
-//                  s=myNode->parent->child[0];
-//                  if(s->color== Color::Red)
-//                  {
-//                      s->color= Color::Black;
-//                      myNode->parent->color= Color::Red;
-//                      rightrotate(myNode->parent);
-//                      s=myNode->parent->child[0];
-//                  }
-//                  if(s->child[0]->color == Color::Black && s->child[1]->color== Color::Black)
-//                  {
-//                      s->color= Color::Red;
-//                      myNode=myNode->parent;
-//                  }
-//                  else
-//                  {
-//                      if(s->child[0]->color == Color::Black)
-//                      {
-//                          s->child[1]->color = Color::Black;
-//                          s->color = Color::Red;
-//                          leftrotate(s);
-//                          s=myNode->parent->child[0];
-//                      }
-//                      s->color=myNode->parent->color;
-//                      myNode->parent->color = Color::Black;
-//                      s->child[0]->color= Color::Black;
-//                      rightrotate(myNode->parent);
-//                      myNode= header.parent;
-//                  }
-//              }
-//              myNode->color= Color::Black;
-//              header.parent->color = Color::Black;
-//          }
+
 
 
 
@@ -2348,15 +2116,6 @@ bool borrarX = false;
             header.child[0]=nullptr;
             header.child[1]=nullptr;
             header.parent=nullptr;
-            /*
-            Node* miArrayVacio[2] = {nullptr, nullptr};
-          while ((header.parent->child) != miArrayVacio)
-          {
-              if (header.parent->child[0] != nullptr)  erase(header.parent->child[0]);
-              if (header.parent->child[1] != nullptr) erase(header.parent->child[1]);
-          }
-            erase(header.parent);
-             */
 
         }
 
@@ -2482,18 +2241,18 @@ bool borrarX = false;
          * \complexity{\O(1)}
          */
         reverse_iterator rbegin() {
-            return reverse_iterator(begin());
+            return reverse_iterator(end());
         }
 
         /** \overload */
         const_reverse_iterator rbegin() const {
 
-            return const_reverse_iterator(begin());
+            return const_reverse_iterator(end());
         }
 
         /** \overload */
         const_reverse_iterator crbegin() {
-            return const_reverse_iterator(begin());
+            return const_reverse_iterator(end());
         }
 
         /**
@@ -2698,7 +2457,7 @@ bool borrarX = false;
              */
             iterator operator++(int) {
                 iterator res = iterator(this->n);
-                this->n = this->n->nextInorder();
+                this->n = ++*this;
                 return res;
             }
             /**
@@ -2739,7 +2498,7 @@ bool borrarX = false;
              */
             iterator operator--(int) {
                 iterator it = *this;
-                (*this)--;
+                *this = (*this)--;
                 return it;
             }
             /**
@@ -2810,27 +2569,32 @@ bool borrarX = false;
             operator Node*() const { return n; }
             /////////////////////////////////////////////////////////////////////////////////////////////////
             /** \name Estructura de representación
-             *
-             * \T{iterator} se representa con \P{n}: puntero(Node)
-             *
-             * \par Invariante de representación
-             *
-             * rep_iter: puntero(Node) \TO bool\n
-             * rep_iter(n) \EQUIV completar
-             *
-             * \par Función de abstracción
-             *
-             * abs_iter: puntero(Node) n \TO IteradorBidireccional(Diccionario(\T{Key},
-             * \T{Meaning}), tupla(\T{Key}, \T{Meaning}))  {rep_iter(n)}\n
-             * abs_iter(n) \EQUIV completar
-             *
-             * Nota: se puede usar `d` para referirse al valor computacional del
-             * diccionario definido desde la cabecera (como en el constructor).
-             *
-             * \attention  No hay forma de expresar el diccionario `d` porque depende de
-             * un aspecto de aliasing.  Es por esto que permitimos usar
-             * castellano.
-             */
+            *
+            * \T{iterator} se representa con \P{n}: puntero(Node)
+            *
+            * \par Invariante de representación
+            *
+            * rep_iter: puntero(Node) \TO bool\n
+            * rep_iter(n) \EQUIV true \IFF n = nullptr \LOR_L ( (\EXISTS k:\T{nat})
+            * \parentK(n,k) \NEQ nullptr \LAND_L \parentK(n,k).color = Header \LAND_L
+            * \parentK(n,k) = \parentK(n,k+2) \LAND \esArbol(\parentK(n,k+1)) \LAND
+            * \esABBDicc(\parentK(n,k+1)) \LAND \esRBTree(\parentK(n,k+1)) \LAND
+            * \perteneceAB(p,\arbolK(\parentK(n,k+1),k+1)) \LAND \parentCorrecto(\parentK(n,k+1))
+            * \LAND \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
+            *
+            * \par Función de abstracción
+            *
+            * abs_iter: puntero(Node) n \TO IteradorBidireccional(Diccionario(\T{Key},
+            * \T{Meaning}), tupla(\T{Key}, \T{Meaning}))  {rep_iter(n)}\n
+            * abs_iter(n) \EQUIV completar
+            *
+            * Nota: se puede usar `d` para referirse al valor computacional del
+            * diccionario definido desde la cabecera (como en el constructor).
+            *
+            * \attention  No hay forma de expresar el diccionario `d` porque depende de
+            * un aspecto de aliasing.  Es por esto que permitimos usar
+            * castellano.
+            */
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //@{
             /**
@@ -2897,7 +2661,7 @@ bool borrarX = false;
             /** \brief Ver aed2::map::iterator::operator++(int) */
             const_iterator operator++(int) {
                 const_iterator res = const_iterator(this->n);
-                this->n = *this++;
+                this->n = ++*this;
                 return res;
             }
             /** \brief Ver aed2::map::iterator::operator--() */
@@ -2908,7 +2672,7 @@ bool borrarX = false;
             /** \brief Ver aed2::map::iterator::operator--(int) */
             const_iterator operator--(int) {
                 const_iterator res = const_iterator(this->n);
-                this->n = this->n->prevInorder();
+                this->n = --*this;
                 return res;
             }
             /** \brief Ver aed2::map::iterator::operator==() */
@@ -2998,7 +2762,7 @@ bool borrarX = false;
             bool hasChild(int dir) { return this->child[dir] != nullptr; }
 
             Node* nextInorder(int dir = 1) {
-                assert(not(is_header()));
+                assert(not(is_header() && dir == 1));
                 Node* next = this;
                 if (!this->is_header()) {
                     if (next->hasChild(dir)) return (next->child[dir])->getDMost(1 - dir);
@@ -3008,6 +2772,9 @@ bool borrarX = false;
                         next = next->parent;
                     }
                     next = next->parent;
+                }
+                else {
+                    return this->child[1];
                 }
                 return next;
             }
@@ -3034,6 +2801,10 @@ bool borrarX = false;
                         next = next->parent;
                     }
                     next = next->parent;
+                }
+                else
+                {
+                    return this->child[1];
                 }
                 return next;
             }
@@ -3232,17 +3003,22 @@ bool borrarX = false;
          * Diccionario se representa con map: tupla(header: Node, count: Nat).  Ver
          * \ref axiomas
          *
-         * \par Invariante de representacion
-             * \parblock
-             * rep: map \TO bool\n
-             * rep(m) \EQUIV true \iff asd
-             * \endparblock
-             *
-             * \par Función de abstracción
-             * \parblock
-             * abs: map m \TO Diccionario(\T{Key}, \T{Meaning})  {rep(n)}\n
-             * abs(m) \EQUIV if m.empty() then vacio else definir (m.root()->value().first,m.root()->value().second, Abs(m.erase(m.root()->value().first)) )
-             * \endparblock
+        * \par Invariante de representacion
+           * \parblock
+           * repMap: map \TO bool\n(
+           * repMap(m) \EQUIV true \iff m.header.color \IGOBS Header \LAND ( \elHeaderEstaPiola(m)
+           * \LOR_L ( \esArbol(\raiz(m)) \LAND_L \esABBDicc(\raiz(m)) \LAND \esRBTree(\raiz(m))
+           * \LAND_L m.count \IGOBS \cantNodos(\raiz(m)) \LAND \familiaCorrecta(m.header,\raiz(m))
+           * \LAND \parentCorrecto(\raiz(m)) ) )
+           * \endparblock
+           *
+        * \par Función de abstracción
+           * \parblock
+           * abs: map m \TO dicc(\T{Key}, \T{Meaning})  {repMap(n)}\n
+           * (\FORALL m:map) Abs(m) \EQUIV d:dicc(\T{Key}, \T{Meaning}) | \n (\FORALL c:\T{Key})
+           * def?(c,d) \IFF \perteneceClaveABB(c,\raiz(m)) \LAND_L (def?(c,d) \IMPLIES_L obtener(c,d)
+           * \IGOBS \significadoABB(c,\raiz(m)))
+           * \endparblock
          */
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         //@{
@@ -3288,7 +3064,306 @@ bool borrarX = false;
          * \P{this}->lt.
          */
         inline bool eq(const Key& k1, const Key& k2) const {
-            return !lt(k1, k2) && !lt(k2, k1);
+            return lt(k1, k2) == lt(k2, k1);
+        }
+        /**
+  * @brief Función auxiliar usada en el destructor. Elimina recursivamente todos
+  * los nodos que descienden de root; para esto, chequea que initRoot tenga hijos
+  * y si los tiene hace una llamada recursiva con una instancia más sencilla.
+  * initRoot debería ser un nodo que efectivamente pertenezca a la instancia de
+  * map que está llamando a la función; en el contexto del destructor esto
+  * obviamente se cumple.
+  */
+        void removeSubTree(Node* initRoot){
+            if (initRoot->hasChild(0)) {removeSubTree(initRoot->child[0]);}
+            if (initRoot->hasChild(1)) {removeSubTree(initRoot->child[1]);}
+            delete initRoot;
+            count--;
+        }
+
+        /**
+         * @brief Función auxiliar usada en el destructor. Elimina recursivamente todos
+         * los nodos que descienden de root; para esto, chequea que initRoot tenga hijos
+         * y si los tiene hace una llamada recursiva con una instancia más sencilla.
+         * initRoot debería ser un nodo que efectivamente pertenezca a la instancia de
+         * map que está llamando a la función; en el contexto del destructor esto
+         * obviamente se cumple.
+         */
+        bool addElem(InnerNode *&now, const value_type &value, int dir) {
+            if (now->child[dir] != nullptr) {
+                now = static_cast<InnerNode *>(now->child[dir]); //si no es null, sigo bajando
+                return false;
+            } else {
+                now->child[dir] = new InnerNode(now, value);
+                InnerNode *aux = static_cast<InnerNode *>(now->child[dir]);
+                insertionFix(now->child[dir], value);
+                now = aux;
+                return true;
+            }
+        }
+
+        /**
+         * @brief Cambia los colores de los nodos o realiza rotaciones según el algoritmo
+         * del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba.
+         */
+
+        void insertionFix(Node* newNode, const value_type &value) {
+            Node* aux;
+            if (!lt(static_cast<InnerNode*>(this->root())->value().first, value.first) && !lt(value.first, this->root()->value().first)) {
+                static_cast<InnerNode*>(this->root())->color = Color::Black;
+                return;
+            }
+            while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
+                Node* grandPa = newNode->parent->parent;
+                if (grandPa->child[0] == newNode->parent) {
+                    if (grandPa->child[1] != nullptr) {
+                        aux = grandPa->child[1];
+                        if (aux->color == Color::Red) {
+                            newNode->parent->color = Color::Black;
+                            aux->color = Color::Black;
+                            grandPa->color = Color::Red;
+                            newNode = grandPa;
+                        }
+                    } else {
+                        if (newNode->parent->child[1] == newNode) {
+                            newNode = newNode->parent;
+                            leftrotate(newNode);
+                        }
+                        newNode->parent->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        rightrotate(grandPa);
+                    }
+                } else {
+                    if (grandPa->child[0] != nullptr) {
+                        aux = grandPa->child[0];
+                        if (aux->color == Color::Red) {
+                            newNode->parent->color = Color::Black;
+                            aux->color = Color::Black;
+                            grandPa->color = Color::Red;
+                            newNode = grandPa;
+                        }
+                    } else {
+                        if (newNode->parent->child[0] == newNode) {
+                            newNode = newNode->parent;
+                            rightrotate(newNode);
+                        }
+                        newNode->parent->color = Color::Black;
+                        grandPa->color = Color::Red;
+                        leftrotate(grandPa);
+                    }
+                }
+                root()->color = Color::Black;
+            }
+        }
+
+        /**
+         * @brief Implementa la rotación descrita en el Cormen.
+         */
+
+//        void leftrotate(Node* p) {
+//            DRotate(p, 0);
+//
+//        }
+//
+//        void DRotate(Node* p, bool dir = 1)
+//        {
+//            if(p->child[1-dir]==nullptr)
+//                return ;
+//            else {
+//                Node* y = p->child[1-dir];
+//
+//                if(y->child[dir]!=nullptr) {
+//                    p->child[1-dir]=y->child[dir];
+//                    y->child[dir]->parent=p;
+//                } else { p->child[1-dir]=nullptr; }
+//
+//                if(p->parent!=nullptr)
+//                    y->parent=p->parent;
+//                if(p->parent->is_header()) {
+//                    this->header.parent = y;
+//                    // header.parent = y;
+//                    y->parent = &header;
+//                } else {
+//                    if(p==p->parent->child[0])
+//                        p->parent->child[0]=y;
+//                    else
+//                        p->parent->child[1]=y;
+//                }
+//                y->child[dir]=p;
+//                p->parent=y;
+//            }
+//
+//        }
+//
+//        /**
+//         * @brief Implementa la rotación descrita en el Cormen.
+//         */
+//
+//        void rightrotate(Node* p) {
+//            DRotate(p, 1);
+//
+//        }
+        void leftrotate(Node* p) {
+            if(p->child[1]==nullptr)
+                return ;
+            else {
+                Node* y = p->child[1];
+
+                if(y->child[0]!=nullptr) {
+                    p->child[1]=y->child[0];
+                    y->child[0]->parent=p;
+                } else { p->child[1]=nullptr; }
+
+                if(p->parent!=nullptr)
+                    y->parent=p->parent;
+                if(p->parent->is_header()) {
+                    this->header.parent = y;
+                    // header.parent = y;
+                    y->parent = &header;
+                } else {
+                    if(p==p->parent->child[0])
+                        p->parent->child[0]=y;
+                    else
+                        p->parent->child[1]=y;
+                }
+                y->child[0]=p;
+                p->parent=y;
+            }
+
+        }
+
+        /**
+         * @brief Implementa la rotación descrita en el Cormen.
+         */
+
+        void rightrotate(Node* p) {
+            if(p->child[0]==nullptr)
+                return ;
+            else {
+                Node* y = p->child[0];
+
+                if(y->child[1]!=nullptr) {
+                    p->child[0]=y->child[1];
+                    y->child[1]->parent=p;
+                } else { p->child[0]=nullptr; }
+
+                if(p->parent!=nullptr)
+                    y->parent=p->parent;
+                if(p->parent->is_header()) {
+                    this->header.parent = y;
+                    //  header.parent = y;
+                    y->parent = &header;
+                } else {
+                    if(p==p->parent->child[0])
+                        p->parent->child[0]=y;
+                    else
+                        p->parent->child[1]=y;
+                }
+                y->child[1]=p;
+                p->parent=y;
+            }
+
+        }
+
+        /**
+         * @brief Devuelve true si la clave contenida en el nodo apuntado por hint
+         * <em> no es </em> la menor de las claves del diccionario que son mayores a la
+         * clave que se quiere insertar (es decir la clave contenida en el nodo apuntado
+         * por lower_bound).
+         */
+
+        bool invalidHint(const_iterator hint, const value_type& value) {
+            return (hint.n == nullptr || hint.n == &header || lt((*hint).first, value.first) ||
+                    lt(value.first, (hint.n)->prevInorder()->key()));
+        }
+
+        /**
+         * @brief Devuelve true si \P{value} es mayor que el máximo o menor que el mínimo
+         * elemento de \P{this}. Como el máximo y el mínimo son los hijos del nodo cabecera,
+         * estas comparaciones se pueden hacer en tiempo O(1).
+         */
+
+        bool isMaxOrMin(const value_type& value) {
+            return lt((header.child[1])->value().first, value.first) || lt(value.first, (header.child[0])->value().first);
+        }
+
+        /**
+         * @brief PENDIENTE: VER BIEN QUÉ HACE ESTA FUNCIÓN.
+         * Cata: esta funcion hace el insert cuando el valor que
+         * inserto es un maximo o un minimo, aca ya voy a saber donde insertarlo
+         * siempre y solo tengo q llamar a insertionFix
+         */
+
+        iterator assignMaxOrMin(const value_type& value) {
+            if (lt(header.child[1]->value().first, value.first)) {
+                header.child[1]->child[1] = new InnerNode(header.child[1], value);
+                header.child[1] = header.child[1]->child[1];
+                insertionFix(header.child[1], value);
+                return iterator(header.child[1]);
+
+            } else {
+                header.child[0]->child[0] = new InnerNode(header.child[0], value);
+                header.child[0] = header.child[0]->child[0];
+                insertionFix(header.child[0], value);
+                return iterator(header.child[0]);
+            }
+
+        }
+
+        iterator insert_or_upsert(const value_type &value, bool upsert) {
+            InnerNode *now = static_cast<InnerNode *>(this->header.parent);
+            bool inserted = false;
+            iterator it(now);
+
+            if (root() == nullptr) {
+                header.parent = new InnerNode(&header, value);
+                header.parent->color = Color::Black; //la raiz siempre es negra
+                header.child[0] = header.child[1] = header.parent; //la raiz es el maximo y el minimo pues es el unico valor
+                inserted = true;
+                it = iterator(header.parent);
+            } else if (isMaxOrMin(value)) {
+                it = assignMaxOrMin(value);
+                inserted = true;
+            } else {
+                while (now != nullptr && !inserted) {
+                    if (lt(now->key(), value.first)) { //si es menor, lo inserto a la derecha o me voy para la derecha
+                        inserted = addElem(now, value, 1);
+                    } else {
+                        if (eq(now->key(), value.first) && upsert) { //si es igual y habilite el assign, piso el valor
+                            Update(now, value);
+                            return iterator(now);
+                        } else inserted = addElem(now, value, 0);
+
+                    }
+                    it = iterator(now);
+                }
+            }
+            if (inserted) count++;
+            return it;
+        }
+        void Update(InnerNode* &now, const value_type& value)
+        {
+            InnerNode *nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
+
+            nuevo->child[0] = now->child[0];
+            nuevo->child[1] = now->child[1];
+            if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
+            if (nuevo->child[1]) nuevo->child[1]->parent = nuevo;
+            if (now->parent != &header && now->isChild(0)) {
+                nuevo->parent->child[0] = nuevo;
+            } else if (now->parent != &header && now->isChild(1)) {
+                nuevo->parent->child[1] = nuevo;
+            } else {
+                header.parent = nuevo;
+            }
+            if (now == header.child[0]) {
+                header.child[0] = nuevo;
+            } else if (now == header.child[1]) {
+                header.child[1] = nuevo;
+            }
+            InnerNode *aux = now;
+            now = nuevo;
+            delete aux;
         }
     };
 
