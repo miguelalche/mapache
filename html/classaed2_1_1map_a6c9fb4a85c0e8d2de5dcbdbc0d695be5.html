@@ -140,9 +140,9 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>completar</dd></dl>
-<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {completar} </dd></dl>
-<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {completar}</dd></dl>
+<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>Si se modifica el valor apuntado por <b class="paramname">res</b>, se modifica la estructura subyacente.</dd></dl>
+<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {<em>self</em> = <b class="paramname">*this</b>} </dd></dl>
+<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {( <img class="formulaInl" alt="$\lnot$" src="form_22.png"/> def?(<b class="paramname">value</b>.first, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> definir(<b class="paramname">value</b>.first, <b class="paramname">value</b>.second, <em>self</em>) ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> ( def?(<b class="paramname">value</b>.first, <em>self</em>) <img class="formulaInl" alt="$\Rightarrow$" src="form_29.png"/> <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <em>self</em> ) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Siguientes(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <a href="axiomas.html#mayoresOrdenados">mayoresOrdenados</a>(<b class="paramname">value</b>.first,<b class="paramname">*this</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Anteriores(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <a href="axiomas.html#menoresOrdenados">menoresOrdenados</a>(<b class="paramname">value</b>.first,<b class="paramname">*this</b>)}</dd></dl>
 <dl class="section complexity">
 <dt>Complejidad Temporal</dt>
 <dd><ul>
@@ -153,7 +153,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 </dl>
 <dl class="section attention"><dt>Atención</dt><dd>Para garantizar que el nuevo elemento se inserte sí o sí, usar <a class="el" href="classaed2_1_1map_a2ef6723c183916276b0afc4a4c721475.html#a2ef6723c183916276b0afc4a4c721475" title="Inserta o redefine value en el diccionario. ">aed2::map::insert_or_assign</a>. </dd></dl>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l01948">1948</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l02066">2066</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -163,7 +163,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 09:36:43 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 16:43:59 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

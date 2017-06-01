@@ -115,21 +115,21 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 </div><div class="memdoc">
 
 <p>Devuelve un iterador apuntando a la posición pasando-el-ultimo del diccionario. </p>
-<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>completar</dd></dl>
+<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>Si se modifica el valor apuntado por <b class="paramname">res</b>, se modifica la estructura subyacente.</dd></dl>
 <dl class="retval"><dt>Valores devueltos</dt><dd>
   <table class="retval">
     <tr><td class="paramname">res</td><td>iterador a la posicion pasando-al-ultimo</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {completar} </dd></dl>
-<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {completar}</dd></dl>
+<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {true} </dd></dl>
+<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { coleccion(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> get(<b class="paramname">this</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Siguientes(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> vacía <img class="formulaInl" alt="$\land$" src="form_14.png"/> Anteriores(<b class="paramname">this</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <a href="axiomas.html#valoresOrdenados">valoresOrdenados</a>(*coleccion(<b class="paramname">this</b>)) }</dd></dl>
 <dl class="section complexity">
 <dt>Complejidad Temporal</dt>
 <dd><img class="formulaInl" alt="$O$" src="form_1.png"/>(1)</dd>
 </dl>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l02216">2216</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l02336">2336</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -139,7 +139,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 09:36:43 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 16:43:59 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

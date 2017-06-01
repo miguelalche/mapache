@@ -67,7 +67,7 @@ struct aed2\+::map$<$ Key, Meaning, Compare $>$\+::\+Node}
 
 Estructura (privada) de un nodo del árbol red-\/black. 
 
-Tal como sugiere Cormen et al. \cite{CormenLeisersonRivestStein2009}, como se implementa en gcc, y cómo explicamos en \hyperlink{Implementacion}{Implementación del árbol red-\/black}, el arbol tiene dos tipos de nodos. Aquellos que tienen un valor e implementan el árbol y aquellos que se usan como sentinelas. La estructura \hyperlink{structaed2_1_1map_1_1Node}{Node} es la base para representar a ambos tipos de nodos, ya que omite los valores. La clase \hyperlink{structaed2_1_1map_1_1InnerNode}{aed2\+::map\+::\+Inner\+Node}, que hereda de \hyperlink{structaed2_1_1map_1_1Node}{Node}, extiende la representación incluyendo el valor.
+Tal como sugiere Cormen et al. {\bfseries [Cormen\+Leiserson\+Rivest\+Stein2009]}, como se implementa en gcc, y cómo explicamos en \hyperlink{Implementacion}{Implementación del árbol red-\/black}, el arbol tiene dos tipos de nodos. Aquellos que tienen un valor e implementan el árbol y aquellos que se usan como sentinelas. La estructura \hyperlink{structaed2_1_1map_1_1Node}{Node} es la base para representar a ambos tipos de nodos, ya que omite los valores. La clase \hyperlink{structaed2_1_1map_1_1InnerNode}{aed2\+::map\+::\+Inner\+Node}, que hereda de \hyperlink{structaed2_1_1map_1_1Node}{Node}, extiende la representación incluyendo el valor.
 
 Además de definir los campos de la estructura de un nodo, esta clase podría usarse para implementar una especie de submodulo que incluya funciones para manipular el arbol red-\/black. Las funciones incluidas en esta estructura deberían ser aquellas que, si bien no requieren conocer el resto de la estructura red-\/black, explotan el conocimiento de que el árbol red-\/black tiene un único nodo sentinela que sirve de cabecera. (Ver ejemplos)
 
@@ -76,7 +76,7 @@ Como \hyperlink{structaed2_1_1map_1_1Node}{Node} es una estructura privada, no t
 \end{DoxyRemark}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02740}{2740} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02873}{2873} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -99,7 +99,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02761}{2761} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02894}{2894} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!Node@{Node}}
 \index{Node@{Node}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -127,7 +127,7 @@ Crea un nodo con padre {\bfseries p}, color {\bfseries c} y sin hijos.
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02832}{2832} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02965}{2965} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!````~Node@{$\sim$\+Node}}
 \index{````~Node@{$\sim$\+Node}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -147,7 +147,7 @@ En rigor, nunca deberíamos invocar new \hyperlink{structaed2_1_1map_1_1Node}{No
 \end{DoxyRemark}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02856}{2856} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02989}{2989} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -170,7 +170,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02762}{2762} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02895}{2895} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!next\+Inorder@{next\+Inorder}}
 \index{next\+Inorder@{next\+Inorder}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -190,7 +190,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02764}{2764} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02897}{2897} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!prev\+Inorder@{prev\+Inorder}}
 \index{prev\+Inorder@{prev\+Inorder}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -210,7 +210,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02781}{2781} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02914}{2914} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!get\+D\+Most@{get\+D\+Most}}
 \index{get\+D\+Most@{get\+D\+Most}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -230,7 +230,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02783}{2783} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02916}{2916} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!is\+Child@{is\+Child}}
 \index{is\+Child@{is\+Child}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -250,7 +250,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02791}{2791} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02924}{2924} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!has\+Child@{has\+Child}}
 \index{has\+Child@{has\+Child}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -270,7 +270,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02793}{2793} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02926}{2926} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!next\+Inorder@{next\+Inorder}}
 \index{next\+Inorder@{next\+Inorder}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -290,7 +290,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02794}{2794} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02927}{2927} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!prev\+Inorder@{prev\+Inorder}}
 \index{prev\+Inorder@{prev\+Inorder}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -310,7 +310,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02811}{2811} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02944}{2944} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!get\+D\+Most@{get\+D\+Most}}
 \index{get\+D\+Most@{get\+D\+Most}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -330,7 +330,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02813}{2813} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02946}{2946} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!is\+Child@{is\+Child}}
 \index{is\+Child@{is\+Child}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -350,7 +350,7 @@ Construye un nodo con color Header y cuyos hijos apuntan al nodo creado. Esta es
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02821}{2821} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02954}{2954} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!is\+\_\+header@{is\+\_\+header}}
 \index{is\+\_\+header@{is\+\_\+header}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -374,7 +374,7 @@ true si el nodo actual tiene color aed2\+::map\+::\+Color\+::\+Header.
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02888}{2888} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03021}{3021} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!value@{value}}
 \index{value@{value}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -400,7 +400,7 @@ valor asociado al nodo.
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02905}{2905} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03038}{3038} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!value@{value}}
 \index{value@{value}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -411,7 +411,7 @@ Definición en la línea \hyperlink{map_8h_source_l02905}{2905} del archivo \hyp
 ) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structaed2_1_1map_1_1Node_a747a33f40ad748d750372fe73aea0b32_a747a33f40ad748d750372fe73aea0b32}{}\label{structaed2_1_1map_1_1Node_a747a33f40ad748d750372fe73aea0b32_a747a33f40ad748d750372fe73aea0b32}
 Esta es una función miembro sobrecargada que se suministra por conveniencia. Difiere de la anterior función solamente en los argumentos que acepta. 
 
-Definición en la línea \hyperlink{map_8h_source_l02910}{2910} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03043}{3043} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!key@{key}}
 \index{key@{key}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -437,7 +437,7 @@ clave del valor asociado al nodo.
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02929}{2929} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03062}{3062} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -451,7 +451,7 @@ Punteros a los hijos izquierdo (child\mbox{[}0\mbox{]}) y derecho (child\mbox{[}
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02742}{2742} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02875}{2875} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!parent@{parent}}
 \index{parent@{parent}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -462,7 +462,7 @@ Puntero al padre\+: garantiza insercion con puntero en O(1) amortizado e iteraci
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02745}{2745} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02878}{2878} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}!color@{color}}
 \index{color@{color}!aed2\+::map\+::\+Node@{aed2\+::map\+::\+Node}}
@@ -473,7 +473,7 @@ Color del nodo.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02747}{2747} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02880}{2880} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 

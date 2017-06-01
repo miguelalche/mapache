@@ -1113,6 +1113,15 @@
  * \axioma{insertarOrdenado}: \T{value} \TIMES \T{secu(value)} s \TO \T{secu(value)} {\ordenada(s)} \n
  * insertarOrdenado(c,s) \EQUIV \IF vacía?(s) \THEN c \BULLET s \ELSE (\IF prim(s) \GEQ c \THEN
  * c \BULLET s \ELSE prim(s) \BULLET \insertarOrdenado(c,fin(s)) \FI ) \FI
+ * 
+ * \par insertarOrdenadoDec
+ * \parblock
+ * Dadas una tupla (\T{Key},\T{Meaning}) e y una secuencia s ordenada decrecientemente por el primer campo,
+ * devuelve una secuencia ordenada idéntica a s pero con c insertada en el lugar donde corresponde.
+ *
+ * \axioma{insertarOrdenadoDec}: \T{value} \TIMES \T{secu(value)} s \TO \T{secu(value)} {\ordenada(s)} \n
+ * insertarOrdenadoDec(c,s) \EQUIV \IF vacía?(s) \THEN c \BULLET s \ELSE (\IF prim(s) \LEQ c \THEN
+ * c \BULLET s \ELSE prim(s) \BULLET \insertarOrdenadoDec(c,fin(s)) \FI ) \FI
  *
  * \par ordenada
  * \parblock
@@ -1129,7 +1138,16 @@
  *
  * \axioma{valoresOrdenados}: \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
  * valoresOrdenados(d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE
- * \insertarOrdenado( (dameUno(d),obtener(dameUno(d),d)), \valoresOrdenados(borrar(dameUno(d),d)) ) \FI
+ * \insertarOrdenado( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), \valoresOrdenados(borrar(dameUno(claves(d)),d)) ) \FI 
+
+* \par valoresOrdenadosAlReves
+ * \parblock
+ * Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos
+ * significados ordenadas de manera decreciente por el primer campo.
+ *
+ * \axioma{valoresOrdenadosAlReves}: \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
+ * valoresOrdenadosAlReves(d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE
+ * \insertarOrdenadoDec( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), \valoresOrdenados(borrar(dameUno(claves(d)),d)) ) \FI
  */
 
 #ifndef MAP_H_
@@ -2333,12 +2351,13 @@ bool borrarX = false;
          * @brief Devuelve un iterador al primer valor del diccionario, en un
          * recorrido al revés
          *
-         * \aliasing{completar}
+         * \aliasing{Si se modifica el valor apuntado por res, se modifica la estructura subyacente}
          *
          * @retval res iterador a la primer posicion en un recorrido al revés
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{\LNOT vacío?(\P{*this})}
+         * \post \aedpost{coleccion(\P{res}) \IGOBS get(\P{this}) \LAND Anteriores(\P{this})
+         * \IGOBS vacía \LAND Siguientes(\P{res}) \IGOBS valoresOrdenadosAlReves(*coleccion(\P{this})) }
          *
          * \complexity{\O(1)}
          */

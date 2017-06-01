@@ -128,7 +128,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>completar</dd></dl>
+<dl class="section user"><dt>Aspectos de aliasing:</dt><dd>Cualquier cambio en <b class="paramname">res</b> afectará a la estructura subyacente y viceversa.</dd></dl>
 <dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {definido?(<b class="paramname">key</b>,this)}</dd></dl>
 <dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> {res <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> obtener(<b class="paramname">key</b>,this)}</dd></dl>
 <dl class="section complexity">
@@ -137,7 +137,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 </dl>
 <dl class="section remark"><dt>Comentarios</dt><dd>Esta función, que se asemeja más a la forma de programar propuesta en AED2 que al estándar C++, fue incluida en el estándar C++11. Antes era obligación recurrir a la función find. </dd></dl>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l01648">1648</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l01761">1761</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -147,7 +147,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 09:36:43 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 16:43:59 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

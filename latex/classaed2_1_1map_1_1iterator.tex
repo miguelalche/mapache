@@ -58,13 +58,13 @@ bool \hyperlink{classaed2_1_1map_1_1iterator_a836c7a166d63f507c4f79085ae953c51_a
 
 \end{DoxyParagraph}
 rep\+\_\+iter\+: puntero(\+Node) $\to$ bool~\newline
-rep\+\_\+iter(n) $\equiv$ true $\Leftrightarrow$ n = nullptr $\lor_{\rm L}$ ( ( $\exists$ k\+:nat) (n,k)  nullptr $\land_{\rm L}$ (n,k).color = Header $\land_{\rm L}$ (n,k) = (n,k+2) $\land$ ((n,k+1)) $\land$ ((n,k+1)) $\land$ ((n,k+1)) $\land$ (p,((n,k+1),k+1)) $\land$ ((n,k+1)) $\land$ ($\ast$(n,k),(n,k+1)) )
+rep\+\_\+iter(n) $\equiv$ true $\Leftrightarrow$ n = nullptr $\lor_{\rm L}$ ( ( $\exists$ k\+:nat) \href{axiomas.html#parentK}{\tt parentK}(n,k)  nullptr $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k).color = Header $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k) = \href{axiomas.html#parentK}{\tt parentK}(n,k+2) $\land$ \href{axiomas.html#esArbol}{\tt es\+Arbol}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esRBTree}{\tt es\+R\+B\+Tree}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(p,\href{axiomas.html#arbolK}{\tt arbolK}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1),k+1)) $\land$ \href{axiomas.html#parentCorrecto}{\tt parent\+Correcto}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#familiaCorrecta}{\tt familia\+Correcta}($\ast$\href{axiomas.html#parentK}{\tt parentK}(n,k),\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) )
 
 \begin{DoxyParagraph}{Función de abstracción}
 
 \end{DoxyParagraph}
 abs\+\_\+iter\+: puntero(\+Node) n $\to$ Iterador\+Bidireccional(Diccionario(Key, Meaning), tupla(Key, Meaning)) \{rep\+\_\+iter(n)\}~\newline
-abs\+\_\+iter(n) $\equiv$ completar
+( $\forall$ n\+:puntero(nodo)) abs\+\_\+iter(n) $=_{\rm obs}$ i\+:Iterador\+Bidireccional $\vert$ (n $=_{\rm obs}$ nullptr $\land$ Anteriores(i) \textbackslash{} I\+G\+O\+BS vacía $\land$ Siguientes(i) $=_{\rm obs}$ vacía) $\lor_{\rm L}$ (\href{axiomas.html#inorder}{\tt inorder}(\href{axiomas.html#buscarRaiz}{\tt buscar\+Raiz}(n)) $=_{\rm obs}$ Secu\+Suby(i) $\land_{\rm L}$ Siguientes(i) $=_{\rm obs}$ \href{axiomas.html#despuesDe}{\tt despues\+De}(n-\/$>$value,Secu\+Suby(i)) $\land$ Anteriores(i) $=_{\rm obs}$ (n-\/$>$value,Secu\+Suby(i)))
 
 Nota\+: se puede usar {\ttfamily d} para referirse al valor computacional del diccionario definido desde la cabecera (como en el constructor).
 
@@ -109,7 +109,7 @@ En caso de usar los iteradores como punteros, se desaconseja el uso de la posici
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02330}{2330} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02451}{2451} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -123,7 +123,7 @@ Categoria del iterador\+: bidireccional. Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02337}{2337} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02458}{2458} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!value\+\_\+type@{value\+\_\+type}}
 \index{value\+\_\+type@{value\+\_\+type}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -134,7 +134,7 @@ Tipo de los valores recorridos. Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02339}{2339} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02460}{2460} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!reference@{reference}}
 \index{reference@{reference}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -145,7 +145,7 @@ Tipo de la referencia (resultado de operator$\ast$). Requerido por estándar C++
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02342}{2342} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02463}{2463} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!pointer@{pointer}}
 \index{pointer@{pointer}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -156,7 +156,7 @@ Tipo del puntero (resultado de operator-\/$>$). Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02345}{2345} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02466}{2466} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!difference\+\_\+type@{difference\+\_\+type}}
 \index{difference\+\_\+type@{difference\+\_\+type}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -167,7 +167,7 @@ Resultado de la diferencia entre dos punteros. Requerido por estándar C++.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02348}{2348} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02469}{2469} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -213,7 +213,7 @@ El iterador {\bfseries res} no está asociado a ningún diccionario.
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02380}{2380} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02501}{2501} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!iterator@{iterator}}
 \index{iterator@{iterator}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -258,7 +258,7 @@ Este constructor permite castear punteros a nodos en iteradores.
 \end{DoxyNote}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02556}{2556} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02686}{2686} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -279,21 +279,17 @@ Retorna el valor apuntado por {\bfseries $\ast$this}
 {\em res} & referencia al valor apuntado por {\bfseries $\ast$this}\\
 \hline
 \end{DoxyRetVals}
-\begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
-\end{DoxyParagraph}
+\{Como se devuelve una referencia, cualquier cambio en \{res\} afectará la estructura subyacente y viceversa.
+
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
+\{{\itshape self} = \{this\}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
+\{\{res\}  \{$\ast$this\}  {\itshape self} = \{this\}\}
 \end{DoxyPostcond}
+\{(1)\} 
 
-\begin{DoxyDescription}
-\item[Complejidad Temporal]$O$(1)
-\end{DoxyDescription}
-
-Definición en la línea \hyperlink{map_8h_source_l02393}{2393} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02515}{2515} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator-\/$>$@{operator-\/$>$}}
 \index{operator-\/$>$@{operator-\/$>$}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -318,7 +314,7 @@ completar
 {\bfseries P} $\equiv$ \{true\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{{\bfseries $\ast$res} $=_{\rm obs}$ siguiente({\bfseries $\ast$this})\}
+{\bfseries Q} $\equiv$ \{{\bfseries $\ast$res} $=_{\rm obs}$ Siguiente({\bfseries $\ast$this})\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -330,7 +326,7 @@ No hay forma de expresar, en el lenguaje de T\+A\+Ds, que un puntero apunta a la
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02411}{2411} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02533}{2533} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator++@{operator++}}
 \index{operator++@{operator++}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -349,13 +345,13 @@ Avanza el iterador a la siguiente posición.
 \hline
 \end{DoxyRetVals}
 \begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
+Como devuelve una referencia, cualquier cambio en {\bfseries res} afecta a la estructura subyacente y viceversa. En caso de eliminarse de la estructura el valor apuntado por {\bfseries this}, {\bfseries res} se invalida.
 \end{DoxyParagraph}
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
+{\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries res} $\land$ Hay\+Siguiente?({\bfseries this})\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
+{\bfseries Q} $\equiv$ \{{\bfseries this} = Avanzar({\itshape self}) $\land$ {\bfseries res} = {\bfseries this}\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -366,7 +362,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02428}{2428} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02552}{2552} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator++@{operator++}}
 \index{operator++@{operator++}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -387,13 +383,13 @@ Busca el sucesor inorder del nodo al que apunta el iterador.
 \hline
 \end{DoxyRetVals}
 \begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
+Como devuelve un iterador a la estructura, cualquier cambio en el valor apuntado por {\bfseries res} afectará la estructura subyacente y viceversa. En caso de eliminarse el valor apuntado por {\bfseries res}, {\bfseries res} se invalida.
 \end{DoxyParagraph}
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
+{\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries res} $\land$ Hay\+Siguiente?({\bfseries this})\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
+{\bfseries Q} $\equiv$ \{{\bfseries this} = Avanzar({\itshape self}) $\land$ {\bfseries res} = {\itshape self\}} 
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -404,7 +400,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02458}{2458} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02584}{2584} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator-\/-\/@{operator-\/-\/}}
 \index{operator-\/-\/@{operator-\/-\/}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -423,13 +419,13 @@ Retrocede el iterador a la posición anterior.
 \hline
 \end{DoxyRetVals}
 \begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
+Como devuelve una referencia, cualquier cambio en {\bfseries res} afecta a la estructura subyacente y viceversa. En caso de eliminarse de la estructura el valor apuntado por {\bfseries this}, {\bfseries res} se invalida.
 \end{DoxyParagraph}
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{Hay\+Anterior?(this)\} 
+{\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries res} $\land$ Hay\+Anterior?({\bfseries this})\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
+{\bfseries Q} $\equiv$ \{{\bfseries this} = Retroceder({\itshape self}) $\land$ {\bfseries res} = {\bfseries this}\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -440,7 +436,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02479}{2479} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02607}{2607} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator-\/-\/@{operator-\/-\/}}
 \index{operator-\/-\/@{operator-\/-\/}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -459,13 +455,13 @@ Retrocede el iterador a la posición anterior.
 \hline
 \end{DoxyRetVals}
 \begin{DoxyParagraph}{Aspectos de aliasing\+:}
-completar
+Como devuelve un iterador a la estructura, cualquier cambio en el valor apuntado por {\bfseries res} afectará la estructura subyacente y viceversa. En caso de eliminarse el valor apuntado por {\bfseries res}, {\bfseries res} se invalida.
 \end{DoxyParagraph}
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{Hay\+Anterior?({\bfseries this})\} 
+{\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries res} $\land$ Hay\+Anterior?({\bfseries this})\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{completar\}
+{\bfseries Q} $\equiv$ \{{\bfseries this} = Retroceder({\itshape self}) $\land$ {\bfseries res} = {\itshape self\}} 
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -476,7 +472,7 @@ completar
 \end{DoxyItemize}
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02499}{2499} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02629}{2629} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator==@{operator==}}
 \index{operator==@{operator==}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -508,7 +504,7 @@ No es necesario que {\bfseries $\ast$this} y {\bfseries other} estén asociados 
 \end{DoxyItemize}
 \end{DoxyParagraph}
 \begin{DoxyPrecond}{Precondición}
-{\bfseries P} $\equiv$ \{completar\} 
+{\bfseries P} $\equiv$ \{true\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
 {\bfseries Q} $\equiv$ \{completar\}
@@ -518,7 +514,7 @@ No es necesario que {\bfseries $\ast$this} y {\bfseries other} estén asociados 
 \item[Complejidad Temporal]$O$(1)
 \end{DoxyDescription}
 
-Definición en la línea \hyperlink{map_8h_source_l02522}{2522} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02652}{2652} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -533,7 +529,7 @@ idem !$\vert$operator==
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02526}{2526} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02656}{2656} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map\+::iterator@{aed2\+::map\+::iterator}!operator Node $\ast$@{operator Node $\ast$}}
 \index{operator Node $\ast$@{operator Node $\ast$}!aed2\+::map\+::iterator@{aed2\+::map\+::iterator}}
@@ -558,7 +554,7 @@ Esta función se brinda como ayuda para el TP
 \end{DoxyRemark}
 
 
-Definición en la línea \hyperlink{map_8h_source_l02569}{2569} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02699}{2699} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -572,7 +568,7 @@ Puntero al nodo actual. Ver Estructura de Representación.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l02603}{2603} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l02736}{2736} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
