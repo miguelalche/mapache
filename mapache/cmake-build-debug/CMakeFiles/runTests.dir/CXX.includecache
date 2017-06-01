@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/map.h
+algorithm
+-
+cassert
+-
+functional
+-
+iterator
+-
+utility
+-
+iostream
+-
+
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/test.cpp
+map.h
+/home/jscherman/CLionProjects/mapache2/mapache/mapache/map.h
+gtest/gtest.h
+-
+map
+-
+iostream
+-
+
