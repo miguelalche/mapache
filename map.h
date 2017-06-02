@@ -2501,7 +2501,8 @@ namespace aed2 {
              * significado del valor que apunte.}
              *
              * \pre \aedpre{rep_iter(n)}
-             * \post \aedpost{res \IGOBS CrearItBi(&`d`, completar, completar)}
+             * \post \aedpost{res \IGOBS CrearItBi(&`d`, \antesDe(pos->_value.first, \valoresOrdenados(d)),
+             * \despuesDe(pos->_value.first, \valoresOrdenados(d)) )}
              *
              * \complexity{\O(1)}
              *
@@ -3125,14 +3126,16 @@ namespace aed2 {
         }
 
         /**
-         * @brief Implementa la rotación descrita en el Cormen.
+         * @brief Implementa la rotación izquierda descrita en el Cormen.
          */
 
         void leftrotate(Node* p) {
             DRotate(p, 0);
 
         }
-
+        /**
+                * @brief Implementa la rotación izquierda o derecha segun el parametro dir descrita en el Cormen.
+                */
         void DRotate(Node* p, bool dir = 1)
         {
             if(p->child[1-dir]==nullptr)
@@ -3164,74 +3167,14 @@ namespace aed2 {
         }
 
         /**
-         * @brief Implementa la rotación descrita en el Cormen.
+         * @brief Implementa la rotación derecha descrita en el Cormen.
          */
 
         void rightrotate(Node* p) {
             DRotate(p, 1);
 
         }
-//        void leftrotate(Node* p) {
-//            if(p->child[1]==nullptr)
-//                return ;
-//            else {
-//                Node* y = p->child[1];
-//
-//                if(y->child[0]!=nullptr) {
-//                    p->child[1]=y->child[0];
-//                    y->child[0]->parent=p;
-//                } else { p->child[1]=nullptr; }
-//
-//                if(p->parent!=nullptr)
-//                    y->parent=p->parent;
-//                if(p->parent->is_header()) {
-//                    this->header.parent = y;
-//                    // header.parent = y;
-//                    y->parent = &header;
-//                } else {
-//                    if(p==p->parent->child[0])
-//                        p->parent->child[0]=y;
-//                    else
-//                        p->parent->child[1]=y;
-//                }
-//                y->child[0]=p;
-//                p->parent=y;
-//            }
-//
-//        }
-//
-//        /**
-//         * @brief Implementa la rotación descrita en el Cormen.
-//         */
-//
-//        void rightrotate(Node* p) {
-//            if(p->child[0]==nullptr)
-//                return ;
-//            else {
-//                Node* y = p->child[0];
-//
-//                if(y->child[1]!=nullptr) {
-//                    p->child[0]=y->child[1];
-//                    y->child[1]->parent=p;
-//                } else { p->child[0]=nullptr; }
-//
-//                if(p->parent!=nullptr)
-//                    y->parent=p->parent;
-//                if(p->parent->is_header()) {
-//                    this->header.parent = y;
-//                    //  header.parent = y;
-//                    y->parent = &header;
-//                } else {
-//                    if(p==p->parent->child[0])
-//                        p->parent->child[0]=y;
-//                    else
-//                        p->parent->child[1]=y;
-//                }
-//                y->child[1]=p;
-//                p->parent=y;
-//            }
-//
-//        }
+
 
         /**
          * @brief Devuelve true si la clave contenida en el nodo apuntado por hint
@@ -3490,24 +3433,28 @@ namespace aed2 {
            // else if (mother) return mother;
             else return nullptr;
         }
+        /**
+               * @brief Implementa la funcion transplant descrita en el Cormen.
+               * Donde estaba el Nodo apuntado por u en el arbol, pasa a estar
+               * el Nodo apuntado por v.
+         */
+              void Transplant(Node* u, Node* v){
 
-        void Transplant(Node* u, Node* v){
 
+                  if (root()==u){
+                      header.parent=v;
+                  }else if(u==u->parent->child[0]){
+                      u->parent->child[0]=v;
+                  }else if(u==u->parent->child[1]){
+                      u->parent->child[1]=v;
+                  }
+                  if (v) v->parent=u->parent;
+              }
 
-            if (root()==u){
-                header.parent=v;
-            }else if(u==u->parent->child[0]){
-                u->parent->child[0]=v;
-            }else if(u==u->parent->child[1]){
-                u->parent->child[1]=v;
-            }
-            if (v) v->parent=u->parent;
-        }
+          };
 
-    };
-
-//////////////////////////////////////
-/** \name Operadores de comparación */
+      //////////////////////////////////////
+      /** \name Operadores de comparación */
 //////////////////////////////////////
 //@{
 /**
@@ -3586,9 +3533,9 @@ namespace aed2 {
 
 /**
  * \relates aed2::map
- * @brief Renombre de \P{m2} < \P{m1}
+ * @brief Renombre de not(\P{m2} >=  \P{m1})
  *
- * \sa aed2::operator<()
+ * \sa aed2::operator>()
  */
     template <class K, class V, class C>
     bool operator>(const map<K, V, C>& m1, const map<K, V, C>& m2) {
@@ -3597,9 +3544,9 @@ namespace aed2 {
 
 /**
  * \relates aed2::map
- * @brief Renombre de not(\P{m2} < \P{m1})
+ * @brief Renombre de not(\P{m2} > \P{m1})
  *
- * \sa aed2::operator<()
+ * \sa aed2::operator<=()
  */
     template <class K, class V, class C>
     bool operator<=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
@@ -3608,9 +3555,9 @@ namespace aed2 {
 
 /**
  * \relates aed2::map
- * @brief Renombre de not(\P{m1} < \P{m2})
+ * @brief Renombre de not(\P{m1} == \P{m2}) &&
  *
- * \sa aed2::operator<()
+ * \sa aed2::operator>=()
  */
     template <class K, class V, class C>
     bool operator>=(const map<K, V, C>& m1, const map<K, V, C>& m2) {
