@@ -28,7 +28,7 @@ Se muestran algunos ejemplos a continuación.
 Retorna true si la secuencia representa un diccionario
 
 es\-Diccionario?\-: secu(tupla( $\alpha$, $\beta$)) $\to$ bool\par
- es\-Diccionario?(s) $\equiv$ sin\-Repetidos?(\href{axiomas.html#primeros}{\tt primeros}(s)) 
+es\-Diccionario?(s) $\equiv$ sin\-Repetidos?(\href{axiomas.html#primeros}{\tt primeros}(s)) 
 \end{DoxyParagraph}
 
 
@@ -36,7 +36,7 @@ es\-Diccionario?\-: secu(tupla( $\alpha$, $\beta$)) $\to$ bool\par
 Proyecta las primeras componentes de una secuencia de pares
 
 primeros\-: secu(tupla( $\alpha$, $\beta$)) $\to$ secu( $\alpha$)\par
- primeros(s) $\equiv$ {\bfseries if} vacia?(s) {\bfseries then} $<$$>$ {\bfseries else} $\pi_1$(prim(s)) $\bullet$ \href{axiomas.html#primeros}{\tt primeros}(fin(s)) {\bfseries fi} 
+primeros(s) $\equiv$ {\bfseries if} vacia?(s) {\bfseries then} $<$$>$ {\bfseries else} $\pi_1$(prim(s)) $\bullet$ \href{axiomas.html#primeros}{\tt primeros}(fin(s)) {\bfseries fi} 
 \end{DoxyParagraph}
 
 
@@ -44,7 +44,7 @@ primeros\-: secu(tupla( $\alpha$, $\beta$)) $\to$ secu( $\alpha$)\par
 Devuelve un puntero a la raíz del árbol representado por m.
 
 raiz\-: map $\to$ puntero(nodo) \par
- raiz(m) $\equiv$ m.\-header-\/$>$parent
+raiz(m) $\equiv$ m.\-header-\/$>$parent
 
 
 \end{DoxyParagraph}
@@ -52,7 +52,7 @@ raiz\-: map $\to$ puntero(nodo) \par
 Proposición que dice si una estructura representada con punteros a nodo se corresponde efectivamente con un árbol binario finito. La primera proposición asegura que el árbol termina, mientras que la segunda afirma que ningún nodo es hijo de dos nodos distintos (es decir, no hay ciclos).
 
 es\-Arbol\-: puntero(\-Node) $\to$ bool \par
- es\-Arbol(p) $\equiv$ true $\Leftrightarrow$ ( $\exists$ k\-:nat) \href{axiomas.html#arbolK}{\tt arbol\-K}(p,k) $=_{\rm obs}$ \href{axiomas.html#arbolK}{\tt arbol\-K}(p,k+1) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\-Repetidos\-A\-B}(\href{axiomas.html#arbolK}{\tt arbol\-K}(p,k))
+es\-Arbol(p) $\equiv$ true $\Leftrightarrow$ ( $\exists$ k\-:nat) \href{axiomas.html#arbolK}{\tt arbol\-K}(p,k) $=_{\rm obs}$ \href{axiomas.html#arbolK}{\tt arbol\-K}(p,k+1) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\-Repetidos\-A\-B}(\href{axiomas.html#arbolK}{\tt arbol\-K}(p,k))
 
 
 \end{DoxyParagraph}
@@ -60,11 +60,11 @@ es\-Arbol\-: puntero(\-Node) $\to$ bool \par
 Devuelve los primeros k niveles del árbol binario de punteros cuya raíz es apuntada por p.
 
 arbol\-K\-: puntero(\-Node) $\times$ nat $\to$ ab(puntero(\-Node)) \par
- arbol\-K(p,k) $\equiv$ \par
+arbol\-K(p,k) $\equiv$ \par
  {\bfseries if} p = nullptr {\bfseries then} \par
  nil \par
  {\bfseries else} \par
- {\bfseries if} k = 0 {\bfseries then} ab(nil,p,nil) {\bfseries else} ab(\href{axiomas.html#arbolK}{\tt arbol\-K}(p-\/$>$child\mbox{[}0\mbox{]},k-\/1),p,\href{axiomas.html#arbolK}{\tt arbol\-K}(p-\/$>$child\mbox{[}1\mbox{]},k-\/1)) {\bfseries fi} \par
+{\bfseries if} k = 0 {\bfseries then} ab(nil,p,nil) {\bfseries else} ab(\href{axiomas.html#arbolK}{\tt arbol\-K}(p-\/$>$child\mbox{[}0\mbox{]},k-\/1),p,\href{axiomas.html#arbolK}{\tt arbol\-K}(p-\/$>$child\mbox{[}1\mbox{]},k-\/1)) {\bfseries fi} \par
  {\bfseries fi} 
 
 
@@ -73,7 +73,7 @@ arbol\-K\-: puntero(\-Node) $\times$ nat $\to$ ab(puntero(\-Node)) \par
 Dice si un árbol binario tiene o no elementos repetidos.
 
 sin\-Repetidos\-A\-B\-: ab( $\alpha$) $\to$ bool \par
- sin\-Repetidos\-A\-B(a) $\equiv$ {\bfseries if} a = nil {\bfseries then} true {\bfseries else} $\lnot$ (\href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(raíz(a),izq(a)) $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(raíz(a),der(a))) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\-Repetidos\-A\-B}(izq(a)) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\-Repetidos\-A\-B}(der(a)) {\bfseries fi} 
+sin\-Repetidos\-A\-B(a) $\equiv$ {\bfseries if} a = nil {\bfseries then} true {\bfseries else} $\lnot$ (\href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(raíz(a),izq(a)) $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(raíz(a),der(a))) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\-Repetidos\-A\-B}(izq(a)) $\land$ \href{axiomas.html#sinRepetidosAB}{\tt sin\-Repetidos\-A\-B}(der(a)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -81,7 +81,7 @@ sin\-Repetidos\-A\-B\-: ab( $\alpha$) $\to$ bool \par
 Dice si un elemento está o no en un árbol binario.
 
 pertenece\-A\-B\-:  $\alpha$ $\times$ ab( $\alpha$) $\to$ bool \par
- pertenece\-A\-B(e,a) $\equiv$ {\bfseries if} a = nil {\bfseries then} false {\bfseries else} raíz(a) = e $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(e,izq(a)) $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(e,der(a)) {\bfseries fi} 
+pertenece\-A\-B(e,a) $\equiv$ {\bfseries if} a = nil {\bfseries then} false {\bfseries else} raíz(a) = e $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(e,izq(a)) $\lor$ \href{axiomas.html#perteneceAB}{\tt pertenece\-A\-B}(e,der(a)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -89,7 +89,7 @@ pertenece\-A\-B\-:  $\alpha$ $\times$ ab( $\alpha$) $\to$ bool \par
 Dice si el árbol binario que tiene a p como raíz es un A\-B\-B sin claves repetidas. Para asegurar esto último, las funciones auxiliares \href{axiomas.html#todosMenores}{\tt todos\-Menores} y \href{axiomas.html#todosMayores}{\tt todos\-Mayores} hacen comparaciones {\itshape estrictas}.
 
 es\-A\-B\-B\-Dicc\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- es\-A\-B\-B\-Dicc(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} \href{axiomas.html#todosMenores}{\tt todos\-Menores}(p-\/$>$child\mbox{[}0\mbox{]},p-\/$>$value.\-first) $\land$ \href{axiomas.html#todosMayores}{\tt todos\-Mayores}(p-\/$>$child\mbox{[}1\mbox{]},p-\/$>$value.\-first) $\land$ \href{axiomas.html#esABBDicc}{\tt es\-A\-B\-B\-Dicc}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#esABBDicc}{\tt es\-A\-B\-B\-Dicc}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+es\-A\-B\-B\-Dicc(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} \href{axiomas.html#todosMenores}{\tt todos\-Menores}(p-\/$>$child\mbox{[}0\mbox{]},p-\/$>$value.\-first) $\land$ \href{axiomas.html#todosMayores}{\tt todos\-Mayores}(p-\/$>$child\mbox{[}1\mbox{]},p-\/$>$value.\-first) $\land$ \href{axiomas.html#esABBDicc}{\tt es\-A\-B\-B\-Dicc}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#esABBDicc}{\tt es\-A\-B\-B\-Dicc}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -97,7 +97,7 @@ es\-A\-B\-B\-Dicc\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{
 Dice si todas las claves del árbol binario a cuya raíz apunta p son estrictamente menores a e.
 
 todos\-Menores\-: puntero(\-Node) p $\times$ Key $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- todos\-Menores(p,e) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$value.\-first $<$ e $\land$ \href{axiomas.html#todosMenores}{\tt todos\-Menores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMenores}{\tt todos\-Menores}(p-\/$>$child\mbox{[}1\mbox{]},e) {\bfseries fi} 
+todos\-Menores(p,e) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$value.\-first $<$ e $\land$ \href{axiomas.html#todosMenores}{\tt todos\-Menores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMenores}{\tt todos\-Menores}(p-\/$>$child\mbox{[}1\mbox{]},e) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -105,7 +105,7 @@ todos\-Menores\-: puntero(\-Node) p $\times$ Key $\to$ bool \{\href{axiomas.html
 Dice si todas las claves del árbol binario a cuya raíz apunta p son estrictamente mayores a e.
 
 todos\-Mayores\-: puntero(\-Node) p $\times$ Key $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- todos\-Mayores(p,e) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$value.\-first $>$ e $\land$ \href{axiomas.html#todosMayores}{\tt todos\-Mayores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMayores}{\tt todos\-Mayores}(p-\/$>$child\mbox{[}1\mbox{]},e) {\bfseries fi} 
+todos\-Mayores(p,e) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$value.\-first $>$ e $\land$ \href{axiomas.html#todosMayores}{\tt todos\-Mayores}(p-\/$>$child\mbox{[}0\mbox{]},e) $\land$ \href{axiomas.html#todosMayores}{\tt todos\-Mayores}(p-\/$>$child\mbox{[}1\mbox{]},e) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -113,7 +113,7 @@ todos\-Mayores\-: puntero(\-Node) p $\times$ Key $\to$ bool \{\href{axiomas.html
 Dice si el árbol binario a cuya raíz apunta p cumple el invariante de red-\/black tree (adaptado a nuestra implementación con hojas nullptr)\-: todos los nodos son o rojos o negros, la raíz es negra, todos los nodos rojos tienen sólo hijos negros y todas las ramas desde cualquier nodo interno tienen la misma cantidad de nodos negros.
 
 es\-R\-B\-Tree\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- \href{axiomas.html#esRBTree}{\tt es\-R\-B\-Tree}(p) $\equiv$ p = nullptr $\lor_{\rm L}$ (\href{axiomas.html#coloresValidos}{\tt colores\-Validos}(p) $\land$ p-\/$>$color = Black $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\-Cant\-Negros}(p) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\-Implica\-Hijos\-Negros}(p) )
+\href{axiomas.html#esRBTree}{\tt es\-R\-B\-Tree}(p) $\equiv$ p = nullptr $\lor_{\rm L}$ (\href{axiomas.html#coloresValidos}{\tt colores\-Validos}(p) $\land$ p-\/$>$color = Black $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\-Cant\-Negros}(p) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\-Implica\-Hijos\-Negros}(p) )
 
 
 \end{DoxyParagraph}
@@ -121,7 +121,7 @@ es\-R\-B\-Tree\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt
 Dice si el árbol binario a cuya raíz apunta p sólo tiene nodos negros y rojos.
 
 colores\-Validos\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- colores\-Validos(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$color $=/=$ Header $\land$ \href{axiomas.html#coloresValidos}{\tt colores\-Validos}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#coloresValidos}{\tt colores\-Validos}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+colores\-Validos(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$color $=/=$ Header $\land$ \href{axiomas.html#coloresValidos}{\tt colores\-Validos}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#coloresValidos}{\tt colores\-Validos}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -129,7 +129,7 @@ colores\-Validos\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\
 Dice si todas las ramas que salen desde cualquier nodo del árbol binario a cuya raíz apunta tienen la misma cantidad de nodos negros. Observar que, como estamos pidiendo que los hijos de p cumplan este axioma, alcanza con verificar que la cantidad de nodos negros de una rama (en particular la extrema izquierda) es la misma para los dos hijos, y de esa forma aseguramos que se cumple recursivamente misma\-Cant\-Negros.
 
 misma\-Cant\-Negros\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- misma\-Cant\-Negros(p) $\equiv$ p = nullptr $\lor_{\rm L}$ ( \href{axiomas.html#cantNegros}{\tt cant\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) = \href{axiomas.html#cantNegros}{\tt cant\-Negros}(p-\/$>$child\mbox{[}1\mbox{]}) $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\-Cant\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\-Cant\-Negros}(p-\/$>$child\mbox{[}1\mbox{]}) )
+misma\-Cant\-Negros(p) $\equiv$ p = nullptr $\lor_{\rm L}$ ( \href{axiomas.html#cantNegros}{\tt cant\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) = \href{axiomas.html#cantNegros}{\tt cant\-Negros}(p-\/$>$child\mbox{[}1\mbox{]}) $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\-Cant\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#mismaCantNegros}{\tt misma\-Cant\-Negros}(p-\/$>$child\mbox{[}1\mbox{]}) )
 
 
 \end{DoxyParagraph}
@@ -137,7 +137,7 @@ misma\-Cant\-Negros\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol
 Devuelve la cantidad de nodos negros de la rama extrema izquierda del árbol binario a cuya raíz apunta p. Por lo explicado anteriormente, esta función sirve para computar misma\-Cant\-Negros.
 
 cant\-Negros\-: puntero(\-Node) p $\to$ nat \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- cant\-Negros(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} 0 {\bfseries else} \href{axiomas.html#cantNegros}{\tt cant\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $+$ ({\bfseries if} p-\/$>$color = Black {\bfseries then} 1 {\bfseries else} 0 {\bfseries fi} ) {\bfseries fi} 
+cant\-Negros(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} 0 {\bfseries else} \href{axiomas.html#cantNegros}{\tt cant\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $+$ ({\bfseries if} p-\/$>$color = Black {\bfseries then} 1 {\bfseries else} 0 {\bfseries fi} ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -145,7 +145,7 @@ cant\-Negros\-: puntero(\-Node) p $\to$ nat \{\href{axiomas.html#esArbol}{\tt es
 Dice si todos los nodos rojos del árbol binario a cuya raíz apunta p tienen únicamente hijos negros.
 
 rojo\-Implica\-Hijos\-Negros\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- rojo\-Implica\-Hijos\-Negros(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$color = Red $\Rightarrow_{\rm L}$ ( \href{axiomas.html#noEsRojo}{\tt no\-Es\-Rojo}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#noEsRojo}{\tt no\-Es\-Rojo}(p-\/$>$child\mbox{[}1\mbox{]}) ) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\-Implica\-Hijos\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\-Implica\-Hijos\-Negros}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+rojo\-Implica\-Hijos\-Negros(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} true {\bfseries else} p-\/$>$color = Red $\Rightarrow_{\rm L}$ ( \href{axiomas.html#noEsRojo}{\tt no\-Es\-Rojo}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#noEsRojo}{\tt no\-Es\-Rojo}(p-\/$>$child\mbox{[}1\mbox{]}) ) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\-Implica\-Hijos\-Negros}(p-\/$>$child\mbox{[}0\mbox{]}) $\land$ \href{axiomas.html#rojoImplicaHijosNegros}{\tt rojo\-Implica\-Hijos\-Negros}(p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -153,7 +153,7 @@ rojo\-Implica\-Hijos\-Negros\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.htm
 Autoexplicativo.
 
 no\-Es\-Rojo\-: puntero(\-Node) $\to$ bool \par
- no\-Es\-Rojo(p) $\equiv$ p $=/=$ nullptr $\Rightarrow_{\rm L}$ p-\/$>$color $=/=$ Red
+no\-Es\-Rojo(p) $\equiv$ p $=/=$ nullptr $\Rightarrow_{\rm L}$ p-\/$>$color $=/=$ Red
 
 
 \end{DoxyParagraph}
@@ -161,7 +161,7 @@ no\-Es\-Rojo\-: puntero(\-Node) $\to$ bool \par
 Función auxiliar de rep\-Map para verificar si el padre de la cabecera es efectivamente la raíz (y viceversa), si el hijo izquierdo de la cabecera es el menor elemento del árbol y si el hijo derecho de la cabecera es el mayor elemento del árbol.
 
 familia\-Correcta\-: nodo $\times$ puntero(\-Node) p $\to$ bool \{p $=/=$ nullptr\} \par
- familia\-Correcta(n,p) $\equiv$ n.\-child\mbox{[}0\mbox{]} = \href{axiomas.html#getDMost}{\tt get\-D\-Most}(p,0) $\land$ n.\-child\mbox{[}1\mbox{]} = \href{axiomas.html#getDMost}{\tt get\-D\-Most}(p,1) $\land$ n.\-parent = p $\land$ p-\/$>$parent = n
+familia\-Correcta(n,p) $\equiv$ n.\-child\mbox{[}0\mbox{]} = \href{axiomas.html#getDMost}{\tt get\-D\-Most}(p,0) $\land$ n.\-child\mbox{[}1\mbox{]} = \href{axiomas.html#getDMost}{\tt get\-D\-Most}(p,1) $\land$ n.\-parent = p $\land$ p-\/$>$parent = n
 
 
 \end{DoxyParagraph}
@@ -169,7 +169,7 @@ familia\-Correcta\-: nodo $\times$ puntero(\-Node) p $\to$ bool \{p $=/=$ nullpt
 Si d es 0, devuelve el nodo de extrema izquierda del árbol binario a cuya raíz apunta p; si es 1, devuelve el de extrema derecha.
 
 get\-D\-Most\-: puntero(\-Node) p $\times$ nat d $\to$ puntero(\-Node) \{d $\leq$ 1 $\land$ p $=/=$ nullptr $\land$ \href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- get\-D\-Most(p,d) $\equiv$ {\bfseries if} p-\/$>$child\mbox{[}d\mbox{]} = nullptr {\bfseries then} p {\bfseries else} \href{axiomas.html#getDMost}{\tt get\-D\-Most}(p-\/$>$child\mbox{[}d\mbox{]},d) {\bfseries fi} 
+get\-D\-Most(p,d) $\equiv$ {\bfseries if} p-\/$>$child\mbox{[}d\mbox{]} = nullptr {\bfseries then} p {\bfseries else} \href{axiomas.html#getDMost}{\tt get\-D\-Most}(p-\/$>$child\mbox{[}d\mbox{]},d) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -184,7 +184,7 @@ parent\-Correcto\-: puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\
 Devuelve la cantidad total de nodos del árbol binario a cuya raíz apunta p.
 
 cant\-Nodos\-: puntero(\-Node) p $\to$ nat \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- cant\-Nodos(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} 0 {\bfseries else} suc(\href{axiomas.html#cantNodos}{\tt cant\-Nodos}(p-\/$>$child\mbox{[}0\mbox{]}) + \href{axiomas.html#cantNodos}{\tt cant\-Nodos}(p-\/$>$child\mbox{[}1\mbox{]})) {\bfseries fi} 
+cant\-Nodos(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} 0 {\bfseries else} suc(\href{axiomas.html#cantNodos}{\tt cant\-Nodos}(p-\/$>$child\mbox{[}0\mbox{]}) + \href{axiomas.html#cantNodos}{\tt cant\-Nodos}(p-\/$>$child\mbox{[}1\mbox{]})) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -192,7 +192,7 @@ cant\-Nodos\-: puntero(\-Node) p $\to$ nat \{\href{axiomas.html#esArbol}{\tt es\
 Dice si la clave c pertenece al árbol binario cuya raíz es apuntada por p.
 
 pertenece\-Clave\-A\-B\-B\-: Key $\times$ puntero(\-Node) p $\to$ bool \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p)\} \par
- pertenece\-Clave\-A\-B\-B(c,p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} false {\bfseries else} p-\/$>$value.\-first = c $\lor$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p-\/$>$child\mbox{[}0\mbox{]}) $\lor$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
+pertenece\-Clave\-A\-B\-B(c,p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} false {\bfseries else} p-\/$>$value.\-first = c $\lor$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p-\/$>$child\mbox{[}0\mbox{]}) $\lor$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -200,7 +200,7 @@ pertenece\-Clave\-A\-B\-B\-: Key $\times$ puntero(\-Node) p $\to$ bool \{\href{a
 Devuelve el significado de la clave c en el árbol binario cuya raíz es apuntada por p. Si hay dos tuplas en el árbol que tienen a c como primer componente, devuelve la que esté más a la izquierda, pero en este contexto sólo la llamaremos con árboles que son diccionarios y por lo tanto no tienen repetidos, así que esto no hace diferencia.
 
 significado\-A\-B\-B\-: Key $\times$ puntero(\-Node) p $\to$ Meaning \{\href{axiomas.html#esArbol}{\tt es\-Arbol}(p) $\land_{\rm L}$ \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p)\} \par
- significado\-A\-B\-B(c,p) $\equiv$ {\bfseries if} p-\/$>$value.\-first = c {\bfseries then} p-\/$>$value.\-second {\bfseries else} ( {\bfseries if} \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries then} \href{axiomas.html#significadoABB}{\tt significado\-A\-B\-B}(c,p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries else} \href{axiomas.html#significadoABB}{\tt significado\-A\-B\-B}(c,p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} ) {\bfseries fi} 
+significado\-A\-B\-B(c,p) $\equiv$ {\bfseries if} p-\/$>$value.\-first = c {\bfseries then} p-\/$>$value.\-second {\bfseries else} ( {\bfseries if} \href{axiomas.html#perteneceClaveABB}{\tt pertenece\-Clave\-A\-B\-B}(c,p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries then} \href{axiomas.html#significadoABB}{\tt significado\-A\-B\-B}(c,p-\/$>$child\mbox{[}0\mbox{]}) {\bfseries else} \href{axiomas.html#significadoABB}{\tt significado\-A\-B\-B}(c,p-\/$>$child\mbox{[}1\mbox{]}) {\bfseries fi} ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -208,7 +208,7 @@ significado\-A\-B\-B\-: Key $\times$ puntero(\-Node) p $\to$ Meaning \{\href{axi
 Función auxiliar para verificar la correctitud de  cuando el árbol representado es vacío. Responde a la estructura dada por la cátedra, en la que el constructor sin parámetros de map genera un árbol cuya cabecera tiene como hijo izquierdo y derecho a sí misma.
 
 el\-Header\-Esta\-Piola\-: map $\to$ bool \par
- el\-Header\-Esta\-Piola(m) $\equiv$ m.\-header.\-parent = nullptr $\land$ m.\-header.\-child\mbox{[}0\mbox{]} = \&(m.\-header) $\land$ m.\-header.\-child\mbox{[}0\mbox{]} = \&(m.\-header) $\land$ m.\-count = 0
+el\-Header\-Esta\-Piola(m) $\equiv$ m.\-header.\-parent = nullptr $\land$ m.\-header.\-child\mbox{[}0\mbox{]} = \&(m.\-header) $\land$ m.\-header.\-child\mbox{[}0\mbox{]} = \&(m.\-header) $\land$ m.\-count = 0
 
 
 \end{DoxyParagraph}
@@ -216,7 +216,7 @@ el\-Header\-Esta\-Piola\-: map $\to$ bool \par
 Función similar a \href{axiomas.html#arbolK}{\tt arbol\-K}, pero en vez de devolver los primeros k niveles de un árbol, devuelve el resultado de subir k veces por el nodo apuntado por p. Si se llega a un nodo que tiene como padre a nullptr, devuelve un puntero al último nodo que tenía como padre a un puntero no nulo.
 
 parent\-K\-: puntero(\-Node) p $\times$ nat $\to$ puntero(\-Node) \{p $=/=$ nullptr\} \par
- parent\-K(p,k) $\equiv$ {\bfseries if} p-\/$>$parent = nullptr {\bfseries then} p {\bfseries else} ({\bfseries if} k = 0 {\bfseries then} p {\bfseries else} parent\-K(p-\/$>$parent,k-\/1) {\bfseries fi} ) {\bfseries fi} 
+parent\-K(p,k) $\equiv$ {\bfseries if} p-\/$>$parent = nullptr {\bfseries then} p {\bfseries else} ({\bfseries if} k = 0 {\bfseries then} p {\bfseries else} parent\-K(p-\/$>$parent,k-\/1) {\bfseries fi} ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -224,7 +224,7 @@ parent\-K\-: puntero(\-Node) p $\times$ nat $\to$ puntero(\-Node) \{p $=/=$ null
 Dado un puntero p que apunta a la raíz de un A\-B\-B-\/diccionario válido, devuelve el recorrido inorder del árbol.
 
 inorder\-: puntero(nodo) p $\to$ secu(value) \{es\-A\-B\-B\-Dicc(p)\} \par
- inorder(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} vacía {\bfseries else} \href{axiomas.html#inorder}{\tt inorder}(p-\/$>$child\mbox{[}0\mbox{]}) \&\& (p-\/$>$value $\bullet$ \href{axiomas.html#inorder}{\tt inorder}(p-\/$>$child\mbox{[}1\mbox{]})) {\bfseries fi} 
+inorder(p) $\equiv$ {\bfseries if} p = nullptr {\bfseries then} vacía {\bfseries else} \href{axiomas.html#inorder}{\tt inorder}(p-\/$>$child\mbox{[}0\mbox{]}) \&\& (p-\/$>$value $\bullet$ \href{axiomas.html#inorder}{\tt inorder}(p-\/$>$child\mbox{[}1\mbox{]})) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -232,15 +232,15 @@ inorder\-: puntero(nodo) p $\to$ secu(value) \{es\-A\-B\-B\-Dicc(p)\} \par
 Dado un puntero a nodo, busca la raíz del árbol al que pertenece.
 
 buscar\-Raiz\-: puntero(nodo) p $\to$ puntero(nodo) \{rep\-\_\-iter(p) $\land$ p $=/=$ nullptr\} \par
- buscar\-Raiz(p) $\equiv$ {\bfseries if} p-\/$>$color = Header {\bfseries then} p-\/$>$parent {\bfseries else} buscar\-Raiz(p-\/$>$parent) {\bfseries fi} 
+buscar\-Raiz(p) $\equiv$ {\bfseries if} p-\/$>$color = Header {\bfseries then} p-\/$>$parent {\bfseries else} buscar\-Raiz(p-\/$>$parent) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{despues\-De}
-Dados un elemento e y una secuencia s que lo tiene como primer campo de alguno de sus elementos, devuelve una subsecuencia que tiene como primer elemento a una tupla cuyo primer campo es e. En caso de haber varias, devuelve la que empieza con la primera aparición.
+Dados un elemento e y una secuencia s que lo tiene como primer campo de alguno de sus elementos, devuelve una subsecuencia que tiene como primer elemento a una tupla cuyo primer campo es e y termina al final de s. En caso de haber varias, devuelve la que empieza con la primera aparición.
 
-despues\-De\-:  $\alpha$ e $\times$ secu( $\alpha$) s $\to$ secu( $\alpha$) \{esta(e,s)\} \par
- despues\-De(e,s) $\equiv$ {\bfseries if} prim(s).first = e {\bfseries then} s {\bfseries else} \href{axiomas.html#despuesDe}{\tt despues\-De}(e,fin(s)) {\bfseries fi} 
+despues\-De\-:  $\alpha$ e $\times$ secu( $\alpha$) s $\to$ secu( $\alpha$) \{esta(e,\href{axiomas.html#primeros}{\tt primeros}(s))\} \par
+despues\-De(e,s) $\equiv$ {\bfseries if} prim(s).first = e {\bfseries then} s {\bfseries else} \href{axiomas.html#despuesDe}{\tt despues\-De}(e,fin(s)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -248,7 +248,7 @@ despues\-De\-:  $\alpha$ e $\times$ secu( $\alpha$) s $\to$ secu( $\alpha$) \{es
 Similar a \href{axiomas.html#despuesDe}{\tt despues\-De}, pero devuelve la subsecuencia que termina justo antes de la primera aparición del elemento.
 
 antes\-De\-: Key e $\times$ secu(value) s $\to$ secu( $\alpha$) \{esta(e,\href{axiomas.html#primeros}{\tt primeros}(s))\} \par
- antes\-De(e,s) $\equiv$ {\bfseries if} prim(s).first = e {\bfseries then} vacía {\bfseries else} prim(s) $\bullet$ \href{axiomas.html#antesDe}{\tt antes\-De}(e,fin(s)) {\bfseries fi} 
+antes\-De(e,s) $\equiv$ {\bfseries if} prim(s).first = e {\bfseries then} vacía {\bfseries else} prim(s) $\bullet$ \href{axiomas.html#antesDe}{\tt antes\-De}(e,fin(s)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -256,7 +256,7 @@ antes\-De\-: Key e $\times$ secu(value) s $\to$ secu( $\alpha$) \{esta(e,\href{a
 Como su nombre lo indica, devuelve la longitud de un diccionario.
 
 long\-Dicc\-: dicc(\-Key,\-Meaning) $\to$ nat \par
- long\-Dicc(d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} 0 {\bfseries else} suc(\href{axiomas.html#longDicc}{\tt long\-Dicc}(borrar(dame\-Uno(claves(d)),d))) {\bfseries fi} 
+long\-Dicc(d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} 0 {\bfseries else} suc(\href{axiomas.html#longDicc}{\tt long\-Dicc}(borrar(dame\-Uno(claves(d)),d))) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -264,7 +264,7 @@ long\-Dicc\-: dicc(\-Key,\-Meaning) $\to$ nat \par
 Dados un diccionario d y una clave c, devuelve una lista ordenada con todas las claves de d que sean estrictamente menores que c y sus respectivas definiciones. No hace falta que c esté definida en d.
 
 menores\-Ordenados\-: Key $\times$ dicc(\-Key,\-Meaning) $\to$ secu(value) \par
- menores\-Ordenados(c,d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} ( {\bfseries if} dame\-Uno(claves(d)) $<$ c {\bfseries then} \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}(((dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)))), \href{axiomas.html#menoresOrdenados}{\tt menores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries else} \href{axiomas.html#menoresOrdenados}{\tt menores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries fi} ) {\bfseries fi} 
+menores\-Ordenados(c,d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} ( {\bfseries if} dame\-Uno(claves(d)) $<$ c {\bfseries then} \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}(((dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)))), \href{axiomas.html#menoresOrdenados}{\tt menores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries else} \href{axiomas.html#menoresOrdenados}{\tt menores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries fi} ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -272,7 +272,7 @@ menores\-Ordenados\-: Key $\times$ dicc(\-Key,\-Meaning) $\to$ secu(value) \par
 Similar a \href{axiomas.html#menoresOrdenados}{\tt menores\-Ordenados}. En este caso se pide que los elementos sean mayores o iguales que c, ya que estas funciones son usadas para emular los observadores de un iterador que apunta a c.
 
 mayores\-Ordenados\-: Key $\times$ dicc(\-Key,\-Meaning) $\to$ secu(value) \par
- mayores\-Ordenados(c,d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} ( {\bfseries if} dame\-Uno(claves(d)) $\geq$ c {\bfseries then} \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}(((dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)))), \href{axiomas.html#mayoresOrdenados}{\tt mayores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries else} \href{axiomas.html#mayoresOrdenados}{\tt mayores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries fi} ) {\bfseries fi} 
+mayores\-Ordenados(c,d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} ( {\bfseries if} dame\-Uno(claves(d)) $\geq$ c {\bfseries then} \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}(((dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)))), \href{axiomas.html#mayoresOrdenados}{\tt mayores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries else} \href{axiomas.html#mayoresOrdenados}{\tt mayores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)))) {\bfseries fi} ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -280,15 +280,7 @@ mayores\-Ordenados\-: Key $\times$ dicc(\-Key,\-Meaning) $\to$ secu(value) \par
 Dadas una tupla (Key,Meaning) e y una secuencia s ordenada crecientemente por el primer campo, devuelve una secuencia ordenada idéntica a s pero con c insertada en el lugar donde corresponde.
 
 insertar\-Ordenado\-: value $\times$ secu(value) s $\to$ secu(value) \{\href{axiomas.html#ordenada}{\tt ordenada}(s)\} \par
- insertar\-Ordenado(c,s) $\equiv$ {\bfseries if} vacía?(s) {\bfseries then} c $\bullet$ s {\bfseries else} ({\bfseries if} prim(s) $\geq$ c {\bfseries then} c $\bullet$ s {\bfseries else} prim(s) $\bullet$ \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}(c,fin(s)) {\bfseries fi} ) {\bfseries fi} 
-
-
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{insertar\-Ordenado\-Dec}
-Dadas una tupla (Key,Meaning) e y una secuencia s ordenada decrecientemente por el primer campo, devuelve una secuencia ordenada idéntica a s pero con c insertada en el lugar donde corresponde.
-
-insertar\-Ordenado\-Dec\-: value $\times$ secu(value) s $\to$ secu(value) \{\href{axiomas.html#ordenada}{\tt ordenada}(s)\} \par
- insertar\-Ordenado\-Dec(c,s) $\equiv$ {\bfseries if} vacía?(s) {\bfseries then} c $\bullet$ s {\bfseries else} ({\bfseries if} prim(s) $\leq$ c {\bfseries then} c $\bullet$ s {\bfseries else} prim(s) $\bullet$ (c,fin(s)) {\bfseries fi} ) {\bfseries fi} 
+insertar\-Ordenado(c,s) $\equiv$ {\bfseries if} vacía?(s) {\bfseries then} c $\bullet$ s {\bfseries else} ({\bfseries if} prim(s) $\geq$ c {\bfseries then} c $\bullet$ s {\bfseries else} prim(s) $\bullet$ \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}(c,fin(s)) {\bfseries fi} ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -296,7 +288,7 @@ insertar\-Ordenado\-Dec\-: value $\times$ secu(value) s $\to$ secu(value) \{\hre
 Dice si una secuencia está ordenada.
 
 ordenada\-: secu( $\alpha$) $\to$ bool \par
- ordenada(s) $\equiv$ {\bfseries if} long(s) $\leq$ 1 {\bfseries then} true {\bfseries else} prim(s) $\leq$ prim(fin(s)) $\land$ \href{axiomas.html#ordenada}{\tt ordenada}(fin(s)) {\bfseries fi} 
+ordenada(s) $\equiv$ {\bfseries if} long(s) $\leq$ 1 {\bfseries then} true {\bfseries else} prim(s) $\leq$ prim(fin(s)) $\land$ \href{axiomas.html#ordenada}{\tt ordenada}(fin(s)) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -304,7 +296,7 @@ ordenada\-: secu( $\alpha$) $\to$ bool \par
 Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos significados ordenadas de manera creciente por el primer campo.
 
 valores\-Ordenados\-: dicc(\-Key,\-Meaning) $\to$ secu(value) \par
- valores\-Ordenados(d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}( (dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)),d)), \href{axiomas.html#valoresOrdenados}{\tt valores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)) ) {\bfseries fi} 
+valores\-Ordenados(d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} \href{axiomas.html#insertarOrdenado}{\tt insertar\-Ordenado}( (dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)),d)), \href{axiomas.html#valoresOrdenados}{\tt valores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)) ) {\bfseries fi} 
 
 
 \end{DoxyParagraph}
@@ -312,5 +304,12 @@ valores\-Ordenados\-: dicc(\-Key,\-Meaning) $\to$ secu(value) \par
 Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos significados ordenadas de manera decreciente por el primer campo.
 
 valores\-Ordenados\-Al\-Reves\-: dicc(\-Key,\-Meaning) $\to$ secu(value) \par
- valores\-Ordenados\-Al\-Reves(d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía {\bfseries else} ( (dame\-Uno(claves(d)),obtener(dame\-Uno(claves(d)),d)), \href{axiomas.html#valoresOrdenados}{\tt valores\-Ordenados}(borrar(dame\-Uno(claves(d)),d)) ) {\bfseries fi} 
+valores\-Ordenados\-Al\-Reves(d) \href{axiomas.html#reverso}{\tt reverso}(\href{axiomas.html#valoresOrdenados}{\tt valores\-Ordenados}(d))
+
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{reverso}
+Devuelve el reverso de una secuencia.
+
+reverso\-: secu( $\alpha$) $\to$ secu( $\alpha$) reverso(s) $\equiv$ {\bfseries if} vacía?(s) {\bfseries then} vacía {\bfseries else} \href{axiomas.html#reverso}{\tt reverso}(fin(s)) $\bullet$ prim(s) 
 \end{DoxyParagraph}

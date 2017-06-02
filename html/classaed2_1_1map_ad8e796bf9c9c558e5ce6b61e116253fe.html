@@ -127,8 +127,8 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
   </dd>
 </dl>
 <dl class="section user"><dt>Aspectos de aliasing:</dt><dd>Se invalidan todos los iteradores que apuntaban al valor apuntado por <b class="paramname">pos</b>.</dd></dl>
-<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { <em>self</em> = <b class="paramname">this</b> <img class="formulaInl" alt="$\land$" src="form_14.png"/> get(coleccion(<b class="paramname">pos</b>)) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> get(<b class="paramname">this</b>) } </dd></dl>
-<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { <b class="paramname">this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> borrar(<b class="paramname">pos</b>-&gt;value.first, <b class="paramname">*this</b>) }</dd></dl>
+<dl class="section pre"><dt>Precondición</dt><dd><b>P</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { <em>self</em> = <b class="paramname">this</b> <img class="formulaInl" alt="$\land$" src="form_14.png"/> coleccion(<b class="paramname">pos</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> <b class="paramname">this</b> <img class="formulaInl" alt="$\land$" src="form_14.png"/> haySiguiente(<b class="paramname">pos</b>)} </dd></dl>
+<dl class="section post"><dt>Postcondición</dt><dd><b>Q</b> <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> { <b class="paramname">*this</b> <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> borrar(<b class="paramname">pos</b>-&gt;value.first, <b class="paramname">*this</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Anteriores(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> Anteriores(<b class="paramname">pos</b>) <img class="formulaInl" alt="$\land$" src="form_14.png"/> Siguientes(<b class="paramname">res</b>) <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> fin(Siguientes(<b class="paramname">pos</b>))}</dd></dl>
 <dl class="section complexity">
 <dt>Complejidad Temporal</dt>
 <dd><ul>
@@ -138,7 +138,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 </dd>
 </dl>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l01943">1943</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l01944">1944</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -148,7 +148,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Jueves, 1 de Junio de 2017 20:49:09 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Jueves, 1 de Junio de 2017 21:31:26 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

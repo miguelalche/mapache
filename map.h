@@ -1114,15 +1114,6 @@
  * \axioma{insertarOrdenado}: \T{value} \TIMES \T{secu(value)} s \TO \T{secu(value)} {\ordenada(s)} \n
  * insertarOrdenado(c,s) \EQUIV \IF vacía?(s) \THEN c \BULLET s \ELSE (\IF prim(s) \GEQ c \THEN
  * c \BULLET s \ELSE prim(s) \BULLET \insertarOrdenado(c,fin(s)) \FI ) \FI
- * 
- * \par insertarOrdenadoDec
- * \parblock
- * Dadas una tupla (\T{Key},\T{Meaning}) e y una secuencia s ordenada decrecientemente por el primer campo,
- * devuelve una secuencia ordenada idéntica a s pero con c insertada en el lugar donde corresponde.
- *
- * \axioma{insertarOrdenadoDec}: \T{value} \TIMES \T{secu(value)} s \TO \T{secu(value)} {\ordenada(s)} \n
- * insertarOrdenadoDec(c,s) \EQUIV \IF vacía?(s) \THEN c \BULLET s \ELSE (\IF prim(s) \LEQ c \THEN
- * c \BULLET s \ELSE prim(s) \BULLET \insertarOrdenadoDec(c,fin(s)) \FI ) \FI
  *
  * \par ordenada
  * \parblock
@@ -1661,7 +1652,7 @@ namespace aed2 {
          * subyacente y viceversa. En caso de eliminarse el valor apuntado, \P{res} se invalida.}
          *
          * \pre \aedpre{\a self = \P{*this}}
-         * \post \aedpost{\P{*this} \IGOBS \a self \LAND ( ( def?(\P{key}, \a self) \LAND_L
+         * \post \aedpost{\P{*this} \IGOBS \a self \LAND coleccion(\P{res}) \IGOBS \P{this} \LAND ( ( def?(\P{key}, \a self) \LAND_L
          * \P{res}->value.first \IGOBS \P{key} \LAND \P{res}->value.second \IGOBS
          * obtener(\P{key}, \a self) \LAND Anteriores(\P{res}) \IGOBS \antesDe(\P{key},\valoresOrdenados(\a self))
          * \LAND Siguientes(\P{res}) \IGOBS \despuesDe(\P{key},\valoresOrdenados(\a self)) ) \LOR
@@ -1718,9 +1709,12 @@ namespace aed2 {
          * \aliasing{Si se modifica el valor apuntado por el iterador devuelto, se modificará la estructura
          * subyacente.}
          *
-         * \pre \aedpre{true}
-         * \post \aedpost{ \P{*res}.first \GEQ \P{key} \LAND def?(\P{*res}.first,\P{*this}) \LAND
-         * ( (\FORALL c:\T{Key}) (def?(c,\P{*this}) \LAND c \GEQ \P{key}) \IMPLIES c \GEQ \P{*res}.first ) }
+         * \pre \aedpre{\a self = \P{this}}
+         * \post \aedpost{\P{this} \IGOBS \a self \LAND coleccion(\P{res}) \IGOBS \P{this}
+         * \P{*res}.first \GEQ \P{key} \LAND def?(\P{*res}.first,\P{*this}) \LAND
+         * ( (\FORALL c:\T{Key}) (def?(c,\P{*this}) \LAND c \GEQ \P{key}) \IMPLIES c \GEQ \P{*res}.first )
+         * \LAND Anteriores(\P{res}) \IGOBS \antesDe(\P{res}.first,\valoresOrdenados(\a self))
+         * \LAND Siguientes(\P{res}) \IGOBS \despuesDe(\P{res}.first,\valoresOrdenados(\a self))}
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
          *
@@ -1800,7 +1794,7 @@ namespace aed2 {
          * definir(\P{value}.first, \P{value}.second, \a self) ) \LAND ( def?(\P{value}.first, \a self)
          * \IMPLIES \P{*this} \IGOBS \a self ) \LAND Siguientes(\P{res}) \IGOBS
          * \mayoresOrdenados(\P{value}.first,\P{*this}) \LAND Anteriores(\P{res}) \IGOBS
-         * \menoresOrdenados(\P{value}.first,\P{*this})}
+         * \menoresOrdenados(\P{value}.first,\P{*this}) \LAND coleccion(\P{res}) \IGOBS \P{this}}
          *
          * \complexity{
          *  - Peor caso: \O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) \PLUS
@@ -1893,7 +1887,7 @@ namespace aed2 {
          * \post  \aedpost{ \P{*this} \IGOBS definir(\P{value}.first, \P{value}.second, \a self)
          * \LAND Siguientes(\P{res}) \IGOBS
          * \mayoresOrdenados(\P{value}.first,\P{*this}) \LAND Anteriores(\P{res}) \IGOBS
-         * \menoresOrdenados(\P{value}.first,\P{*this})}
+         * \menoresOrdenados(\P{value}.first,\P{*this}) \LAND coleccion(\P{res}) \IGOBS \P{this}}
          *
          * \complexity{
          *  - Peor caso: \O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) \PLUS
@@ -1935,8 +1929,9 @@ namespace aed2 {
          *
          * \aliasing{Se invalidan todos los iteradores que apuntaban al valor apuntado por \P{pos}.}
          *
-         * \pre \aedpre{ \a self = \P{this} \LAND get(coleccion(\P{pos})) \IGOBS get(\P{this}) }
-         * \post \aedpost{ \P{this} \IGOBS borrar(\P{pos}->value.first, \P{*this}) }
+         * \pre \aedpre{ \a self = \P{this} \LAND coleccion(\P{pos}) \IGOBS \P{this} \LAND haySiguiente(\P{pos})}
+         * \post \aedpost{ \P{*this} \IGOBS borrar(\P{pos}->value.first, \P{*this}) \LAND Anteriores(\P{res}) \IGOBS
+         * Anteriores(\P{pos}) \LAND Siguientes(\P{res}) \IGOBS fin(Siguientes(\P{pos}))}
          *
          * \complexity{
          * - Peor caso: \O(\DEL(\P{*pos}) + \LOG(\SIZE(\P{*this})))
@@ -1954,7 +1949,7 @@ namespace aed2 {
             Color y_original_color = y->color;
             iterator it;
 
-bool borrarX = false;
+            bool borrarX = false;
             it.n = y->nextInorder();
             if (z == begin()){
                 header.child[0]=it.n;
@@ -2038,10 +2033,10 @@ bool borrarX = false;
          *
          * @param key clave del elemento a eliminar
          *
-         * \aliasing{completar}
+         * \aliasing{Se invalidan todos los iteradores que apuntaban al valor eliminado.}
          *
-         * \pre \aedpre{completar}
-         * \post \aedpost{completar}
+         * \pre \aedpre{\a self = \P{this} \LAND def?(\P{key},\P{*this})}
+         * \post \aedpost{\P{*this} \IGOBS borrar(\P{key},\a self)}
          *
          * \complexity{\O(\DEL(\P{*pos}) + \LOG(\SIZE(\P{*this})) \CDOT
          * \CMP(\P{*this}))}
