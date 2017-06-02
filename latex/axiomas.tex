@@ -300,6 +300,17 @@ valores\+Ordenados(d) $\equiv$ {\bfseries if} vacío?(d) {\bfseries then} vacía
 
 
 \end{DoxyParagraph}
+\begin{DoxyParagraph}{menor}
+Dadas dos secuencias de tuplas con claves y significados ordenadas de manera creciente, devuelve true si, comparando por los significados, la primer secuencia es menor que la segunda
+
+menor\+: secu(value) x secu(value) $\to$ bool ~\newline
+menor(s1, s2) $\equiv$ {\bfseries if} s1 $=_{\rm obs}$ $<$$>$ {\bfseries then} ~\newline
+ {\bfseries if} s2 $=_{\rm obs}$ $<$$>$ {\bfseries then} false {\bfseries else} true {\bfseries fi} ~\newline
+ {\bfseries else} {\bfseries if} P\+I\+\_\+2(prim(s1)) $<$ P\+I\+\_\+2(prim(s2)) {\bfseries then} true {\bfseries else} ~\newline
+ menor(fin(s1), fin(s2)) {\bfseries fi} 
+
+
+\end{DoxyParagraph}
 \begin{DoxyParagraph}{valores\+Ordenados\+Al\+Reves}
 Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos significados ordenadas de manera decreciente por el primer campo.
 

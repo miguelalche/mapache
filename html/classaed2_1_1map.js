@@ -56,6 +56,7 @@ var classaed2_1_1map =
     [ "eq", "classaed2_1_1map_ab45cb28bb215cd229383d88b96b3f624.html#ab45cb28bb215cd229383d88b96b3f624", null ],
     [ "removeSubTree", "classaed2_1_1map_a533bd88d0b7a584e3c968548d246c255.html#a533bd88d0b7a584e3c968548d246c255", null ],
     [ "addElem", "classaed2_1_1map_a010a17bb041f4b1dfc22246920cde9ee.html#a010a17bb041f4b1dfc22246920cde9ee", null ],
+    [ "DInsertionFix", "classaed2_1_1map_ad5e62c3fd915ec63961a93416e4d8c7f.html#ad5e62c3fd915ec63961a93416e4d8c7f", null ],
     [ "insertionFix", "classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3.html#abe3f47a745e17a6327943b813ff6bfb3", null ],
     [ "leftrotate", "classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e.html#ad764851f1534f2db0964c4f729056a1e", null ],
     [ "DRotate", "classaed2_1_1map_a42743a21d6441e6de5e288211a91374f.html#a42743a21d6441e6de5e288211a91374f", null ],

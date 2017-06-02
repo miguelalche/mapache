@@ -284,6 +284,14 @@ ordenada(s) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b>
 valoresOrdenados(d) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> vacío?(d) <b>then</b> vacía <b>else</b> <a href="axiomas.html#insertarOrdenado">insertarOrdenado</a>( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), <a href="axiomas.html#valoresOrdenados">valoresOrdenados</a>(borrar(dameUno(claves(d)),d)) ) <b>fi</b> </p>
 <p class="enddd"></p>
 </dd></dl>
+<dl class="section user"><dt>menor</dt><dd><p class="startdd">Dadas dos secuencias de tuplas con claves y significados ordenadas de manera creciente, devuelve true si, comparando por los significados, la primer secuencia es menor que la segunda</p>
+<p><span id="menor">menor</span>: <span class="paramname">secu(value)</span> x <span class="paramname">secu(value)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">bool</span> <br />
+menor(s1, s2) <img class="formulaInl" alt="$\equiv$" src="form_11.png"/> <b>if</b> s1 <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> &lt;&gt; <b>then</b> <br />
+ <b>if</b> s2 <img class="formulaInl" alt="$=_{\rm obs}$" src="form_2.png"/> &lt;&gt; <b>then</b> false <b>else</b> true <b>fi</b> <br />
+ <b>else</b> <b>if</b> PI_2(prim(s1)) &lt; PI_2(prim(s2)) <b>then</b> true <b>else</b> <br />
+ menor(fin(s1), fin(s2)) <b>fi</b> </p>
+<p class="enddd"></p>
+</dd></dl>
 <dl class="section user"><dt>valoresOrdenadosAlReves</dt><dd><p class="startdd">Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos significados ordenadas de manera decreciente por el primer campo.</p>
 <p><span id="valoresOrdenadosAlReves">valoresOrdenadosAlReves</span>: <span class="paramname">dicc(Key,Meaning)</span> <img class="formulaInl" alt="$\to$" src="form_4.png"/> <span class="paramname">secu(value)</span> <br />
 valoresOrdenadosAlReves(d) <a href="axiomas.html#reverso">reverso</a>(<a href="axiomas.html#valoresOrdenados">valoresOrdenados</a>(d))</p>
@@ -297,7 +305,7 @@ valoresOrdenadosAlReves(d) <a href="axiomas.html#reverso">reverso</a>(<a href="a
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado el Viernes, 2 de Junio de 2017 01:04:28 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Viernes, 2 de Junio de 2017 02:42:28 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

@@ -1130,8 +1130,19 @@
  *
  * \axioma{valoresOrdenados}: \T{dicc(Key,Meaning)} \TO \T{secu(value)} \n
  * valoresOrdenados(d) \EQUIV \IF vacío?(d) \THEN vacía \ELSE
- * \insertarOrdenado( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), \valoresOrdenados(borrar(dameUno(claves(d)),d)) ) \FI 
-
+ * \insertarOrdenado( (dameUno(claves(d)),obtener(dameUno(claves(d)),d)), \valoresOrdenados(borrar(dameUno(claves(d)),d)) ) \FI
+ *
+ * \par menor
+ * \parblock
+ * Dadas dos secuencias de tuplas con claves y significados ordenadas de manera creciente,
+ * devuelve true si, comparando por los significados, la primer secuencia es menor que la segunda
+ *
+ * \axioma{menor}: \T{secu(value)} x \T{secu(value)} \TO \T{bool} \n
+ * menor(s1, s2) \EQUIV \IF s1 \IGOBS <> \THEN \n
+ *      \IF s2 \IGOBS <> \THEN false \ELSE true \FI \n
+ *      \ELSE \IF PI_2(prim(s1)) < PI_2(prim(s2)) \THEN true \ELSE \n
+ *      menor(fin(s1), fin(s2)) \FI
+ *
  * \par valoresOrdenadosAlReves
  * \parblock
  * Dado un diccionario d, devuelve una secuencia de tuplas con las claves de d y sus respectivos
@@ -1984,7 +1995,7 @@ namespace aed2 {
                     x = y->child[1];
                     if (!x)
                     {
-                        x = new Node(y, Color::Black);
+                        x = new Node(y, Color::Black); //creamos un nodo auxiliar para pasarle a delfix
                         borrarX = true;
                         y->child[1] = x;
                     }
@@ -3075,51 +3086,40 @@ namespace aed2 {
          * @brief Cambia los colores de los nodos o realiza rotaciones según el algoritmo
          * del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba.
          */
-
+        void DInsertionFix(Node* grandPa, Node* newNode, Node* aux, bool dir)
+        {
+            if (grandPa->child[1-dir] != nullptr) {
+                aux = grandPa->child[1-dir];
+                if (aux->color == Color::Red) {
+                    newNode->parent->color = Color::Black;
+                    aux->color = Color::Black;
+                    grandPa->color = Color::Red;
+                    newNode = grandPa;
+                }
+            } else {
+                if (newNode->parent->child[1-dir] == newNode) {
+                    newNode = newNode->parent;
+                    if (dir == 0) leftrotate(newNode);
+                    else rightrotate(newNode);
+                }
+                newNode->parent->color = Color::Black;
+                grandPa->color = Color::Red;
+                if (dir == 0) rightrotate(grandPa);
+                else leftrotate(grandPa);
+            }
+        }
         void insertionFix(Node* newNode, const value_type &value) {
             Node* aux;
-            if (!lt(static_cast<InnerNode*>(this->root())->value().first, value.first) && !lt(value.first, this->root()->value().first)) {
-                static_cast<InnerNode*>(this->root())->color = Color::Black;
+            if (eq(root()->value().first, value.first)) {
+                root()->color = Color::Black;
                 return;
             }
             while (!(newNode->parent->is_header())  && (newNode->parent->color == Color::Red)) {
                 Node* grandPa = newNode->parent->parent;
                 if (grandPa->child[0] == newNode->parent) {
-                    if (grandPa->child[1] != nullptr) {
-                        aux = grandPa->child[1];
-                        if (aux->color == Color::Red) {
-                            newNode->parent->color = Color::Black;
-                            aux->color = Color::Black;
-                            grandPa->color = Color::Red;
-                            newNode = grandPa;
-                        }
-                    } else {
-                        if (newNode->parent->child[1] == newNode) {
-                            newNode = newNode->parent;
-                            leftrotate(newNode);
-                        }
-                        newNode->parent->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        rightrotate(grandPa);
-                    }
+                    DInsertionFix(grandPa, newNode, aux, 0);
                 } else {
-                    if (grandPa->child[0] != nullptr) {
-                        aux = grandPa->child[0];
-                        if (aux->color == Color::Red) {
-                            newNode->parent->color = Color::Black;
-                            aux->color = Color::Black;
-                            grandPa->color = Color::Red;
-                            newNode = grandPa;
-                        }
-                    } else {
-                        if (newNode->parent->child[0] == newNode) {
-                            newNode = newNode->parent;
-                            rightrotate(newNode);
-                        }
-                        newNode->parent->color = Color::Black;
-                        grandPa->color = Color::Red;
-                        leftrotate(grandPa);
-                    }
+                    DInsertionFix(grandPa, newNode, aux, 1);
                 }
                 root()->color = Color::Black;
             }
@@ -3339,7 +3339,8 @@ namespace aed2 {
 
         /**
          * @brief fixRight y fixLeft son funciones auxiliares
-         * para rebalancear el arbol luego de un erase siguiendo
+         * para rebalancear el arbol durante un erase, borrando del mismo
+         * el nodo pasado por parametro siguiendo
          * el algoritmo del Cormen segun si el nodo pasado por parametro
          * era hijo izquierdo o derecho.
          */
@@ -3379,10 +3380,13 @@ namespace aed2 {
         }
         /**
          * @brief delfix es una funcion auxiliar que
-         * rebalancea el arbol luego de un erase, siguiendo
+         * rebalancea el arbol a la vez que borra un nodo del mismo, siguiendo
          * el algoritmo del Cormen. Se llama a fixLeft y fixRight
          * segun corresponda, que tambien son funciones auxiliares
-         * para el mismo algoritmo.
+         * para el mismo algoritmo. Por como esta implementado el erase,
+         * myNode tiene un hijo o ninguno, y en esta funcion hay que
+         * reemplazar a myNode por su hijo o nullptr si no tiene hijos, teniendo
+         * en cuenta que al finalizar la funcion el arbol debe ser red-black tree.
          */
         void delfix(Node* myNode) {
             if (myNode->isChild(0)) {
@@ -3519,8 +3523,8 @@ namespace aed2 {
  * @param m2 diccionario a comparar
  * @retval res true si m1 es menor a m2 en el orden lexicografico
  *
- * \pre \aedpre{completar}
- * \post \aedpost{completar}
+ * \pre \aedpre{true}
+ * \post \aedpost{res = menor(\valoresOrdenados(m1), \valoresOrdenados(m2))}
  *
  * \complexity{ \O((\SIZE(m1) + \SIZE(m2)) \CDOT (\CMP(m1) + \CMP(m2)))}
  *
@@ -3536,7 +3540,7 @@ namespace aed2 {
 
 /**
  * \relates aed2::map
- * @brief Renombre de not(\P{m2} >=  \P{m1})
+ * @brief Renombre de not(\P{m2} =<  \P{m1})
  *
  * \sa aed2::operator>()
  */
@@ -3547,7 +3551,7 @@ namespace aed2 {
 
 /**
  * \relates aed2::map
- * @brief Renombre de not(\P{m2} > \P{m1})
+ * @brief Renombre de (\P{m1} < \P{m2}) || (\P{m2} == \P{m1})
  *
  * \sa aed2::operator<=()
  */
@@ -3558,7 +3562,7 @@ namespace aed2 {
 
 /**
  * \relates aed2::map
- * @brief Renombre de not(\P{m1} == \P{m2}) &&
+ * @brief Renombre de not(\P{m1} < \P{m2})
  *
  * \sa aed2::operator>=()
  */
