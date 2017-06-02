@@ -802,7 +802,7 @@ Cualquier cambio en {\bfseries res} afectará la estructura subyacente y vicever
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{ ( def?({\bfseries key}, {\itshape self}) $\Rightarrow$ {\bfseries res} $=_{\rm obs}$ obtener({\bfseries key}, ) $\land$ {\bfseries $\ast$this} $=_{\rm obs}$ {\itshape self} ) $\land$ ( $\lnot$ def?({\bfseries key}, {\itshape self}) $\Rightarrow$ def?({\bfseries key}, {\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) def?(c, {\bfseries $\ast$this}) $\Leftrightarrow$ (def?(c, {\itshape self}) $\lor$ c = {\bfseries key}) $\land$ (def?(c, {\itshape self}) $\land$ c $=/=$ {\bfseries key}) $\Rightarrow_{\rm L}$ obtener(c,{\bfseries $\ast$this}) $=_{\rm obs}$ obtener(c, {\itshape self}) ) ) \}
+{\bfseries Q} $\equiv$ \{ ( def?({\bfseries key}, {\itshape self}) $\Rightarrow_{\rm L}$ {\bfseries res} $=_{\rm obs}$ obtener({\bfseries key}, {\itshape self}) $\land$ {\bfseries $\ast$this} $=_{\rm obs}$ {\itshape self} ) $\land$ ( $\lnot$ def?({\bfseries key}, {\itshape self}) $\Rightarrow$ def?({\bfseries key}, {\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) def?(c, {\bfseries $\ast$this}) $\Leftrightarrow$ (def?(c, {\itshape self}) $\lor$ c = {\bfseries key}) $\land$ (def?(c, {\itshape self}) $\land$ c $=/=$ {\bfseries key}) $\Rightarrow_{\rm L}$ obtener(c,{\bfseries $\ast$this}) $=_{\rm obs}$ obtener(c, {\itshape self}) ) ) \}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}

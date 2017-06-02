@@ -1624,7 +1624,7 @@ namespace aed2 {
          * \aliasing{Cualquier cambio en \P{res} afectará la estructura subyacente y viceversa.}
          *
          * \pre \aedpre{\a self = \P{this}}
-         * \post \aedpost{ ( def?(\P{key}, \a self) \IMPLIES \P{res} \IGOBS obtener(\P{key}, \self) \LAND
+         * \post \aedpost{ ( def?(\P{key}, \a self) \IMPLIES_L \P{res} \IGOBS obtener(\P{key}, \a self) \LAND
          * \P{*this} \IGOBS \a self ) \LAND ( \LNOT def?(\P{key}, \a self) \IMPLIES
          * def?(\P{key}, \P{*this}) \LAND ( (\FORALL c:Key) def?(c, \P{*this}) \IFF
          * (def?(c, \a self) \LOR c = \P{key}) \LAND (def?(c, \a self) \LAND c \NEQ \P{key})
