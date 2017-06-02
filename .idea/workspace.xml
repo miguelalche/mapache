@@ -34,9 +34,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3b4c1d2-63a7-4e7a-84a3-b916a5c34008" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/_formulas.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/graph_legend.dot" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/citelist.tex" afterPath="$PROJECT_DIR$/latex/citelist.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Aliasing.html" afterPath="$PROJECT_DIR$/html/Aliasing.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Castellano.html" afterPath="$PROJECT_DIR$/html/Castellano.html" />
@@ -50,7 +47,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classNat.html" afterPath="$PROJECT_DIR$/html/classNat.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map-members.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map-members.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map.js" afterPath="$PROJECT_DIR$/html/classaed2_1_1map.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_1_1const__iterator-members.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_1_1const__iterator-members.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_1_1const__iterator.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_1_1const__iterator.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_1_1const__iterator_a195d395708167dca23f9ce49f7c604f3.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_1_1const__iterator_a195d395708167dca23f9ce49f7c604f3.html" />
@@ -107,6 +103,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a3efa081d3379ab76f33a5ef9fe697523.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a3efa081d3379ab76f33a5ef9fe697523.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a40933b2efe1cb479de9195ea947244d1.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a40933b2efe1cb479de9195ea947244d1.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a4273e8812e7105a618df58a2c8b72b7d.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a4273e8812e7105a618df58a2c8b72b7d.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a42743a21d6441e6de5e288211a91374f.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a42743a21d6441e6de5e288211a91374f.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a43ddb71cc91e5c6021a7a1f243d6cc4a.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a43ddb71cc91e5c6021a7a1f243d6cc4a.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a44236c4f16cdc20a10759862b198bde4.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a44236c4f16cdc20a10759862b198bde4.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a50aae07014200a53b95394f349f55948.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a50aae07014200a53b95394f349f55948.html" />
@@ -137,6 +134,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a9128a806713bcc999ebd8a97ab77e765.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a9128a806713bcc999ebd8a97ab77e765.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a92d93f905c8ad73fba18fdc7e8915cce.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a92d93f905c8ad73fba18fdc7e8915cce.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a96f23896164ab47bee48c26b803f9801.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a96f23896164ab47bee48c26b803f9801.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_a9eaa25facfcd0b200b69f8cd684efc0a.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_a9eaa25facfcd0b200b69f8cd684efc0a.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_aa3e34bf624f3009884a71b18f4ddae40.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_aa3e34bf624f3009884a71b18f4ddae40.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_aa68b6888ae3e256203d4ef273c293586.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_aa68b6888ae3e256203d4ef273c293586.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_aafce6e53c53c460897613747fec89f9d.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_aafce6e53c53c460897613747fec89f9d.html" />
@@ -162,8 +160,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_afd0fc1a8234888e61e0e615de7e245b8.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_afd0fc1a8234888e61e0e615de7e245b8.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_afe374b37f17263d0cad3ee19a590d208.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_afe374b37f17263d0cad3ee19a590d208.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classes.html" afterPath="$PROJECT_DIR$/html/classes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/doxygen.css" afterPath="$PROJECT_DIR$/html/doxygen.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dynsections.js" afterPath="$PROJECT_DIR$/html/dynsections.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/files.html" afterPath="$PROJECT_DIR$/html/files.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/functions.html" afterPath="$PROJECT_DIR$/html/functions.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/functions_enum.html" afterPath="$PROJECT_DIR$/html/functions_enum.html" />
@@ -173,94 +169,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/graph_legend.html" afterPath="$PROJECT_DIR$/html/graph_legend.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/hierarchy.html" afterPath="$PROJECT_DIR$/html/hierarchy.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/index.html" afterPath="$PROJECT_DIR$/html/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/jquery.js" afterPath="$PROJECT_DIR$/html/jquery.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/main_8cpp_source.html" afterPath="$PROJECT_DIR$/html/main_8cpp_source.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/map_8h.html" afterPath="$PROJECT_DIR$/html/map_8h.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/map_8h_source.html" afterPath="$PROJECT_DIR$/html/map_8h_source.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/namespaceaed2.html" afterPath="$PROJECT_DIR$/html/namespaceaed2.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/namespaces.html" afterPath="$PROJECT_DIR$/html/namespaces.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/navtree.css" afterPath="$PROJECT_DIR$/html/navtree.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/navtree.js" afterPath="$PROJECT_DIR$/html/navtree.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/navtreeindex0.js" afterPath="$PROJECT_DIR$/html/navtreeindex0.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/pages.html" afterPath="$PROJECT_DIR$/html/pages.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/resize.js" afterPath="$PROJECT_DIR$/html/resize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_0.html" afterPath="$PROJECT_DIR$/html/search/all_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_1.html" afterPath="$PROJECT_DIR$/html/search/all_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_10.html" afterPath="$PROJECT_DIR$/html/search/all_10.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_11.html" afterPath="$PROJECT_DIR$/html/search/all_11.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_12.html" afterPath="$PROJECT_DIR$/html/search/all_12.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_13.html" afterPath="$PROJECT_DIR$/html/search/all_13.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_14.html" afterPath="$PROJECT_DIR$/html/search/all_14.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_15.html" afterPath="$PROJECT_DIR$/html/search/all_15.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_2.html" afterPath="$PROJECT_DIR$/html/search/all_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_3.html" afterPath="$PROJECT_DIR$/html/search/all_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_4.html" afterPath="$PROJECT_DIR$/html/search/all_4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_4.js" afterPath="$PROJECT_DIR$/html/search/all_4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_5.html" afterPath="$PROJECT_DIR$/html/search/all_5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_6.html" afterPath="$PROJECT_DIR$/html/search/all_6.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_7.html" afterPath="$PROJECT_DIR$/html/search/all_7.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_8.html" afterPath="$PROJECT_DIR$/html/search/all_8.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_9.html" afterPath="$PROJECT_DIR$/html/search/all_9.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_9.js" afterPath="$PROJECT_DIR$/html/search/all_9.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_a.html" afterPath="$PROJECT_DIR$/html/search/all_a.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_b.html" afterPath="$PROJECT_DIR$/html/search/all_b.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_c.html" afterPath="$PROJECT_DIR$/html/search/all_c.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_d.html" afterPath="$PROJECT_DIR$/html/search/all_d.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_e.html" afterPath="$PROJECT_DIR$/html/search/all_e.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/all_f.html" afterPath="$PROJECT_DIR$/html/search/all_f.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/classes_0.html" afterPath="$PROJECT_DIR$/html/search/classes_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/classes_1.html" afterPath="$PROJECT_DIR$/html/search/classes_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/classes_2.html" afterPath="$PROJECT_DIR$/html/search/classes_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/classes_3.html" afterPath="$PROJECT_DIR$/html/search/classes_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/enums_0.html" afterPath="$PROJECT_DIR$/html/search/enums_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/files_0.html" afterPath="$PROJECT_DIR$/html/search/files_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_0.html" afterPath="$PROJECT_DIR$/html/search/functions_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_1.html" afterPath="$PROJECT_DIR$/html/search/functions_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_10.html" afterPath="$PROJECT_DIR$/html/search/functions_10.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_11.html" afterPath="$PROJECT_DIR$/html/search/functions_11.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_12.html" afterPath="$PROJECT_DIR$/html/search/functions_12.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_13.html" afterPath="$PROJECT_DIR$/html/search/functions_13.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_14.html" afterPath="$PROJECT_DIR$/html/search/functions_14.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_2.html" afterPath="$PROJECT_DIR$/html/search/functions_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_3.html" afterPath="$PROJECT_DIR$/html/search/functions_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_3.js" afterPath="$PROJECT_DIR$/html/search/functions_3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_4.html" afterPath="$PROJECT_DIR$/html/search/functions_4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_5.html" afterPath="$PROJECT_DIR$/html/search/functions_5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_6.html" afterPath="$PROJECT_DIR$/html/search/functions_6.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_7.html" afterPath="$PROJECT_DIR$/html/search/functions_7.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_8.html" afterPath="$PROJECT_DIR$/html/search/functions_8.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_8.js" afterPath="$PROJECT_DIR$/html/search/functions_8.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_9.html" afterPath="$PROJECT_DIR$/html/search/functions_9.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_a.html" afterPath="$PROJECT_DIR$/html/search/functions_a.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_b.html" afterPath="$PROJECT_DIR$/html/search/functions_b.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_c.html" afterPath="$PROJECT_DIR$/html/search/functions_c.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_d.html" afterPath="$PROJECT_DIR$/html/search/functions_d.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_e.html" afterPath="$PROJECT_DIR$/html/search/functions_e.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/functions_f.html" afterPath="$PROJECT_DIR$/html/search/functions_f.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/namespaces_0.html" afterPath="$PROJECT_DIR$/html/search/namespaces_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_0.html" afterPath="$PROJECT_DIR$/html/search/pages_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_1.html" afterPath="$PROJECT_DIR$/html/search/pages_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_2.html" afterPath="$PROJECT_DIR$/html/search/pages_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_3.html" afterPath="$PROJECT_DIR$/html/search/pages_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_4.html" afterPath="$PROJECT_DIR$/html/search/pages_4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_5.html" afterPath="$PROJECT_DIR$/html/search/pages_5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/pages_6.html" afterPath="$PROJECT_DIR$/html/search/pages_6.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/search.js" afterPath="$PROJECT_DIR$/html/search/search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_0.html" afterPath="$PROJECT_DIR$/html/search/typedefs_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_1.html" afterPath="$PROJECT_DIR$/html/search/typedefs_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_2.html" afterPath="$PROJECT_DIR$/html/search/typedefs_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_3.html" afterPath="$PROJECT_DIR$/html/search/typedefs_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_4.html" afterPath="$PROJECT_DIR$/html/search/typedefs_4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_5.html" afterPath="$PROJECT_DIR$/html/search/typedefs_5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_6.html" afterPath="$PROJECT_DIR$/html/search/typedefs_6.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_7.html" afterPath="$PROJECT_DIR$/html/search/typedefs_7.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/typedefs_8.html" afterPath="$PROJECT_DIR$/html/search/typedefs_8.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/variables_0.html" afterPath="$PROJECT_DIR$/html/search/variables_0.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/variables_1.html" afterPath="$PROJECT_DIR$/html/search/variables_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/variables_2.html" afterPath="$PROJECT_DIR$/html/search/variables_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/variables_3.html" afterPath="$PROJECT_DIR$/html/search/variables_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/variables_4.html" afterPath="$PROJECT_DIR$/html/search/variables_4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/search/variables_5.html" afterPath="$PROJECT_DIR$/html/search/variables_5.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1InnerNode-members.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1InnerNode-members.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1InnerNode.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1InnerNode.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1InnerNode_a53fd8a50986fec67601dd77c44c1657e.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1InnerNode_a53fd8a50986fec67601dd77c44c1657e.html" />
@@ -287,30 +201,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afc97d72bfcc58f0dbe8f2d5b03950dc8.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afc97d72bfcc58f0dbe8f2d5b03950dc8.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afe6fb054255e6b83c1a64783641f9f13.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afe6fb054255e6b83c1a64783641f9f13.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/test_8cpp_source.html" afterPath="$PROJECT_DIR$/html/test_8cpp_source.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Aliasing.tex" afterPath="$PROJECT_DIR$/latex/Aliasing.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Castellano.tex" afterPath="$PROJECT_DIR$/latex/Castellano.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Enunciado.tex" afterPath="$PROJECT_DIR$/latex/Enunciado.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Implementacion.tex" afterPath="$PROJECT_DIR$/latex/Implementacion.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Interfaz.tex" afterPath="$PROJECT_DIR$/latex/Interfaz.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/annotated.tex" afterPath="$PROJECT_DIR$/latex/annotated.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/axiomas.tex" afterPath="$PROJECT_DIR$/latex/axiomas.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/classNat.tex" afterPath="$PROJECT_DIR$/latex/classNat.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/classaed2_1_1map.tex" afterPath="$PROJECT_DIR$/latex/classaed2_1_1map.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/classaed2_1_1map_1_1const__iterator.tex" afterPath="$PROJECT_DIR$/latex/classaed2_1_1map_1_1const__iterator.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/classaed2_1_1map_1_1iterator.tex" afterPath="$PROJECT_DIR$/latex/classaed2_1_1map_1_1iterator.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/doxygen.sty" afterPath="$PROJECT_DIR$/latex/doxygen.sty" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/files.tex" afterPath="$PROJECT_DIR$/latex/files.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/hierarchy.tex" afterPath="$PROJECT_DIR$/latex/hierarchy.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/index.tex" afterPath="$PROJECT_DIR$/latex/index.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/main_8cpp_source.tex" afterPath="$PROJECT_DIR$/latex/main_8cpp_source.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/map_8h.tex" afterPath="$PROJECT_DIR$/latex/map_8h.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/map_8h_source.tex" afterPath="$PROJECT_DIR$/latex/map_8h_source.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/namespaceaed2.tex" afterPath="$PROJECT_DIR$/latex/namespaceaed2.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/namespaces.tex" afterPath="$PROJECT_DIR$/latex/namespaces.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/refman.tex" afterPath="$PROJECT_DIR$/latex/refman.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1InnerNode.tex" afterPath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1InnerNode.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1Node.tex" afterPath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1Node.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/test_8cpp_source.tex" afterPath="$PROJECT_DIR$/latex/test_8cpp_source.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/map.h" afterPath="$PROJECT_DIR$/map.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -340,8 +232,8 @@
       <file leaf-file-name="map.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="3438" column="40" lean-forward="false" selection-start-line="3438" selection-start-column="40" selection-end-line="3438" selection-end-column="40" />
+            <state relative-caret-position="-34120">
+              <caret line="1722" column="38" lean-forward="false" selection-start-line="1722" selection-start-column="38" selection-end-line="1722" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -423,10 +315,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-11" />
-    <option name="width" value="1857" />
-    <option name="height" value="1092" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -732,7 +624,7 @@
       <workItem from="1496162323660" duration="1489000" />
       <workItem from="1496195634387" duration="24000" />
       <workItem from="1496207049087" duration="58000" />
-      <workItem from="1496356794396" duration="10691000" />
+      <workItem from="1496356794396" duration="12624000" />
     </task>
     <servers />
   </component>
@@ -769,7 +661,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108526000" />
+    <option name="totallyTimeSpent" value="110459000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -781,7 +673,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16141514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -831,8 +723,13 @@
           <line>3415</line>
           <option name="timeStamp" value="113" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/map.h</url>
+          <line>3469</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="114" />
+      <option name="time" value="115" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeGoogleTestRunConfigurationType">
@@ -1201,8 +1098,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="3438" column="40" lean-forward="false" selection-start-line="3438" selection-start-column="40" selection-end-line="3438" selection-end-column="40" />
+        <state relative-caret-position="-34120">
+          <caret line="1722" column="38" lean-forward="false" selection-start-line="1722" selection-start-column="38" selection-end-line="1722" selection-end-column="38" />
           <folding />
         </state>
       </provider>

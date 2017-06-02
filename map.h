@@ -3474,7 +3474,10 @@ namespace aed2 {
  * @retval res true si los diccionarios son iguales
  *
  * \pre \aedpre{true}
- * \post \aedpost{completar}
+ * \post \aedpost{res = (\FORALL k \IN K ((def(k, m1) \LEFTRIGHTARROWk, m2)) \WEDGE_L
+ * (obtener(k, m1) \IGOBS obtener(k, m2
+ *
+ * }
  *
  * \complexity{ \O((\SIZE(m1) + \SIZE(m2)) \CDOT (\CMP(m1) + \CMP(m2)))}
  *
