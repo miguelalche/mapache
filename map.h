@@ -1833,7 +1833,7 @@ namespace aed2 {
             * subarbol del hijo derecho a prevInorder, para que su prevInorder siga siendo ese, deberia ser el leftmost de
             * ese subarbol con lo cual su hijo izquierdo seria nil.
             * A la vez, que sea nil me asegura que lo puedo insertar de ese lado (habria que convencerse)
-            * Por lo que maravillosamente solo tengo que hacer dos comparaciones boludas y asignarlo donde corresponda.
+            * Por lo que maravillosamente solo tengo que hacer dos comparaciones y asignarlo donde corresponda.
             * A continuacion obvio hay que llamar al insertionFIx.
             * En caso de que el hint no sea correcto, hayq ue llamar a insertar casi tla cual de los algoritmos del Cormen.
             * */
@@ -1851,7 +1851,6 @@ namespace aed2 {
                     insertionFix(previo->child[1], value);
                     return iterator(hint.n->child[1]);
                 }
-                // count++; ver q onda count
             }
 
         }
@@ -2390,7 +2389,6 @@ namespace aed2 {
              */
             iterator& operator++() {
                 this->n = this->n->nextInorder();
-                // if (n->is_header()) return &iterator();
                 return *this;
             }
 
@@ -2459,7 +2457,7 @@ namespace aed2 {
              */
             iterator operator--(int) {
                 iterator it = *this;
-                *this = (*this)--;
+                *this = --(*this);
                 return it;
             }
             /**
@@ -3130,59 +3128,22 @@ namespace aed2 {
          * @brief Implementa la rotación descrita en el Cormen.
          */
 
-//        void leftrotate(Node* p) {
-//            DRotate(p, 0);
-//
-//        }
-//
-//        void DRotate(Node* p, bool dir = 1)
-//        {
-//            if(p->child[1-dir]==nullptr)
-//                return ;
-//            else {
-//                Node* y = p->child[1-dir];
-//
-//                if(y->child[dir]!=nullptr) {
-//                    p->child[1-dir]=y->child[dir];
-//                    y->child[dir]->parent=p;
-//                } else { p->child[1-dir]=nullptr; }
-//
-//                if(p->parent!=nullptr)
-//                    y->parent=p->parent;
-//                if(p->parent->is_header()) {
-//                    this->header.parent = y;
-//                    // header.parent = y;
-//                    y->parent = &header;
-//                } else {
-//                    if(p==p->parent->child[0])
-//                        p->parent->child[0]=y;
-//                    else
-//                        p->parent->child[1]=y;
-//                }
-//                y->child[dir]=p;
-//                p->parent=y;
-//            }
-//
-//        }
-//
-//        /**
-//         * @brief Implementa la rotación descrita en el Cormen.
-//         */
-//
-//        void rightrotate(Node* p) {
-//            DRotate(p, 1);
-//
-//        }
         void leftrotate(Node* p) {
-            if(p->child[1]==nullptr)
+            DRotate(p, 0);
+
+        }
+
+        void DRotate(Node* p, bool dir = 1)
+        {
+            if(p->child[1-dir]==nullptr)
                 return ;
             else {
-                Node* y = p->child[1];
+                Node* y = p->child[1-dir];
 
-                if(y->child[0]!=nullptr) {
-                    p->child[1]=y->child[0];
-                    y->child[0]->parent=p;
-                } else { p->child[1]=nullptr; }
+                if(y->child[dir]!=nullptr) {
+                    p->child[1-dir]=y->child[dir];
+                    y->child[dir]->parent=p;
+                } else { p->child[1-dir]=nullptr; }
 
                 if(p->parent!=nullptr)
                     y->parent=p->parent;
@@ -3196,7 +3157,7 @@ namespace aed2 {
                     else
                         p->parent->child[1]=y;
                 }
-                y->child[0]=p;
+                y->child[dir]=p;
                 p->parent=y;
             }
 
@@ -3207,33 +3168,70 @@ namespace aed2 {
          */
 
         void rightrotate(Node* p) {
-            if(p->child[0]==nullptr)
-                return ;
-            else {
-                Node* y = p->child[0];
-
-                if(y->child[1]!=nullptr) {
-                    p->child[0]=y->child[1];
-                    y->child[1]->parent=p;
-                } else { p->child[0]=nullptr; }
-
-                if(p->parent!=nullptr)
-                    y->parent=p->parent;
-                if(p->parent->is_header()) {
-                    this->header.parent = y;
-                    //  header.parent = y;
-                    y->parent = &header;
-                } else {
-                    if(p==p->parent->child[0])
-                        p->parent->child[0]=y;
-                    else
-                        p->parent->child[1]=y;
-                }
-                y->child[1]=p;
-                p->parent=y;
-            }
+            DRotate(p, 1);
 
         }
+//        void leftrotate(Node* p) {
+//            if(p->child[1]==nullptr)
+//                return ;
+//            else {
+//                Node* y = p->child[1];
+//
+//                if(y->child[0]!=nullptr) {
+//                    p->child[1]=y->child[0];
+//                    y->child[0]->parent=p;
+//                } else { p->child[1]=nullptr; }
+//
+//                if(p->parent!=nullptr)
+//                    y->parent=p->parent;
+//                if(p->parent->is_header()) {
+//                    this->header.parent = y;
+//                    // header.parent = y;
+//                    y->parent = &header;
+//                } else {
+//                    if(p==p->parent->child[0])
+//                        p->parent->child[0]=y;
+//                    else
+//                        p->parent->child[1]=y;
+//                }
+//                y->child[0]=p;
+//                p->parent=y;
+//            }
+//
+//        }
+//
+//        /**
+//         * @brief Implementa la rotación descrita en el Cormen.
+//         */
+//
+//        void rightrotate(Node* p) {
+//            if(p->child[0]==nullptr)
+//                return ;
+//            else {
+//                Node* y = p->child[0];
+//
+//                if(y->child[1]!=nullptr) {
+//                    p->child[0]=y->child[1];
+//                    y->child[1]->parent=p;
+//                } else { p->child[0]=nullptr; }
+//
+//                if(p->parent!=nullptr)
+//                    y->parent=p->parent;
+//                if(p->parent->is_header()) {
+//                    this->header.parent = y;
+//                    //  header.parent = y;
+//                    y->parent = &header;
+//                } else {
+//                    if(p==p->parent->child[0])
+//                        p->parent->child[0]=y;
+//                    else
+//                        p->parent->child[1]=y;
+//                }
+//                y->child[1]=p;
+//                p->parent=y;
+//            }
+//
+//        }
 
         /**
          * @brief Devuelve true si la clave contenida en el nodo apuntado por hint
@@ -3311,10 +3309,15 @@ namespace aed2 {
             if (inserted) count++;
             return it;
         }
-
+        /**
+         * @brief Update: esta funcion se encarga de cambiar el _value.second
+         * de un InnerNode dado, por otro. Para esto se crea un nuevo
+         * nodo con el valor nuevo y se apunta a la familia del nodo
+         * viejo. Se tiene en cuenta si este valor era el maximo o minimo
+         * o la raiz para actualizarlo.
+         */
         void Update(InnerNode* &now, const value_type& value) {
             InnerNode *nuevo = new InnerNode(now->parent, std::make_pair(now->key(), value.second));
-
             nuevo->child[0] = now->child[0];
             nuevo->child[1] = now->child[1];
             if (nuevo->child[0]) nuevo->child[0]->parent = nuevo;
@@ -3335,10 +3338,18 @@ namespace aed2 {
             now = nuevo;
             delete aux;
         }
-
-        void insertarTodos(Node* parent, InnerNode* actual, InnerNode* otherActual, bool dir) {
+        /**
+         * @brief insertarTodos: funcion auxiliar del constructor por copia.
+         * Agrega recursivamente a todos los elementos del arbol en el orden
+         * en el que estan en el arbol original de forma recursiva. Esta funcion
+         * realiza comparaciones, asignaciones y un llamado al constructor, ademas
+         * de llamarse recursivamente. Se va a llamar hasta que otherActual sea nullptr,
+         * y por lo tanto es \O(n * CMP(key1, key2)) donde n es la cantidad de elementos
+         * del subarbol otherActual.
+         */
+        void insertarTodos(Node* parent, Node* actual, Node* otherActual, bool dir) {
             if (otherActual != nullptr) {
-                actual = new InnerNode(parent, otherActual->_value);
+                actual = new InnerNode(parent, otherActual->value());
                 actual->color = otherActual->color;
                 actual->parent->child[dir] = actual;
                 
@@ -3348,10 +3359,19 @@ namespace aed2 {
                 if (lt(header.child[1]->key(), actual->key())) {
                     header.child[1] = actual;
                 }
-                insertarTodos(actual, static_cast<InnerNode*>(actual->child[0]), static_cast<InnerNode*>(otherActual->child[0]), 0);
-                insertarTodos(actual, static_cast<InnerNode*>(actual->child[1]), static_cast<InnerNode*>(otherActual->child[1]), 1);
+                insertarTodos(actual, actual->child[0], otherActual->child[0], 0);
+                insertarTodos(actual, actual->child[1], otherActual->child[1], 1);
             }
         }
+        /**
+ * @brief findAux: funcion auxiliar de find para no repetir codigo
+         * en la funcion find que retorna un Node* y la funcion find
+         * que retorna un const Node*. Generaliza la busqueda de un nodo
+         * retornando el mismo una vez que lo encontre, o nullptr si no lo
+         * encontre. Para esto, recorre el subarbol de now yendo a izquierda
+         * o derecha segun corresponda, analogo a las busquedas en un ABB.
+         * Es \O(log(n)) donde n es la cantidad de elementos del subarbol now
+ */
         Node *findAux(const Key &key, Node *now) const {
             while (now != nullptr) {
                 if (eq(now->value().first, key)) {
@@ -3517,7 +3537,6 @@ namespace aed2 {
     template <class K, class V, class C>
     bool operator<(const map<K, V, C>& m1, const map<K, V, C>& m2) {
         return std::lexicographical_compare(m1.begin(), m1.end(), m2.begin(), m2.end());
-        // completar.  Vale usar std::lexicographical_compare
     }
 
 /**
