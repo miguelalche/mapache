@@ -325,7 +325,7 @@ Métodos privados</h2></td></tr>
 <tr class="memdesc:a7690a8432874bad5f6cab403c1804bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">lowerBoundaux es una funcion auxiliar que generaliza parte del codigo de lower_bound para no tener tanto codigo repetido ya que lower_bound tiene version const y no const. En este caso, retornamos el nodo que se busca. Se empieza buscando por la raiz, y, en caso de que la clave no sea la mayor de todas, se busca yendo a la rama izquierda si el valor es mayor a la key pasada por parametro, y a la derecha en caso contrario. Se tiene guardado el mejor resultado en una variable aparte y se pisa si la key del nodo actual es mayor a la key pasada por parametro y menor a la key del mejor resultado. Ademas para mejorar la complejidad del caso promedio, si la key se encuentra, se corta el ciclo. Por defecto el ciclo continua hasta llegar a una hoja, con lo cual recorremos la altura del arbol, y el algoritmo es <img class="formulaInl" alt="$O$" src="form_1.png"/>(log(n) * CMP(key1, key2)) donde n es la cantidad de nodos del arbol.  <a href="classaed2_1_1map_a7690a8432874bad5f6cab403c1804bba.html#a7690a8432874bad5f6cab403c1804bba">Más...</a><br /></td></tr>
 <tr class="separator:a7690a8432874bad5f6cab403c1804bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c9fb4a85c0e8d2de5dcbdbc0d695be5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5.html#a6c9fb4a85c0e8d2de5dcbdbc0d695be5">Transplant</a> (<a class="el" href="structaed2_1_1map_1_1Node.html">Node</a> *u, <a class="el" href="structaed2_1_1map_1_1Node.html">Node</a> *v)</td></tr>
-<tr class="memdesc:a6c9fb4a85c0e8d2de5dcbdbc0d695be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna true si las claves son iguales con respecto a <b class="paramname">this</b>-&gt;lt.  <a href="classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5.html#a6c9fb4a85c0e8d2de5dcbdbc0d695be5">Más...</a><br /></td></tr>
+<tr class="memdesc:a6c9fb4a85c0e8d2de5dcbdbc0d695be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementa la funcion transplant descrita en el Cormen. Donde estaba el Nodo apuntado por u en el arbol, pasa a estar el Nodo apuntado por v.  <a href="classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5.html#a6c9fb4a85c0e8d2de5dcbdbc0d695be5">Más...</a><br /></td></tr>
 <tr class="separator:a6c9fb4a85c0e8d2de5dcbdbc0d695be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -425,7 +425,7 @@ class aed2::map&lt; Key, Meaning, Compare &gt;</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Viernes, 2 de Junio de 2017 00:28:37 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Viernes, 2 de Junio de 2017 00:34:29 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

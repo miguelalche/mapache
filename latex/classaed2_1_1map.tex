@@ -186,7 +186,7 @@ void \hyperlink{classaed2_1_1map_a056322ff63d37b43d042ffa0378c9fd2_a056322ff63d3
 \hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$ \hyperlink{classaed2_1_1map_a7690a8432874bad5f6cab403c1804bba_a7690a8432874bad5f6cab403c1804bba}{lower\+Bound\+Aux} (const Key \&key) const 
 \begin{DoxyCompactList}\small\item\em lower\+Boundaux es una funcion auxiliar que generaliza parte del codigo de lower\+\_\+bound para no tener tanto codigo repetido ya que lower\+\_\+bound tiene version const y no const. En este caso, retornamos el nodo que se busca. Se empieza buscando por la raiz, y, en caso de que la clave no sea la mayor de todas, se busca yendo a la rama izquierda si el valor es mayor a la key pasada por parametro, y a la derecha en caso contrario. Se tiene guardado el mejor resultado en una variable aparte y se pisa si la key del nodo actual es mayor a la key pasada por parametro y menor a la key del mejor resultado. Ademas para mejorar la complejidad del caso promedio, si la key se encuentra, se corta el ciclo. Por defecto el ciclo continua hasta llegar a una hoja, con lo cual recorremos la altura del arbol, y el algoritmo es $O$(log(n) $\ast$ C\+M\+P(key1, key2)) donde n es la cantidad de nodos del arbol. \end{DoxyCompactList}\item 
 void \hyperlink{classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5_a6c9fb4a85c0e8d2de5dcbdbc0d695be5}{Transplant} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$u, \hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$v)
-\begin{DoxyCompactList}\small\item\em Retorna true si las claves son iguales con respecto a {\bfseries this}-\/$>$lt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Implementa la funcion transplant descrita en el Cormen. Donde estaba el Nodo apuntado por u en el arbol, pasa a estar el Nodo apuntado por v. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \end{Indent}
 \subsubsection*{Atributos privados}
 \begin{Indent}{\bf Estructura de representación}\par
@@ -1803,21 +1803,11 @@ Definición en la línea \hyperlink{map_8h_source_l03413}{3413} del archivo \hyp
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5_a6c9fb4a85c0e8d2de5dcbdbc0d695be5}{}\label{classaed2_1_1map_a6c9fb4a85c0e8d2de5dcbdbc0d695be5_a6c9fb4a85c0e8d2de5dcbdbc0d695be5}
 
 
-Retorna true si las claves son iguales con respecto a {\bfseries this}-\/$>$lt. 
+Implementa la funcion transplant descrita en el Cormen. Donde estaba el Nodo apuntado por u en el arbol, pasa a estar el Nodo apuntado por v. 
 
 
-\begin{DoxyParams}{Parámetros}
-{\em k1} & clave a comparar \\
-\hline
-{\em k2} & clave a comparar \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfseries this}-\/$>$lt. 
-\end{DoxyReturn}
 
-
-Definición en la línea \hyperlink{map_8h_source_l03437}{3437} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03441}{3441} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -1874,7 +1864,7 @@ Para determinar la igualdad de las claves no se utiliza el functor de comparaci�
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03483}{3483} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03487}{3487} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!aed2\+::map@{aed2\+::map}}
@@ -1893,7 +1883,7 @@ aed2\+::operator==()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03495}{3495} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03499}{3499} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!aed2\+::map@{aed2\+::map}}
@@ -1947,7 +1937,7 @@ Para determinar la comparación de las claves no se utiliza el functor de compar
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03526}{3526} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03530}{3530} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$>$@{operator$>$}}
 \index{operator$>$@{operator$>$}!aed2\+::map@{aed2\+::map}}
@@ -1966,7 +1956,7 @@ aed2\+::operator$>$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03537}{3537} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03541}{3541} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$<$=@{operator$<$=}}
 \index{operator$<$=@{operator$<$=}!aed2\+::map@{aed2\+::map}}
@@ -1985,7 +1975,7 @@ aed2\+::operator$<$=()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03548}{3548} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03552}{3552} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$>$=@{operator$>$=}}
 \index{operator$>$=@{operator$>$=}!aed2\+::map@{aed2\+::map}}
@@ -2004,7 +1994,7 @@ aed2\+::operator$>$=()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03559}{3559} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03563}{3563} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!swap@{swap}}
 \index{swap@{swap}!aed2\+::map@{aed2\+::map}}
@@ -2044,7 +2034,7 @@ Implementa la función swap para cumplir con el concepto swappable.
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03583}{3583} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03587}{3587} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
