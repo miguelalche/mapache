@@ -2542,7 +2542,7 @@ namespace aed2 {
             * \parentK(n,k) = \parentK(n,k+2) \LAND \esArbol(\parentK(n,k+1)) \LAND_L
             * \esABBDicc(\parentK(n,k+1)) \LAND \esRBTree(\parentK(n,k+1)) \LAND_L
             * \perteneceAB(p,\arbolK(\parentK(n,k+1),k+1)) \LAND_L \parentCorrecto(\parentK(n,k+1))
-            * \LAND \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
+            * \LAND_L \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
             *
             * \par Función de abstracción
             *
