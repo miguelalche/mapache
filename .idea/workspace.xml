@@ -35,24 +35,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f3b4c1d2-63a7-4e7a-84a3-b916a5c34008" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/test.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/test.cpp.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/mapache" afterPath="$PROJECT_DIR$/cmake-build-debug/mapache" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/runTests" afterPath="$PROJECT_DIR$/cmake-build-debug/runTests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/DependInfo.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/build.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/CXX.includecache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/DependInfo.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/build.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/depend.internal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/mapache.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/mapache.cbp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/depend.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/map.h" afterPath="$PROJECT_DIR$/map.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -82,8 +69,8 @@
       <file leaf-file-name="map.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="3372" column="77" lean-forward="false" selection-start-line="3372" selection-start-column="77" selection-end-line="3372" selection-end-column="77" />
+            <state relative-caret-position="275">
+              <caret line="3490" column="32" lean-forward="true" selection-start-line="3490" selection-start-column="32" selection-end-line="3490" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -92,8 +79,18 @@
       <file leaf-file-name="test.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+            <state relative-caret-position="256">
+              <caret line="176" column="4" lean-forward="false" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -120,7 +117,6 @@
       <find>clear</find>
       <find>begin</find>
       <find>lower</find>
-      <find>lower_bound</find>
       <find>insert_or</find>
       <find>operator</find>
       <find>operator==</find>
@@ -129,6 +125,9 @@
       <find>other</find>
       <find>map</find>
       <find>cmp</find>
+      <find>pre \aedpre{\a self = \P{this} \LAND def?(\P{key},\P{*this})}</find>
+      <find>lower_bound</find>
+      <find>lowerBoundAux</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -139,8 +138,8 @@
       <list>
         <option value="$USER_HOME$/Downloads/map.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/test.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/map.h" />
       </list>
     </option>
@@ -205,11 +204,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.BasicMapInstances.CopyConstructor">
-    <configuration default="false" name="BasicMapInstances.erasePorClave" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="erasePorClave" TEST_MODE="SUITE_TEST">
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Google Test.BasicMapInstances.lowerBoundExtenso">
     <configuration default="false" name="BasicMapInstances.swapConVacio" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_CLASS="BasicMapInstances" TEST_METHOD="swapConVacio" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -223,6 +218,10 @@
       <method />
     </configuration>
     <configuration default="false" name="BasicMapInstances.CopyConstructor" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="BasicMapInstances.lowerBoundExtenso" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="runTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
@@ -412,26 +411,26 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="mapache" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mapache" TARGET_NAME="mapache" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="mapache">
+    <configuration default="false" name="mapache" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mapache" RUN_TARGET_NAME="runTests" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
       <method />
     </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.mapache" />
-      <item index="2" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.erasePorClave" />
-      <item index="3" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.swapConVacio" />
-      <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.Begin" />
-      <item index="5" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintBueno" />
-      <item index="6" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CopyConstructor" />
+      <item index="2" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.swapConVacio" />
+      <item index="3" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.Begin" />
+      <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintBueno" />
+      <item index="5" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CopyConstructor" />
+      <item index="6" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.lowerBoundExtenso" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CopyConstructor" />
-        <item index="1" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintBueno" />
-        <item index="2" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.swapConVacio" />
-        <item index="3" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.Begin" />
-        <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.erasePorClave" />
+        <item index="0" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.lowerBoundExtenso" />
+        <item index="1" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.CopyConstructor" />
+        <item index="2" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.insertOrAssignConHintBueno" />
+        <item index="3" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.swapConVacio" />
+        <item index="4" class="java.lang.String" itemvalue="Google Test.BasicMapInstances.Begin" />
       </list>
     </recent_temporary>
   </component>
@@ -461,7 +460,7 @@
       <workItem from="1496162323660" duration="1489000" />
       <workItem from="1496195634387" duration="24000" />
       <workItem from="1496207049087" duration="58000" />
-      <workItem from="1496356794396" duration="3313000" />
+      <workItem from="1496356794396" duration="8456000" />
     </task>
     <servers />
   </component>
@@ -487,18 +486,18 @@
     <history-entry file="BasicMapInstances_insertOrAssignConHintBueno - 2017.06.01 at 21h 43m 51s.xml">
       <configuration name="BasicMapInstances.insertOrAssignConHintBueno" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="BasicMapInstances_swapConVacio - 2017.05.30 at 22h 54m 06s.xml">
-      <configuration name="BasicMapInstances.swapConVacio" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_lowerBoundExtenso - 2017.06.01 at 23h 50m 15s.xml">
+      <configuration name="BasicMapInstances.lowerBoundExtenso" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="runTests - 2017.05.31 at 02h 05m 00s.xml">
-      <configuration name="runTests" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_lowerBoundExtenso - 2017.06.01 at 23h 50m 30s.xml">
+      <configuration name="BasicMapInstances.lowerBoundExtenso" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="runTests - 2017.06.01 at 19h 42m 39s.xml">
-      <configuration name="runTests" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="BasicMapInstances_lowerBoundExtenso - 2017.06.01 at 23h 50m 51s.xml">
+      <configuration name="BasicMapInstances.lowerBoundExtenso" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101148000" />
+    <option name="totallyTimeSpent" value="106291000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,7 +521,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18058455" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40814197" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -544,12 +543,33 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="111" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>35</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/map.h</url>
+          <line>3470</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/map.h</url>
+          <line>3472</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="114" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeGoogleTestRunConfigurationType">
         <watch expression="cinco_elementos" language="ObjectiveC" />
         <watch expression="vacio" language="ObjectiveC" />
+      </configuration>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="actual-&gt;_value" language="ObjectiveC" />
+        <watch expression="actual-&gt;child[0]" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
@@ -876,14 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -899,18 +911,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+        <state relative-caret-position="256">
+          <caret line="176" column="4" lean-forward="false" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/map.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="3372" column="77" lean-forward="false" selection-start-line="3372" selection-start-column="77" selection-end-line="3372" selection-end-column="77" />
+        <state relative-caret-position="275">
+          <caret line="3490" column="32" lean-forward="true" selection-start-line="3490" selection-start-column="32" selection-end-line="3490" selection-end-column="32" />
           <folding />
         </state>
       </provider>

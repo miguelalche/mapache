@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jscherman/Desktop/mapache/main.cpp
+map.h
+/home/jscherman/Desktop/mapache/map.h
+
+/home/jscherman/Desktop/mapache/map.h
+algorithm
+-
+cassert
+-
+functional
+-
+iterator
+-
+utility
+-
+iostream
+-
+

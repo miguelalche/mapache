@@ -3256,10 +3256,11 @@ namespace aed2 {
         }
 
         /**
-         * @brief PENDIENTE: VER BIEN QUÉ HACE ESTA FUNCIÓN.
-         * Cata: esta funcion hace el insert cuando el valor que
-         * inserto es un maximo o un minimo, aca ya voy a saber donde insertarlo
-         * siempre y solo tengo q llamar a insertionFix
+         * @brief Esta funcion hace el insert cuando el valor que
+         * quiero insertar es un maximo o un minimo. En estos dos casos,
+         * se que el valor va a ser hijo de alguno de los hijos del header, y
+         * por lo tanto no tengo que buscar donde insertarlo, solo llamar al
+         * insertionFix para que rebalancee el arbol.
          */
 
         iterator assignMaxOrMin(const value_type& value) {
@@ -3278,6 +3279,14 @@ namespace aed2 {
 
         }
 
+        /**
+         * @brief insert_or_upsert es una funcion auxiliar para no repetir
+         * codigo en la insercion sin hint. Se separan los casos donde el
+         * elemento a insertar es un maximo o un minimo, o el arbol es vacio.
+         * En otro caso, se busca donde insertar o editar el meaning del elemento,
+         * (si upsert vale 0, solo se puede agregar el elemento en caso de no estar
+         * en el arbol).
+         */
         iterator insert_or_upsert(const value_type &value, bool upsert) {
             InnerNode *now = static_cast<InnerNode *>(this->header.parent);
             bool inserted = false;
@@ -3385,7 +3394,12 @@ namespace aed2 {
             return nullptr;
         }
 
-
+        /**
+         * @brief fixRight y fixLeft son funciones auxiliares
+         * para rebalancear el arbol luego de un erase siguiendo
+         * el algoritmo del Cormen segun si el nodo pasado por parametro
+         * era hijo izquierdo o derecho.
+         */
         void fixRight(Node* myNode) { fixLeft(myNode, 1);}
         void fixLeft(Node* myNode, bool dir = 0)
         {
@@ -3420,6 +3434,13 @@ namespace aed2 {
                 }
             }
         }
+        /**
+         * @brief delfix es una funcion auxiliar que
+         * rebalancea el arbol luego de un erase, siguiendo
+         * el algoritmo del Cormen. Se llama a fixLeft y fixRight
+         * segun corresponda, que tambien son funciones auxiliares
+         * para el mismo algoritmo.
+         */
         void delfix(Node* myNode) {
             if (myNode->isChild(0)) {
                 fixLeft(myNode);
@@ -3429,20 +3450,44 @@ namespace aed2 {
 
             myNode->color = Color::Black;
         }
-
+        /**
+         * @brief lowerBoundaux es una funcion auxiliar que generaliza
+         * parte del codigo de lower_bound para no tener tanto codigo
+         * repetido ya que lower_bound tiene version const y no const.
+         * En este caso, retornamos el nodo que se busca. Se empieza
+         * buscando por la raiz, y, en caso de que la clave no sea la
+         * mayor de todas, se busca yendo a la rama izquierda si el valor
+         * es mayor a la key pasada por parametro, y a la derecha en caso
+         * contrario.
+         * Se tiene guardado el mejor resultado en una variable aparte y se
+         * pisa si la key del nodo actual es mayor a la key pasada por parametro
+         * y menor a la key del mejor resultado. Ademas para mejorar la complejidad
+         * del caso promedio, si la key se encuentra, se corta el ciclo. Por defecto
+         * el ciclo continua hasta llegar a una hoja, con lo cual recorremos la altura
+         * del arbol, y el algoritmo es \O(log(n) * CMP(key1, key2)) donde n es la
+         * cantidad de nodos del arbol.
+         */
         Node* lowerBoundAux(const Key &key) const {
             Node *actual = header.parent;
-            Node *mother = nullptr;
+            Node* mejorResultado = nullptr;
             if (actual && !lt(header.child[1]->key(), key)) {
-                //while actual no es nullptr y no es el lower bound
-                while (actual && (lt(actual->key(), key) || (actual->child[0] && !lt(actual->child[0]->key(), key)))) {
-                    mother = actual;
-                    if (eq(key, actual->key())) break;
+
+                mejorResultado = header.child[1];
+                while (actual) {
+                    if (eq(key, actual->key()))
+                    {
+                        mejorResultado = actual;
+                        break;
+                    }
+                    if (!lt(actual->key(), key) && !lt(mejorResultado->key(), actual->key()))
+                    {
+                        mejorResultado = actual;
+                    }
                     actual = lt(key, actual->key()) ? actual->child[0] : actual->child[1];
                 }
             }
-            if (actual && !lt(actual->key(), key)) return actual;
-            else if (mother) return mother;
+            if (mejorResultado && !lt(mejorResultado->key(), key)) return mejorResultado;
+           // else if (mother) return mother;
             else return nullptr;
         }
 
