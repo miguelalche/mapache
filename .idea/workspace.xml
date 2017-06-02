@@ -23,8 +23,8 @@
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="mapache" targetName="mapache" />
       <config projectName="mapache" targetName="runTests" />
+      <config projectName="mapache" targetName="mapache" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -34,7 +34,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3b4c1d2-63a7-4e7a-84a3-b916a5c34008" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeCCompiler.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeCXXCompiler.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_C.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_CXX.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeSystem.cmake" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdC/a.out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdCXX/a.out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/CXX.includecache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/depend.internal" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/main.cpp.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/_formulas.tex" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/test.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/test.cpp.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/runTests" afterPath="$PROJECT_DIR$/cmake-build-debug/runTests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/DependInfo.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/build.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mapache.dir/depend.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/CXX.includecache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/DependInfo.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/build.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/runTests.dir/depend.internal" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/mapache.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/mapache.cbp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Aliasing.html" afterPath="$PROJECT_DIR$/html/Aliasing.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Castellano.html" afterPath="$PROJECT_DIR$/html/Castellano.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/Enunciado.html" afterPath="$PROJECT_DIR$/html/Enunciado.html" />
@@ -161,6 +195,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classaed2_1_1map_afe374b37f17263d0cad3ee19a590d208.html" afterPath="$PROJECT_DIR$/html/classaed2_1_1map_afe374b37f17263d0cad3ee19a590d208.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/classes.html" afterPath="$PROJECT_DIR$/html/classes.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/files.html" afterPath="$PROJECT_DIR$/html/files.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/formula.repository" afterPath="$PROJECT_DIR$/html/formula.repository" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/functions.html" afterPath="$PROJECT_DIR$/html/functions.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/functions_enum.html" afterPath="$PROJECT_DIR$/html/functions_enum.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/functions_func.html" afterPath="$PROJECT_DIR$/html/functions_func.html" />
@@ -201,8 +236,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afc97d72bfcc58f0dbe8f2d5b03950dc8.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afc97d72bfcc58f0dbe8f2d5b03950dc8.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afe6fb054255e6b83c1a64783641f9f13.html" afterPath="$PROJECT_DIR$/html/structaed2_1_1map_1_1Node_afe6fb054255e6b83c1a64783641f9f13.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/test_8cpp_source.html" afterPath="$PROJECT_DIR$/html/test_8cpp_source.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Implementacion.tex" afterPath="$PROJECT_DIR$/latex/Implementacion.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/Interfaz.tex" afterPath="$PROJECT_DIR$/latex/Interfaz.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/citelist.tex" afterPath="$PROJECT_DIR$/latex/citelist.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/classaed2_1_1map.tex" afterPath="$PROJECT_DIR$/latex/classaed2_1_1map.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/map_8h_source.tex" afterPath="$PROJECT_DIR$/latex/map_8h_source.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/classaed2_1_1map_1_1iterator.tex" afterPath="$PROJECT_DIR$/latex/classaed2_1_1map_1_1iterator.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/index.tex" afterPath="$PROJECT_DIR$/latex/index.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1InnerNode.tex" afterPath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1InnerNode.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1Node.tex" afterPath="$PROJECT_DIR$/latex/structaed2_1_1map_1_1Node.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/map.h" afterPath="$PROJECT_DIR$/map.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -222,7 +263,7 @@
       <file leaf-file-name="gtest.h" pinned="false" current-in-tab="false">
         <entry file="file:///usr/include/gtest/gtest.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6596">
+            <state relative-caret-position="29300">
               <caret line="1465" column="55" lean-forward="false" selection-start-line="1465" selection-start-column="55" selection-end-line="1465" selection-end-column="55" />
               <folding />
             </state>
@@ -232,8 +273,8 @@
       <file leaf-file-name="map.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34120">
-              <caret line="1722" column="38" lean-forward="false" selection-start-line="1722" selection-start-column="38" selection-end-line="1722" selection-end-column="38" />
+            <state relative-caret-position="87">
+              <caret line="2476" column="110" lean-forward="false" selection-start-line="2476" selection-start-column="110" selection-end-line="2476" selection-end-column="110" />
               <folding />
             </state>
           </provider>
@@ -242,7 +283,7 @@
       <file leaf-file-name="test.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
+            <state relative-caret-position="3520">
               <caret line="176" column="4" lean-forward="false" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
               <folding />
             </state>
@@ -263,7 +304,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>innernode</find>
       <find>head</find>
       <find>bound</find>
       <find>HEAD</find>
@@ -275,7 +315,6 @@
       <find>find</find>
       <find>erase</find>
       <find>insert</find>
-      <find>operator[]</find>
       <find>begin()</find>
       <find>clear</find>
       <find>begin</find>
@@ -289,9 +328,12 @@
       <find>map</find>
       <find>cmp</find>
       <find>pre \aedpre{\a self = \P{this} \LAND def?(\P{key},\P{*this})}</find>
-      <find>lower_bound</find>
       <find>lowerBoundAux</find>
       <find>crearItBi</find>
+      <find>operator=</find>
+      <find>operator[]</find>
+      <find>lower_bound</find>
+      <find>l valor apuntado por el iterador de</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -315,10 +357,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="x" value="-1" />
+    <option name="y" value="-11" />
+    <option name="width" value="1362" />
+    <option name="height" value="612" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -625,13 +667,12 @@
       <workItem from="1496195634387" duration="24000" />
       <workItem from="1496207049087" duration="58000" />
       <workItem from="1496356794396" duration="12624000" />
+      <workItem from="1496376687951" duration="671000" />
+      <workItem from="1496377388416" duration="1804000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BasicMapInstances_CopyConstructor - 2017.06.01 at 22h 06m 53s.xml">
-      <configuration name="BasicMapInstances.CopyConstructor" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="BasicMapInstances_CopyConstructor - 2017.06.01 at 22h 07m 18s.xml">
       <configuration name="BasicMapInstances.CopyConstructor" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
@@ -659,9 +700,12 @@
     <history-entry file="BasicMapInstances_lowerBoundExtenso - 2017.06.01 at 23h 50m 51s.xml">
       <configuration name="BasicMapInstances.lowerBoundExtenso" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="BasicMapInstances_lowerBoundExtenso - 2017.06.02 at 01h 25m 10s.xml">
+      <configuration name="BasicMapInstances.lowerBoundExtenso" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110459000" />
+    <option name="totallyTimeSpent" value="112934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,15 +717,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="-1" y="-11" width="1362" height="612" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16141514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16102941" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32672232" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -747,28 +791,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26843">
           <caret line="1579" column="59" lean-forward="false" selection-start-line="1579" selection-start-column="59" selection-end-line="1579" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#402#0" expanded="false" />
-            <element signature="e#403#1609#0" expanded="false" />
-            <element signature="e#1610#6111#0" expanded="false" />
-            <element signature="e#6112#12981#0" expanded="false" />
-            <element signature="e#12982#20429#0" expanded="false" />
-            <element signature="e#20430#34290#0" expanded="false" />
-            <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38001#38279#0" expanded="false" />
-            <element signature="e#38298#41634#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <element signature="e#51059#51075#0" expanded="true" />
-            <element signature="e#125027#125054#0" expanded="true" />
-            <element signature="e#125335#125362#0" expanded="true" />
-            <element signature="e#126343#126370#0" expanded="true" />
-            <element signature="e#126706#126733#0" expanded="true" />
-            <element signature="e#126947#126974#0" expanded="true" />
-            <element signature="e#127194#127221#0" expanded="true" />
-            <element signature="e#127865#127892#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -805,28 +828,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
           <caret line="1616" column="55" lean-forward="false" selection-start-line="1616" selection-start-column="55" selection-end-line="1616" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#402#0" expanded="false" />
-            <element signature="e#403#1609#0" expanded="false" />
-            <element signature="e#1610#6111#0" expanded="false" />
-            <element signature="e#6112#12981#0" expanded="false" />
-            <element signature="e#12982#20429#0" expanded="false" />
-            <element signature="e#20430#34290#0" expanded="false" />
-            <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38001#38279#0" expanded="false" />
-            <element signature="e#38298#41634#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <element signature="e#51059#51075#0" expanded="true" />
-            <element signature="e#125027#125054#0" expanded="true" />
-            <element signature="e#125335#125362#0" expanded="true" />
-            <element signature="e#126343#126370#0" expanded="true" />
-            <element signature="e#126706#126733#0" expanded="true" />
-            <element signature="e#126947#126974#0" expanded="true" />
-            <element signature="e#127194#127221#0" expanded="true" />
-            <element signature="e#127865#127892#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -850,28 +852,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27115">
           <caret line="1595" column="9" lean-forward="true" selection-start-line="1595" selection-start-column="9" selection-end-line="1595" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#402#0" expanded="false" />
-            <element signature="e#403#1609#0" expanded="false" />
-            <element signature="e#1610#6111#0" expanded="false" />
-            <element signature="e#6112#12981#0" expanded="false" />
-            <element signature="e#12982#20429#0" expanded="false" />
-            <element signature="e#20430#34290#0" expanded="false" />
-            <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38001#38279#0" expanded="false" />
-            <element signature="e#38298#41634#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <element signature="e#51059#51075#0" expanded="true" />
-            <element signature="e#125027#125054#0" expanded="true" />
-            <element signature="e#125335#125362#0" expanded="true" />
-            <element signature="e#126343#126370#0" expanded="true" />
-            <element signature="e#126706#126733#0" expanded="true" />
-            <element signature="e#126947#126974#0" expanded="true" />
-            <element signature="e#127194#127221#0" expanded="true" />
-            <element signature="e#127865#127892#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -898,28 +879,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38947">
           <caret line="2291" column="9" lean-forward="false" selection-start-line="2291" selection-start-column="9" selection-end-line="2291" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#402#0" expanded="false" />
-            <element signature="e#403#1609#0" expanded="false" />
-            <element signature="e#1610#6111#0" expanded="false" />
-            <element signature="e#6112#12981#0" expanded="false" />
-            <element signature="e#12982#20429#0" expanded="false" />
-            <element signature="e#20430#34290#0" expanded="false" />
-            <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38001#38279#0" expanded="false" />
-            <element signature="e#38298#41634#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <element signature="e#51059#51075#0" expanded="true" />
-            <element signature="e#125027#125054#0" expanded="true" />
-            <element signature="e#125335#125362#0" expanded="true" />
-            <element signature="e#126343#126370#0" expanded="true" />
-            <element signature="e#126706#126733#0" expanded="true" />
-            <element signature="e#126947#126974#0" expanded="true" />
-            <element signature="e#127194#127221#0" expanded="true" />
-            <element signature="e#127865#127892#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -946,28 +906,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42075">
           <caret line="2475" column="14" lean-forward="false" selection-start-line="2475" selection-start-column="14" selection-end-line="2475" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#402#0" expanded="false" />
-            <element signature="e#403#1609#0" expanded="false" />
-            <element signature="e#1610#6111#0" expanded="false" />
-            <element signature="e#6112#12981#0" expanded="false" />
-            <element signature="e#12982#20429#0" expanded="false" />
-            <element signature="e#20430#34290#0" expanded="false" />
-            <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38001#38279#0" expanded="false" />
-            <element signature="e#38298#41634#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <element signature="e#51059#51075#0" expanded="true" />
-            <element signature="e#125027#125054#0" expanded="true" />
-            <element signature="e#125335#125362#0" expanded="true" />
-            <element signature="e#126343#126370#0" expanded="true" />
-            <element signature="e#126706#126733#0" expanded="true" />
-            <element signature="e#126947#126974#0" expanded="true" />
-            <element signature="e#127194#127221#0" expanded="true" />
-            <element signature="e#127865#127892#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -982,28 +921,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26843">
           <caret line="1579" column="59" lean-forward="false" selection-start-line="1579" selection-start-column="59" selection-end-line="1579" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#402#0" expanded="false" />
-            <element signature="e#403#1609#0" expanded="false" />
-            <element signature="e#1610#6111#0" expanded="false" />
-            <element signature="e#6112#12981#0" expanded="false" />
-            <element signature="e#12982#20429#0" expanded="false" />
-            <element signature="e#20430#34290#0" expanded="false" />
-            <element signature="e#34291#35528#0" expanded="false" />
-            <element signature="e#35529#37681#0" expanded="false" />
-            <element signature="e#37714#37734#0" expanded="true" />
-            <element signature="e#38001#38279#0" expanded="false" />
-            <element signature="e#38298#41634#0" expanded="false" />
-            <element signature="e#41647#41706#0" expanded="true" />
-            <element signature="e#51059#51075#0" expanded="true" />
-            <element signature="e#125027#125054#0" expanded="true" />
-            <element signature="e#125335#125362#0" expanded="true" />
-            <element signature="e#126343#126370#0" expanded="true" />
-            <element signature="e#126706#126733#0" expanded="true" />
-            <element signature="e#126947#126974#0" expanded="true" />
-            <element signature="e#127194#127221#0" expanded="true" />
-            <element signature="e#127865#127892#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,7 +992,7 @@
     </entry>
     <entry file="file:///usr/include/gtest/gtest.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6596">
+        <state relative-caret-position="29300">
           <caret line="1465" column="55" lean-forward="false" selection-start-line="1465" selection-start-column="55" selection-end-line="1465" selection-end-column="55" />
           <folding />
         </state>
@@ -1090,7 +1008,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
+        <state relative-caret-position="3520">
           <caret line="176" column="4" lean-forward="false" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="4" />
           <folding />
         </state>
@@ -1098,8 +1016,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34120">
-          <caret line="1722" column="38" lean-forward="false" selection-start-line="1722" selection-start-column="38" selection-end-line="1722" selection-end-column="38" />
+        <state relative-caret-position="87">
+          <caret line="2476" column="110" lean-forward="false" selection-start-line="2476" selection-start-column="110" selection-end-line="2476" selection-end-column="110" />
           <folding />
         </state>
       </provider>

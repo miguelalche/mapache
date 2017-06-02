@@ -58,7 +58,7 @@ bool \hyperlink{classaed2_1_1map_1_1iterator_a836c7a166d63f507c4f79085ae953c51_a
 
 \end{DoxyParagraph}
 rep\+\_\+iter\+: puntero(\+Node) $\to$ bool~\newline
-rep\+\_\+iter(n) $\equiv$ true $\Leftrightarrow$ n = nullptr $\lor_{\rm L}$ ( ( $\exists$ k\+:nat) \href{axiomas.html#parentK}{\tt parentK}(n,k) $=/=$ nullptr $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k).color = Header $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k) = \href{axiomas.html#parentK}{\tt parentK}(n,k+2) $\land$ \href{axiomas.html#esArbol}{\tt es\+Arbol}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esRBTree}{\tt es\+R\+B\+Tree}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(p,\href{axiomas.html#arbolK}{\tt arbolK}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1),k+1)) $\land$ \href{axiomas.html#parentCorrecto}{\tt parent\+Correcto}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#familiaCorrecta}{\tt familia\+Correcta}($\ast$\href{axiomas.html#parentK}{\tt parentK}(n,k),\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) )
+rep\+\_\+iter(n) $\equiv$ true $\Leftrightarrow$ n = nullptr $\lor_{\rm L}$ ( ( $\exists$ k\+:nat) \href{axiomas.html#parentK}{\tt parentK}(n,k) $=/=$ nullptr $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k).color = Header $\land_{\rm L}$ \href{axiomas.html#parentK}{\tt parentK}(n,k) = \href{axiomas.html#parentK}{\tt parentK}(n,k+2) $\land$ \href{axiomas.html#esArbol}{\tt es\+Arbol}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land_{\rm L}$ \href{axiomas.html#esABBDicc}{\tt es\+A\+B\+B\+Dicc}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#esRBTree}{\tt es\+R\+B\+Tree}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land_{\rm L}$ \href{axiomas.html#perteneceAB}{\tt pertenece\+AB}(p,\href{axiomas.html#arbolK}{\tt arbolK}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1),k+1)) $\land_{\rm L}$ \href{axiomas.html#parentCorrecto}{\tt parent\+Correcto}(\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) $\land$ \href{axiomas.html#familiaCorrecta}{\tt familia\+Correcta}($\ast$\href{axiomas.html#parentK}{\tt parentK}(n,k),\href{axiomas.html#parentK}{\tt parentK}(n,k+1)) )
 
 \begin{DoxyParagraph}{Función de abstracción}
 
@@ -509,7 +509,7 @@ No es necesario que {\bfseries $\ast$this} y {\bfseries other} estén asociados 
 {\bfseries P} $\equiv$ \{true\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{ {\bfseries res} $=_{\rm obs}$ (({\bfseries this} $=_{\rm obs}$ nullptr $\Leftrightarrow$ {\bfseries other} $=_{\rm obs}$) nullptr) $\land$ (({\bfseries this} $=/=$ nullptr)  ({\bfseries this}-\/$>$value $=_{\rm obs}$ {\bfseries other}-\/$>$value $\land$ coleccion({\bfseries this}) $=_{\rm obs}$ coleccion({\bfseries other}))\}
+{\bfseries Q} $\equiv$ \{ {\bfseries res} $=_{\rm obs}$ (({\bfseries this} $=_{\rm obs}$ nullptr $\Leftrightarrow$ {\bfseries other} $=_{\rm obs}$ nullptr) $\land$ (({\bfseries this} $=/=$ nullptr) $\Rightarrow_{\rm L}$ ({\bfseries this}-\/$>$value $=_{\rm obs}$ {\bfseries other}-\/$>$value $\land$ coleccion({\bfseries this}) $=_{\rm obs}$ coleccion({\bfseries other}))\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/jscherman/Desktop/mapache/map.h
+/home/mike/algo2/mapache/map.h
 algorithm
 -
 cassert
@@ -20,9 +20,9 @@ utility
 iostream
 -
 
-/home/jscherman/Desktop/mapache/test.cpp
+/home/mike/algo2/mapache/test.cpp
 map.h
-/home/jscherman/Desktop/mapache/map.h
+/home/mike/algo2/mapache/map.h
 gtest/gtest.h
 -
 map

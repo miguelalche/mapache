@@ -467,7 +467,7 @@ Colores de los nodos en un árbol red-\/black. Ver \hyperlink{Implementacion}{Im
 Valores validos\+: \begin{DoxyItemize}
 \item Color\+::\+Red (color rojo) \item Color\+::\+Black (color negro) \item Color\+::\+Header (color azul, reservado para la cabecera)\end{DoxyItemize}
 \begin{DoxySeeAlso}{Ver también}
-Cormen et al. {\bfseries [Cormen\+Leiserson\+Rivest\+Stein2009]} e \hyperlink{Implementacion}{Implementación del árbol red-\/black} 
+Cormen et al. \cite{CormenLeisersonRivestStein2009} e \hyperlink{Implementacion}{Implementación del árbol red-\/black} 
 \end{DoxySeeAlso}
 
 
@@ -688,7 +688,7 @@ Como {\bfseries other} se pasa por copia, no hay aliasing. Las modificaciones so
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this} $\land$ {\bfseries other} = {\bfseries other $_{0}$}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{{\bfseries res} $=_{\rm obs}$ {\bfseries this} {\bfseries $\ast$res} $=_{\rm obs}$ {\bfseries $\ast$other $_{0}$} $\land$ get({\bfseries this}) $=/=$ \&{\bfseries other}\}
+{\bfseries Q} $\equiv$ \{{\bfseries res} $=_{\rm obs}$ {\bfseries this} $\land$ {\bfseries $\ast$res} $=_{\rm obs}$ {\bfseries $\ast$other $_{0}$} $\land$ get({\bfseries this}) $=/=$ \&{\bfseries other}\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -800,7 +800,7 @@ Cualquier cambio en {\bfseries res} afectará la estructura subyacente y vicever
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{ ( def?({\bfseries key}, {\itshape self}) $\Rightarrow$ {\bfseries res} $=_{\rm obs}$ obtener({\bfseries key}, ) $\land$ {\bfseries $\ast$this} $=_{\rm obs}$ {\itshape self} ) $\land$ ( $\lnot$ def?({\bfseries key}, {\itshape self}) $\Rightarrow$ def?({\bfseries key}, {\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) def?(c, {\bfseries $\ast$this}) $\Leftrightarrow$ (def?(c, {\itshape self}) $\lor$ c = {\bfseries Key}) $\land$ (def?(c, {\itshape self}) $\land$ c $=/=$ {\bfseries key}) $\Rightarrow_{\rm L}$ obtener(c,{\bfseries $\ast$this}) $=_{\rm obs}$ obtener(c, {\itshape self}) ) ) \}
+{\bfseries Q} $\equiv$ \{ ( def?({\bfseries key}, {\itshape self}) $\Rightarrow$ {\bfseries res} $=_{\rm obs}$ obtener({\bfseries key}, ) $\land$ {\bfseries $\ast$this} $=_{\rm obs}$ {\itshape self} ) $\land$ ( $\lnot$ def?({\bfseries key}, {\itshape self}) $\Rightarrow$ def?({\bfseries key}, {\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) def?(c, {\bfseries $\ast$this}) $\Leftrightarrow$ (def?(c, {\itshape self}) $\lor$ c = {\bfseries key}) $\land$ (def?(c, {\itshape self}) $\land$ c $=/=$ {\bfseries key}) $\Rightarrow_{\rm L}$ obtener(c,{\bfseries $\ast$this}) $=_{\rm obs}$ obtener(c, {\itshape self}) ) ) \}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -898,7 +898,7 @@ Si se modifica el valor apuntado por el iterador devuelto, se modificará la est
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{{\bfseries this} $=_{\rm obs}$ {\itshape self} $\land$ coleccion({\bfseries res}) $=_{\rm obs}$ {\bfseries this} {\bfseries $\ast$res}.first $\geq$ {\bfseries key} $\land$ def?({\bfseries $\ast$res}.first,{\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) (def?(c,{\bfseries $\ast$this}) $\land$ c $\geq$ {\bfseries key}) $\Rightarrow$ c $\geq$ {\bfseries $\ast$res}.first ) $\land$ Anteriores({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#antesDe}{\tt antes\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self})) $\land$ Siguientes({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#despuesDe}{\tt despues\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self}))\}
+{\bfseries Q} $\equiv$ \{{\bfseries this} $=_{\rm obs}$ {\itshape self} $\land$ coleccion({\bfseries res}) $=_{\rm obs}$ {\bfseries this} $\land$ {\bfseries $\ast$res}.first $\geq$ {\bfseries key} $\land$ def?({\bfseries $\ast$res}.first,{\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) (def?(c,{\bfseries $\ast$this}) $\land$ c $\geq$ {\bfseries key}) $\Rightarrow_{\rm L}$ c $\geq$ {\bfseries $\ast$res}.first ) $\land_{\rm L}$ Anteriores({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#antesDe}{\tt antes\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self})) $\land$ Siguientes({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#despuesDe}{\tt despues\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self}))\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
