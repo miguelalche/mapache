@@ -156,9 +156,9 @@ void \hyperlink{classaed2_1_1map_a533bd88d0b7a584e3c968548d246c255_a533bd88d0b7a
 bool \hyperlink{classaed2_1_1map_a010a17bb041f4b1dfc22246920cde9ee_a010a17bb041f4b1dfc22246920cde9ee}{add\+Elem} (\hyperlink{structaed2_1_1map_1_1InnerNode}{Inner\+Node} $\ast$\&now, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value, int dir)
 \begin{DoxyCompactList}\small\item\em Función auxiliar usada en el destructor. Elimina recursivamente todos los nodos que descienden de root; para esto, chequea que init\+Root tenga hijos y si los tiene hace una llamada recursiva con una instancia más sencilla. init\+Root debería ser un nodo que efectivamente pertenezca a la instancia de map que está llamando a la función; en el contexto del destructor esto obviamente se cumple. \end{DoxyCompactList}\item 
 void \hyperlink{classaed2_1_1map_ad5e62c3fd915ec63961a93416e4d8c7f_ad5e62c3fd915ec63961a93416e4d8c7f}{D\+Insertion\+Fix} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$grand\+Pa, \hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$new\+Node, \hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$aux, bool dir)
-\begin{DoxyCompactList}\small\item\em Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Funcion auxiliar de insertion\+Fix para no repetir codigo, separa el caso en que el parent de new\+Node es hijo izquierdo o derecho con el bool dir y realiza las rotaciones correspondientes. \end{DoxyCompactList}\item 
 void \hyperlink{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}{insertion\+Fix} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$new\+Node, const \hyperlink{classaed2_1_1map_a719db98e0ff9a837610f76be33264680_a719db98e0ff9a837610f76be33264680}{value\+\_\+type} \&value)
-\begin{DoxyCompactList}\small\item\em Retorna true si las claves son iguales con respecto a {\bfseries this}-\/$>$lt. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba. Hace las rotaciones correspondientes en base a si es la raiz, o a la familia del padre. \end{DoxyCompactList}\item 
 void \hyperlink{classaed2_1_1map_ad764851f1534f2db0964c4f729056a1e_ad764851f1534f2db0964c4f729056a1e}{leftrotate} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Implementa la rotación izquierda descrita en el Cormen. \end{DoxyCompactList}\item 
 void \hyperlink{classaed2_1_1map_a42743a21d6441e6de5e288211a91374f_a42743a21d6441e6de5e288211a91374f}{D\+Rotate} (\hyperlink{structaed2_1_1map_1_1Node}{Node} $\ast$p, bool dir=1)
@@ -469,7 +469,7 @@ Colores de los nodos en un árbol red-\/black. Ver \hyperlink{Implementacion}{Im
 Valores validos\+: \begin{DoxyItemize}
 \item Color\+::\+Red (color rojo) \item Color\+::\+Black (color negro) \item Color\+::\+Header (color azul, reservado para la cabecera)\end{DoxyItemize}
 \begin{DoxySeeAlso}{Ver también}
-Cormen et al. {\bfseries [Cormen\+Leiserson\+Rivest\+Stein2009]} e \hyperlink{Implementacion}{Implementación del árbol red-\/black} 
+Cormen et al. \cite{CormenLeisersonRivestStein2009} e \hyperlink{Implementacion}{Implementación del árbol red-\/black} 
 \end{DoxySeeAlso}
 
 
@@ -690,7 +690,7 @@ Como {\bfseries other} se pasa por copia, no hay aliasing. Las modificaciones so
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this} $\land$ {\bfseries other} = {\bfseries other $_{0}$}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{{\bfseries res} $=_{\rm obs}$ {\bfseries this} {\bfseries $\ast$res} $=_{\rm obs}$ {\bfseries $\ast$other $_{0}$} $\land$ get({\bfseries this}) $=/=$ \&{\bfseries other}\}
+{\bfseries Q} $\equiv$ \{{\bfseries res} $=_{\rm obs}$ {\bfseries this} $\land$ {\bfseries $\ast$res} $=_{\rm obs}$ {\bfseries $\ast$other $_{0}$} $\land$ get({\bfseries this}) $=/=$ \&{\bfseries other}\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -802,7 +802,7 @@ Cualquier cambio en {\bfseries res} afectará la estructura subyacente y vicever
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{ ( def?({\bfseries key}, {\itshape self}) $\Rightarrow$ {\bfseries res} $=_{\rm obs}$ obtener({\bfseries key}, ) $\land$ {\bfseries $\ast$this} $=_{\rm obs}$ {\itshape self} ) $\land$ ( $\lnot$ def?({\bfseries key}, {\itshape self}) $\Rightarrow$ def?({\bfseries key}, {\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) def?(c, {\bfseries $\ast$this}) $\Leftrightarrow$ (def?(c, {\itshape self}) $\lor$ c = {\bfseries Key}) $\land$ (def?(c, {\itshape self}) $\land$ c $=/=$ {\bfseries key}) $\Rightarrow_{\rm L}$ obtener(c,{\bfseries $\ast$this}) $=_{\rm obs}$ obtener(c, {\itshape self}) ) ) \}
+{\bfseries Q} $\equiv$ \{ ( def?({\bfseries key}, {\itshape self}) $\Rightarrow$ {\bfseries res} $=_{\rm obs}$ obtener({\bfseries key}, ) $\land$ {\bfseries $\ast$this} $=_{\rm obs}$ {\itshape self} ) $\land$ ( $\lnot$ def?({\bfseries key}, {\itshape self}) $\Rightarrow$ def?({\bfseries key}, {\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) def?(c, {\bfseries $\ast$this}) $\Leftrightarrow$ (def?(c, {\itshape self}) $\lor$ c = {\bfseries key}) $\land$ (def?(c, {\itshape self}) $\land$ c $=/=$ {\bfseries key}) $\Rightarrow_{\rm L}$ obtener(c,{\bfseries $\ast$this}) $=_{\rm obs}$ obtener(c, {\itshape self}) ) ) \}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -900,7 +900,7 @@ Si se modifica el valor apuntado por el iterador devuelto, se modificará la est
 {\bfseries P} $\equiv$ \{{\itshape self} = {\bfseries this}\} 
 \end{DoxyPrecond}
 \begin{DoxyPostcond}{Postcondición}
-{\bfseries Q} $\equiv$ \{{\bfseries this} $=_{\rm obs}$ {\itshape self} $\land$ coleccion({\bfseries res}) $=_{\rm obs}$ {\bfseries this} {\bfseries $\ast$res}.first $\geq$ {\bfseries key} $\land$ def?({\bfseries $\ast$res}.first,{\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) (def?(c,{\bfseries $\ast$this}) $\land$ c $\geq$ {\bfseries key}) $\Rightarrow$ c $\geq$ {\bfseries $\ast$res}.first ) $\land$ Anteriores({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#antesDe}{\tt antes\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self})) $\land$ Siguientes({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#despuesDe}{\tt despues\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self}))\}
+{\bfseries Q} $\equiv$ \{{\bfseries this} $=_{\rm obs}$ {\itshape self} $\land$ coleccion({\bfseries res}) $=_{\rm obs}$ {\bfseries this} $\land$ {\bfseries $\ast$res}.first $\geq$ {\bfseries key} $\land$ def?({\bfseries $\ast$res}.first,{\bfseries $\ast$this}) $\land$ ( ( $\forall$ c\+:Key) (def?(c,{\bfseries $\ast$this}) $\land$ c $\geq$ {\bfseries key}) $\Rightarrow_{\rm L}$ c $\geq$ {\bfseries $\ast$res}.first ) $\land_{\rm L}$ Anteriores({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#antesDe}{\tt antes\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self})) $\land$ Siguientes({\bfseries res}) $=_{\rm obs}$ \href{axiomas.html#despuesDe}{\tt despues\+De}({\bfseries res}.first,\href{axiomas.html#valoresOrdenados}{\tt valores\+Ordenados}({\itshape self}))\}
 \end{DoxyPostcond}
 
 \begin{DoxyDescription}
@@ -1562,11 +1562,11 @@ Definición en la línea \hyperlink{map_8h_source_l03072}{3072} del archivo \hyp
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{classaed2_1_1map_ad5e62c3fd915ec63961a93416e4d8c7f_ad5e62c3fd915ec63961a93416e4d8c7f}{}\label{classaed2_1_1map_ad5e62c3fd915ec63961a93416e4d8c7f_ad5e62c3fd915ec63961a93416e4d8c7f}
 
 
-Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba. 
+Funcion auxiliar de insertion\+Fix para no repetir codigo, separa el caso en que el parent de new\+Node es hijo izquierdo o derecho con el bool dir y realiza las rotaciones correspondientes. 
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03089}{3089} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03090}{3090} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!insertion\+Fix@{insertion\+Fix}}
 \index{insertion\+Fix@{insertion\+Fix}!aed2\+::map@{aed2\+::map}}
@@ -1578,21 +1578,11 @@ Definición en la línea \hyperlink{map_8h_source_l03089}{3089} del archivo \hyp
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}\hypertarget{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}{}\label{classaed2_1_1map_abe3f47a745e17a6327943b813ff6bfb3_abe3f47a745e17a6327943b813ff6bfb3}
 
 
-Retorna true si las claves son iguales con respecto a {\bfseries this}-\/$>$lt. 
+Cambia los colores de los nodos o realiza rotaciones según el algoritmo del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba. Hace las rotaciones correspondientes en base a si es la raiz, o a la familia del padre. 
 
 
-\begin{DoxyParams}{Parámetros}
-{\em k1} & clave a comparar \\
-\hline
-{\em k2} & clave a comparar \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Devuelve}
-true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfseries this}-\/$>$lt. 
-\end{DoxyReturn}
 
-
-Definición en la línea \hyperlink{map_8h_source_l03111}{3111} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03119}{3119} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!leftrotate@{leftrotate}}
 \index{leftrotate@{leftrotate}!aed2\+::map@{aed2\+::map}}
@@ -1607,7 +1597,7 @@ Implementa la rotación izquierda descrita en el Cormen.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03132}{3132} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03140}{3140} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!D\+Rotate@{D\+Rotate}}
 \index{D\+Rotate@{D\+Rotate}!aed2\+::map@{aed2\+::map}}
@@ -1623,7 +1613,7 @@ Implementa la rotación izquierda o derecha segun el parametro dir descrita en e
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03139}{3139} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03147}{3147} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!rightrotate@{rightrotate}}
 \index{rightrotate@{rightrotate}!aed2\+::map@{aed2\+::map}}
@@ -1638,7 +1628,7 @@ Implementa la rotación derecha descrita en el Cormen.
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03173}{3173} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03181}{3181} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!invalid\+Hint@{invalid\+Hint}}
 \index{invalid\+Hint@{invalid\+Hint}!aed2\+::map@{aed2\+::map}}
@@ -1654,7 +1644,7 @@ Devuelve true si la clave contenida en el nodo apuntado por hint {\itshape  no e
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03186}{3186} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03194}{3194} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!is\+Max\+Or\+Min@{is\+Max\+Or\+Min}}
 \index{is\+Max\+Or\+Min@{is\+Max\+Or\+Min}!aed2\+::map@{aed2\+::map}}
@@ -1669,7 +1659,7 @@ Devuelve true si {\bfseries value} es mayor que el máximo o menor que el mínim
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03197}{3197} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03205}{3205} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!assign\+Max\+Or\+Min@{assign\+Max\+Or\+Min}}
 \index{assign\+Max\+Or\+Min@{assign\+Max\+Or\+Min}!aed2\+::map@{aed2\+::map}}
@@ -1684,7 +1674,7 @@ Esta funcion hace el insert cuando el valor que quiero insertar es un maximo o u
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03209}{3209} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03217}{3217} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!insert\+\_\+or\+\_\+upsert@{insert\+\_\+or\+\_\+upsert}}
 \index{insert\+\_\+or\+\_\+upsert@{insert\+\_\+or\+\_\+upsert}!aed2\+::map@{aed2\+::map}}
@@ -1700,7 +1690,7 @@ insert\+\_\+or\+\_\+upsert es una funcion auxiliar para no repetir codigo en la 
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03233}{3233} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03241}{3241} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!Update@{Update}}
 \index{Update@{Update}!aed2\+::map@{aed2\+::map}}
@@ -1716,7 +1706,7 @@ Update\+: esta funcion se encarga de cambiar el \+\_\+value.\+second de un \hype
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03271}{3271} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03279}{3279} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!insertar\+Todos@{insertar\+Todos}}
 \index{insertar\+Todos@{insertar\+Todos}!aed2\+::map@{aed2\+::map}}
@@ -1734,7 +1724,7 @@ insertar\+Todos\+: funcion auxiliar del constructor por copia. Agrega recursivam
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03302}{3302} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03310}{3310} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!find\+Aux@{find\+Aux}}
 \index{find\+Aux@{find\+Aux}!aed2\+::map@{aed2\+::map}}
@@ -1750,7 +1740,7 @@ find\+Aux\+: funcion auxiliar de find para no repetir codigo en la funcion find 
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03327}{3327} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03335}{3335} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!fix\+Right@{fix\+Right}}
 \index{fix\+Right@{fix\+Right}!aed2\+::map@{aed2\+::map}}
@@ -1765,7 +1755,7 @@ fix\+Right y fix\+Left son funciones auxiliares para rebalancear el arbol durant
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03347}{3347} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03355}{3355} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!fix\+Left@{fix\+Left}}
 \index{fix\+Left@{fix\+Left}!aed2\+::map@{aed2\+::map}}
@@ -1791,7 +1781,7 @@ true cuando {\bfseries k1} y {\bfseries k2} son iguales con respecto a {\bfserie
 \end{DoxyReturn}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03348}{3348} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03356}{3356} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!delfix@{delfix}}
 \index{delfix@{delfix}!aed2\+::map@{aed2\+::map}}
@@ -1806,7 +1796,7 @@ delfix es una funcion auxiliar que rebalancea el arbol a la vez que borra un nod
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03391}{3391} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03399}{3399} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!lower\+Bound\+Aux@{lower\+Bound\+Aux}}
 \index{lower\+Bound\+Aux@{lower\+Bound\+Aux}!aed2\+::map@{aed2\+::map}}
@@ -1821,7 +1811,7 @@ lower\+Boundaux es una funcion auxiliar que generaliza parte del codigo de lower
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03417}{3417} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03425}{3425} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!Transplant@{Transplant}}
 \index{Transplant@{Transplant}!aed2\+::map@{aed2\+::map}}
@@ -1837,7 +1827,7 @@ Implementa la funcion transplant descrita en el Cormen. Donde estaba el Nodo apu
 
 
 
-Definición en la línea \hyperlink{map_8h_source_l03445}{3445} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03453}{3453} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 
@@ -1896,7 +1886,7 @@ Para determinar la igualdad de las claves no se utiliza el functor de comparaci�
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03494}{3494} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03502}{3502} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!aed2\+::map@{aed2\+::map}}
@@ -1915,7 +1905,7 @@ aed2\+::operator==()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03506}{3506} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03514}{3514} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!aed2\+::map@{aed2\+::map}}
@@ -1969,7 +1959,7 @@ Para determinar la comparación de las claves no se utiliza el functor de compar
 \end{DoxyAttention}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03537}{3537} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03545}{3545} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$>$@{operator$>$}}
 \index{operator$>$@{operator$>$}!aed2\+::map@{aed2\+::map}}
@@ -1988,7 +1978,7 @@ aed2\+::operator$>$()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03548}{3548} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03556}{3556} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$<$=@{operator$<$=}}
 \index{operator$<$=@{operator$<$=}!aed2\+::map@{aed2\+::map}}
@@ -2007,7 +1997,7 @@ aed2\+::operator$<$=()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03559}{3559} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03567}{3567} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!operator$>$=@{operator$>$=}}
 \index{operator$>$=@{operator$>$=}!aed2\+::map@{aed2\+::map}}
@@ -2026,7 +2016,7 @@ aed2\+::operator$>$=()
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03570}{3570} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03578}{3578} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 \index{aed2\+::map@{aed2\+::map}!swap@{swap}}
 \index{swap@{swap}!aed2\+::map@{aed2\+::map}}
@@ -2066,7 +2056,7 @@ Implementa la función swap para cumplir con el concepto swappable.
 \end{DoxySeeAlso}
 
 
-Definición en la línea \hyperlink{map_8h_source_l03594}{3594} del archivo \hyperlink{map_8h_source}{map.\+h}.
+Definición en la línea \hyperlink{map_8h_source_l03602}{3602} del archivo \hyperlink{map_8h_source}{map.\+h}.
 
 
 

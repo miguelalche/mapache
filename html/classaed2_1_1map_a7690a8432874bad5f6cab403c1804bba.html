@@ -117,7 +117,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 
 <p>lowerBoundaux es una funcion auxiliar que generaliza parte del codigo de lower_bound para no tener tanto codigo repetido ya que lower_bound tiene version const y no const. En este caso, retornamos el nodo que se busca. Se empieza buscando por la raiz, y, en caso de que la clave no sea la mayor de todas, se busca yendo a la rama izquierda si el valor es mayor a la key pasada por parametro, y a la derecha en caso contrario. Se tiene guardado el mejor resultado en una variable aparte y se pisa si la key del nodo actual es mayor a la key pasada por parametro y menor a la key del mejor resultado. Ademas para mejorar la complejidad del caso promedio, si la key se encuentra, se corta el ciclo. Por defecto el ciclo continua hasta llegar a una hoja, con lo cual recorremos la altura del arbol, y el algoritmo es <img class="formulaInl" alt="$O$" src="form_1.png"/>(log(n) * CMP(key1, key2)) donde n es la cantidad de nodos del arbol. </p>
 
-<p>Definición en la línea <a class="el" href="map_8h_source.html#l03417">3417</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
+<p>Definición en la línea <a class="el" href="map_8h_source.html#l03425">3425</a> del archivo <a class="el" href="map_8h_source.html">map.h</a>.</p>
 
 </div>
 </div>
@@ -127,7 +127,7 @@ template&lt;class Key, class Meaning, class Compare = std::less&lt;Key&gt;&gt; <
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li>
-    <li class="footer">Generado el Viernes, 2 de Junio de 2017 02:42:28 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Viernes, 2 de Junio de 2017 02:58:05 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

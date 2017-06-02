@@ -1502,7 +1502,7 @@ namespace aed2 {
          * no afectan al otro.}
          *
          * \pre \aedpre{\a self = \P{this} \LAND \P{other} = \P{other \f$_{0}\f$}}
-         * \post \aedpost{\P{res} \IGOBS \P{this} \P{*res} \IGOBS \P{*other \f$_{0}\f$} \LAND get(\P{this}) \NEQ &\P{other}}
+         * \post \aedpost{\P{res} \IGOBS \P{this} \LAND \P{*res} \IGOBS \P{*other \f$_{0}\f$} \LAND get(\P{this}) \NEQ &\P{other}}
          *
          * \complexity{\O(\DEL(\P{*this}) \PLUS \COPY(\P{other}))}
          *
@@ -1627,7 +1627,7 @@ namespace aed2 {
          * \post \aedpost{ ( def?(\P{key}, \a self) \IMPLIES \P{res} \IGOBS obtener(\P{key}, \self) \LAND
          * \P{*this} \IGOBS \a self ) \LAND ( \LNOT def?(\P{key}, \a self) \IMPLIES
          * def?(\P{key}, \P{*this}) \LAND ( (\FORALL c:Key) def?(c, \P{*this}) \IFF
-         * (def?(c, \a self) \LOR c = \P{Key}) \LAND (def?(c, \a self) \LAND c \NEQ \P{key})
+         * (def?(c, \a self) \LOR c = \P{key}) \LAND (def?(c, \a self) \LAND c \NEQ \P{key})
          * \IMPLIES_L obtener(c,\P{*this}) \IGOBS obtener(c, \a self) ) )  }
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}) + \a x) donde
@@ -1721,10 +1721,10 @@ namespace aed2 {
          * subyacente.}
          *
          * \pre \aedpre{\a self = \P{this}}
-         * \post \aedpost{\P{this} \IGOBS \a self \LAND coleccion(\P{res}) \IGOBS \P{this}
+         * \post \aedpost{\P{this} \IGOBS \a self \LAND coleccion(\P{res}) \IGOBS \P{this} \LAND
          * \P{*res}.first \GEQ \P{key} \LAND def?(\P{*res}.first,\P{*this}) \LAND
-         * ( (\FORALL c:\T{Key}) (def?(c,\P{*this}) \LAND c \GEQ \P{key}) \IMPLIES c \GEQ \P{*res}.first )
-         * \LAND Anteriores(\P{res}) \IGOBS \antesDe(\P{res}.first,\valoresOrdenados(\a self))
+         * ( (\FORALL c:\T{Key}) (def?(c,\P{*this}) \LAND c \GEQ \P{key}) \IMPLIES_L c \GEQ \P{*res}.first )
+         * \LAND_L Anteriores(\P{res}) \IGOBS \antesDe(\P{res}.first,\valoresOrdenados(\a self))
          * \LAND Siguientes(\P{res}) \IGOBS \despuesDe(\P{res}.first,\valoresOrdenados(\a self))}
          *
          * \complexity{\O(\LOG(\SIZE(\P{*this})) \CDOT \CMP(\P{*this}))}
@@ -2485,8 +2485,8 @@ namespace aed2 {
              * - true, cuando ambos son nulos.}
              *
              * \pre \aedpre{true}
-             * \post \aedpost{ \P{res} \IGOBS ((\P{this} \IGOBS nullptr \IFF \P{other} \IGOBS) nullptr) \LAND
-             * ((\P{this} \NEQ nullptr) \IMP_LUEGO (\P{this}->value \IGOBS \P{other}->value \LAND coleccion(\P{this})
+             * \post \aedpost{ \P{res} \IGOBS ((\P{this} \IGOBS nullptr \IFF \P{other} \IGOBS nullptr) \LAND_L
+             * ((\P{this} \NEQ nullptr) \IMPLIES_L (\P{this}->value \IGOBS \P{other}->value \LAND coleccion(\P{this})
              * \IGOBS coleccion(\P{other}))}
              *
              * \complexity{\O(1)}
@@ -2550,10 +2550,10 @@ namespace aed2 {
             * rep_iter: puntero(Node) \TO bool\n
             * rep_iter(n) \EQUIV true \IFF n = nullptr \LOR_L ( (\EXISTS k:\T{nat})
             * \parentK(n,k) \NEQ nullptr \LAND_L \parentK(n,k).color = Header \LAND_L
-            * \parentK(n,k) = \parentK(n,k+2) \LAND \esArbol(\parentK(n,k+1)) \LAND
-            * \esABBDicc(\parentK(n,k+1)) \LAND \esRBTree(\parentK(n,k+1)) \LAND
-            * \perteneceAB(p,\arbolK(\parentK(n,k+1),k+1)) \LAND \parentCorrecto(\parentK(n,k+1))
-            * \LAND \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
+            * \parentK(n,k) = \parentK(n,k+2) \LAND \esArbol(\parentK(n,k+1)) \LAND_L
+            * \esABBDicc(\parentK(n,k+1)) \LAND \esRBTree(\parentK(n,k+1)) \LAND_L
+            * \perteneceAB(p,\arbolK(\parentK(n,k+1),k+1)) \LAND_L \parentCorrecto(\parentK(n,k+1))
+            * \LAND_L \familiaCorrecta(*\parentK(n,k),\parentK(n,k+1)) )
             *
             * \par Función de abstracción
             *

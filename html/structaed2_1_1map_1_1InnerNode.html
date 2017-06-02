@@ -176,7 +176,7 @@ Otros miembros heredados</h2></td></tr>
 struct aed2::map&lt; Key, Meaning, Compare &gt;::InnerNode</h3>
 
 <p>Estructura (privada) de un nodo no cabecera del árbol red-black. </p>
-<p>Tal como sugiere Cormen et al. <b>[CormenLeisersonRivestStein2009]</b>, como se implementa en GCC, y cómo explicamos en <a class="el" href="Implementacion.html">Implementación del árbol red-black</a>, el árbol tiene dos tipos de nodos. Aquellos que tienen un valor e implementan el árbol y aquellos que se usan como centinelas. La estructura <span class="paramname"><a class="el" href="structaed2_1_1map_1_1InnerNode.html" title="Estructura (privada) de un nodo no cabecera del árbol red-black. ">InnerNode</a></span> hereda de la estructura <a class="el" href="structaed2_1_1map_1_1Node.html" title="Estructura (privada) de un nodo del árbol red-black. ">aed2::map::Node</a>, agregando el valor, para representar a los nodos no cabecera.</p>
+<p>Tal como sugiere Cormen et al. <a class="el" href="citelist.html#CITEREF_CormenLeisersonRivestStein2009">[1]</a>, como se implementa en GCC, y cómo explicamos en <a class="el" href="Implementacion.html">Implementación del árbol red-black</a>, el árbol tiene dos tipos de nodos. Aquellos que tienen un valor e implementan el árbol y aquellos que se usan como centinelas. La estructura <span class="paramname"><a class="el" href="structaed2_1_1map_1_1InnerNode.html" title="Estructura (privada) de un nodo no cabecera del árbol red-black. ">InnerNode</a></span> hereda de la estructura <a class="el" href="structaed2_1_1map_1_1Node.html" title="Estructura (privada) de un nodo del árbol red-black. ">aed2::map::Node</a>, agregando el valor, para representar a los nodos no cabecera.</p>
 <p>Además de definir los campos de la estructura de un nodo, esta clase podría implementar una especie de submodulo que incluya funciones para manipular el árbol red-black. Se sugiere incluir en esta estructura aquellas funciones que, si bien no requieren conocer el resto de la estructura red-black, explotan el conocimiento de que el árbol red-black tiene un unico nodo sentinela que sirve de cabecera.</p>
 <dl class="section remark"><dt>Comentarios</dt><dd>Como <span class="paramname"><a class="el" href="structaed2_1_1map_1_1InnerNode.html" title="Estructura (privada) de un nodo no cabecera del árbol red-black. ">InnerNode</a></span> es una estructura privada, no tiene ventajas imporantes implementarla en forma modular. </dd></dl>
 
@@ -190,7 +190,7 @@ struct aed2::map&lt; Key, Meaning, Compare &gt;::InnerNode</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceaed2.html">aed2</a></li><li class="navelem"><a class="el" href="classaed2_1_1map.html">map</a></li><li class="navelem"><a class="el" href="structaed2_1_1map_1_1InnerNode.html">InnerNode</a></li>
-    <li class="footer">Generado el Viernes, 2 de Junio de 2017 02:42:28 para Trabajo práctico 2: diccionario sobre RB-tree por
+    <li class="footer">Generado el Viernes, 2 de Junio de 2017 02:58:05 para Trabajo práctico 2: diccionario sobre RB-tree por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>
