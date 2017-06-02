@@ -3083,8 +3083,9 @@ namespace aed2 {
         }
 
         /**
-         * @brief Cambia los colores de los nodos o realiza rotaciones según el algoritmo
-         * del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba.
+         * @brief Funcion auxiliar de insertionFix para no repetir codigo,
+         * separa el caso en que el parent de newNode es hijo izquierdo o derecho
+         * con el bool dir y realiza las rotaciones correspondientes.
          */
         void DInsertionFix(Node* grandPa, Node* newNode, Node* aux, bool dir)
         {
@@ -3108,8 +3109,15 @@ namespace aed2 {
                 else leftrotate(grandPa);
             }
         }
+
+        /**
+ * @brief Cambia los colores de los nodos o realiza rotaciones según el algoritmo
+ * del Cormen. Empieza por el nodo recién insertado y recorre el árbol hacia arriba.
+ * Hace las rotaciones correspondientes en base a si es la raiz, o a la familia
+         * del padre.
+ */
         void insertionFix(Node* newNode, const value_type &value) {
-            Node* aux;
+            Node* aux = nullptr;
             if (eq(root()->value().first, value.first)) {
                 root()->color = Color::Black;
                 return;
